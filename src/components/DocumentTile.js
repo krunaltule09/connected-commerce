@@ -46,7 +46,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
               sx={{
                 fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                 fontWeight: 'var(--font-weight-regular, 400)',
-                fontSize: 'var(--font-size-16, 16px)',
+                fontSize: '1rem',
                 lineHeight: 'var(--line-height-24, 24px)',
                 letterSpacing: 'var(--letter-spacing-0, 0)',
               }}

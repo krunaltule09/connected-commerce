@@ -72,7 +72,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                 color: '#FCFCFC',
                 fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                 fontWeight: 'var(--font-weight-regular, 400)',
-                fontSize: 'var(--font-size-16, 16px)',
+                fontSize: '1rem',
                 lineHeight: 'var(--line-height-24, 24px)',
                 letterSpacing: 'var(--letter-spacing-0, 0)',
               }}
@@ -85,7 +85,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                 color: 'rgba(252,252,252,0.7)',
                 fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                 fontWeight: 'var(--font-weight-regular, 400)',
-                fontSize: 'var(--font-size-16, 16px)',
+                fontSize: '1rem',
                 lineHeight: 'var(--line-height-24, 24px)',
                 letterSpacing: 'var(--letter-spacing-0, 0)',
               }}
@@ -107,7 +107,10 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
       sx={{
         borderRadius: 2,
         bgcolor: '#1A1A24',
-        border: '1px solid #1D8583',
+        border: '0.1px solid',
+        borderColor: 'transparent',
+        borderImage: 'linear-gradient(130deg,rgba(255, 230, 0, 1) 0%, rgba(46, 46, 56, 1) 60%) 1',
+        borderImageSlice: 1,
       }}
     >
       <CardContent>
@@ -118,9 +121,18 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
             color: '#FFE600',
             fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
             fontWeight: 'var(--font-weight-regular, 400)',
-            fontSize: 'var(--font-size-16, 16px)',
+            fontSize: '1rem',
             lineHeight: 'var(--line-height-24, 24px)',
             letterSpacing: 'var(--letter-spacing-0, 0)',
+            height: '40px',
+
+            fontWeight: 400,
+            fontSize: '1.25rem',
+            lineHeight: '40px',
+            letterSpacing: '-0.02em',
+            color: '#FFE600',
+
+
           }}
         >
           Document Preview

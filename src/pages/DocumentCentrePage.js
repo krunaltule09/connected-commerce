@@ -57,7 +57,7 @@ export default function DocumentCentrePage() {
                 fontFamily: 'EYInterstate, Inter, Roboto, Helvetica, Arial, sans-serif',
                 fontWeight: 700,
                 fontStyle: 'normal',
-                fontSize: 36,
+                fontSize: '1.875rem',
                 lineHeight: '100%',
                 letterSpacing: 0,
               }}
@@ -84,8 +84,7 @@ export default function DocumentCentrePage() {
 
           <Grid item xs={12} md={8} lg={9}>
             <Box sx={{
-              border: '1px solid #1D8583',
-              borderRadius: 3,
+
               p: 3,
               bgcolor: '#05020A',
             }}>
@@ -97,7 +96,7 @@ export default function DocumentCentrePage() {
                         color: '#FCFCFC',
                         fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                         fontWeight: 'var(--font-weight-bold, 700)',
-                        fontSize: 'var(--font-size-24, 24px)',
+                        fontSize: '1.25rem',
                         lineHeight: 'var(--line-height-30, 30px)',
                         letterSpacing: 'var(--letter-spacing--2, -0.02em)',
                       }}
@@ -109,7 +108,7 @@ export default function DocumentCentrePage() {
                         color: 'rgba(252,252,252,0.7)',
                         fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                         fontWeight: 'var(--font-weight-light, 300)',
-                        fontSize: 'var(--font-size-20, 20px)',
+                        fontSize: '1.125rem',
                         lineHeight: 'var(--line-height-28, 28px)',
                         letterSpacing: 'var(--letter-spacing-0, 0)',
                       }}
@@ -125,7 +124,7 @@ export default function DocumentCentrePage() {
                         color: '#FCFCFC',
                         fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                         fontWeight: 'var(--font-weight-bold, 700)',
-                        fontSize: 'var(--font-size-24, 24px)',
+                        fontSize: '1.25rem',
                         lineHeight: 'var(--line-height-30, 30px)',
                         letterSpacing: 'var(--letter-spacing--2, -0.02em)',
                       }}
@@ -137,7 +136,7 @@ export default function DocumentCentrePage() {
                         color: '#FCFCFC',
                         fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                         fontWeight: 'var(--font-weight-light, 300)',
-                        fontSize: 'var(--font-size-20, 20px)',
+                        fontSize: '1.125rem',
                         lineHeight: 'var(--line-height-28, 28px)',
                         letterSpacing: 'var(--letter-spacing-0, 0)',
                       }}
@@ -147,6 +146,18 @@ export default function DocumentCentrePage() {
                   </Stack>
                 </Grid>
               </Grid>
+
+              <Box
+
+              >
+                <hr  style={{
+                  width: '100%',
+
+                  border: '1px solid #1D8583',
+                  margin: "20px 0px"
+                  
+                }} />
+              </Box>
 
               <DocumentPreviewCard document={selected} onDropDocumentId={handleDropDocumentId} />
             </Box>
