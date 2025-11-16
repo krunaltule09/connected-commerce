@@ -1,0 +1,304 @@
+.explorePage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Main content frame */
+.contentFrame {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+
+  position: absolute;
+  width: 90%;
+  max-width: 1200px;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  background: rgba(217, 217, 217, 0.01);
+  border-radius: 1rem;
+}
+
+/* Tabs container */
+.tabsContainer {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 2rem;
+
+  width: 100%;
+  max-width: 1092px;
+}
+
+/* Tabs row */
+.tabsRow {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  gap: 2rem;
+
+  width: 100%;
+}
+
+/* Card text */
+.cardText {
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 0.5rem;
+
+  width: 100%;
+  max-width: 294px;
+  height: auto;
+  min-height: 140px;
+
+  background: #1A1A24;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cardText:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.activeCard {
+  border: 2px solid #FFE600;
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.5);
+}
+
+/* SVG Icon */
+.svgIcon {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Explore button container */
+.exploreButtonContainer {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 853px;
+}
+
+/* Explore button */
+.exploreButton {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  gap: 0.5rem;
+
+  width: auto;
+  height: auto;
+
+  background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D;
+  background-blend-mode: color-burn, plus-lighter;
+  box-shadow: inset 6px 6px 1px -7px rgba(255, 255, 255, 0.5),
+              inset 4px 4px 2px -4px rgba(179, 179, 179, 0.5),
+              inset -4px -4px 2px -4px rgba(179, 179, 179, 0.5),
+              inset 0px 0px 44px rgba(242, 242, 242, 0.3);
+  backdrop-filter: blur(40px);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.exploreButton:hover {
+  transform: scale(1.05);
+  box-shadow: inset 6px 6px 1px -7px rgba(255, 255, 255, 0.7),
+              inset 4px 4px 2px -4px rgba(179, 179, 179, 0.7),
+              inset -4px -4px 2px -4px rgba(179, 179, 179, 0.7),
+              inset 0px 0px 44px rgba(242, 242, 242, 0.5),
+              0px 0px 15px rgba(33, 207, 255, 0.3);
+}
+
+/* Explore button text */
+.exploreButtonText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 1.5rem !important;
+  line-height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  text-align: center !important;
+  color: #21CFFF !important;
+}
+
+/* Help text */
+.helpText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: .75rem !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  color: #F6F6FA !important;
+}
+
+/* EY Logo */
+.eyLogo {
+  position: absolute;
+  width: 100px;
+  height: 105px;
+  right: 80px;
+  bottom: 80px;
+  z-index: 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .contentFrame {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .tabsRow {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .cardText {
+    max-width: 100%;
+  }
+  
+  .cardTitle {
+    font-size: 1.75rem !important;
+  }
+  
+  .exploreButtonText {
+    font-size: 1.75rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentFrame {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .cardText {
+    padding: 1rem;
+    min-height: 180px;
+  }
+  
+  .cardIcon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cardTitle {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+  
+  .exploreButton {
+    padding: 1rem 2rem;
+  }
+  
+  .exploreButtonText {
+    font-size: 1.5rem !important;
+  }
+  
+  .helpText {
+    font-size: 1rem !important;
+  }
+  
+  .eyLogo {
+    width: 80px;
+    height: 84px;
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentFrame {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+  
+  .tabsContainer {
+    gap: 1rem;
+  }
+  
+  .tabsRow {
+    gap: 1rem;
+  }
+  
+  .cardText {
+    min-height: 150px;
+  }
+  
+  .cardIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .cardTitle {
+    font-size: 1.25rem !important;
+    line-height: 1.5rem !important;
+  }
+  
+  .statusIndicator {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .exploreButton {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .exploreButtonText {
+    font-size: 1.25rem !important;
+  }
+  
+  .helpText {
+    font-size: 0.875rem !important;
+  }
+  
+  .eyLogo {
+    width: 60px;
+    height: 63px;
+    right: 20px;
+    bottom: 20px;
+  }
+}

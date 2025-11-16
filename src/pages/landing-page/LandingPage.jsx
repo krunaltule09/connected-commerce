@@ -7,7 +7,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleStartJourney = () => {
-    navigate('/dashboard'); // Navigate to dashboard or next page
+    navigate('/explore'); // Navigate to the explore page
   };
 
   return (
