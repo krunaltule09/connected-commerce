@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { LandingPage, ExplorePage } from '../pages';
+import { LandingPage, ExplorePage, DocumentScan } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 
 // Define routes configuration
@@ -11,6 +11,10 @@ const routes = [
   {
     path: '/explore',
     element: <ExplorePage />,
+  },
+  {
+    path: '/document-scan',
+    element: <DocumentScan />,
   },
   {
     path: '/document-centre',
