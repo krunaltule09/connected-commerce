@@ -1,0 +1,149 @@
+import { Box } from '@mui/material';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+export default function FinancialChart() {
+  const data = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [
+      {
+        label: 'YoY Trend',
+        data: [30, 25, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80],
+        backgroundColor: '#B4FF00',
+        borderColor: '#B4FF00',
+        borderWidth: 0,
+        borderRadius: 10,
+        borderSkipped: 'bottom',
+        barThickness: 9,
+        maxBarThickness: 16,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    layout: {
+      padding: {
+        top: 20,
+        right: 20,
+        bottom: 10,
+        left: 10
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: '',
+        color: '#FFFFFF',
+        font: {
+          size: 16,
+          weight: 'bold',
+        },
+        align: 'start',
+        padding: {
+          top: 10,
+          bottom: 30,
+        },
+      },
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+        backgroundColor: '#FFCC00',
+        titleColor: '#000000',
+        bodyColor: '#000000',
+        titleFont: {
+          size: 14,
+          weight: 'bold',
+        },
+        bodyFont: {
+          size: 14,
+        },
+        padding: 12,
+        displayColors: false,
+        callbacks: {
+          title: function(tooltipItems) {
+            return tooltipItems[0].label + ' 2025';
+          },
+          label: function(context) {
+            return '$' + context.parsed.y.toFixed(2);
+          }
+        }
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+          drawBorder: false,
+        },
+        border: {
+          display: false,
+        },
+        ticks: {
+          color: 'rgba(252, 252, 252, 0.7)',
+          font: {
+            size: 12,
+          },
+          padding: 10,
+        },
+      },
+      y: {
+        border: {
+          display: false,
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+          drawBorder: false,
+          lineWidth: 1,
+          drawTicks: false,
+          borderDash: [5, 5],
+        },
+        ticks: {
+          color: 'rgba(252, 252, 252, 0.7)',
+          font: {
+            size: 12,
+          },
+          padding: 10,
+          callback: function(value) {
+            return value + 'K';
+          }
+        },
+        beginAtZero: true,
+      },
+    },
+  };
+
+  return (
+    <Box
+      sx={{
+        position: 'relative',
+        height: '100%',
+        backgroundImage: `url('${process.env.PUBLIC_URL}/assets/Group%207.svg')`,
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        p: 0,
+      }}
+    >
+      <Box sx={{ position: 'relative', width: '82%', height: '82%', p: 1 }}>
+        <Bar data={data} options={options} />
+      </Box>
+    </Box>
+  );
+}
