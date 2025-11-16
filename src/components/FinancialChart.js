@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,

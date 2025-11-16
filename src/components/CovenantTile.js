@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Button, Chip, Grid } from '@mui/material';
+import { Box, Typography, Button, Grid } from '@mui/material';
 
 export default function CovenantTile({ covenant }) {
   return (

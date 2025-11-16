@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Box, Stack, Typography, Button, LinearProgress } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import GradientBorderBox from './common/GradientBorderBox';
-import SectionTitle from './common/SectionTitle';
 
 export default function OcrScanningSection() {
   const sections = [
@@ -37,7 +36,7 @@ export default function OcrScanningSection() {
     }, 1240);
 
     return () => clearInterval(sectionTimer);
-  }, [isComplete]);
+  }, [isComplete, sections.length]);
 
   const currentSection = sections[currentSectionIndex];
 

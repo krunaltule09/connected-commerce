@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Button, Stack } from '@mui/material';
+import { Box, Container, Grid, Button } from '@mui/material';
 import OcrScanningSection from '../components/OcrScanningSection';
 import FinancialMetricsSection from '../components/FinancialMetricsSection';
 import CovenantStatusSection from '../components/CovenantStatusSection';
