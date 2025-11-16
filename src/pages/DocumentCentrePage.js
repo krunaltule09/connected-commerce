@@ -47,7 +47,7 @@ export default function DocumentCentrePage() {
   return (
     <Box sx={{ bgcolor: '#000', minHeight: '100vh', py: 6 }}>
       <Container maxWidth="xl">
-        <Grid container spacing={4}>
+        <Grid container spacing={4} alignItems="stretch">
           <Grid item xs={12} md={4} lg={3}>
             <Typography
               component="h1"
@@ -84,82 +84,83 @@ export default function DocumentCentrePage() {
 
           <Grid item xs={12} md={8} lg={9}>
             <Box sx={{
-
               p: 3,
               bgcolor: '#05020A',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
             }}>
-              <Grid container sx={{ mb: 2 }}>
-                <Grid item xs={12} md={8}>
-                  <Stack spacing={0.5}>
-                    <Typography
-                      sx={{
-                        color: '#FCFCFC',
-                        fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
-                        fontWeight: 'var(--font-weight-bold, 700)',
-                        fontSize: '1.25rem',
-                        lineHeight: 'var(--line-height-30, 30px)',
-                        letterSpacing: 'var(--letter-spacing--2, -0.02em)',
-                      }}
-                    >
-                      Case no. #CCN3267890
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: 'rgba(252,252,252,0.7)',
-                        fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
-                        fontWeight: 'var(--font-weight-light, 300)',
-                        fontSize: '1.125rem',
-                        lineHeight: 'var(--line-height-28, 28px)',
-                        letterSpacing: 'var(--letter-spacing-0, 0)',
-                      }}
-                    >
-                      Applied by: Logistics Company
-                    </Typography>
-                  </Stack>
+              
+
+              <Box sx={{ mt: 'auto' }}>
+                <Grid container sx={{ mb: 2 }}>
+                  <Grid item xs={12} md={8}>
+                    <Stack spacing={0.5}>
+                      <Typography
+                        sx={{
+                          color: '#FCFCFC',
+                          fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
+                          fontWeight: 'var(--font-weight-bold, 700)',
+                          fontSize: '1.25rem',
+                          lineHeight: 'var(--line-height-30, 30px)',
+                          letterSpacing: 'var(--letter-spacing--2, -0.02em)',
+                        }}
+                      >
+                        Case no. #CCN3267890
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'rgba(252,252,252,0.7)',
+                          fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
+                          fontWeight: 'var(--font-weight-light, 300)',
+                          fontSize: '1.125rem',
+                          lineHeight: 'var(--line-height-28, 28px)',
+                          letterSpacing: 'var(--letter-spacing-0, 0)',
+                        }}
+                      >
+                        Applied by: Logistics Company
+                      </Typography>
+                    </Stack>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Stack alignItems={{ xs: 'flex-start', md: 'flex-end' }}>
+                      <Typography
+                        sx={{
+                          color: '#FCFCFC',
+                          fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
+                          fontWeight: 'var(--font-weight-bold, 700)',
+                          fontSize: '1.25rem',
+                          lineHeight: 'var(--line-height-30, 30px)',
+                          letterSpacing: 'var(--letter-spacing--2, -0.02em)',
+                        }}
+                      >
+                        Documents Received
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: '#FCFCFC',
+                          fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
+                          fontWeight: 'var(--font-weight-light, 300)',
+                          fontSize: '1.125rem',
+                          lineHeight: 'var(--line-height-28, 28px)',
+                          letterSpacing: 'var(--letter-spacing-0, 0)',
+                        }}
+                      >
+                        {count}
+                      </Typography>
+                    </Stack>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                  <Stack alignItems={{ xs: 'flex-start', md: 'flex-end' }}>
-                    <Typography
-                      sx={{
-                        color: '#FCFCFC',
-                        fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
-                        fontWeight: 'var(--font-weight-bold, 700)',
-                        fontSize: '1.25rem',
-                        lineHeight: 'var(--line-height-30, 30px)',
-                        letterSpacing: 'var(--letter-spacing--2, -0.02em)',
-                      }}
-                    >
-                      Documents Received
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: '#FCFCFC',
-                        fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
-                        fontWeight: 'var(--font-weight-light, 300)',
-                        fontSize: '1.125rem',
-                        lineHeight: 'var(--line-height-28, 28px)',
-                        letterSpacing: 'var(--letter-spacing-0, 0)',
-                      }}
-                    >
-                      {count}
-                    </Typography>
-                  </Stack>
-                </Grid>
-              </Grid>
+                <Box>
+                  <hr  style={{
+                    width: '100%',
+                    border: '1px solid #1D8583',
+                    margin: "20px 0px"
+                  }} />
+                </Box>
 
-              <Box
-
-              >
-                <hr  style={{
-                  width: '100%',
-
-                  border: '1px solid #1D8583',
-                  margin: "20px 0px"
-                  
-                }} />
+                <DocumentPreviewCard document={selected} onDropDocumentId={handleDropDocumentId} />
               </Box>
-
-              <DocumentPreviewCard document={selected} onDropDocumentId={handleDropDocumentId} />
             </Box>
           </Grid>
         </Grid>
