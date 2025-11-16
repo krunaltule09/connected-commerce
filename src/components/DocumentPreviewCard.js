@@ -1,14 +1,18 @@
-import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Box, Card, CardContent, Stack, Typography, Grow } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
+  const [opening, setOpening] = useState(false);
   const handleDragOver = (e) => {
     e.preventDefault();
   };
   const handleDrop = (e) => {
     e.preventDefault();
     const id = e.dataTransfer.getData('text/plain');
+    setOpening(true);
     if (id && onDropDocumentId) onDropDocumentId(id);
+    setTimeout(() => setOpening(false), 900);
   };
 
   const renderContent = () => {
@@ -141,7 +145,24 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
           bgcolor: '#343340',
           borderRadius: 2,
           p: 2,
+          position: 'relative',
+          overflow: 'hidden',
         }}>
+          {opening && (
+            <Grow in={opening} timeout={700}>
+              <Box sx={{
+                position: 'absolute',
+                inset: 0,
+                borderRadius: 2,
+                backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/image%2037.png'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                zIndex: 2,
+                pointerEvents: 'none',
+                opacity: 0.95,
+              }} />
+            </Grow>
+          )}
           {renderContent()}
         </Box>
       </CardContent>
