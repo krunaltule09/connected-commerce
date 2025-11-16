@@ -1,5 +1,20 @@
-export const ROUTES = {
-  documentCentre: '/document-centre',
-};
+import { Navigate } from 'react-router-dom';
+import { LandingPage, ExplorePage } from '../pages';
 
-export default ROUTES;
+// Define routes configuration
+const routes = [
+  {
+    path: '/',
+    element: <LandingPage />,
+  },
+  {
+    path: '/explore',
+    element: <ExplorePage />,
+  },
+  {
+    path: '*',
+    element: <Navigate to="/" replace />,
+  },
+];
+
+export default routes;

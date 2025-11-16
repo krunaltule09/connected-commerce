@@ -1,13 +1,32 @@
+:root {
+  /* Font families */
+  --font-family-primary: 'EYInterstate', sans-serif;
+  --font-family-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* Colors */
+  --color-primary: #21CFFF;
+  --color-text-light: #FFFFFF;
+  --color-text-off-white: #FFFEFD;
+  --color-background-dark: #1D1D1D;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family-secondary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: var(--font-family-code);
 }
+
+/* Using system fonts as fallback since custom fonts are not available */
