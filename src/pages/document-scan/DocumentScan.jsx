@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box, CircularProgress } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import styles from './DocumentScan.module.css';
 
 const DocumentScan = () => {
   const [scanProgress, setScanProgress] = useState(0);
   const [scanStatus, setScanStatus] = useState('Initializing scan...');
+  const navigate = useNavigate();
 
   // Simulate scanning progress
   useEffect(() => {
@@ -30,6 +32,11 @@ const DocumentScan = () => {
       if (progress >= 100) {
         setScanStatus(statuses[5]);
         clearInterval(interval);
+        
+        // Navigate to document-centre after a short delay to show the completed status
+        setTimeout(() => {
+          navigate('/document-centre');
+        }, 1000);
       }
     }, 50); // Reduced from 100ms to 50ms
 
