@@ -1,18 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { CssBaseline } from '@mui/material';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import ROUTES from './routes';
-import DocumentCentrePage from './pages/DocumentCentrePage';
+import routes from './routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <CssBaseline />
+    <Router>
       <Routes>
-        <Route path={ROUTES.documentCentre} element={<DocumentCentrePage />} />
-        <Route path="*" element={<Navigate to={ROUTES.documentCentre} replace />} />
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

@@ -1,0 +1,412 @@
+.landingPage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46));
+  background-size: cover;
+  background-position: center;
+}
+
+/* Vector graphics */
+.vectorGraphics {
+  position: absolute;
+  left: 14.57%;
+  right: 14.6%;
+  top: 25.49%;
+  bottom: 25.43%;
+}
+
+.vector1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #FFE600;
+  opacity: 0.3;
+}
+
+.vector2 {
+  position: absolute;
+  left: 1%;
+  right: 0.94%;
+  top: 1.62%;
+  bottom: 1.77%;
+  background: #FFE600;
+  opacity: 0.3;
+}
+
+.vector3 {
+  position: absolute;
+  left: 5.41%;
+  right: 58.28%;
+  top: 44.93%;
+  bottom: 1.96%;
+  background: #FFE600;
+  opacity: 0.3;
+}
+
+.vector4 {
+  position: absolute;
+  left: 37.68%;
+  right: 13.8%;
+  top: 1.97%;
+  bottom: 43.86%;
+  background: #FFE600;
+  opacity: 0.3;
+}
+
+.group1 {
+  position: absolute;
+  left: 56.67%;
+  right: 1.96%;
+  top: 37.82%;
+  bottom: 1.86%;
+  opacity: 0.3;
+}
+
+.vector5 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #FFE600;
+}
+
+.group2 {
+  position: absolute;
+  left: 1.08%;
+  right: 54.37%;
+  top: 1.86%;
+  bottom: 34.55%;
+  opacity: 0.3;
+}
+
+.vector6 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #FFE600;
+}
+
+/* Content container */
+/* Frame 1000004743 */
+.contentFrame {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 48px;
+
+  position: absolute;
+  width: 1066.67px;
+  height: 429.33px;
+  left: calc(50% - 1066.67px/2 - 0.67px);
+  top: calc(50% - 429.33px/2 - 0.33px);
+}
+
+/* Frame 1000004742 */
+.textFrame {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 35.56px;
+
+  width: 1066.67px;
+  height: 208.89px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* Frame 1000004741 */
+.innerTextFrame {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24.89px;
+
+  width: 1066.67px;
+  height: 208.89px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* Reimagining Covenant Monitoring */
+.heading {
+  width: 100% !important;
+  max-width: 760px !important;
+  height: auto !important;
+  font-family: var(--font-family-primary) !important;
+  font-style: normal !important;
+  font-weight: var(--font-weight-light) !important;
+  font-size: 2.5rem !important; /* Reduced from 62.22px (approx 4rem) */
+  line-height: 1.3 !important;
+  text-align: center !important;
+  letter-spacing: -0.04em !important; /* CSS uses decimal values for letter-spacing */
+  color: var(--color-text-light) !important;
+  /* Inside auto layout */
+  flex: none !important;
+  order: 0 !important;
+  flex-grow: 0 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Turning covenant monitoring from a reactive task into a proactive advantage. */
+.subheading {
+  width: 100% !important;
+  max-width: 700px !important;
+  height: auto !important;
+  font-family: var(--font-family-primary) !important;
+  font-style: normal !important;
+  font-weight: var(--font-weight-regular) !important;
+  font-size: 1.75rem !important; /* Reduced from 40.8924px (approx 2.5rem) */
+  line-height: 1.3 !important;
+  /* or 126% */
+  text-align: center !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-text-off-white) !important;
+  /* Inside auto layout */
+  flex: none !important;
+  order: 1 !important;
+  flex-grow: 0 !important;
+}
+
+/* Tab */
+.startJourneyButton {
+  /* Auto layout */
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0.6rem 1.2rem !important;
+  gap: 0.4rem !important;
+
+  width: 14rem !important;
+  height: 3.5rem !important;
+
+  background: rgba(29, 29, 29, 0.7) !important;
+  background-blend-mode: color-burn, plus-lighter !important;
+  box-shadow: inset 6.02667px 6.02667px 1.00444px -7.03111px rgba(255, 255, 255, 0.5),
+              inset 4.01778px 4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.5),
+              inset -4.01778px -4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.5),
+              inset 0px 0px 44.1956px rgba(242, 242, 242, 0.3) !important;
+  backdrop-filter: blur(40.1778px) !important;
+  border-radius: 100px !important;
+  transition: all 0.3s ease !important;
+
+  /* Inside auto layout */
+  flex: none !important;
+  order: 1 !important;
+  flex-grow: 0 !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border: none !important;
+}
+
+.startJourneyButton:hover {
+  transform: scale(1.05) !important;
+  box-shadow: inset 6.02667px 6.02667px 1.00444px -7.03111px rgba(255, 255, 255, 0.7),
+              inset 4.01778px 4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.7),
+              inset -4.01778px -4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.7),
+              inset 0px 0px 44.1956px rgba(242, 242, 242, 0.5),
+              0px 0px 15px rgba(33, 207, 255, 0.3) !important;
+}
+
+.startJourneyButton:active {
+  transform: scale(0.98) !important;
+}
+
+/* Text */
+.buttonText {
+  width: auto !important;
+  height: auto !important;
+
+  font-family: var(--font-family-primary) !important;
+  font-style: normal !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: 1.35rem !important;
+  line-height: 100% !important;
+  /* identical to box height, or 40px */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+
+  color: var(--color-primary) !important;
+  text-shadow: 0px 0px 8px rgba(33, 207, 255, 0.4) !important;
+
+  /* Inside auto layout */
+  flex: none !important;
+  order: 0 !important;
+  flex-grow: 0 !important;
+}
+
+/* EY_Logo_Beam_STFWC_Stacked_RGB_White_Yellow_EN 2 */
+.eyLogo {
+  position: absolute;
+  width: 100px;
+  height: 105px;
+  right: 80px;
+  bottom: 80px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .contentFrame {
+    width: 90%;
+    left: 5%;
+    transform: translateX(0);
+    max-width: 900px;
+  }
+  
+  .textFrame,
+  .innerTextFrame {
+    width: 100%;
+  }
+  
+  .heading {
+    width: 100%;
+    font-size: 56px;
+    line-height: 72px;
+  }
+  
+  .subheading {
+    width: 100%;
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contentFrame {
+    gap: 60px;
+    height: auto;
+  }
+  
+  .textFrame,
+  .innerTextFrame {
+    height: auto;
+  }
+  
+  .heading {
+    font-size: 48px;
+    line-height: 60px;
+    height: auto;
+  }
+  
+  .subheading {
+    font-size: 32px;
+    line-height: 42px;
+    height: auto;
+  }
+  
+  .startJourneyButton {
+    width: 320px;
+    height: 90px;
+    padding: 20px 40px;
+  }
+  
+  .buttonText {
+    font-size: 32px;
+    width: 220px;
+  }
+  
+  .eyLogo {
+    width: 80px;
+    height: 84px;
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contentFrame {
+    gap: 40px;
+    width: 95%;
+    left: 2.5%;
+  }
+  
+  .heading {
+    font-size: 36px;
+    line-height: 46px;
+  }
+  
+  .subheading {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  
+  .startJourneyButton {
+    width: 260px;
+    height: 70px;
+    padding: 15px 30px;
+  }
+  
+  .buttonText {
+    font-size: 24px;
+    width: 180px;
+  }
+  
+  .eyLogo {
+    width: 60px;
+    height: 63px;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .heading {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .subheading {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .startJourneyButton {
+    width: 220px;
+    height: 60px;
+    padding: 12px 24px;
+  }
+  
+  .buttonText {
+    font-size: 20px;
+    width: 160px;
+  }
+  
+  .eyLogo {
+    width: 50px;
+    height: 52px;
+    right: 15px;
+    bottom: 15px;
+  }
+}
