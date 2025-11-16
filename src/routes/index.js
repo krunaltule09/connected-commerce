@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { LandingPage, ExplorePage } from '../pages';
+import DocumentCentrePage from '../pages/DocumentCentrePage';
 
 // Define routes configuration
 const routes = [
@@ -10,6 +11,10 @@ const routes = [
   {
     path: '/explore',
     element: <ExplorePage />,
+  },
+  {
+    path: '/document-centre',
+    element: <DocumentCentrePage />,
   },
   {
     path: '*',
