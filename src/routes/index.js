@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { LandingPage, ExplorePage } from '../pages';
+import { LandingPage, ExplorePage, FinancialDashboard } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 
 // Define routes configuration
@@ -15,6 +15,10 @@ const routes = [
   {
     path: '/document-centre',
     element: <DocumentCentrePage />,
+  },
+  {
+    path: '/financial-dashboard',
+    element: <FinancialDashboard />,
   },
   {
     path: '*',
