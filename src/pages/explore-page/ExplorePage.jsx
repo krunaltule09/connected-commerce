@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import styles from './ExplorePage.module.css';
 
 const ExplorePage = () => {
   const [activeTab, setActiveTab] = useState(null);
+  const navigate = useNavigate();
 
   const handleTabClick = (tab) => {
     setActiveTab(activeTab === tab ? null : tab);
+  };
+  
+  const handleExploreNow = () => {
+    navigate('/document-scan');
   };
 
   return (
@@ -88,7 +94,10 @@ const ExplorePage = () => {
 
         {/* Explore Now button */}
         <Box className={styles.exploreButtonContainer}>
-          <Box className={styles.exploreButton}>
+          <Box 
+            className={styles.exploreButton}
+            onClick={handleExploreNow}
+          >
             <Box className={styles.exploreButtonText}>
               Explore Now
             </Box>
