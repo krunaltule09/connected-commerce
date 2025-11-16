@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Card, CardContent, Stack, Typography, Grow } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { useNavigate } from 'react-router-dom';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
   const [opening, setOpening] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
+  const navigate = useNavigate();
   const handleDragOver = (e) => {
     e.preventDefault();
   };
@@ -12,8 +15,20 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
     const id = e.dataTransfer.getData('text/plain');
     setOpening(true);
     if (id && onDropDocumentId) onDropDocumentId(id);
-    setTimeout(() => setOpening(false), 900);
+    
+    // Set redirecting to true after showing the document for 1.5 seconds
+    setTimeout(() => {
+      setRedirecting(true);
+    }, 1500);
   };
+
+  // Effect to handle redirection
+  useEffect(() => {
+    if (redirecting) {
+      // Navigate to financial dashboard
+      navigate('/financial-dashboard');
+    }
+  }, [redirecting, navigate]);
 
   const renderContent = () => {
 
