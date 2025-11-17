@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { LandingPage, ExplorePage, DocumentScan } from '../pages';
+import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
 
@@ -24,6 +24,10 @@ const routes = [
   {
     path: '/operational-doc-scan',
     element: <OperationalDocScan />,
+  },
+  {
+    path: '/financial-dashboard',
+    element: <FinancialDashboard />,
   },
   {
     path: '*',

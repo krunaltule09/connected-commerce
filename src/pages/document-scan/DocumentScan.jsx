@@ -35,7 +35,7 @@ const DocumentScan = () => {
         
         // Navigate to operational-doc-scan after a short delay to show the completed status
         setTimeout(() => {
-          navigate('/operational-doc-scan');
+          navigate('/document-centre');
         }, 1000);
       }
     }, 50); // Reduced from 100ms to 50ms
