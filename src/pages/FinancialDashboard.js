@@ -1,10 +1,16 @@
 import { Box, Container, Grid, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import OcrScanningSection from '../components/OcrScanningSection';
 import FinancialMetricsSection from '../components/FinancialMetricsSection';
 import CovenantStatusSection from '../components/CovenantStatusSection';
 import PerformanceSection from '../components/PerformanceSection';
 
 export default function FinancialDashboard() {
+  const navigate = useNavigate();
+  
+  const handleNextStep = () => {
+    navigate('/operational-doc-scan');
+  };
   return (
     <Box sx={{ bgcolor: '#000', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 2 }}>
       <Container maxWidth="xl" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', py: 1 }}>
@@ -69,6 +75,7 @@ export default function FinancialDashboard() {
           </Button>
           <Button
             variant="outlined"
+            onClick={handleNextStep}
             sx={{
               position: 'relative',
               bottom: '60px',

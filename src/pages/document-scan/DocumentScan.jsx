@@ -33,7 +33,7 @@ const DocumentScan = () => {
         setScanStatus(statuses[5]);
         clearInterval(interval);
         
-        // Navigate to document-centre after a short delay to show the completed status
+        // Navigate to operational-doc-scan after a short delay to show the completed status
         setTimeout(() => {
           navigate('/document-centre');
         }, 1000);
