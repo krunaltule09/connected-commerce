@@ -641,8 +641,8 @@
   position: fixed !important;
   width: 80px !important;
   height: 84px !important;
-  right: 20px !important;
-  bottom: 20px !important;
+  right: 40px !important;
+  bottom: 30px !important;
   z-index: 10 !important;
 }
 

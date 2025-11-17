@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import GradientBorderBox from '../../components/common/GradientBorderBox';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 
@@ -30,7 +31,7 @@ const OperationalDocScan = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         {/* Left panel - Document Preview */}
-        <Box className={styles.documentPreviewPanel}>
+        <GradientBorderBox className={styles.documentPreviewPanel}>
           <Box className={styles.panelTitle}>Scanned Document Preview</Box>
           
           <Box className={styles.documentImageContainer}>
@@ -61,10 +62,10 @@ const OperationalDocScan = () => {
               className={styles.aiChipIcon}
             />
           </Box>
-        </Box>
+        </GradientBorderBox>
         
         {/* Right panel - Shipment Details */}
-        <Box className={styles.shipmentDetailsPanel}>
+        <GradientBorderBox className={styles.shipmentDetailsPanel}>
           <Box className={styles.panelTitle}>Shipment Details</Box>
           
           <Box className={styles.tableContainer}>
@@ -103,10 +104,10 @@ const OperationalDocScan = () => {
               </Box>
             ))}
           </Box>
-        </Box>
+        </GradientBorderBox>
         
         {/* Bottom panel - KPIs */}
-        <Box className={styles.kpiPanel}>
+        <GradientBorderBox className={styles.kpiPanel}>
           <Box className={styles.panelTitle}>Operational KPIs</Box>
           
           <Box className={styles.kpiContainer}>
@@ -156,7 +157,7 @@ const OperationalDocScan = () => {
               </Box>
             </Box>
           </Box>
-        </Box>
+        </GradientBorderBox>
      
       </Box>
          {/* Navigation buttons */}

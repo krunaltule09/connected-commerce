@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
+import Y14ReportGeneration from '../pages/y14-report/Y14ReportGeneration';
 
 // Define routes configuration
 const routes = [
@@ -28,6 +29,10 @@ const routes = [
   {
     path: '/financial-dashboard',
     element: <FinancialDashboard />,
+  },
+  {
+    path: '/y14-report',
+    element: <Y14ReportGeneration />,
   },
   {
     path: '*',
