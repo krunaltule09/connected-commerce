@@ -7,6 +7,10 @@ import PerformanceSection from '../components/PerformanceSection';
 
 export default function FinancialDashboard() {
   const navigate = useNavigate();
+  
+  const handleNextStep = () => {
+    navigate('/operational-doc-scan');
+  };
   return (
     <Box sx={{ bgcolor: '#000', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 2 }}>
       <Container maxWidth="xl" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', py: 1 }}>
@@ -37,67 +41,68 @@ export default function FinancialDashboard() {
           </Grid>
         </Grid>
       </Container>
-      <Box sx={{ display: 'flex', width: '92%', justifyContent: 'flex-end', gap: 3, mt: 3, mb: 3 }}>
-        <Button
-          variant="outlined"
-          sx={{
-            position: 'relative',
-            bottom: '60px',
-            right: '60px',
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '20px 32px',
-            gap: '18px',
-            isolation: 'isolate',
-            color: '#FFFFFF',
-            border: '2.26px solid #C3C3CB',
-            borderRadius: '50px',
-            textTransform: 'none',
-            fontSize: '1.1rem',
-            fontWeight: 400,
-            '&:hover': {
-              borderColor: '#FFFFFF',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            },
-          }}
-        >
-          Go back
-        </Button>
-        <Button
-          variant="outlined"
-          onClick={() => navigate('/anomaly-detection')}
-          sx={{
-            position: 'relative',
-            bottom: '60px',
-            right: '60px',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '24px 48px',
-            gap: '14px',
-            color: '#00C8FF',
-            background: 'linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D',
-            backgroundBlendMode: 'color-burn, plus-lighter',
-            boxShadow: 'inset 6px 6px 1px -7px rgba(255, 255, 255, 0.5), inset 4px 4px 2px -4px #B3B3B3, inset -4px -4px 2px -4px #B3B3B3, inset 0px 0px 44px rgba(242, 242, 242, 0.5)',
-            backdropFilter: 'blur(40px)',
-            borderRadius: '200px',
-            border: 'none',
-            textTransform: 'none',
-            fontSize: '1.1rem',
-            fontWeight: 400,
-            '&:hover': {
-              borderColor: 'transparent',
-              backgroundColor: 'rgba(29, 29, 29, 0.4)',
-            },
-          }}
-        >
-          Anomaly Detection
-        </Button>
-      </Box>
+              <Box sx={{ display: 'flex',width: '92%', justifyContent: 'flex-end', gap: 3, mt: 3, mb: 3 }}>
+          <Button
+            variant="outlined"
+            sx={{
+              position: 'relative',
+              bottom: '60px',
+              right: '60px',
+              boxSizing: 'border-box',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '20px 32px',
+              gap: '18px',
+              isolation: 'isolate',
+
+              color: '#FFFFFF',
+              border: '2.26px solid #C3C3CB',
+              borderRadius: '50px',
+              textTransform: 'none',
+              fontSize: '1.1rem',
+              fontWeight: 400,
+              '&:hover': {
+                borderColor: '#FFFFFF',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              },
+            }}
+          >
+            Go back
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={handleNextStep}
+            sx={{
+              position: 'relative',
+              bottom: '60px',
+              right: '60px',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '24px 48px',
+              gap: '14px',
+              color: '#00C8FF',
+              background: 'linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D',
+              backgroundBlendMode: 'color-burn, plus-lighter',
+              boxShadow: 'inset 6px 6px 1px -7px rgba(255, 255, 255, 0.5), inset 4px 4px 2px -4px #B3B3B3, inset -4px -4px 2px -4px #B3B3B3, inset 0px 0px 44px rgba(242, 242, 242, 0.5)',
+              backdropFilter: 'blur(40px)',
+              borderRadius: '200px',
+              border: 'none',
+              textTransform: 'none',
+              fontSize: '1.1rem',
+              fontWeight: 400,
+              '&:hover': {
+                borderColor: 'transparent',
+                backgroundColor: 'rgba(29, 29, 29, 0.4)',
+              },
+            }}
+          >
+            Next step
+          </Button>
+        </Box>
     </Box>
   );
 }

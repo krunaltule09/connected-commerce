@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
+import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
 
 // Define routes configuration
 const routes = [
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/document-centre',
     element: <DocumentCentrePage />,
+  },
+  {
+    path: '/operational-doc-scan',
+    element: <OperationalDocScan />,
   },
   {
     path: '/financial-dashboard',
