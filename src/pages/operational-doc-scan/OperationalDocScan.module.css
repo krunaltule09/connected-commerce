@@ -1,0 +1,770 @@
+.operationalDocScanPage {
+  position: relative !important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  background-color: #000000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.backgroundOverlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+}
+
+/* Main content container */
+.contentContainer {
+  position: relative !important;
+  width: 94% !important;
+  max-width: 1616px !important;
+  height: 80% !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1.5fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  grid-template-areas:
+    "document-preview shipment-details"
+    "document-preview kpi-panel" !important;
+  gap: 20px !important;
+  overflow: hidden !important;
+  padding: 20px !important;
+  margin-bottom: 80px !important;
+}
+
+/* Document Preview Panel */
+.documentPreviewPanel {
+  grid-area: document-preview !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 20px !important;
+  gap: 20px !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.panelTitle {
+  width: 100% !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 28px !important;
+  line-height: 36px !important;
+  letter-spacing: -0.02em !important;
+  color: #FFE600 !important;
+  margin-bottom: 5px !important;
+}
+
+.documentImageContainer {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: 220px !important;
+  padding: 0 !important;
+  background: #1A1A24 !important;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  border: 1px solid #FFE600 !important;
+}
+
+.documentImage {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.documentPlaceholder {
+  font-family: var(--font-family-primary, 'EYInterstate');
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #9CB3BA;
+  text-align: center;
+  padding: 2rem;
+}
+
+.scanProgressContainer {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5) !important;
+  margin-bottom: 15px !important;
+}
+
+.scanStatusText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  font-size: 18px !important;
+  line-height: 28px !important;
+  color: #FFFFFF !important;
+  width: 100% !important;
+}
+
+.progressBarContainer {
+  width: 100% !important;
+  height: 12px !important;
+  background: #3B4F54 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.progressBar {
+  height: 100% !important;
+  background: #FFE600 !important;
+  border-radius: 8px !important;
+  transition: width 0.3s ease !important;
+}
+
+.progressPercentage {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 28px !important;
+  color: #9CB3BA !important;
+  width: 100% !important;
+}
+
+/* Shipment Details Panel */
+.shipmentDetailsPanel {
+  grid-area: shipment-details !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 20px !important;
+  gap: 15px !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.tableContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tableHeader {
+  display: grid !important;
+  grid-template-columns: 1fr 1.2fr 1.2fr 0.4fr !important;
+  gap: 0.5rem !important;
+  padding: 0.25rem 0 !important;
+}
+
+.tableHeaderCell {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.5rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.tableDivider {
+  width: 100%;
+  height: 1px;
+  background: #0C4A1F;
+  margin: 0.5rem 0;
+}
+
+.tableRow {
+  display: grid !important;
+  grid-template-columns: 1fr 1.2fr 1.2fr 0.4fr !important;
+  gap: 0.5rem !important;
+  padding: 0.25rem 0 !important;
+  align-items: center !important;
+}
+
+.tableCell {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.5rem !important;
+  color: #FFFFFF !important;
+}
+
+.deliveryStatusContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.statusIndicator {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.statusOnTime {
+  background: #26A04B;
+}
+
+.statusDelayed {
+  background: #FFE600;
+}
+
+.checkIcon {
+  width: 0.7rem !important;
+  height: 0.4rem !important;
+  border-left: 2px solid #FFFFFF !important;
+  border-bottom: 2px solid #FFFFFF !important;
+  transform: rotate(-45deg) !important;
+  position: relative !important;
+  top: -1px !important;
+}
+
+.alertIcon {
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+}
+
+.alertIcon:before {
+  content: "!";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-weight: bold;
+}
+
+.actionButton {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  background: #F3F3F5 !important;
+  border-radius: 0.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.arrowIcon {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 2px solid #656579;
+  border-right: 2px solid #656579;
+  transform: rotate(45deg);
+}
+
+/* KPI Panel */
+.kpiPanel {
+  grid-area: kpi-panel !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 20px !important;
+  gap: 15px !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.kpiContainer {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 24px !important;
+  height: calc(100% - 40px) !important;
+}
+
+.kpiTabs {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 0px !important;
+  gap: 24px !important;
+  width: 100% !important;
+  height: 50px !important;
+}
+
+.kpiTab {
+  position: relative !important;
+  width: 200px !important;
+  height: 50px !important;
+  background: rgba(0, 200, 100, 0.05) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid #00C864 !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.kpiTab:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(0, 200, 100, 0.3) !important;
+  border: 1px solid rgba(0, 200, 100, 0.8) !important;
+}
+
+.kpiTab::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 3.6px solid rgba(0, 200, 100, 0.33) !important;
+  border-radius: 8px !important;
+  opacity: 0.33 !important;
+  pointer-events: none !important;
+}
+
+.kpiTabActive {
+  position: relative !important;
+  width: 200px !important;
+  height: 50px !important;
+  background: rgba(255, 230, 0, 0.05) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid #FFE600 !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.kpiTabActive:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.4) !important;
+  border: 1px solid rgba(255, 230, 0, 0.9) !important;
+}
+
+.kpiTabActive::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 3.6px solid rgba(255, 230, 0, 0.33) !important;
+  border-radius: 8px !important;
+  opacity: 0.33 !important;
+  pointer-events: none !important;
+}
+
+.tabText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  text-align: center !important;
+  color: #FFFFFF !important;
+  z-index: 1 !important;
+}
+
+.kpiFilters {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 24px !important;
+  margin-left: auto !important;
+  position: relative !important;
+  margin-right: 40px !important;
+}
+
+.filterButton {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: transparent !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  height: 48px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  min-width: 116px !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  padding: 0 8px !important;
+}
+
+.filterButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.filterIcon {
+  width: 20px !important;
+  height: 20px !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.filterIcon:before, .filterIcon:after {
+  content: "" !important;
+  position: absolute !important;
+  left: 9.38% !important;
+  right: 9.38% !important;
+  height: 2px !important;
+  background: #AFAEBA !important;
+}
+
+.filterIcon:before {
+  top: 30% !important;
+}
+
+.filterIcon:after {
+  top: 70% !important;
+}
+
+.filterText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: #FFFFFF !important;
+  white-space: nowrap !important;
+}
+
+.chartContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 30px !important;
+  width: 100% !important;
+  flex: 1 !important;
+  margin-top: 20px !important;
+  padding-left: 20px !important;
+}
+
+.pieChart {
+  position: relative !important;
+  width: 180px !important;
+  height: 180px !important;
+}
+
+.pieChartInner {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  background: conic-gradient(#188CE5 0% 62.4%, #0A558E 62.4% 100%) !important;
+  box-shadow: 0 0 10px rgba(33, 207, 255, 0.3) !important;
+}
+
+.pieChartOuter {
+  position: absolute !important;
+  width: 60% !important;
+  height: 60% !important;
+  top: 20% !important;
+  left: 20% !important;
+  border-radius: 50% !important;
+  background: #1A1A24 !important;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.chartLegend {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 184px !important;
+}
+
+.legendItem {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 32px !important;
+}
+
+.legendDot {
+  width: 14px !important;
+  height: 14px !important;
+  box-sizing: border-box !important;
+  border-radius: 50% !important;
+}
+
+.legendText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #FCFCFC !important;
+}
+
+/* AI Insight */
+.aiInsightContainer {
+  grid-area: ai-insight !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0.75rem !important;
+  gap: 0.75rem !important;
+  background: rgba(26, 26, 36, 0.7) !important;
+  border-radius: 1rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.aiIcon {
+  width: 3rem !important;
+  height: 3rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #21CFFF !important;
+  border-radius: 50% !important;
+  position: relative !important;
+}
+
+.aiIcon::before {
+  content: 'AI';
+  font-family: var(--font-family-primary, 'EYInterstate');
+  font-weight: bold;
+  font-size: 1.75rem;
+  color: #1A1A24;
+}
+
+.aiText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.5rem !important;
+  color: #BFBFC8 !important;
+}
+
+/* Navigation buttons */
+.navigationButtons {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 150px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 15px !important;
+  z-index: 10 !important;
+}
+
+.backButton, .nextButton {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem 2rem !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.25rem !important;
+  color: #FFFFFF !important;
+  border-radius: 2rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 120px !important;
+  height: 24px !important;
+}
+
+.backButton {
+  border: 2px solid #C3C3CB !important;
+}
+
+.backButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(195, 195, 203, 0.5) !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+.nextButton {
+  background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D !important;
+  background-blend-mode: color-burn, plus-lighter !important;
+  box-shadow: inset 3px 3px 1px -3px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 1px -2px rgba(179, 179, 179, 0.5),
+              inset -2px -2px 1px -2px rgba(179, 179, 179, 0.5),
+              inset 0px 0px 20px rgba(242, 242, 242, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #21CFFF !important;
+  border: 2px solid transparent !important;
+}
+
+.nextButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(33, 207, 255, 0.5) !important;
+  border: 2px solid #21CFFF !important;
+}
+
+/* EY Logo */
+.eyLogo {
+  position: fixed !important;
+  width: 80px !important;
+  height: 84px !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  z-index: 10 !important;
+}
+
+/* AI Chip Container */
+.aiChipContainer {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 10px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px !important;
+  border-radius: 8px !important;
+}
+
+.aiChipIcon {
+  width: 100%;
+  object-fit: contain !important;
+}
+
+.aiChipText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: #21CFFF !important;
+  flex: 1 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1600px) {
+  .contentContainer {
+    width: 95%;
+    height: 90%;
+  }
+  
+  .panelTitle {
+    font-size: 1.75rem;
+  }
+  
+  .tableHeaderCell, .tableCell {
+    font-size: 1.125rem;
+  }
+  
+  .kpiTab, .kpiTabActive {
+    font-size: 1.5rem;
+  }
+  
+  .legendText {
+    font-size: 1.25rem;
+  }
+  
+  .aiText {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .contentContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "document-preview"
+      "shipment-details"
+      "kpi-panel"
+      "ai-insight";
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .documentPreviewPanel, .shipmentDetailsPanel, .kpiPanel {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .navigationButtons {
+    position: fixed;
+  }
+  
+  .eyLogo {
+    width: 5rem;
+    height: 5.25rem;
+    right: 2rem;
+    bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentContainer {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .tableHeader {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .tableRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .kpiTabs {
+    flex-direction: column;
+  }
+  
+  .navigationButtons {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .backButton, .nextButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .eyLogo {
+    width: 4rem;
+    height: 4.2rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
