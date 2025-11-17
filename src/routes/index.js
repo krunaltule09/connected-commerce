@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
+import AnomalyDetection from '../pages/AnomalyDetection';
 
 // Define routes configuration
 const routes = [
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/financial-dashboard',
     element: <FinancialDashboard />,
+  },
+  {
+    path: '/anomaly-detection',
+    element: <AnomalyDetection />,
   },
   {
     path: '*',
