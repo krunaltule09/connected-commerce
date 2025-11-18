@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { useNavigate } from 'react-router-dom';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 
 const OperationalDocScan = () => {
+  const navigate = useNavigate();
   const { shipments, scanProgress } = useShipmentData();
   const [activeTab, setActiveTab] = useState('on-time');
   
@@ -162,7 +164,7 @@ const OperationalDocScan = () => {
          {/* Navigation buttons */}
          <Box className={styles.navigationButtons}>
           <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-          <Box className={styles.nextButton}>Next step</Box>
+          <Box className={styles.nextButton} onClick={() => navigate('/feedback')}>Next step</Box>
         </Box>
       
       {/* EY Logo */}

@@ -3,6 +3,7 @@ import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../p
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
+import FeedbackPage from '../pages/FeedbackPage';
 
 // Define routes configuration
 const routes = [
@@ -25,6 +26,10 @@ const routes = [
   {
     path: '/operational-doc-scan',
     element: <OperationalDocScan />,
+  },
+  {
+    path: '/feedback',
+    element: <FeedbackPage />,
   },
   {
     path: '/financial-dashboard',
