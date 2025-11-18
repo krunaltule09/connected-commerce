@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography, Stack } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
+import GradientButton from '../../components/common/GradientButton';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 
 const OperationalDocScan = () => {
-  const { shipments, scanProgress } = useShipmentData();
+  const navigate = useNavigate();
+  const { shipments, scanProgress, isScanning } = useShipmentData();
   const [activeTab, setActiveTab] = useState('on-time');
   
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+  };
+  
+  const handleNextStep = () => {
+    navigate('/anomaly-detection');
   };
 
   return (
@@ -44,14 +51,35 @@ const OperationalDocScan = () => {
           </Box>
           
           <Box className={styles.scanProgressContainer}>
-            <Box className={styles.scanStatusText}>OCR scanning in process...</Box>
-            <Box className={styles.progressBarContainer}>
-              <Box 
-                className={styles.progressBar} 
-                sx={{ width: `${scanProgress}%` }}
-              ></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: scanProgress >= 99 ? '#FFE600' : 'rgba(252, 252, 252, 0.7)',
+                  fontSize: '0.75rem',
+                }}
+              >
+                {scanProgress >= 99 ? 'Completed' : 'OCR scanning in process...'}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#FFE600' }}>{`${Math.round(scanProgress)}%`}</Typography>
             </Box>
-            <Box className={styles.progressPercentage}>{scanProgress}%</Box>
+            <Box
+              sx={{
+                height: 8,
+                borderRadius: 4,
+                backgroundColor: 'rgba(255,255,255,0.1)',
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                sx={{
+                  height: '100%',
+                  width: `${scanProgress}%`,
+                  backgroundColor: '#FFE600',
+                  transition: 'width 0.3s ease',
+                }}
+              />
+            </Box>
           </Box>
           
           <Box className={styles.aiChipContainer}>
@@ -112,19 +140,31 @@ const OperationalDocScan = () => {
           
           <Box className={styles.kpiContainer}>
             <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
-              <Box sx={{ display: 'flex', gap: '24px' }}>
-                <Box 
-                  className={activeTab === 'on-time' ? styles.kpiTabActive : styles.kpiTab}
+              <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+                <GradientButton
+                  variant="metric"
+                  active={activeTab === 'on-time'}
                   onClick={() => handleTabChange('on-time')}
+                  sx={{ 
+                    minWidth: '180px',
+                    justifyContent: 'center',
+                    textAlign: 'center'
+                  }}
                 >
-                  <Box className={styles.tabText}>On-Time Delivery</Box>
-                </Box>
-                <Box 
-                  className={activeTab === 'cost' ? styles.kpiTabActive : styles.kpiTab}
+                  On-Time Delivery
+                </GradientButton>
+                <GradientButton
+                  variant="metric"
+                  active={activeTab === 'cost'}
                   onClick={() => handleTabChange('cost')}
+                  sx={{ 
+                    minWidth: '180px',
+                    justifyContent: 'center',
+                    textAlign: 'center'
+                  }}
                 >
-                  <Box className={styles.tabText}>Cost per Mile</Box>
-                </Box>
+                  Cost per Mile
+                </GradientButton>
               </Box>
               
               <Box className={styles.kpiFilters}>
@@ -163,7 +203,7 @@ const OperationalDocScan = () => {
          {/* Navigation buttons */}
          <Box className={styles.navigationButtons}>
           <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-          <Box className={styles.nextButton}>Next step</Box>
+          <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
         </Box>
       
       {/* EY Logo */}
