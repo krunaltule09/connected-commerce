@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import styles from './DataSimulator.module.css';
 
 const DataSimulator = () => {
+  const navigate = useNavigate();
   const tabs = ['Benefit Blocks', 'Client-Specific ROI Calculator', 'Case Studies / Benchmarks'];
   const [selectedTab, setSelectedTab] = useState('Benefit Blocks');
   
@@ -294,7 +296,7 @@ const DataSimulator = () => {
       {/* Navigation buttons */}
       <Box className={styles.navigationButtons}>
         <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-        <Box className={styles.nextButton}>Next step</Box>
+        <Box className={styles.nextButton} onClick={() => navigate('/feedback')}>Next step</Box>
       </Box>
       
       {/* EY Logo */}
