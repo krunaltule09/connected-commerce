@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
+import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
 import Y14ReportGeneration from '../pages/y14-report/Y14ReportGeneration';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
@@ -38,6 +39,10 @@ const routes = [
   {
     path: '/data-simulator',
     element: <DataSimulator />,
+  },
+  {
+    path: '/anomaly-detection',
+    element: <AnomalyDetection />,
   },
   {
     path: '*',

@@ -1,6 +1,7 @@
-import { Box, Button, Stack, Grid, Typography } from '@mui/material';
+import { Box, Stack, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import GradientBorderBox from './common/GradientBorderBox';
+import GradientButton from './common/GradientButton';
 import FinancialChart from './FinancialChart';
 import ChartBreakdown from './ChartBreakdown';
 
@@ -19,35 +20,14 @@ export default function FinancialMetricsSection() {
             {metrics.map((metric) => {
               const isSelected = selectedMetric === metric;
               return (
-              <Button
+              <GradientButton
                 key={metric}
+                variant="metric"
+                active={isSelected}
                 onClick={() => setSelectedMetric(metric)}
-                variant="outlined"
-                sx={{
-                  color: '#FCFCFC',
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  textTransform: 'none',
-                  fontSize: '0.85rem',
-                  padding: '12px 16px',
-                  justifyContent: 'flex-start',
-                  backgroundImage: isSelected 
-                    ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-                    : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  minHeight: '50px',
-                  position: 'relative',
-                  '&:hover': {
-                    backgroundImage: isSelected
-                      ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-                      : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
-                  },
-                }}
-                >
-              {metric}
-              </Button>
+              >
+                {metric}
+              </GradientButton>
               );
             })}
             </Stack>
