@@ -37,9 +37,6 @@ export default function FinancialDashboard() {
               </Grid>
               <Grid item xs>
                 <Box >
-                  <Box sx={{ width: '50%', height: '100%' }}>
-                    <PerformanceSection />
-                  </Box>
                   <Box sx={{ width: '70%', height: '100%', mt: 4 }}>
                     <AIRecommendations recommendations={['Debt/Equity exceeds limit (3.2 vs 3.0)']} />
                   </Box>
