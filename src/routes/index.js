@@ -3,6 +3,7 @@ import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../p
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
+import FeedbackPage from '../pages/FeedbackPage';
 import Y14ReportGeneration from '../pages/y14-report/Y14ReportGeneration';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/operational-doc-scan',
     element: <OperationalDocScan />,
+  },
+  {
+    path: '/feedback',
+    element: <FeedbackPage />,
   },
   {
     path: '/financial-dashboard',
