@@ -60,8 +60,8 @@
   font-family: var(--font-family-primary, 'EYInterstate') !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  font-size: 28px !important;
-  line-height: 36px !important;
+  font-size: 20px !important;
+  line-height: 24px !important;
   letter-spacing: -0.02em !important;
   color: #FFE600 !important;
   margin-bottom: 5px !important;
@@ -132,9 +132,21 @@
 
 .progressBar {
   height: 100% !important;
-  background: #FFE600 !important;
+  background: linear-gradient(90deg, #00C8FF 0%, #00C864 100%) !important;
   border-radius: 8px !important;
-  transition: width 0.3s ease !important;
+  transition: width 0.8s ease-in-out !important;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .progressPercentage {
@@ -641,8 +653,8 @@
   position: fixed !important;
   width: 80px !important;
   height: 84px !important;
-  right: 20px !important;
-  bottom: 20px !important;
+  right: 40px !important;
+  bottom: 30px !important;
   z-index: 10 !important;
 }
 
