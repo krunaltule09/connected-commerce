@@ -1,76 +1,44 @@
 import React from 'react';
-import { Box, Typography, Button, Grid } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Typography, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import styles from './AnomalyDetection.module.css';
 import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
 import FinancialDriversLottie from '../components/anomaly-detection/FinancialDriversLottie';
 import CovenantBreachLog from '../components/anomaly-detection/CovenantBreachLog';
 import AIRecommendations from '../components/anomaly-detection/AIRecommendations';
 import GradientBorderBox from '../components/common/GradientBorderBox';
 
-// Styled components
-const Container = styled(Box)(({ theme }) => ({
-  backgroundColor: '#0A0A14', // Darker background to match screenshot
-  minHeight: '100vh',
-  padding: theme.spacing(3),
-  color: '#FFFFFF',
-  position: 'relative',
-  overflow: 'hidden',
-  backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/background-texture.jpg")',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-}));
-
-const Title = styled(Typography)(({ theme }) => ({
-  color: '#00C8FF',
-  marginBottom: theme.spacing(3),
-  display: 'flex',
-  alignItems: 'center',
-  '&:before': {
-    content: '"▶"',
-    marginRight: theme.spacing(1),
-  }
-}));
-
-const Footer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
-  marginTop: theme.spacing(4),
-}));
-
-const ButtonGroup = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(2),
-}));
-
-const BackButton = styled(Button)(({ theme }) => ({
-  borderRadius: '50px',
-  padding: '10px 24px',
-  color: '#FFFFFF',
-  border: '1px solid #C3C3CB',
-  '&:hover': {
-    borderColor: '#FFFFFF',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  },
-}));
-
-const NextButton = styled(Button)(({ theme }) => ({
-  borderRadius: '50px',
-  padding: '10px 24px',
-  color: '#00C8FF',
-  backgroundColor: 'rgba(29, 29, 29, 0.8)',
-  boxShadow: 'inset 0px 0px 10px rgba(255, 255, 255, 0.2)',
-  '&:hover': {
-    backgroundColor: 'rgba(29, 29, 29, 0.9)',
-  },
-}));
-
-const Logo = styled('img')({
-  height: '30px',
-});
+// Title component
+const Title = ({ children }) => (
+  <Typography 
+    sx={{
+      color: '#00C8FF',
+      marginBottom: 3,
+      display: 'flex',
+      alignItems: 'center',
+      '&:before': {
+        content: '"▶"',
+        marginRight: 1,
+      }
+    }}
+  >
+    {children}
+  </Typography>
+);
 
 export default function AnomalyDetection() {
+  const navigate = useNavigate();
+  
+  // Handle navigation to Data Simulator page
+  const handleNextStep = () => {
+    navigate('/data-simulator');
+  };
+  
+  // Handle going back to previous page
+  const handleGoBack = () => {
+    window.history.back();
+  };
+  
   // No need for DSCR data as we're using Lottie animation
 
   // No need for financial drivers data as we're using Lottie animation
@@ -99,7 +67,7 @@ export default function AnomalyDetection() {
   ];
 
   return (
-    <Container>
+    <Box className={styles.container}>
 
       <Grid container spacing={2.5}>
         {/* Top Row */}
@@ -123,19 +91,25 @@ export default function AnomalyDetection() {
         </Grid>
         
         <Grid item xs={12} md={5}>
-          <Box >
+          <Box>
             <AIRecommendations recommendations={recommendations} />
           </Box>
         </Grid>
       </Grid>
       
-      <Footer>
-        <ButtonGroup>
-          <BackButton variant="outlined">Go back</BackButton>
-          <NextButton variant="contained">Next step</NextButton>
-        </ButtonGroup>
-        <Logo src="/assets/ey-logo.svg" alt="EY Logo" />
-      </Footer>
-    </Container>
+      {/* Navigation buttons */}
+      <Box className={styles.navigationButtons}>
+        <Box className={styles.backButton} onClick={handleGoBack}>Go back</Box>
+        <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
+      </Box>
+      
+      {/* EY Logo */}
+      <Box 
+        component="img"
+        src="/assets/ey-logo.svg"
+        alt="EY Logo"
+        className={styles.eyLogo}
+      />
+    </Box>
   );
 }

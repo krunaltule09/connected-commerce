@@ -1,0 +1,537 @@
+.dataSimulatorPage {
+  position: relative !important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  background-color: #000000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.backgroundOverlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+/* Main content container */
+.contentContainer {
+  position: relative !important;
+  width: 94% !important;
+  max-width: 1616px !important;
+  height: 80vh !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  overflow: hidden !important;
+  margin-bottom: 80px !important;
+}
+
+.mainPanel {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 24px !important;
+  gap: 24px !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  position: relative !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.panelTitle {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 26px !important;
+  letter-spacing: -0.02em !important;
+  color: #FFE600 !important;
+}
+
+.tabsContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+.tabButton {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  width: 200px !important;
+  height: 60px !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.tabButton:hover {
+  background: rgba(255, 230, 0, 0.1) !important;
+}
+
+.tabIcon {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 4px !important;
+}
+
+.tabText {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 26px !important;
+  text-align: center !important;
+  color: #FFFFFF !important;
+  z-index: 1 !important;
+}
+
+.sectionTitle {
+  width: 100% !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 26px !important;
+  color: #FFFFFF !important;
+}
+
+.columnsContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+  gap: 24px !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 400px !important;
+
+}
+
+.column {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 16px !important;
+  gap: 12px !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
+  flex: 1 !important;
+  height: 120% !important;
+  overflow: visible !important;
+}
+
+.columnTitle {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 26px !important;
+  color: #FFE600 !important;
+  margin-bottom: 8px !important;
+  padding-left: 8px !important;
+}
+
+.columnContent {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 16px !important;
+  gap: 12px !important;
+  width: 94% !important;
+  background: #23232F !important;
+  border: none !important;
+  border-radius: 4px !important;
+
+  overflow: visible !important;
+}
+
+.timelineTitle {
+  width: 100% !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  font-size: 20px !important;
+  line-height: 26px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 16px !important;
+  padding-left: 4px !important;
+}
+
+.timelineItem {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin-bottom: 12px !important;
+}
+
+.timelineIconContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 0 !important;
+  width: 20px !important;
+  height: 100% !important;
+}
+
+.timelineIcon {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: transparent !important;
+  border-radius: 50% !important;
+  color: white !important;
+}
+
+.calendarIcon {
+  width: 20px !important;
+  height: 20px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zm0-12H5V5h14v2z'/%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.sparkIcon {
+  width: 20px !important;
+  height: 20px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z'/%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.timelineConnector {
+  width: 2px !important;
+  height: 40px !important;
+  background: #DBE0E6 !important;
+  margin-top: 4px !important;
+}
+
+.timelineContent {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+  gap: 12px !important;
+  width: calc(100% - 48px) !important;
+}
+
+.timelineValue {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 28px !important;
+  letter-spacing: -0.02em !important;
+  color: #FFFFFF !important;
+  margin-bottom: 0 !important;
+}
+
+.timelineLabel {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  letter-spacing: -0.02em !important;
+  color: #FFFFFF !important;
+  opacity: 0.6 !important;
+}
+
+.metricsContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.metricBox {
+  padding: 16px !important;
+  background: #1E1E28 !important;
+  border-radius: 4px !important;
+  width: 92.5% !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.metricBox::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  right: -1px !important;
+  bottom: -1px !important;
+  border-radius: 4px !important;
+  padding: 1px !important;
+  background: linear-gradient(130deg, rgba(255, 230, 0, 1) 0%, rgba(46, 46, 56, 1) 60%) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+.metricItem {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 12px !important;
+  gap: 12px !important;
+  width: 100% !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  margin-bottom: 8px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.metricIcon {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: transparent !important;
+  border-radius: 4px !important;
+}
+
+.docIcon, .boxIcon {
+  width: 24px !important;
+  height: 24px !important;
+  background: #FFFFFF !important;
+}
+
+.metricContent {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+  gap: 12px !important;
+  width: calc(100% - 62px) !important;
+}
+
+.metricTitle {
+  width: 100% !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #FFFFFF !important;
+  margin-bottom: 4px !important;
+}
+
+.metricDescription {
+  width: 100% !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.alertBox {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 12px !important;
+  gap: 8px !important;
+  border-radius: 4px !important;
+  margin-bottom: 8px !important;
+  width: 95% !important;
+}
+
+.alertHeader {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 !important;
+  gap: 7px !important;
+  width: 100% !important;
+  margin-bottom: 6px !important;
+}
+
+.alertIcon {
+  width: 24px !important;
+  height: 24px !important;
+  background: currentColor !important;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z'/%3E%3C/svg%3E") !important;
+  mask-size: contain !important;
+  mask-repeat: no-repeat !important;
+  mask-position: center !important;
+}
+
+.alertTitle {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.alertDetails {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 !important;
+  gap: 36px !important;
+  width: 100% !important;
+}
+
+.alertDetail {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+  gap: 4px !important;
+}
+
+.alertDetailLabel {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 8px !important;
+  color: #9897A6 !important;
+}
+
+.alertDetailValue {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  color: #FFFFFF !important;
+}
+
+/* Navigation buttons */
+.navigationButtons {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 150px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 15px !important;
+  z-index: 10 !important;
+}
+
+.backButton, .nextButton {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem 2rem !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.25rem !important;
+  color: #FFFFFF !important;
+  border-radius: 2rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 116px !important;
+  height: 24px !important;
+}
+
+.backButton {
+  border: 2px solid #C3C3CB !important;
+  color: #FFFFFF !important;
+}
+
+.backButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(195, 195, 203, 0.5) !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+.nextButton {
+  background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D !important;
+  background-blend-mode: color-burn, plus-lighter !important;
+  box-shadow: inset 3px 3px 1px -3px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 1px -2px rgba(179, 179, 179, 0.5),
+              inset -2px -2px 1px -2px rgba(179, 179, 179, 0.5),
+              inset 0px 0px 20px rgba(242, 242, 242, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #21CFFF !important;
+  border: 2px solid transparent !important;
+}
+
+.nextButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(33, 207, 255, 0.5) !important;
+  border: 2px solid #21CFFF !important;
+}
+
+/* EY Logo */
+.eyLogo {
+  position: fixed !important;
+  width: 80px !important;
+  height: 84px !important;
+  right: 50px !important;
+  bottom: 30px !important;
+  z-index: 10 !important;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .columnsContainer {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  
+  .column {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabsContainer {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  
+  .tabButton {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .alertDetails {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  
+  .alertDetail {
+    width: 100% !important;
+  }
+}

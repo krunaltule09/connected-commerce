@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import DeliveryOptionsSvg from '../components/DeliveryOptionsSvg';
 import RatingComponentSvg from '../components/RatingComponentSvg';
-import { Box, Typography, Button, Container, Rating } from '@mui/material';
+import { Box, Typography, Button, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { useNavigate } from 'react-router-dom';
@@ -49,23 +49,7 @@ const LottieContainer = styled(Box)(({ theme }) => ({
   height: '100%'
 }));
 
-const ContentContainer = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  zIndex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  padding: theme.spacing(3),
-  backdropFilter: 'blur(2px)',
-}));
-
-const SuccessIcon = styled(CheckCircleOutlineIcon)(({ theme }) => ({
-  fontSize: '64px',
-  color: '#4CAF50',
-  marginBottom: theme.spacing(2),
-}));
+// Removed unused styled components
 
 const OptionsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -82,27 +66,7 @@ const OptionsContainer = styled(Box)(({ theme }) => ({
 
 // Removed OptionCard as it's now in the individual components
 
-const OptionTitle = styled(Typography)(({ theme }) => ({
-  color: '#FFFFFF',
-  marginBottom: theme.spacing(2),
-  fontWeight: 500,
-}));
-
-const QRCode = styled('img')(({ theme }) => ({
-  width: '120px',
-  height: '120px',
-  marginBottom: theme.spacing(2),
-}));
-
-const OptionButton = styled(Button)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  color: '#FFFFFF',
-  borderRadius: '4px',
-  padding: theme.spacing(0.5, 2),
-  '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-  },
-}));
+// Removed unused styled components
 
 const BackButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(4),
@@ -119,24 +83,11 @@ const BackButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const DeliveryOption = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  marginBottom: theme.spacing(1),
-  color: '#FFFFFF',
-}));
-
-const Dot = styled(Box)(({ theme }) => ({
-  width: '8px',
-  height: '8px',
-  borderRadius: '50%',
-  backgroundColor: '#FFEB3B',
-  marginRight: theme.spacing(1),
-}));
+// Removed unused styled components
 
 export default function FeedbackPage() {
   const navigate = useNavigate();
-  const [rating, setRating] = useState(0);
+  // const [rating, setRating] = useState(0); // Removed unused state
   const lottieRef = useRef(null);
   const [showComponents, setShowComponents] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
