@@ -97,10 +97,14 @@ const OperationalDocScan = () => {
             </Box>
           </Box>
           
-          <Box className={styles.aiChipContainer} sx={{ height: '180px' }}>
+        </GradientBorderBox>
+        
+        {/* AI Chip - positioned outside the document preview panel */}
+        <Grow in={scanProgress >= 50} timeout={800}>
+          <Box className={styles.aiChipContainer}>
             <AIRecommendations recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
           </Box>
-        </GradientBorderBox>
+        </Grow>
         
         {/* Right panel - Shipment Details */}
         <Fade in={revealStage >= 1} timeout={800}>
