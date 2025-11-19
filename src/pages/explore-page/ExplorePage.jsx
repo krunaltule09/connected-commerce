@@ -8,7 +8,10 @@ const ExplorePage = () => {
   const navigate = useNavigate();
 
   const handleTabClick = (tab) => {
-    setActiveTab(activeTab === tab ? null : tab);
+    // Only allow 'loan' tab to be active
+    if (tab === 'loan') {
+      setActiveTab(activeTab === tab ? null : tab);
+    }
   };
   
   const handleExploreNow = () => {
@@ -48,45 +51,45 @@ const ExplorePage = () => {
               />
             </Box>
 
-            {/* Transparent Compliance Tab */}
+            {/* Transparent Compliance Tab (Disabled) */}
             <Box 
-              className={`${styles.cardText} ${activeTab === 'transparent' ? styles.activeCard : ''}`}
-              onClick={() => handleTabClick('transparent')}
+              className={`${styles.cardText} ${styles.disabledCard}`}
             >
               <Box 
                 component="img" 
                 src="/assets/transparent-compliance.svg" 
                 alt="Transparent Compliance" 
                 className={styles.svgIcon}
+                sx={{ opacity: 0.5 }}
               />
             </Box>
           </Box>
 
           {/* Bottom row */}
           <Box className={styles.tabsRow}>
-            {/* Automated Servicing Tab 1 */}
+            {/* Automated Servicing Tab 1 (Disabled) */}
             <Box 
-              className={`${styles.cardText} ${activeTab === 'automated1' ? styles.activeCard : ''}`}
-              onClick={() => handleTabClick('automated1')}
+              className={`${styles.cardText} ${styles.disabledCard}`}
             >
               <Box 
                 component="img" 
                 src="/assets/automated-servicing.svg" 
                 alt="Automated Servicing" 
                 className={styles.svgIcon}
+                sx={{ opacity: 0.5 }}
               />
             </Box>
 
-            {/* Automated Servicing Tab 2 */}
+            {/* Automated Servicing Tab 2 (Disabled) */}
             <Box 
-              className={`${styles.cardText} ${activeTab === 'automated2' ? styles.activeCard : ''}`}
-              onClick={() => handleTabClick('automated2')}
+              className={`${styles.cardText} ${styles.disabledCard}`}
             >
               <Box 
                 component="img" 
                 src="/assets/automated-servicing2.svg" 
                 alt="Automated Servicing 2" 
                 className={styles.svgIcon}
+                sx={{ opacity: 0.5 }}
               />
             </Box>
           </Box>

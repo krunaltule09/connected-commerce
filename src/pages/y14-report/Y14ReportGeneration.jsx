@@ -24,7 +24,7 @@ export default function Y14ReportGeneration() {
   };
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate('/anomaly-detection');
   };
 
   return (
