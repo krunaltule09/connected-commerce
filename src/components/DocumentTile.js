@@ -1,9 +1,7 @@
 import { Card, CardActionArea, Stack, Typography, Box } from '@mui/material';
+import { handleDocumentDragStart } from '../utils';
 
 export default function DocumentTile({ doc, selected, onSelect }) {
-  const handleDragStart = (e) => {
-    e.dataTransfer.setData('text/plain', String(doc.id));
-  };
 
   return (
     <Card
@@ -16,9 +14,10 @@ export default function DocumentTile({ doc, selected, onSelect }) {
         boxShadow: 'none',
         height: 156,
         width: '100%',
+        cursor: 'grab',
       }}
       draggable
-      onDragStart={handleDragStart}
+      onDragStart={handleDocumentDragStart(doc)}
     >
       <CardActionArea onClick={() => onSelect?.(doc)} sx={{ height: '100%', borderRadius: '20px' }}>
         <Stack spacing={1.25} p={1.5} alignItems="stretch" sx={{ height: '100%' }}>
