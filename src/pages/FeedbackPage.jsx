@@ -59,9 +59,9 @@ const OptionsContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   flexWrap: 'wrap',
   zIndex: 2,
-  position:'relative',
-  top:-316,
-  left:12,
+  position: 'absolute',
+  left: '1vw',
+  bottom: '14vh',
 }));
 
 // Removed OptionCard as it's now in the individual components
