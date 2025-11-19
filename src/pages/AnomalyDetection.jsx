@@ -29,9 +29,9 @@ const Title = ({ children }) => (
 export default function AnomalyDetection() {
   const navigate = useNavigate();
   
-  // Handle navigation to Data Simulator page
+  // Handle navigation to Y14 Report Generation page
   const handleNextStep = () => {
-    navigate('/data-simulator');
+    navigate('/y14-report');
   };
   
   // Handle going back to previous page
