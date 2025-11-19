@@ -20,7 +20,7 @@ export default function FinancialDashboard() {
       <Box sx={{ bgcolor: '#000', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 2 }}>
       <Container maxWidth="xl" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', py: 1 }}>
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-          <Grid item xs={12} md={4} sx={{ height: '100%' }}>
+          <Grid item xs={12} md={5} sx={{ height: '100%' }}>
             <Grid container spacing={2}  direction="column" >
               <Grid item xs sx={{ height: '60%' }}>
                 <OcrScanningSection />
@@ -30,7 +30,7 @@ export default function FinancialDashboard() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={8} >
+          <Grid item xs={12} md={7} >
             <Grid container spacing={1} direction="column" sx={{ height: '100%' }}>
               <Grid item xs sx={{ height: '70%' }}>
                 <Box sx={{ height: '100%' }}>
