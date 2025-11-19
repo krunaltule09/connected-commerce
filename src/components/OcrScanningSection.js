@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import GradientBorderBox from './common/GradientBorderBox';
+import { useScanning } from '../context/ScanningContext';
 
 export default function OcrScanningSection() {
   const sections = [
@@ -14,19 +15,9 @@ export default function OcrScanningSection() {
     'Audit Opinion',
   ];
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const isComplete = progress === 100;
+  const { scanProgress: progress, isComplete } = useScanning();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        const increment = Math.max(1, 10 * (1 - oldProgress / 100));
-        return Math.min(oldProgress + increment, 100);
-      });
-    }, 300);
-
-    return () => clearInterval(timer);
-  }, []);
+  // Progress is now managed by the ScanningContext
 
   useEffect(() => {
     if (isComplete) return;
