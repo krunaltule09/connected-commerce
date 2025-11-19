@@ -4,6 +4,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import GradientButton from '../../components/common/GradientButton';
+import AIRecommendations from '../../components/anomaly-detection/AIRecommendations';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 
@@ -11,6 +12,9 @@ const OperationalDocScan = () => {
   const navigate = useNavigate();
   const { shipments, scanProgress, isScanning } = useShipmentData();
   const [activeTab, setActiveTab] = useState('on-time');
+  
+
+
   
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -82,13 +86,8 @@ const OperationalDocScan = () => {
             </Box>
           </Box>
           
-          <Box className={styles.aiChipContainer}>
-            <Box 
-              component="img"
-              src="/assets/ai-chip.svg"
-              alt="AI Chip"
-              className={styles.aiChipIcon}
-            />
+          <Box className={styles.aiChipContainer} sx={{ height: '180px' }}>
+            <AIRecommendations recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
           </Box>
         </GradientBorderBox>
         

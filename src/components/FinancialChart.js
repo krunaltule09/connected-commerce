@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -13,6 +14,7 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function FinancialChart() {
+  const chartRef = useRef(null);
   const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
@@ -26,6 +28,10 @@ export default function FinancialChart() {
         borderSkipped: 'bottom',
         barThickness: 9,
         maxBarThickness: 16,
+        // Hover effects
+        hoverBackgroundColor: '#FFCC00',
+        hoverBorderColor: '#FFCC00',
+        hoverBorderWidth: 2,
       },
     ],
   };
@@ -33,6 +39,21 @@ export default function FinancialChart() {
   const options = {
     responsive: true,
     maintainAspectRatio: true,
+    animation: {
+      duration: 2000,
+      easing: 'easeOutQuart',
+      delay: (context) => {
+        // Add a staggered delay for each bar
+        return context.dataIndex * 100;
+      },
+    },
+    transitions: {
+      active: {
+        animation: {
+          duration: 400
+        }
+      }
+    },
     layout: {
       padding: {
         top: 20,
@@ -126,6 +147,24 @@ export default function FinancialChart() {
     },
   };
 
+  // Effect for custom animation on chart initialization
+  useEffect(() => {
+    const chart = chartRef.current;
+    
+    if (chart) {
+      // Add a fade-in effect to the chart container
+      const canvas = chart.canvas;
+      if (canvas) {
+        canvas.style.opacity = 0;
+        canvas.style.transition = 'opacity 1s ease-in-out';
+        
+        setTimeout(() => {
+          canvas.style.opacity = 1;
+        }, 300);
+      }
+    }
+  }, []);
+
   return (
     <Box
       sx={{
@@ -142,7 +181,7 @@ export default function FinancialChart() {
       }}
     >
       <Box sx={{ position: 'relative', width: '82%', height: '82%', p: 1 }}>
-        <Bar data={data} options={options} />
+        <Bar ref={chartRef} data={data} options={options} />
       </Box>
     </Box>
   );
