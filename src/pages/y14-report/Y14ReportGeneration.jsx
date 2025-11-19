@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { Box, Button, Typography, Accordion, AccordionSummary, AccordionDetails, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -14,6 +14,36 @@ import styles from './Y14ReportGeneration.module.css';
 export default function Y14ReportGeneration() {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState('panel1');
+  const tabs = ['EXPLORE DOCUMENTS', 'SOURCE METRICS'];
+  const [selectedTab, setSelectedTab] = useState('EXPLORE DOCUMENTS');
+  
+  // Custom background styles for each tab
+  const getTabStyle = (tab, isSelected) => {
+    const baseStyle = {
+      color: '#FCFCFC',
+      border: 'none',
+      backgroundColor: 'transparent',
+      textTransform: 'none',
+      fontSize: '0.85rem',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundImage: isSelected 
+        ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
+        : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+      backgroundSize: '100% 100%',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      whiteSpace: 'normal',
+      lineHeight: '1.2',
+      height: '60px',
+      wordWrap: 'break-word',
+      textAlign: 'center',
+      position: 'relative',
+      minWidth: '220px',
+    };
+    
+    return baseStyle;
+  };
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -220,8 +250,19 @@ export default function Y14ReportGeneration() {
             
             <Box className={styles.tabsContainer}>
               <Box className={styles.tabsWrapper}>
-                <Button className={styles.findingsTab}>Explore Documents</Button>
-                <Button className={styles.findingsTab}>Source Metrics</Button>
+              <Box sx={{ mb: 3, mt: 2 }}>
+              <Stack direction="row" spacing={2} justifyContent="flex-start">
+                {tabs.map((tab) => (
+                  <Button
+                    key={tab}
+                    onClick={() => setSelectedTab(tab)}
+                    sx={getTabStyle(tab, selectedTab === tab)}
+                  >
+                    {tab}
+                  </Button>
+                ))}
+              </Stack>
+            </Box>
               </Box>
             </Box>
             
@@ -298,12 +339,14 @@ export default function Y14ReportGeneration() {
         <Button 
           className={styles.backButton}
           onClick={handleGoBack}
+          sx={{ textTransform: 'none' }}
         >
           Go back
         </Button>
         <Button 
           className={styles.nextButton}
           onClick={handleNextStep}
+          sx={{ textTransform: 'none' }}
         >
           Next step
         </Button>

@@ -632,14 +632,14 @@
   font-family: var(--font-family-primary, 'EYInterstate') !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  font-size: 1rem !important;
+  font-size: 0.85rem !important;
   line-height: 1.25rem !important;
   color: #FFFFFF !important;
   border-radius: 2rem !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
-  min-width: 160px !important;
-  height: 56px !important;
+  min-width: 180px !important;
+  height: 60px !important;
 }
 
 .backButton {
