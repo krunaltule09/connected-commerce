@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import OcrScanningSection from '../components/OcrScanningSection';
 import FinancialMetricsSection from '../components/FinancialMetricsSection';
 import CovenantStatusSection from '../components/CovenantStatusSection';
-import PerformanceSection from '../components/PerformanceSection';
+// import PerformanceSection from '../components/PerformanceSection'; // Unused for now
 import AIRecommendations from '../components/anomaly-detection/AIRecommendations';
+import { ScanningProvider } from '../context/ScanningContext';
 import styles from './FinancialDashboard.module.css';
 
 export default function FinancialDashboard() {
@@ -15,7 +16,8 @@ export default function FinancialDashboard() {
   };
   
   return (
-    <Box sx={{ bgcolor: '#000', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 2 }}>
+    <ScanningProvider>
+      <Box sx={{ bgcolor: '#000', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 2 }}>
       <Container maxWidth="xl" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', py: 1 }}>
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           <Grid item xs={12} md={4} sx={{ height: '100%' }}>
@@ -60,6 +62,7 @@ export default function FinancialDashboard() {
         alt="EY Logo"
         className={styles.eyLogo}
       />
-    </Box>
+      </Box>
+    </ScanningProvider>
   );
 }

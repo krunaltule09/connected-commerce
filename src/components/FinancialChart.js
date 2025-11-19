@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box } from '@mui/material';
+import { useScanning } from '../context/ScanningContext';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -15,12 +16,21 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export default function FinancialChart() {
   const chartRef = useRef(null);
+  const { isFinancialDataReady } = useScanning();
+  const [animationProgress, setAnimationProgress] = useState(0);
+  // Calculate visible data points based on animation progress
+  const calculateVisibleData = () => {
+    const fullData = [30, 25, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80];
+    const visibleCount = Math.ceil(fullData.length * animationProgress);
+    return fullData.map((value, index) => index < visibleCount ? value : 0);
+  };
+  
   const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
         label: 'YoY Trend',
-        data: [30, 25, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80],
+        data: calculateVisibleData(),
         backgroundColor: '#B4FF00',
         borderColor: '#B4FF00',
         borderWidth: 0,
@@ -147,11 +157,38 @@ export default function FinancialChart() {
     },
   };
 
+  // Effect for progressive chart animation
+  useEffect(() => {
+    if (!isFinancialDataReady) return;
+    
+    let animationFrame;
+    const startTime = Date.now();
+    const duration = 2000; // 2 seconds for full animation
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setAnimationProgress(progress);
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+    
+    animationFrame = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [isFinancialDataReady]);
+  
   // Effect for custom animation on chart initialization
   useEffect(() => {
     const chart = chartRef.current;
     
-    if (chart) {
+    if (chart && isFinancialDataReady) {
       // Add a fade-in effect to the chart container
       const canvas = chart.canvas;
       if (canvas) {
@@ -163,7 +200,7 @@ export default function FinancialChart() {
         }, 300);
       }
     }
-  }, []);
+  }, [isFinancialDataReady]);
 
   return (
     <Box
