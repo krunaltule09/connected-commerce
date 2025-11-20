@@ -124,7 +124,7 @@ const OperationalDocScan = () => {
               {shipments.map((shipment, index) => {
                 // Calculate if this shipment should be visible based on progress
                 // Each shipment appears at different progress thresholds
-                const shipmentThreshold = 30 + (index * 10); // 30%, 40%, 50%, 60%, 70%
+                const shipmentThreshold = 30 + (index * 10); // 15%, 25%, 35%, 45%, 55%
                 const isShipmentVisible = scanProgress >= shipmentThreshold;
                 
                 return (

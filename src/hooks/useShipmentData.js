@@ -26,11 +26,11 @@ export const useShipmentData = () => {
       setScanProgress(roundedProgress);
       
       // Update reveal stage based on progress
-      if (roundedProgress >= 30 && revealStage < 1) {
-        setRevealStage(1); // Reveal shipment details at 30%
-      } else if (roundedProgress >= 60 && revealStage < 2) {
+      if (roundedProgress >= 10 && revealStage < 1) {
+        setRevealStage(1); // Reveal shipment details at 15%
+      } else if (roundedProgress >= 50 && revealStage < 2) {
         setRevealStage(2); // Reveal KPI panel at 60%
-      } else if (roundedProgress >= 90 && revealStage < 3) {
+      } else if (roundedProgress >= 85 && revealStage < 3) {
         setRevealStage(3); // Reveal chart at 90%
       }
       
