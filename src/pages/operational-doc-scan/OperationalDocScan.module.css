@@ -500,7 +500,7 @@
   width: 100% !important;
   height: 100% !important;
   border-radius: 50% !important;
-  background: conic-gradient(#188CE5 0% 62.4%, #0A558E 62.4% 100%) !important;
+  background: conic-gradient(#0A558E 0% 25%, #188CE5 25% 100%) !important;
   box-shadow: 0 0 10px rgba(33, 207, 255, 0.3) !important;
 }
 
