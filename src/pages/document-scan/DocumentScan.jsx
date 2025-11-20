@@ -12,7 +12,7 @@ const DocumentScan = () => {
     // Set timeout to navigate after video plays for a while (5 seconds)
     const timeout = setTimeout(() => {
       navigate('/document-centre');
-    }, 7000);
+    }, 10000);
 
     return () => clearTimeout(timeout);
   }, [navigate]);
