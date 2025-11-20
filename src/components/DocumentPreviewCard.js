@@ -43,13 +43,13 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                 <Grid item xs={4}>
                   <Box sx={{ 
                     p: 2, 
-                    bgcolor: 'rgba(255,255,255,0.05)', 
+
                     borderRadius: 2,
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center'
+
                   }}>
                     <Box 
                       component="img"
@@ -59,7 +59,6 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                         
                         maxHeight: '64%',
                         
-                        objectFit: 'contain'
                       }}
                     />
                   </Box>
@@ -94,23 +93,22 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                 <Grid item xs={4}>
                   <Box sx={{ 
                     p: 2, 
-                    bgcolor: 'rgba(255,255,255,0.05)', 
+  
                     borderRadius: 2,
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center'
+
                   }}>
                     <Box 
                       component="img"
                       src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
                       alt="Document Preview"
                       sx={{ 
-                        maxWidth: '100%',
-                        maxHeight: '90%',
-                        height: '180px',
-                        objectFit: 'contain'
+
+                        maxHeight: '64%',
+
                       }}
                     />
                   </Box>
