@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Card, CardContent, Stack, Typography, Grow, Grid } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useNavigate } from 'react-router-dom';
+import { getAssetPath } from '../utils/assetUtils';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
   const [opening, setOpening] = useState(false);
@@ -53,7 +54,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      src={getAssetPath('balance-doc.svg')}
                       alt="Document Preview"
                       sx={{ 
                         
@@ -78,7 +79,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      src={getAssetPath('balance-doc.svg')}
                       alt="Document Preview"
                       sx={{ 
                         
@@ -103,7 +104,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      src={getAssetPath('balance-doc.svg')}
                       alt="Document Preview"
                       sx={{ 
 
