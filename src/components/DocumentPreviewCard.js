@@ -19,7 +19,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
     // Set redirecting to true after showing the document for 5 seconds
     setTimeout(() => {
       setRedirecting(true);
-    }, 800000); // Increased from 1.5s to 5s (5000ms)
+    }, 4000); // Increased from 1.5s to 5s (5000ms)
   };
 
   // Effect to handle redirection
