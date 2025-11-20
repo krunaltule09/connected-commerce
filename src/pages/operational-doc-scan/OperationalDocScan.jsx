@@ -124,7 +124,7 @@ const OperationalDocScan = () => {
               {shipments.map((shipment, index) => {
                 // Calculate if this shipment should be visible based on progress
                 // Each shipment appears at different progress thresholds
-                const shipmentThreshold = 30 + (index * 10); // 30%, 40%, 50%, 60%, 70%
+                const shipmentThreshold = 30 + (index * 10); // 15%, 25%, 35%, 45%, 55%
                 const isShipmentVisible = scanProgress >= shipmentThreshold;
                 
                 return (
@@ -231,120 +231,97 @@ const OperationalDocScan = () => {
             
             <Box className={styles.chartContainer}>
               {/* Pie chart with progressive animation based on scan progress */}
-              <Box className={styles.pieChart}>
-                {/* Inner circle with pulsing animation */}
-                <Grow 
-                  in={scanProgress >= 90} 
-                  timeout={800}
-                  style={{ 
-                    transformOrigin: 'center center',
-                  }}
-                >
-                  <Box 
-                    className={styles.pieChartInner}
-                    sx={{
-                      animation: scanProgress >= 92 ? 'pulse 2s infinite' : 'none',
-                      '@keyframes pulse': {
-                        '0%': { transform: 'scale(1)' },
-                        '50%': { transform: 'scale(1.05)' },
-                        '100%': { transform: 'scale(1)' },
-                      },
-                    }}
-                  ></Box>
-                </Grow>
-                
-                {/* Outer circle with rotating animation */}
-                <Grow 
-                  in={scanProgress >= 90} 
-                  timeout={800}
-                  style={{ 
-                    transformOrigin: 'center center',
-                  }}
-                >
-                  <Box 
-                    className={styles.pieChartOuter}
-                    sx={{
-                      animation: scanProgress >= 92 ? 'rotate 4s linear infinite' : 'none',
-                      '@keyframes rotate': {
-                        '0%': { transform: 'rotate(0deg)' },
-                        '100%': { transform: 'rotate(360deg)' },
-                      },
-                    }}
-                  ></Box>
-                </Grow>
-              </Box>
-              
-              {/* Chart legend with sequential reveal */}
-              <Box className={styles.chartLegend}>
-                {/* First legend item appears at 94% */}
-                <Grow 
-                  in={scanProgress >= 94} 
-                  timeout={600}
-                  style={{ transformOrigin: '0 0 0' }}
-                >
-                  <Box 
-                    className={styles.legendItem}
-                    sx={{
-                      position: 'relative',
-                      '&::after': scanProgress >= 94 && scanProgress < 96 ? {
-                        content: '""',
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        height: '2px',
-                        background: 'linear-gradient(90deg, rgba(10, 85, 142, 0.7) 0%, rgba(10, 85, 142, 0) 100%)',
-                        animation: 'fadeOut 1.5s forwards',
-                        '@keyframes fadeOut': {
-                          '0%': { opacity: 1 },
-                          '100%': { opacity: 0 },
-                        },
-                      } : {}
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '15px', width: '100%' }}>
+                <Box className={styles.pieChart}>
+                  {/* Inner circle with pulsing animation */}
+                  <Grow 
+                    in={scanProgress >= 90} 
+                    timeout={800}
+                    style={{ 
+                      transformOrigin: 'center center',
                     }}
                   >
-                    <Box className={styles.legendDot} sx={{ 
-                      background: '#0A558E',
-                      transform: scanProgress >= 94 ? 'scale(1)' : 'scale(0)',
-                      transition: 'transform 0.3s ease-out'
-                    }}></Box>
-                    <Box className={styles.legendText}>Target: 78%</Box>
-                  </Box>
-                </Grow>
-                
-                {/* Second legend item appears at 96% */}
-                <Grow 
-                  in={scanProgress >= 96} 
-                  timeout={600}
-                  style={{ transformOrigin: '0 0 0' }}
-                >
-                  <Box 
-                    className={styles.legendItem}
-                    sx={{
-                      position: 'relative',
-                      '&::after': scanProgress >= 96 ? {
-                        content: '""',
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        height: '2px',
-                        background: 'linear-gradient(90deg, rgba(24, 140, 229, 0.7) 0%, rgba(24, 140, 229, 0) 100%)',
-                        animation: 'fadeOut 1.5s forwards',
-                        '@keyframes fadeOut': {
-                          '0%': { opacity: 1 },
-                          '100%': { opacity: 0 },
+                    <Box 
+                      className={styles.pieChartInner}
+                      sx={{
+                        animation: scanProgress >= 92 ? 'pulse 2s infinite' : 'none',
+                        '@keyframes pulse': {
+                          '0%': { transform: 'scale(1)' },
+                          '50%': { transform: 'scale(1.05)' },
+                          '100%': { transform: 'scale(1)' },
                         },
-                      } : {}
+                      }}
+                    ></Box>
+                  </Grow>
+                  
+                  {/* Outer circle with rotating animation */}
+                  <Grow 
+                    in={scanProgress >= 90} 
+                    timeout={800}
+                    style={{ 
+                      transformOrigin: 'center center',
                     }}
                   >
-                    <Box className={styles.legendDot} sx={{ 
-                      background: '#188CE5',
-                      transform: scanProgress >= 96 ? 'scale(1)' : 'scale(0)',
-                      transition: 'transform 0.3s ease-out'
-                    }}></Box>
-                    <Box className={styles.legendText}>Actual: 62.4%</Box>
+                    <Box 
+                      className={styles.pieChartOuter}
+                      sx={{
+                        animation: scanProgress >= 92 ? 'rotate 4s linear infinite' : 'none',
+                        '@keyframes rotate': {
+                          '0%': { transform: 'rotate(0deg)' },
+                          '100%': { transform: 'rotate(360deg)' },
+                        },
+                      }}
+                    ></Box>
+                  </Grow>
+                </Box>
+                
+                {/* Chart legend with sequential reveal - now below the pie chart */}
+                <Fade 
+                  in={scanProgress >= 95} 
+                  timeout={800}
+                >
+                  <Box sx={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    marginTop: '10px',
+                    paddingLeft: '42px'
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <Box sx={{ 
+                        width: '10px', 
+                        height: '10px', 
+                        borderRadius: '50%', 
+                        backgroundColor: '#0A558E' 
+                      }} />
+                      <Typography sx={{ 
+                        color: '#FFFFFF', 
+                        fontSize: '14px',
+                        fontWeight: 'normal',
+                        fontFamily: 'var(--font-family-primary, "EYInterstate")',
+                      }}>
+                        Target: 78%
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <Box sx={{ 
+                        width: '10px', 
+                        height: '10px', 
+                        borderRadius: '50%', 
+                        backgroundColor: '#188CE5' 
+                      }} />
+                      <Typography sx={{ 
+                        color: '#FFFFFF', 
+                        fontSize: '14px',
+                        fontWeight: 'normal',
+                        fontFamily: 'var(--font-family-primary, "EYInterstate")',
+                      }}>
+                        Actual: 62.4%
+                      </Typography>
+                    </Box>
                   </Box>
-                </Grow>
+                </Fade>
               </Box>
             </Box>
           </Box>

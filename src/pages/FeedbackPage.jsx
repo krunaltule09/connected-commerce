@@ -137,7 +137,7 @@ export default function FeedbackPage() {
           )}
         </MainCard>
         
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, position: 'relative', zIndex: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: -1, position: 'relative', zIndex: 2 }}>
           <BackButton onClick={handleBackToHome}>
             Back to home
           </BackButton>
