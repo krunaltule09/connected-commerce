@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Card, CardContent, Stack, Typography, Grow } from '@mui/material';
+import { Box, Card, CardContent, Stack, Typography, Grow, Grid } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,10 +16,10 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
     setOpening(true);
     if (id && onDropDocumentId) onDropDocumentId(id);
     
-    // Set redirecting to true after showing the document for 1.5 seconds
+    // Set redirecting to true after showing the document for 5 seconds
     setTimeout(() => {
       setRedirecting(true);
-    }, 1500);
+    }, 4000); // Increased from 1.5s to 5s (5000ms)
   };
 
   // Effect to handle redirection
@@ -31,7 +31,95 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
   }, [redirecting, navigate]);
 
   const renderContent = () => {
-
+    if (opening) {
+      // When a document is dropped, show the SVG grid preview
+      return (
+        <Box sx={{ height: { xs: 280, md: 420 }, position: 'relative', overflow: 'hidden' }}>
+          <Grid container spacing={2} sx={{ height: '100%' }}>
+            <Grid item xs={12}>
+              {/* Single row with 3 columns for SVG display */}
+              <Grid container spacing={2} sx={{ flexWrap: 'nowrap', overflowX: 'auto', overflowY: 'hidden' }}>
+                {/* First SVG */}
+                <Grid item xs={4}>
+                  <Box sx={{ 
+                    p: 2, 
+                    bgcolor: 'rgba(255,255,255,0.05)', 
+                    borderRadius: 2,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Box 
+                      component="img"
+                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      alt="Document Preview"
+                      sx={{ 
+                        maxWidth: '100%',
+                        maxHeight: '80%',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </Box>
+                </Grid>
+                
+                {/* Second SVG (same as first for demonstration) */}
+                <Grid item xs={4}>
+                  <Box sx={{ 
+                    p: 2, 
+                    bgcolor: 'rgba(255,255,255,0.05)', 
+                    borderRadius: 2,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Box 
+                      component="img"
+                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      alt="Document Preview"
+                      sx={{ 
+                        maxWidth: '100%',
+                        maxHeight: '80%',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </Box>
+                </Grid>
+                
+                {/* Third SVG (same as first for demonstration) */}
+                <Grid item xs={4}>
+                  <Box sx={{ 
+                    p: 2, 
+                    bgcolor: 'rgba(255,255,255,0.05)', 
+                    borderRadius: 2,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Box 
+                      component="img"
+                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      alt="Document Preview"
+                      sx={{ 
+                        maxWidth: '100%',
+                        maxHeight: '80%',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      );
+    } else {
+      // Default state - show drag & drop UI
       return (
         <Box sx={{ height: { xs: 280, md: 420 }, position: 'relative' }}>
           <Box
@@ -114,9 +202,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
           </Box>
         </Box>
       );
-    
-
-   
+    }
   };
 
   return (
@@ -163,21 +249,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
           position: 'relative',
           overflow: 'hidden',
         }}>
-          {opening && (
-            <Grow in={opening} timeout={700}>
-              <Box sx={{
-                position: 'absolute',
-                inset: 0,
-                borderRadius: 2,
-                backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/image%2037.png'})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                zIndex: 2,
-                pointerEvents: 'none',
-                opacity: 0.95,
-              }} />
-            </Grow>
-          )}
+          {/* Removed the old document preview image that was overlapping with the SVG grid */}
           {renderContent()}
         </Box>
       </CardContent>
