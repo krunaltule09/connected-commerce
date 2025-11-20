@@ -172,13 +172,13 @@ const DataSimulator = () => {
                       />
                     </Box>
                     <Box sx={{ flex: 1 }}>
-                      <Typography sx={{ fontSize: 18, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>Faster Covenant Checks</Typography>
+                      <Typography sx={{ fontSize: 15, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>Faster Covenant Checks</Typography>
                       <Box sx={{ pl: 2 }}>
-                        <Typography sx={{ fontSize: 14, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: 0.5 }}>
                           <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
                           Global Logistics Provider secured 65% faster Covenant Checks.
                         </Typography>
-                        <Typography sx={{ fontSize: 14, color: '#FFFFFF', display: 'flex', alignItems: 'center' }}>
+                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center' }}>
                           <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
                           XYZ Company secured 35% faster Covenant Checks.
                         </Typography>
@@ -219,13 +219,13 @@ const DataSimulator = () => {
                       />
                     </Box>
                     <Box sx={{ flex: 1 }}>
-                      <Typography sx={{ fontSize: 18, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>Fewer Errors</Typography>
+                      <Typography sx={{ fontSize: 15, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>Fewer Errors</Typography>
                       <Box sx={{ pl: 2 }}>
-                        <Typography sx={{ fontSize: 14, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: 0.5 }}>
                           <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
                           Global Logistics Provider, reduced 40% error in processing.
                         </Typography>
-                        <Typography sx={{ fontSize: 14, color: '#FFFFFF', display: 'flex', alignItems: 'center' }}>
+                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center' }}>
                           <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
                           XYZ Company, reduced 40% error in processing.
                         </Typography>
