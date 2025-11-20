@@ -19,7 +19,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
     // Set redirecting to true after showing the document for 5 seconds
     setTimeout(() => {
       setRedirecting(true);
-    }, 4000); // Increased from 1.5s to 5s (5000ms)
+    }, 800000); // Increased from 1.5s to 5s (5000ms)
   };
 
   // Effect to handle redirection
@@ -57,7 +57,8 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                       alt="Document Preview"
                       sx={{ 
                         maxWidth: '100%',
-                        maxHeight: '80%',
+                        maxHeight: '90%',
+                        height: '180px',
                         objectFit: 'contain'
                       }}
                     />
@@ -82,7 +83,8 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                       alt="Document Preview"
                       sx={{ 
                         maxWidth: '100%',
-                        maxHeight: '80%',
+                        maxHeight: '90%',
+                        height: '180px',
                         objectFit: 'contain'
                       }}
                     />
@@ -107,7 +109,8 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                       alt="Document Preview"
                       sx={{ 
                         maxWidth: '100%',
-                        maxHeight: '80%',
+                        maxHeight: '90%',
+                        height: '180px',
                         objectFit: 'contain'
                       }}
                     />
