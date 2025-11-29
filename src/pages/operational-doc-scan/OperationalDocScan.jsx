@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, CircularProgress, Typography, Stack, Fade, Grow } from '@mui/material';
+import { Box, Typography, Fade, Grow } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
@@ -10,7 +10,7 @@ import { useShipmentData } from '../../hooks/useShipmentData';
 
 const OperationalDocScan = () => {
   const navigate = useNavigate();
-  const { shipments, scanProgress, isScanning, revealStage, scanComplete } = useShipmentData();
+  const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
   const [activeTab, setActiveTab] = useState('on-time');
   const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
   

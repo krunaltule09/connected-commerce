@@ -3,7 +3,7 @@ import DeliveryOptionsSvg from '../components/DeliveryOptionsSvg';
 import RatingComponentSvg from '../components/RatingComponentSvg';
 import { Box, Typography, Button, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+// Removed unused import: CheckCircleOutlineIcon
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import feedbackAnimationData from '../lottie/FEEDBACK UI.json';

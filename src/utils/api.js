@@ -10,15 +10,48 @@ export async function fetchDocuments() {
     const { data } = await api.get('/documents');
     return data;
   } catch (e) {
-    // Fallback mock data
-    const docs = Array.from({ length: 12 }).map((_, i) => ({
-      id: String(i + 1),
-      name: `Document ${i + 1}`,
-      type: (i % 3 === 0 ? 'pdf' : 'image'),
-      url: (i % 3 === 0)
-        ? 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-        : `https://picsum.photos/seed/doc${i + 1}/1200/800`,
-    }));
+    // Fallback mock data with realistic document names matching the screenshot
+    const documentNames = [
+      'Loan Agreement.pdf',
+      'Financial Statement.pdf',
+      'Covenant Summary.xlsx',
+      'ESG_Report_02.pdf',
+      'FR_Y_14_Analysis.pdf',
+      'Risk Assessment.docx',
+      'Balance Sheet.xlsx',
+      'Quarterly Report.pdf',
+      'Compliance Certificate.pdf',
+      'Market Analysis.pptx',
+      'Credit Approval.pdf',
+      'Facility Agreement.pdf'
+    ];
+    
+    const docs = documentNames.map((name, i) => {
+      const isPdf = name.endsWith('.pdf');
+      const isExcel = name.endsWith('.xlsx');
+      const isPpt = name.endsWith('.pptx');
+      const isDoc = name.endsWith('.docx');
+      
+      // Use local SVG files for document previews
+      let url;
+      // Rotate between the three SVG files
+      const svgIndex = i % 3;
+      
+      if (svgIndex === 0) {
+        url = `${process.env.PUBLIC_URL}/assets/doc1.svg`;
+      } else if (svgIndex === 1) {
+        url = `${process.env.PUBLIC_URL}/assets/doc2.svg`;
+      } else {
+        url = `${process.env.PUBLIC_URL}/assets/doc3.svg`;
+      }
+      
+      return {
+        id: String(i + 1),
+        name: name,
+        type: isPdf ? 'pdf' : (isExcel ? 'excel' : (isPpt ? 'powerpoint' : (isDoc ? 'word' : 'image'))),
+        url: url,
+      };
+    });
     return docs;
   }
 }

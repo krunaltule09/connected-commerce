@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './DocumentScan.module.css';

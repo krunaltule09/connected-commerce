@@ -76,7 +76,7 @@ const DataSimulator = () => {
             <Stack direction="row" spacing={1.5} sx={{ overflowX: 'auto', pb: 0.5 }}>
               {tabs.map((tab) => {
                 const isSelected = selectedTab === tab;
-                const bgColor = tab === 'Benefit Blocks' ? '#00C864' : '#FFE600';
+                // Removed unused bgColor variable
                 return (
                   <Button
                     key={tab}

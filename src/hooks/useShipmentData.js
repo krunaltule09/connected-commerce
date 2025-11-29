@@ -44,8 +44,8 @@ export const useShipmentData = () => {
     
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
-  }, []);
-  const [shipments, setShipments] = useState([
+  }, [revealStage]);
+  const [shipments] = useState([
     {
       name: 'Shipment 1',
       promisedDate: '12, Aug 2025',
