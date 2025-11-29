@@ -1,5 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
+import WelcomePage from '../pages/WelcomePage';
+import PersonalWelcomePage from '../pages/PersonalWelcomePage';
+import LoanServicePage from '../pages/LoanServicePage';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
@@ -9,6 +12,18 @@ import DataSimulator from '../pages/data-simulator/DataSimulator';
 
 // Define routes configuration
 const routes = [
+  {
+    path: '/loan-service',
+    element: <LoanServicePage />,
+  },
+  {
+    path: '/personal-welcome',
+    element: <PersonalWelcomePage />,
+  },
+  {
+    path: '/welcome',
+    element: <WelcomePage />,
+  },
   {
     path: '/',
     element: <LandingPage />,

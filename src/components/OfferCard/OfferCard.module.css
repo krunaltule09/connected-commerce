@@ -1,0 +1,87 @@
+.offerCardContainer {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.rightFrame {
+  transform: scaleX(-1);
+}
+
+.offerCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.frameSvgContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.frameSvg {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: #FFFFFF;
+}
+
+.cardTitle {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 1rem);
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.cardValue {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 1.5rem);
+  text-align: center;
+  color: rgba(255, 254, 253, 0.8);
+  margin: 0 0 10px;
+}
+
+.cardSubtitle {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .offerCardContainer {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offerCardContainer {
+    height: 160px;
+  }
+}

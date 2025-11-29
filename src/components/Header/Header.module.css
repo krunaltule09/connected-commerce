@@ -1,0 +1,79 @@
+.header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 16px;
+  width: 100%;
+  height: 72px;
+  background: #2E2E38;
+  border-bottom: 2px solid #2E2E38;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.productName {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    padding: 0 12px;
+  }
+  
+  .logo {
+    height: 32px;
+  }
+  
+  .productName {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 56px;
+    padding: 0 8px;
+  }
+  
+  .logo {
+    height: 28px;
+  }
+  
+  .productName {
+    font-size: 14px;
+  }
+}
