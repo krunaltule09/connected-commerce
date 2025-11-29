@@ -26,17 +26,47 @@ export default function DocumentTile({ doc, selected, onSelect }) {
             width: '100%',
             height: 100,
             borderRadius: '12px',
-            background: '#E6E6E9',
+            background: '#343340',
+            border: '1px solid',
+            borderColor: 'transparent',
+            borderImage: 'linear-gradient(130deg,rgba(255, 230, 0, 1) 0%, rgba(46, 46, 56, 1) 60%) 1',
+            borderImageSlice: 1,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            overflow: 'hidden',
           }}>
-            <Box
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/Vector.svg`}
-              alt=""
-              sx={{ width: 31, height: 31 }}
-            />
+            {doc.url ? (
+              <Box
+                sx={{
+                  width: '90%',
+                  height: '90%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#fff',
+                  borderRadius: 1,
+                }}
+              >
+                <Box
+                  component="img"
+                  src={doc.url}
+                  alt={doc.name}
+                  sx={{ 
+                    maxWidth: '90%',
+                    maxHeight: '90%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </Box>
+            ) : (
+              <Box
+                component="img"
+                src={`${process.env.PUBLIC_URL}/assets/Vector.svg`}
+                alt=""
+                sx={{ width: 31, height: 31 }}
+              />
+            )}
           </Box>
           <Stack spacing={0.25} sx={{ flex: '1 1 auto', justifyContent: 'center' }}>
             <Typography

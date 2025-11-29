@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
 import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
@@ -8,23 +8,7 @@ import CovenantBreachLog from '../components/anomaly-detection/CovenantBreachLog
 import AIRecommendations from '../components/anomaly-detection/AIRecommendations';
 import GradientBorderBox from '../components/common/GradientBorderBox';
 
-// Title component
-const Title = ({ children }) => (
-  <Typography 
-    sx={{
-      color: '#00C8FF',
-      marginBottom: 3,
-      display: 'flex',
-      alignItems: 'center',
-      '&:before': {
-        content: '"▶"',
-        marginRight: 1,
-      }
-    }}
-  >
-    {children}
-  </Typography>
-);
+// Removed unused Title component
 
 export default function AnomalyDetection() {
   const navigate = useNavigate();
