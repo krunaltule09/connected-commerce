@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, Grid, Stack, Typography, Modal, IconButton } from '@mui/material';
+import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
 export default function DocumentCentrePage() {
+  const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [selectedDocument, setSelectedDocument] = useState(null);
@@ -70,9 +72,16 @@ export default function DocumentCentrePage() {
   
   const handleCloseModal = () => {
     setModalOpen(false);
+    setSelectedDocument(null);
+    setSelectedId(null);
   };
 
-  // Removed unused function handleDropDocumentId
+  const handleScanDocument = () => {
+    // Navigate to financial dashboard
+    navigate('/financial-dashboard');
+    // Close the modal
+    handleCloseModal();
+  };
 
   const count = documents.length;
 
@@ -263,13 +272,15 @@ export default function DocumentCentrePage() {
             height: '80vh',
             maxWidth: '700px',
             aspectRatio: '9/16',
-            overflow: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
             bgcolor: '#000',
             boxShadow: 24,
             p: { xs: 2, sm: 3, md: 4 },
             borderRadius: 2,
             outline: 'none',
             mx: 'auto',
+            overflow: 'hidden', // Changed from auto to hidden
           }}>
             <IconButton
               aria-label="close"
@@ -290,7 +301,45 @@ export default function DocumentCentrePage() {
             >
               <CloseIcon fontSize="medium" />
             </IconButton>
-            <DocumentCardDetails document={selectedDocument} />
+            {/* Document content with flex-grow to take available space */}
+            <Box sx={{ 
+              flexGrow: 1, 
+              overflow: 'auto',
+              mb: 2
+            }}>
+              <DocumentCardDetails document={selectedDocument} />
+            </Box>
+            
+            {/* Scan Button - fixed at bottom */}
+            <Box sx={{ 
+              display: 'flex', 
+              justifyContent: 'center',
+              py: 2,
+              position: 'relative',
+              zIndex: 10,
+              mt: 'auto', // Push to bottom
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+            }}>
+              <Button
+                onClick={handleScanDocument}
+                sx={{
+                  backgroundColor: '#FFE600',
+                  color: '#000',
+                  fontWeight: 600,
+                  px: 4,
+                  py: 1,
+                  borderRadius: '4px',
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  '&:hover': {
+                    backgroundColor: '#d4c000',
+                  },
+                  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)',
+                }}
+              >
+                Scan Document
+              </Button>
+            </Box>
           </Box>
           </motion.div>
             )}

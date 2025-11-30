@@ -79,7 +79,7 @@ export default function FinancialMetricsSection() {
             {isFinancialDataReady && (
               <Fade in={isFinancialDataReady} timeout={1500}>
                 <Box>
-                  <ChartBreakdown />
+                  <ChartBreakdown selectedMetric={selectedMetric} />
                 </Box>
               </Fade>
             )}
