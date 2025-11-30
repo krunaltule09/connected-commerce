@@ -103,6 +103,7 @@ export default function DocumentCardDetails({ document }) {
     setScale(prevScale => Math.max(prevScale - 0.25, 1));
   };
   
+  // eslint-disable-next-line no-unused-vars
   const handleReset = () => {
     setScale(1);
     setPosition({ x: 0, y: 0 });
