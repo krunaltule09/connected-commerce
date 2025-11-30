@@ -5,45 +5,51 @@ import styles from './SidebarItem.module.css';
 /**
  * SidebarItem component for navigation sidebar
  * @param {Object} props - Component props
- * @param {string} props.label - Primary label text
- * @param {string} props.sublabel - Secondary label text (number)
- * @param {boolean} props.active - Whether this item is active
- * @param {boolean} props.completed - Whether this item is completed
- * @param {number} props.index - Index for animation sequencing
+ * @param {string} props.sublabel - Small label (usually a number)
+ * @param {string} props.label - Main label text
+ * @param {boolean} props.active - Whether the item is currently active
+ * @param {boolean} props.completed - Whether the item has been completed
+ * @param {number} props.index - Index for animation delay
+ * @param {function} props.onClick - Function to call when item is clicked
  */
-const SidebarItem = ({ label, sublabel, active = false, completed = true, index = 0 }) => {
+const SidebarItem = ({ sublabel, label, active = false, completed = false, index = 0, onClick }) => {
   // Animation variants
   const itemVariants = {
-    hidden: { 
-      opacity: 0,
-      x: -20
-    },
+    hidden: { opacity: 0, x: -20 },
     visible: { 
-      opacity: 1,
+      opacity: 1, 
       x: 0,
       transition: {
-        type: 'spring',
-        damping: 12,
-        stiffness: 100,
-        delay: 0.1 * index
+        delay: index * 0.1,
+        duration: 0.5
       }
+    }
+  };
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(index);
     }
   };
 
   return (
     <motion.div 
       className={`${styles.sidebarItem} ${active ? styles.active : ''}`}
-      initial="hidden"
-      animate="visible"
       variants={itemVariants}
+      onClick={handleClick}
+      whileHover={{ scale: 1.02, backgroundColor: 'rgba(10, 54, 22, 0.5)' }}
+      whileTap={{ scale: 0.98 }}
+      style={{ cursor: 'pointer' }}
     >
       <div className={styles.textWrapper}>
         <div className={styles.sublabel}>{sublabel}</div>
         <div className={styles.label}>{label}</div>
       </div>
-      <div className={`${styles.iconContainer} ${completed ? styles.completed : ''} ${active ? styles.activeIcon : ''}`}>
-        <div className={styles.checkmark}></div>
-      </div>
+      {completed && (
+        <div className={`${styles.iconContainer} ${active ? styles.activeIcon : ''} ${styles.completed}`}>
+          <div className={styles.checkmark} />
+        </div>
+      )}
     </motion.div>
   );
 };

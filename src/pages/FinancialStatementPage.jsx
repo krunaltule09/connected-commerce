@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Header } from '../components';
 import DeepDiveCard from '../components/DeepDiveCard/DeepDiveCard';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
@@ -11,6 +12,8 @@ import styles from './FinancialStatementPage.module.css';
  * FinancialStatementPage component for displaying financial statement analysis
  */
 const FinancialStatementPage = () => {
+  const navigate = useNavigate();
+  
   // Sample financial data
   const financialData = [
     { title: 'Revenue', value: '$12.5B' },
@@ -25,6 +28,16 @@ const FinancialStatementPage = () => {
   const [showDeepDive, setShowDeepDive] = useState(false);
   const [showGraph, setShowGraph] = useState(false);
   const [visibleCards, setVisibleCards] = useState([]);
+  const [activeTabIndex, setActiveTabIndex] = useState(1); // Financial Statement Scan is active by default
+  
+  // Handle tab click
+  const handleTabClick = (index) => {
+    if (index === 3) { // Y-14 Report Generation tab
+      navigate('/y14-report/large');
+    } else {
+      setActiveTabIndex(index);
+    }
+  };
   
   // Simulate progress
   useEffect(() => {
@@ -108,7 +121,7 @@ const FinancialStatementPage = () => {
   // Sidebar navigation items
   const sidebarItems = [
     { sublabel: '1', label: 'Welcome', completed: true },
-    { sublabel: '2', label: 'Financial Statement Scan', active: true, completed: true },
+    { sublabel: '2', label: 'Financial Statement Scan', completed: true },
     { sublabel: '3', label: 'Operational Docx Scan', completed: true },
     { sublabel: '4', label: 'Y-14 Report Generation', completed: true },
     { sublabel: '5', label: 'Covenant Monitoring', completed: true },
@@ -132,9 +145,10 @@ const FinancialStatementPage = () => {
               key={index}
               sublabel={item.sublabel}
               label={item.label}
-              active={item.active}
+              active={activeTabIndex === index}
               completed={item.completed}
               index={index}
+              onClick={handleTabClick}
             />
           ))}
         </div>
@@ -152,79 +166,191 @@ const FinancialStatementPage = () => {
           
           {/* Content Sections */}
           <div className={styles.contentSections}>
-            {/* Document Preview Section */}
-            <motion.div 
-              className={styles.documentSection}
-              variants={sectionVariants}
-            >
-              <div className={styles.documentPreview}>
-                <div className={styles.documentImage}>
-                  <img 
-                    src="/assets/financial-status-doc.svg" 
-                    alt="Financial document" 
-                    className={styles.documentSvg} 
-                  />
-                </div>
-                <div className={styles.analysisProgress}>
-                  <ProgressBar percentage={progress} label={progress < 100 ? "Analysing..." : "Analysis Complete"} />
-                </div>
-              </div>
-            </motion.div>
-            
-            {/* Financial Data Section */}
-            <div className={styles.dataSection}>
-              {/* Deep Dive Section */}
+            {/* Render content based on active tab */}
+            {activeTabIndex === 0 && (
               <motion.div 
-                className={styles.deepDiveSection}
+                className={styles.welcomeSection}
                 variants={sectionVariants}
                 initial="hidden"
-                animate={showDeepDive ? "visible" : "hidden"}
+                animate="visible"
               >
-                <h2 className={styles.sectionTitle}>Deep Dive (Extracted Data)</h2>
-                <div className={styles.cardsContainer}>
-                  {financialData.map((item, index) => (
-                    <DeepDiveCard 
-                      key={index}
-                      title={item.title}
-                      value={item.value}
-                      position={index}
-                      isVisible={visibleCards.includes(index)}
-                    />
-                  ))}
+                <h2 className={styles.sectionTitle}>Welcome to Connected Commerce</h2>
+                <div className={styles.welcomeContent}>
+                  <p>This platform provides comprehensive financial analysis and covenant monitoring tools.</p>
+                  <p>Select a tab from the sidebar to navigate through different features.</p>
                 </div>
               </motion.div>
-              
-              {/* Covenant Status Section */}
-              <motion.div 
-                className={styles.covenantSection}
-                variants={sectionVariants}
-                initial="hidden"
-                animate={showGraph ? "visible" : "hidden"}
-              >
-                <h2 className={styles.sectionTitle}>Covenant Status</h2>
-                <div className={styles.covenantContainer}>
-                  <div className={styles.covenantSvgWrapper}>
-                    <img 
-                      src="/assets/convenant-status.svg" 
-                      alt="Covenant Status Background" 
-                      className={styles.covenantSvg} 
-                    />
-                    <div className={styles.covenantBarsContainer}>
-                      {covenantData.map((item, index) => (
-                        <CovenantBar 
+            )}
+            
+            {activeTabIndex === 1 && (
+              <>
+                {/* Document Preview Section */}
+                <motion.div 
+                  className={styles.documentSection}
+                  variants={sectionVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <div className={styles.documentPreview}>
+                    <div className={styles.documentImage}>
+                      <img 
+                        src="/assets/financial-status-doc.svg" 
+                        alt="Financial document" 
+                        className={styles.documentSvg} 
+                      />
+                    </div>
+                    <div className={styles.analysisProgress}>
+                      <ProgressBar percentage={progress} label={progress < 100 ? "Analysing..." : "Analysis Complete"} />
+                    </div>
+                  </div>
+                </motion.div>
+                
+                {/* Financial Data Section */}
+                <div className={styles.dataSection}>
+                  {/* Deep Dive Section */}
+                  <motion.div 
+                    className={styles.deepDiveSection}
+                    variants={sectionVariants}
+                    initial="hidden"
+                    animate={showDeepDive ? "visible" : "hidden"}
+                  >
+                    <h2 className={styles.sectionTitle}>Deep Dive (Extracted Data)</h2>
+                    <div className={styles.cardsContainer}>
+                      {financialData.map((item, index) => (
+                        <DeepDiveCard 
                           key={index}
-                          label={item.label}
+                          title={item.title}
                           value={item.value}
-                          limit={item.limit}
-                          isGood={item.isGood}
-                          percentage={item.percentage}
+                          position={index}
+                          isVisible={visibleCards.includes(index)}
                         />
                       ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Covenant Status Section */}
+                  <motion.div 
+                    className={styles.covenantSection}
+                    variants={sectionVariants}
+                    initial="hidden"
+                    animate={showGraph ? "visible" : "hidden"}
+                  >
+                    <h2 className={styles.sectionTitle}>Covenant Status</h2>
+                    <div className={styles.covenantContainer}>
+                      <div className={styles.covenantSvgWrapper}>
+                        <img 
+                          src="/assets/convenant-status.svg" 
+                          alt="Covenant Status Background" 
+                          className={styles.covenantSvg} 
+                        />
+                        <div className={styles.covenantBarsContainer}>
+                          {covenantData.map((item, index) => (
+                            <CovenantBar 
+                              key={index}
+                              label={item.label}
+                              value={item.value}
+                              limit={item.limit}
+                              isGood={item.isGood}
+                              percentage={item.percentage}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </>
+            )}
+            
+            {activeTabIndex === 2 && (
+              <motion.div 
+                className={styles.operationalSection}
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <h2 className={styles.sectionTitle}>Operational Document Scan</h2>
+                <div className={styles.operationalContent}>
+                  <p>Scan and analyze operational documents to extract key information.</p>
+                  <div className={styles.documentPlaceholder}>
+                    <p>Upload operational documents to begin analysis</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+            
+            {activeTabIndex === 3 && (
+              <motion.div 
+                className={styles.y14Section}
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <h2 className={styles.sectionTitle}>Y-14 Report Generation</h2>
+                <div className={styles.y14Content}>
+                  <p>Generate Y-14 reports based on financial data analysis.</p>
+                  <div className={styles.reportPlaceholder}>
+                    <p>Select parameters to generate Y-14 reports</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+            
+            {activeTabIndex === 4 && (
+              <motion.div 
+                className={styles.covenantMonitoringSection}
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <h2 className={styles.sectionTitle}>Covenant Monitoring</h2>
+                <div className={styles.covenantMonitoringContent}>
+                  <p>Monitor covenant compliance and receive alerts for potential violations.</p>
+                  <div className={styles.covenantContainer}>
+                    <div className={styles.covenantSvgWrapper}>
+                      <img 
+                        src="/assets/convenant-status.svg" 
+                        alt="Covenant Status Background" 
+                        className={styles.covenantSvg} 
+                      />
+                      <div className={styles.covenantBarsContainer}>
+                        {covenantData.map((item, index) => (
+                          <CovenantBar 
+                            key={index}
+                            label={item.label}
+                            value={item.value}
+                            limit={item.limit}
+                            isGood={item.isGood}
+                            percentage={item.percentage}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </motion.div>
-            </div>
+            )}
+            
+            {activeTabIndex === 5 && (
+              <motion.div 
+                className={styles.benefitsSection}
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <h2 className={styles.sectionTitle}>Benefits Summary</h2>
+                <div className={styles.benefitsContent}>
+                  <p>Summary of benefits and insights from the financial analysis.</p>
+                  <ul className={styles.benefitsList}>
+                    <li>Automated financial statement analysis</li>
+                    <li>Real-time covenant monitoring</li>
+                    <li>Operational document scanning</li>
+                    <li>Y-14 report generation</li>
+                    <li>Data visualization and insights</li>
+                  </ul>
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
       </motion.main>

@@ -9,6 +9,7 @@ import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
 import FeedbackPage from '../pages/FeedbackPage';
 import Y14ReportGeneration from '../pages/y14-report/Y14ReportGeneration';
+import Y14ReportPage from '../pages/Y14ReportPage/Y14ReportPage';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
 
 // Define routes configuration
@@ -16,6 +17,10 @@ const routes = [
   {
     path: '/financial-statement',
     element: <FinancialStatementPage />,
+  },
+  {
+    path: '/y14-report/large',
+    element: <Y14ReportPage />,
   },
   {
     path: '/loan-service',

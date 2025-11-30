@@ -162,6 +162,50 @@
   overflow-y: auto;
 }
 
+/* Tab Content Styles */
+.welcomeSection,
+.operationalSection,
+.y14Section,
+.covenantMonitoringSection,
+.benefitsSection {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.welcomeContent,
+.operationalContent,
+.y14Content,
+.covenantMonitoringContent,
+.benefitsContent {
+  color: #FFFFFF;
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+.documentPlaceholder,
+.reportPlaceholder {
+  margin-top: 30px;
+  padding: 40px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.benefitsList {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.benefitsList li {
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
 .sectionTitle {
   font-family: 'EYInterstate', Arial, sans-serif;
   font-weight: 700;
