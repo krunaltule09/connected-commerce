@@ -216,6 +216,7 @@ export default function DocumentCentrePage() {
           open={modalOpen}
           onClose={handleCloseModal}
           closeAfterTransition
+          disableScrollLock={false}
           aria-labelledby="document-details-modal"
           aria-describedby="displays detailed view of the selected document"
           sx={{
@@ -223,10 +224,17 @@ export default function DocumentCentrePage() {
             alignItems: 'center',
             justifyContent: 'center'
           }}
+          onKeyDown={(e) => {
+            // Prevent arrow key events from propagating
+            if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+              e.stopPropagation();
+            }
+          }}
         >
           <AnimatePresence>
             {modalOpen && (
               <motion.div
+            tabIndex={0} /* Add tabIndex to capture keyboard events */
             initial={{ opacity: 0, scale: 0.7, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.7, y: 50 }}
@@ -240,6 +248,13 @@ export default function DocumentCentrePage() {
               width: '70vw',
               maxWidth: '800px',
               outline: 'none',
+            }}
+            onKeyDown={(e) => {
+              // Additional keyboard event handling at this level
+              if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
             }}
           >
           <Box sx={{
