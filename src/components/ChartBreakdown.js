@@ -1,63 +1,105 @@
-import { Box, Stack, Typography, Fade } from '@mui/material';
-import { useState, useEffect, useMemo } from 'react';
+import { Box, Stack, Typography } from '@mui/material';
+import { useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useScanning } from '../context/ScanningContext';
 
-export default function ChartBreakdown() {
+export default function ChartBreakdown({ selectedMetric }) {
+  // eslint-disable-next-line no-unused-vars
   const { isFinancialDataReady } = useScanning();
-  const [visibleItems, setVisibleItems] = useState([]);
   
-  // Use useMemo to prevent the array from being recreated on every render
-  const breakdownItems = useMemo(() => [
-    'Accurate and complete financial records, and provide quarterly reports to lender within 30 days',
-    'Debt/Equity exceeds limit (3.2 vs 3.0)',
-  ], []);
+  // Define different breakdown items for each metric
+  const breakdownItemsByMetric = useMemo(() => ({
+    'Revenue': [
+      'Revenue growth supports minimum turnover covenant, reducing risk of operating underperformance.',
+      'Stable YoY increase indicates low likelihood of cash-flow stress, supporting DSCR maintenance.'
+    ],
+    'EBITDA': [
+      'Rising EBITDA strengthens Debt/EBITDA covenant compliance, improving borrower creditworthiness.',
+      'Sustained profitability trend reduces risk of breach on interest coverage or leverage covenants.'
+    ],
+    'Debt': [
+      'Current leverage remains within allowable Debt/EBITDA thresholds, though trending upward.',
+      'Monitoring required to avoid breaching maximum leverage or total indebtedness covenants.'
+    ],
+    'Equity': [
+      'Stable equity position supports Net Worth / Equity Maintenance covenants.',
+      'Equity cushion reduces risk of LTV covenant deterioration during adverse market cycles.'
+    ],
+    'Interest': [
+      'Rising interest expense may pressure Interest Coverage covenants if EBITDA slows.',
+      'Higher servicing costs could impact DSCR compliance, requiring ongoing monitoring.'
+    ],
+    'Expense': [
+      'Expense ratios remain within covenant thresholds, supporting operational efficiency requirements.',
+      'Cost control measures align with financial covenants for sustainable debt service.'
+    ]
+  }), []);
 
-  // Effect to progressively show items
-  useEffect(() => {
-    if (!isFinancialDataReady) return;
-    
-    const showItems = () => {
-      breakdownItems.forEach((item, index) => {
-        setTimeout(() => {
-          setVisibleItems(prev => [...prev, index]);
-        }, 800 + (index * 600)); // Staggered delay for each item
-      });
-    };
-    
-    showItems();
-  }, [isFinancialDataReady, breakdownItems]);
+  // Get the current breakdown items based on selected metric
+  const breakdownItems = useMemo(() => 
+    breakdownItemsByMetric[selectedMetric] || [], 
+    [breakdownItemsByMetric, selectedMetric]
+  );
   
   return (
     <Box sx={{ mt: 1, mb: 0.5 }}>
-      <Typography
-        variant="body2"
-        sx={{
-          color: '#FFE600',
-          fontWeight: 600,
-          fontSize: '0.875rem',
-          mb: 0.5,
-        }}
+      <motion.div
+        key={selectedMetric} // Key helps React identify when to animate
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
       >
-        Breakdown
-      </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: '#FFE600',
+            fontWeight: 600,
+            fontSize: '0.875rem',
+            mb: 0.5,
+          }}
+        >
+          {selectedMetric} – Covenant Insights
+        </Typography>
+      </motion.div>
+      
       <Stack spacing={0.75}>
-        {breakdownItems.map((item, index) => (
-          <Fade in={visibleItems.includes(index)} timeout={800} key={index}>
-            <Typography
-              variant="caption"
-              sx={{
-                color: 'rgba(252, 252, 252, 0.7)',
-                fontSize: '0.75rem',
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: 1,
-              }}
-            >
-              <span style={{ color: '#FFE600', fontWeight: 600, flexShrink: 0 }}>•</span>
-              {item}
-            </Typography>
-          </Fade>
-        ))}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedMetric} // Key helps React identify when to animate
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Stack spacing={0.75}>
+              {breakdownItems.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.4,
+                    delay: index * 0.15, // Staggered animation
+                  }}
+                >
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: 'rgba(252, 252, 252, 0.7)',
+                      fontSize: '0.75rem',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1,
+                    }}
+                  >
+                    <span style={{ color: '#FFE600', fontWeight: 600, flexShrink: 0 }}>•</span>
+                    {item}
+                  </Typography>
+                </motion.div>
+              ))}
+            </Stack>
+          </motion.div>
+        </AnimatePresence>
       </Stack>
     </Box>
   );
