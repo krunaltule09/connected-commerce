@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Box, Card, CardContent, Stack, Typography, Grow, Grid } from '@mui/material';
+import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useNavigate } from 'react-router-dom';
+import { getAssetPath } from '../utils/assetUtils';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
   const [opening, setOpening] = useState(false);
@@ -43,72 +44,75 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                 <Grid item xs={4}>
                   <Box sx={{ 
                     p: 2, 
-
                     borderRadius: 2,
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-
                   }}>
                     <Box 
                       component="img"
-                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      src={`${process.env.PUBLIC_URL}/assets/doc1.svg`}
                       alt="Document Preview"
                       sx={{ 
-                        
                         maxHeight: '64%',
-                        
+                        width: '100%',
+                        objectFit: 'contain',
+                        backgroundColor: '#fff',
+                        borderRadius: 1,
+                        padding: 1
                       }}
                     />
                   </Box>
                 </Grid>
                 
-                {/* Second SVG (same as first for demonstration) */}
+                {/* Second SVG */}
                 <Grid item xs={4}>
                   <Box sx={{ 
                     p: 2, 
-                    
                     borderRadius: 2,
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                   
                   }}>
                     <Box 
                       component="img"
-                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      src={`${process.env.PUBLIC_URL}/assets/doc2.svg`}
                       alt="Document Preview"
                       sx={{ 
-                        
                         maxHeight: '64%',
-                        
+                        width: '100%',
+                        objectFit: 'contain',
+                        backgroundColor: '#fff',
+                        borderRadius: 1,
+                        padding: 1
                       }}
                     />
                   </Box>
                 </Grid>
                 
-                {/* Third SVG (same as first for demonstration) */}
+                {/* Third SVG */}
                 <Grid item xs={4}>
                   <Box sx={{ 
                     p: 2, 
-  
                     borderRadius: 2,
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-
                   }}>
                     <Box 
                       component="img"
-                      src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                      src={`${process.env.PUBLIC_URL}/assets/doc3.svg`}
                       alt="Document Preview"
                       sx={{ 
-
                         maxHeight: '64%',
-
+                        width: '100%',
+                        objectFit: 'contain',
+                        backgroundColor: '#fff',
+                        borderRadius: 1,
+                        padding: 1
                       }}
                     />
                   </Box>
@@ -225,19 +229,11 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
             mb: 2,
             color: '#FFE600',
             fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
-            fontWeight: 'var(--font-weight-regular, 400)',
-            fontSize: '1rem',
-            lineHeight: 'var(--line-height-24, 24px)',
-            letterSpacing: 'var(--letter-spacing-0, 0)',
-            height: '40px',
-
             fontWeight: 400,
             fontSize: '1.25rem',
             lineHeight: '40px',
             letterSpacing: '-0.02em',
-            color: '#FFE600',
-
-
+            height: '40px'
           }}
         >
           Document Preview
