@@ -1,5 +1,6 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import OcrScanningSection from '../components/OcrScanningSection';
 import FinancialMetricsSection from '../components/FinancialMetricsSection';
 import CovenantStatusSection from '../components/CovenantStatusSection';
@@ -23,10 +24,22 @@ export default function FinancialDashboard() {
           <Grid item xs={12} md={5} sx={{ height: '100%' }}>
             <Grid container spacing={2}  direction="column" >
               <Grid item xs sx={{ height: '60%' }}>
-                <OcrScanningSection />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <OcrScanningSection />
+                </motion.div>
               </Grid>
               <Grid item xs sx={{ height: '40%', mt: 3 }}>
-                <CovenantStatusSection />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <CovenantStatusSection />
+                </motion.div>
               </Grid>
             </Grid>
           </Grid>
@@ -40,7 +53,13 @@ export default function FinancialDashboard() {
               <Grid item xs>
                 <Box >
                   <Box sx={{ width: '70%', height: '100%', mt: 4 }}>
-                    <AIRecommendations recommendations={['Debt/Equity exceeds limit (3.2 vs 3.0)']} />
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                    >
+                      <AIRecommendations recommendations={['Debt/Equity exceeds limit (3.2 vs 3.0)']} />
+                    </motion.div>
                   </Box>
                 </Box>
               </Grid>
@@ -50,18 +69,30 @@ export default function FinancialDashboard() {
       </Container>
       
       {/* Navigation buttons */}
-      <Box className={styles.navigationButtons}>
-        <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-        <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
-      </Box>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
+        <Box className={styles.navigationButtons}>
+          <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
+          <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
+        </Box>
+      </motion.div>
       
       {/* EY Logo */}
-      <Box 
-        component="img"
-        src="/assets/ey-logo.svg"
-        alt="EY Logo"
-        className={styles.eyLogo}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.7 }}
+      >
+        <Box 
+          component="img"
+          src="/assets/ey-logo.svg"
+          alt="EY Logo"
+          className={styles.eyLogo}
+        />
+      </motion.div>
       </Box>
     </ScanningProvider>
   );
