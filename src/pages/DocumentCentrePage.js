@@ -276,12 +276,19 @@ export default function DocumentCentrePage() {
               onClick={handleCloseModal}
               sx={{ 
                 position: 'absolute', 
-                right: 8, 
-                top: 8,
-                color: '#fff' 
+                right: 16, 
+                top: 16,
+                color: '#FFE600',
+                bgcolor: 'rgba(0, 0, 0, 0.3)',
+                '&:hover': {
+                  bgcolor: 'rgba(0, 0, 0, 0.5)',
+                  color: '#FFE600',
+                },
+                zIndex: 9999,
+                padding: '8px',
               }}
             >
-              <CloseIcon />
+              <CloseIcon fontSize="medium" />
             </IconButton>
             <DocumentCardDetails document={selectedDocument} />
           </Box>
