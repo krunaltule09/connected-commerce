@@ -1,41 +1,65 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import HTMLFlipBook from "react-pageflip";
+
+// Page component for all pages
+const Page = React.forwardRef((props, ref) => {
+  return (
+    <div className="doc-page" ref={ref}>
+      <div style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '5px', /* Minimal padding */
+        backgroundColor: '#fff',
+        boxShadow: '0 0 5px rgba(0,0,0,0.1)',
+        borderRadius: '4px',
+      }}>
+        <img 
+          src={props.url} 
+          alt={`Page ${props.number}`}
+          style={{
+            maxWidth: '98%', /* Maximize image size */
+            maxHeight: '98%', /* Maximize image size */
+            objectFit: 'contain',
+          }}
+        />
+      </div>
+    </div>
+  );
+});
 
 /**
  * DocumentCardDetails component displays a detailed view of a document
  * with styling to match the second screenshot provided
  */
 export default function DocumentCardDetails({ document }) {
-  // Move useState hooks before the conditional return
+  const flipBookRef = useRef();
+  // We're tracking these states but not displaying them in the UI
+  // eslint-disable-next-line no-unused-vars
   const [currentPage, setCurrentPage] = useState(0);
-  const [direction, setDirection] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [totalPages, setTotalPages] = useState(0);
   
-  // Modified for better touchpad support - lower threshold for easier detection
-  const swipeThreshold = 30; // Lower threshold for easier detection
-  const swipePower = (offset) => {
-    return offset; // Just use the raw offset for touchpad compatibility
-  };
-  
-  // Add keyboard navigation support - moved before conditional return
+  // Handle keyboard navigation
   useEffect(() => {
-    if (!document) return; // Skip effect if no document
+    if (!document) return;
     
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowLeft') {
-        setCurrentPage(prev => {
-          const newDirection = -1;
-          const nextPage = (prev + newDirection + 3) % 3; // Hardcoded 3 pages for safety
-          setDirection(newDirection);
-          return nextPage;
-        });
-      } else if (e.key === 'ArrowRight') {
-        setCurrentPage(prev => {
-          const newDirection = 1;
-          const nextPage = (prev + newDirection + 3) % 3; // Hardcoded 3 pages for safety
-          setDirection(newDirection);
-          return nextPage;
-        });
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        // Prevent default browser scrolling behavior
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (flipBookRef.current && flipBookRef.current.pageFlip) {
+          if (e.key === 'ArrowLeft') {
+            flipBookRef.current.pageFlip().flipPrev();
+          } else if (e.key === 'ArrowRight') {
+            flipBookRef.current.pageFlip().flipNext();
+          }
+        }
       }
     };
     
@@ -43,200 +67,90 @@ export default function DocumentCardDetails({ document }) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [document, currentPage]); // Include document and currentPage in dependencies
+  }, [document]);
+  
+  // Initialize total pages count
+  useEffect(() => {
+    if (flipBookRef.current && flipBookRef.current.pageFlip) {
+      setTimeout(() => {
+        setTotalPages(flipBookRef.current.pageFlip().getPageCount());
+      }, 100);
+    }
+  }, []);
+  
+  // Handle page change
+  const handlePageChange = (e) => {
+    setCurrentPage(e.data);
+  };
   
   if (!document) return null;
   
-  // Mock pages for demonstration
+  // All document pages including cover
   const pages = [
     { id: 0, url: document.url || `${process.env.PUBLIC_URL}/assets/doc1.svg` },
-    { id: 1, url: `${process.env.PUBLIC_URL}/assets/doc2.svg` },
-    { id: 2, url: `${process.env.PUBLIC_URL}/assets/doc3.svg` },
+    { id: 1, url: `${process.env.PUBLIC_URL}/assets/doc1.svg` },
+    { id: 2, url: `${process.env.PUBLIC_URL}/assets/doc2.svg` },
+    { id: 3, url: `${process.env.PUBLIC_URL}/assets/doc3.svg` },
+    { id: 4, url: document.url || `${process.env.PUBLIC_URL}/assets/doc1.svg` },
   ];
-  
-  const paginate = (newDirection) => {
-    // Calculate new page index, with wrapping
-    const nextPage = (currentPage + newDirection + pages.length) % pages.length;
-    setCurrentPage(nextPage);
-    setDirection(newDirection);
-  };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        maxWidth: '100%',
-        mx: 'auto',
-      }}
-    >
-      {/* Document title */}
-      <Typography
-        sx={{
-          color: '#FFE600',
-          fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
-          fontWeight: 700,
-          fontSize: '1.5rem',
-          lineHeight: '40px',
-          letterSpacing: '-0.02em',
-          mb: 3,
-          height: 'auto',
-          textAlign: 'center',
-        }}
-      >
-        {document.name}
-      </Typography>
-      
-      {/* Document preview container with dark background */}
-      <Box
-        sx={{
-          bgcolor: '#343340',
-          borderRadius: 2,
-          p: 2,
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Document content container with white background */}
-        <Box
-          sx={{
-            bgcolor: '#FFFFFF',
-            borderRadius: 1,
-            overflow: 'hidden',
-            height: 'calc(70vh - 100px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-            position: 'relative',
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              bottom: '10px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '80px',
-              height: '4px',
-              backgroundColor: 'rgba(0,0,0,0.1)',
-              borderRadius: '2px',
-              zIndex: 10,
-            }
-          }}
-        >
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                position: 'absolute',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                touchAction: 'pan-y',
-              }}
-            key={currentPage}
-            custom={direction}
-            variants={{
-              enter: (direction) => ({
-                x: direction > 0 ? 1000 : -1000,
-                opacity: 0,
-                rotateY: direction > 0 ? 45 : -45,
-              }),
-              center: {
-                x: 0,
-                opacity: 1,
-                rotateY: 0,
-                transition: {
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.3 },
-                  rotateY: { duration: 0.4 }
-                }
-              },
-              exit: (direction) => ({
-                x: direction < 0 ? 1000 : -1000,
-                opacity: 0,
-                rotateY: direction < 0 ? 45 : -45,
-                transition: {
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.3 },
-                  rotateY: { duration: 0.4 }
-                }
-              })
-            }}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            dragMomentum={false}
-            dragTransition={{ bounceStiffness: 300, bounceDamping: 10 }}
-            onDragEnd={(e, { offset, velocity }) => {
-              console.log('Drag ended with offset:', offset.x, 'velocity:', velocity.x);
-              const swipe = swipePower(offset.x);
-              
-              // Simple threshold-based detection for touchpad compatibility
-              if (swipe < -swipeThreshold) {
-                console.log('Swiping to next page');
-                paginate(1); // Swipe left to go right (next page)
-              } else if (swipe > swipeThreshold) {
-                console.log('Swiping to previous page');
-                paginate(-1); // Swipe right to go left (previous page)
-              }
-            }}
-            // Add onDrag handler to detect movement during drag
-            onDrag={(e, info) => {
-              console.log('Dragging with offset:', info.offset.x);
-            }}
-          >
-            <Box
-              component="img"
-              src={pages[currentPage].url}
-              alt={`Page ${currentPage + 1}`}
-              sx={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                padding: { xs: 2, sm: 3, md: 4 },
-                maxHeight: '100%',
-              }}
-            />
-          </motion.div>
-          </AnimatePresence>
-          
-          {/* Removed navigation arrows - using only swipe gesture */}
-        </Box>
+    <Box sx={{ 
+      p: 0, 
+      height: '100%', 
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden'
+    }}>
+      <Box sx={{ 
+        p: 1, 
+        backgroundColor: '#1A1A24',
+        borderBottom: '1px solid rgba(255,230,0,0.2)'
+      }}>
+        <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#FFE600' }}>
+          {document.name}
+        </Typography>
       </Box>
       
-      {/* Page indicator */}
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          mt: 2 
+      <Box
+        sx={{
+          flexGrow: 1,
+          bgcolor: '#1A1A24', /* Match the dark theme */
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
         }}
       >
-        {pages.map((page, index) => (
-          <Box 
-            key={page.id}
-            sx={{ 
-              width: 8, 
-              height: 8, 
-              borderRadius: '50%', 
-              bgcolor: currentPage === index ? '#FFE600' : 'rgba(255,255,255,0.3)', 
-              mx: 0.5,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }} 
-            onClick={() => {
-              const newDirection = index > currentPage ? 1 : -1;
-              setDirection(newDirection);
-              setCurrentPage(index);
-            }}
-          />
-        ))}
+        {/* Flip Book */}
+        <HTMLFlipBook
+          ref={flipBookRef}
+          width={500} /* Further increased width */
+          height={700} /* Further increased height */
+          size="stretch"
+          minWidth={400} /* Further increased min width */
+          maxWidth={900} /* Further increased max width */
+          minHeight={600} /* Further increased min height */
+          maxHeight={1000} /* Further increased max height */
+          maxShadowOpacity={0.3} /* Slightly increased shadow for better depth */
+          showCover={false}
+          mobileScrollSupport={true}
+          onFlip={handlePageChange}
+          startPage={0}
+          flippingTime={800}
+          style={{ 
+            backgroundColor: 'transparent',
+            width: '95%', /* Take almost full width of container */
+            height: '95%', /* Take almost full height of container */
+            margin: '0 auto' /* Center the book */
+          }}
+        >
+          {/* All pages including first and last */}
+          {pages.map((page) => (
+            <Page key={page.id} number={page.id} url={page.url} />
+          ))}
+        </HTMLFlipBook>
       </Box>
     </Box>
   );
