@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 
