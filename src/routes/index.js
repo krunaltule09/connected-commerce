@@ -3,6 +3,7 @@ import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../p
 import WelcomePage from '../pages/WelcomePage';
 import PersonalWelcomePage from '../pages/PersonalWelcomePage';
 import LoanServicePage from '../pages/LoanServicePage';
+import FinancialStatementPage from '../pages/FinancialStatementPage';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
@@ -12,6 +13,10 @@ import DataSimulator from '../pages/data-simulator/DataSimulator';
 
 // Define routes configuration
 const routes = [
+  {
+    path: '/financial-statement',
+    element: <FinancialStatementPage />,
+  },
   {
     path: '/loan-service',
     element: <LoanServicePage />,

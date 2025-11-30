@@ -1,0 +1,287 @@
+/* 
+ * FinancialStatementPage styles
+ * Optimized to fit everything on one screen
+ */
+
+.financialStatementContainer {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 80px; /* Increased padding from header */
+  box-sizing: border-box;
+  flex: 1;
+  height: calc(100vh - 80px); /* Ensure it fits in viewport */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 220px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Content Area Styles */
+.contentArea {
+  flex: 1;
+  padding: 15px 20px;
+  overflow-y: auto;
+}
+
+.pageTitle {
+  margin-bottom: 15px;
+}
+
+.pageTitle h1 {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+  margin: 0 0 3px;
+}
+
+.pageDescription {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  opacity: 0.7;
+  margin: 0 0 10px 0; /* Reduced bottom margin */
+}
+
+.contentSections {
+  display: flex;
+  gap: 50px;
+  height: calc(100vh - 140px); /* Ensure content fits in viewport */
+  padding: 0 10px;
+  margin-top: 0;
+  align-items: flex-start;
+}
+
+/* Document Section Styles */
+.documentSection {
+  width: 280px;
+  min-width: 280px;
+  height: auto;
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+.documentPreview {
+  background: #1A1A24;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.documentImage {
+  flex: 1;
+  padding: 0;
+  background: #FFFFFF;
+  border-radius: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.documentSvg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #FFFFFF;
+}
+
+.documentPlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #1A1A24;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.documentContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.documentLine {
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  border-radius: 2px;
+}
+
+.documentLine:nth-child(odd) {
+  width: 85%;
+}
+
+.documentLine:nth-child(3n) {
+  width: 70%;
+}
+
+.analysisProgress {
+  padding: 10px 15px 15px;
+  background-color: #1A1A24;
+}
+
+/* Data Section Styles */
+.dataSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow-y: auto;
+}
+
+.sectionTitle {
+  font-family: 'EYInterstate', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin: 0 0 15px;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+.covenantContainer {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.covenantSvgWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  border-radius: 0;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.covenantSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  object-fit: contain;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.covenantBarsContainer {
+  position: relative;
+  z-index: 1;
+  padding: 60px 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.backgroundPlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 50% 50%, #0a0a14 0%, #000000 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .contentSections {
+    flex-direction: column;
+    gap: 30px;
+    height: auto;
+  }
+  
+  .documentSection {
+    width: 100%;
+    max-width: 380px;
+    height: 500px;
+    min-width: unset;
+  }
+  
+  .cardsContainer {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .mainContent {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .contentArea {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageTitle h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .pageDescription {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  .sectionTitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  
+  .covenantContainer {
+    padding: 20px;
+  }
+}
