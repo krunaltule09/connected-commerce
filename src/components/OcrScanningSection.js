@@ -24,7 +24,7 @@ export default function OcrScanningSection() {
             alignItems: 'center',
             justifyContent: 'center',
 
-            backgroundImage: `url('${process.env.PUBLIC_URL}/assets/doc1.svg')`,
+            backgroundImage: `url('${process.env.PUBLIC_URL}/assets/docu_scan.svg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
