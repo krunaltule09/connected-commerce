@@ -22,6 +22,8 @@ const DSCRTrendPage = () => {
       navigate('/covenant-monitoring');
     } else if (index === 2) { // Already on Operational Docx Scan tab
       navigate('/dscr-trend');
+    } else if (index === 5) { // Benefits Summary tab
+      navigate('/benefits-summary');
     } else {
       setActiveTabIndex(index);
       // For future implementation of other tabs

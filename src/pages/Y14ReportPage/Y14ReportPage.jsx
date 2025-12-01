@@ -26,6 +26,8 @@ const Y14ReportPage = () => {
       // Already on this page, do nothing
     } else if (index === 4) { // Covenant Monitoring tab
       navigate('/covenant-monitoring');
+    } else if (index === 5) { // Benefits Summary tab
+      navigate('/benefits-summary');
     } else {
       setActiveTabIndex(index);
       // For future implementation of other tabs

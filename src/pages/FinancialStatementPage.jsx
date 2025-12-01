@@ -38,10 +38,11 @@ const FinancialStatementPage = () => {
       navigate('/y14-report/large');
     } else if (index === 4) { // Covenant Monitoring tab
       navigate('/covenant-monitoring');
-    }else if (index === 2) { 
+    } else if (index === 2) { 
       navigate('/dscr-trend');
-    }
-     else {
+    } else if (index === 5) { // Benefits Summary tab
+      navigate('/benefits-summary');
+    } else {
       setActiveTabIndex(index);
       // For future implementation of other tabs
     }

@@ -1,0 +1,137 @@
+/* BenefitsSummaryPage Styles */
+
+.benefitsSummaryContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 100px;
+  box-sizing: border-box;
+  flex: 1;
+  height: calc(100vh - 80px);
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 220px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 12px;
+}
+
+.contentArea {
+  flex: 1;
+  padding: 0 40px;
+  overflow-y: auto;
+}
+
+.pageTitle {
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+.pageTitle h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.pageDescription {
+  font-size: 16px;
+  color: #9CB3BA;
+  margin: 0;
+}
+
+/* Benefits Container Styles */
+.benefitsContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.benefitsSummarySvg {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+
+/* Responsive styles for the benefits summary SVG */
+@media (max-width: 992px) {
+  .benefitsSummarySvg {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .benefitsSummarySvg {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .benefitsSummarySvg {
+    max-width: 100%;
+  }
+}
+
+/* Background styles */
+.backgroundPlaceholder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #000000;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    padding-top: 80px;
+  }
+  
+  .sidebar {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  .contentArea {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle h1 {
+    font-size: 24px;
+  }
+  
+  .pageDescription {
+    font-size: 14px;
+  }
+}

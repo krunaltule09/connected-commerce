@@ -13,6 +13,7 @@ import Y14ReportPage from '../pages/Y14ReportPage/Y14ReportPage';
 import CovenantMonitoringPage from '../pages/CovenantMonitoringPage/CovenantMonitoringPage';
 import DSCRTrendPage from '../pages/DSCRTrendPage/DSCRTrendPage';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
+import BenefitsSummaryPage from '../pages/BenefitsSummaryPage';
 
 // Define routes configuration
 const routes = [
@@ -83,6 +84,10 @@ const routes = [
   {
     path: '/dscr-trend',
     element: <DSCRTrendPage />,
+  },
+  {
+    path: '/benefits-summary',
+    element: <BenefitsSummaryPage />,
   },
   {
     path: '*',
