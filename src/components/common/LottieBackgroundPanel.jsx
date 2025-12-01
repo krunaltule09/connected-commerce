@@ -69,23 +69,23 @@ const LottieBackgroundPanel = ({
           animationData={animationData}
           loop={true}
           autoplay={true}
-          style={{ width: '100%', height: '100%' }}
+         
           rendererSettings={{
             preserveAspectRatio: 'xMidYMid slice',
           }}
         />
       </LottieBackground>
       
-      <ContentContainer sx={{ position: 'absolute', top: '58%', transform: 'translateY(-50%)', zIndex: 1, left: '140px' }}>
+      <ContentContainer sx={{ position: 'absolute', top: '58%', transform: 'translateY(-50%)', zIndex: 1, left: '60px' }}>
         <List disablePadding>
           {bulletPoints.map((point, index) => (
             <ListItem key={index} disableGutters sx={{ p: 0 }}>
               <BulletPoint>
-                <Bullet>▶</Bullet>
+                <Bullet sx={{ lineHeight: 1 }}>▶</Bullet>
                 <Typography 
                   variant="body2" 
                   color="white"
-                  sx={{ fontSize: '0.9rem', lineHeight: 1.5 }}
+                  sx={{ fontSize: '0.8rem', lineHeight: 1.5 }}
                 >
                   {point}
                 </Typography>

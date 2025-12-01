@@ -24,7 +24,7 @@ export default function FinancialDriversSection() {
         Financial Drivers
       </Typography>
       
-      <GradientBorderBox sx={{ p: 1.3, height: 'calc(100% - 50px)', display: 'flex', flexDirection: 'column' }}>
+      <GradientBorderBox sx={{ px: 1.3, height: 'calc(100% - 50px)', display: 'flex', flexDirection: 'column' }}>
         <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
           <Button 
             variant={activeDataSet === 'revenue' ? 'contained' : 'outlined'}

@@ -27,7 +27,7 @@ export default function CovenantStatusSection() {
   ];
 
   return (
-    <GradientBorderBox sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#121214' }}>
+    <GradientBorderBox sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#121214' }}>
       <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 500, fontSize: '1rem', mb: 1 }}>Covenant Status</Typography>
       
       {!isCovenantDataReady ? (
