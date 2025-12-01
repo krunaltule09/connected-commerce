@@ -42,6 +42,10 @@ const routes = [
     element: <BenefitsSummaryPage />,
   },
   {
+    path: '/covenant-monitoring',
+    element: <CovenantMonitoringPage />,
+  },
+  {
     path: '/loan-service',
     element: <LoanServicePage />,
   },
@@ -84,10 +88,6 @@ const routes = [
   {
     path: '/anomaly-detection',
     element: <AnomalyDetection />,
-  },
-  {
-    path: '/covenant-monitoring',
-    element: <CovenantMonitoringPage />,
   },
   {
     path: '*',
