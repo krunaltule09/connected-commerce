@@ -13,8 +13,8 @@ export default function OcrScanningSection() {
     <GradientBorderBox sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Stack spacing={1.5} sx={{ flexGrow: 1, overflow: 'hidden' }}>
       <Box>
-        <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 500, fontSize: '1rem', mb: 1 }}>Scanned Document Preview</Typography>
-        <GradientBorderBox p={2}>
+        <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 500, fontSize: '1rem', mb: 1, p: 1.5 }}>Scanned Document Preview</Typography>
+        <GradientBorderBox p={1.5}>
         <Box
           sx={{
             height:400,
@@ -33,7 +33,7 @@ export default function OcrScanningSection() {
         </GradientBorderBox>
       </Box>
 
-      <GradientBorderBox sx={{ p: 2 }}>
+      <GradientBorderBox sx={{ p: 1.5 }}>
         <Box  sx={{ width: '100%' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
             <Typography
