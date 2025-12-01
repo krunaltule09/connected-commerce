@@ -28,7 +28,7 @@ export default function DashboardLayout({
       p: 2,
       minHeight: '100vh'
     }}>
-      <Container maxWidth="xl" sx={{ 
+      <Container maxWidth="xxl" sx={{ 
         flexGrow: 1, 
         display: 'flex', 
         flexDirection: 'column', 

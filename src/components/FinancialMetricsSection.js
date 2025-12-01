@@ -27,6 +27,9 @@ export default function FinancialMetricsSection() {
                 variant="metric"
                 active={isSelected}
                 onClick={() => setSelectedMetric(metric)}
+                sx={{
+                  fontSize: '0.8rem',
+                }}
               >
                 {metric}
               </GradientButton>

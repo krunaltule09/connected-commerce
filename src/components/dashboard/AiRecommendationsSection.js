@@ -13,6 +13,7 @@ export default function AiRecommendationsSection({ recommendations }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.4 }}
+      style={{ height: '25%', minHeight: '120px', marginBottom: '8px' }}
     >
       <AIRecommendations recommendations={recommendations} />
     </motion.div>

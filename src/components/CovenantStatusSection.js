@@ -27,8 +27,8 @@ export default function CovenantStatusSection() {
   ];
 
   return (
-    <GradientBorderBox sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#121214' }}>
-      <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 500, fontSize: '1rem', mb: 1 }}>Covenant Status</Typography>
+    <GradientBorderBox sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#121214', p: 0 }}>
+      <Typography variant="h6" sx={{ color: '#FFE600', fontWeight: 600, fontSize: '1.1rem', p: 2, pb: 1 }}>Covenant Status</Typography>
       
       {!isCovenantDataReady ? (
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
@@ -78,11 +78,11 @@ export default function CovenantStatusSection() {
         </Box>
       ) : (
         <Fade in={isCovenantDataReady} timeout={800}>
-          <Stack spacing={1} sx={{ flexGrow: 1, overflow: 'auto' }}>
+          <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             {covenants.map((covenant, index) => (
               <CovenantTile key={index} covenant={covenant} />
             ))}
-          </Stack>
+          </Box>
         </Fade>
       )}
     </GradientBorderBox>
