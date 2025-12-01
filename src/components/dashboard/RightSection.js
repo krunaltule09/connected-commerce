@@ -13,9 +13,8 @@ export default function RightSection({ recommendations }) {
     <Box sx={{ 
       display: 'flex', 
       flexDirection: 'column', 
-      justifyContent: 'space-between',
       height: '100%',
-      gap: 2
+      gap: 1
     }}>
       <AiRecommendationsSection recommendations={recommendations} />
       <CovenantStatusWrapper />

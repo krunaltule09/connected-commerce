@@ -217,7 +217,7 @@ export default function FinancialChart() {
         p: 0,
       }}
     >
-      <Box sx={{ position: 'relative', width: '82%', height: '82%', p: 1 }}>
+      <Box sx={{ position: 'relative', width: '100%', height: '82%', p: 1 }}>
         <Bar ref={chartRef} data={data} options={options} />
       </Box>
     </Box>

@@ -21,14 +21,43 @@ export default function DashboardLayout({
 }) {
   return (
     <Box sx={{ 
-      bgcolor: '#000', 
+      position: 'relative',
       display: 'flex', 
       flexDirection: 'column', 
       overflow: 'hidden', 
       p: 2,
       minHeight: '100vh'
     }}>
-      <Container maxWidth="xl" sx={{ 
+      {/* Video Background */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -2,
+        '& video': {
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        }
+      }}>
+        <video autoPlay loop muted playsInline>
+          <source src="/assets/AdobeStock_1544892280.mp4" type="video/mp4" />
+        </video>
+      </Box>
+      
+      {/* Dark Overlay */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        zIndex: -1
+      }} />
+      <Container maxWidth="xxl" sx={{ 
         flexGrow: 1, 
         display: 'flex', 
         flexDirection: 'column', 
@@ -71,7 +100,6 @@ export default function DashboardLayout({
       
       {/* Additional black background section */}
       <Box sx={{ 
-        bgcolor: '#000', 
         width: '100%',
         minHeight: '35vh',
         position: 'relative',
@@ -85,8 +113,8 @@ export default function DashboardLayout({
         transition={{ duration: 0.5, delay: 0.6 }}
       >
         <Box className={styles.navigationButtons}>
-          <Box className={styles.backButton} onClick={onBack}>Go back</Box>
-          <Box className={styles.nextButton} onClick={onNext}>Next step</Box>
+          <Box className={styles.backButton} onClick={onBack}>Back</Box>
+          <Box className={styles.nextButton} onClick={onNext}>Next</Box>
         </Box>
       </motion.div>
       
