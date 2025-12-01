@@ -20,6 +20,9 @@ const CovenantMonitoringPage = () => {
   const handleTabClick = (index) => {
     if (index === 1) { // Financial Statement Scan tab
       navigate('/financial-statement');
+    } 
+    else if (index === 2) { // DSCR Trend tab
+      navigate('/dscr-trend');
     } else if (index === 3) { // Y-14 Report Generation tab
       navigate('/y14-report/large');
     } else if (index === 4) { // Already on Covenant Monitoring tab

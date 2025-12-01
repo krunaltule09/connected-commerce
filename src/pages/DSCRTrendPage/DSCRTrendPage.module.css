@@ -1,0 +1,284 @@
+/* DSCRTrendPage Styles */
+
+.dscrTrendContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 100px; /* Increased padding from header for more space */
+  box-sizing: border-box;
+  flex: 1;
+  height: calc(100vh - 80px); /* Ensure it fits in viewport */
+}
+
+/* Sidebar Styles - aligned with the header */
+.sidebar {
+  width: 220px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 12px; /* Added top margin to align with the header */
+}
+
+.contentArea {
+  flex: 1;
+  padding: 0 40px;
+  overflow-y: auto;
+}
+
+.pageTitle {
+  margin-bottom: 40px;
+  margin-top: 0; /* Remove top margin to align with sidebar */
+}
+
+.pageTitle h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.pageDescription {
+  font-size: 16px;
+  color: #9CB3BA;
+  margin: 0;
+}
+
+.contentSections {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.trendContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 100%;
+}
+
+/* Trend Analysis Column */
+.trendAnalysisColumn {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.columnTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 20px 0px;
+}
+
+.columnTitleAlert {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 20px 12px;
+}
+
+.trendMetrics {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.recentTrend {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.trendLabel {
+  font-size: 14px;
+  color: #9CB3BA;
+}
+
+.trendValue {
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.currentValue {
+  font-size: 16px;
+  color: #9CB3BA;
+}
+
+.positiveChange {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.chartContainer {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px 10px 10px 0;
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  margin-left: -10px;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.graphSvg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.05);
+  transform-origin: left center;
+}
+
+/* Alert Column */
+.alertColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.alertContainer {
+  position: relative;
+  height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  /* margin-bottom: 20px; */
+}
+
+.alertBorderSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.alertContent {
+  position: relative;
+  z-index: 2;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.alertIconContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.alertIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.alertTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 15px 0;
+}
+
+.alertDescription {
+  font-size: 15px;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Q3 Highlight Section */
+.highlightSection {
+  width: 100%;
+}
+
+.highlightContainer {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  height: 100px;
+}
+
+.highlightIcon {
+  width: 60px;
+  height: 60px;
+  background-color: #FFE600;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlightIcon img {
+  width: 36px;
+  height: 36px;
+}
+
+/* Background styles */
+.backgroundPlaceholder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #000000;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .trendContainer {
+    flex-direction: column;
+  }
+  
+  .alertColumn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    padding-top: 80px;
+  }
+  
+  .sidebar {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  .contentArea {
+    padding: 0 20px;
+  }
+}

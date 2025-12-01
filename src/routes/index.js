@@ -11,6 +11,7 @@ import FeedbackPage from '../pages/FeedbackPage';
 import Y14ReportGeneration from '../pages/y14-report/Y14ReportGeneration';
 import Y14ReportPage from '../pages/Y14ReportPage/Y14ReportPage';
 import CovenantMonitoringPage from '../pages/CovenantMonitoringPage/CovenantMonitoringPage';
+import DSCRTrendPage from '../pages/DSCRTrendPage/DSCRTrendPage';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
 
 // Define routes configuration
@@ -78,6 +79,10 @@ const routes = [
   {
     path: '/covenant-monitoring',
     element: <CovenantMonitoringPage />,
+  },
+  {
+    path: '/dscr-trend',
+    element: <DSCRTrendPage />,
   },
   {
     path: '*',

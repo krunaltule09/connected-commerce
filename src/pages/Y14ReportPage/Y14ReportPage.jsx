@@ -20,6 +20,8 @@ const Y14ReportPage = () => {
   const handleTabClick = (index) => {
     if (index === 1) { // Financial Statement Scan tab
       navigate('/financial-statement');
+    } else if (index === 2) { // DSCR Trend tab
+      navigate('/dscr-trend');
     } else if (index === 3) { // Y-14 Report Generation tab
       // Already on this page, do nothing
     } else if (index === 4) { // Covenant Monitoring tab
