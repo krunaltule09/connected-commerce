@@ -26,16 +26,24 @@ const routes = [
     element: <Y14ReportPage />,
   },
   {
-    path: '/loan-service',
-    element: <LoanServicePage />,
-  },
-  {
     path: '/personal-welcome',
     element: <PersonalWelcomePage />,
   },
   {
     path: '/welcome',
     element: <WelcomePage />,
+  },
+  {
+    path: '/dscr-trend',
+    element: <DSCRTrendPage />,
+  },
+  {
+    path: '/benefits-summary',
+    element: <BenefitsSummaryPage />,
+  },
+  {
+    path: '/loan-service',
+    element: <LoanServicePage />,
   },
   {
     path: '/',
@@ -80,14 +88,6 @@ const routes = [
   {
     path: '/covenant-monitoring',
     element: <CovenantMonitoringPage />,
-  },
-  {
-    path: '/dscr-trend',
-    element: <DSCRTrendPage />,
-  },
-  {
-    path: '/benefits-summary',
-    element: <BenefitsSummaryPage />,
   },
   {
     path: '*',
