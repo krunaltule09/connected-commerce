@@ -1,0 +1,316 @@
+/* CovenantMonitoringPage Styles */
+
+.covenantMonitoringContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 100px; /* Increased padding from header for more space */
+  box-sizing: border-box;
+  flex: 1;
+  height: calc(100vh - 80px); /* Ensure it fits in viewport */
+}
+
+/* Sidebar Styles - aligned with the header */
+.sidebar {
+  width: 220px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 12px; /* Added top margin to align with the header */
+}
+
+.contentArea {
+  flex: 1;
+  padding: 0 40px;
+  overflow-y: auto;
+}
+
+.pageTitle {
+  margin-bottom: 40px;
+  margin-top: 0; /* Remove top margin to align with sidebar */
+}
+
+.pageTitle h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.pageDescription {
+  font-size: 16px;
+  color: #9CB3BA;
+  margin: 0;
+}
+
+.contentSections {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.reportContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 100%;
+}
+
+/* Data Extraction Column */
+.dataExtractionColumn {
+  width: 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.columnTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+}
+
+.documentPreview {
+  background-color: #1A1A24;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  position: relative;
+}
+
+.documentImage {
+  width: 100%;
+  height: 85%;
+  object-fit: contain;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.progressContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressLabel {
+  font-size: 18px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 8px;
+  background-color: #3B4F54;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #FFE600;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progressPercentage {
+  font-size: 16px;
+  color: #9CB3BA;
+  text-align: left;
+}
+
+/* Metrics Column */
+.metricsColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  height: 100%;
+}
+
+.metricCard {
+  position: relative;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.metricCardInner {
+  position: relative;
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.metricBorderSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.metricContent {
+  position: relative;
+  z-index: 2;
+  width: 80%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metricTitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #FFE600;
+  margin: 0;
+  text-align: right;
+}
+
+.metricValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 10px 0;
+  text-align: right;
+}
+
+.metricStatusContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.metricStatusIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success .metricStatusIcon {
+  background-color: #1F893F;
+}
+
+.warning .metricStatusIcon {
+  background-color: #7B4100;
+}
+
+.successIcon, .warningIcon {
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.metricDescription {
+  font-size: 14px;
+  color: #FFFFFF;
+  margin: 0;
+  text-align: right;
+  flex: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .reportContainer {
+    flex-direction: column;
+  }
+  
+  .dataExtractionColumn {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    padding-top: 80px;
+  }
+  
+  .sidebar {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  .contentArea {
+    padding: 0 20px;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, 1fr);
+  }
+}
+
+/* Background styles */
+.backgroundPlaceholder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #000000;
+}
+
+/* Status-specific styles */
+.success .metricStatusIcon {
+  background-color: #1F893F !important;
+}
+
+.warning .metricStatusIcon {
+  background-color: #7B4100 !important;
+}

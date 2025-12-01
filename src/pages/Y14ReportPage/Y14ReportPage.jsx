@@ -22,6 +22,8 @@ const Y14ReportPage = () => {
       navigate('/financial-statement');
     } else if (index === 3) { // Y-14 Report Generation tab
       // Already on this page, do nothing
+    } else if (index === 4) { // Covenant Monitoring tab
+      navigate('/covenant-monitoring');
     } else {
       setActiveTabIndex(index);
       // For future implementation of other tabs

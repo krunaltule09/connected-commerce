@@ -32,10 +32,15 @@ const FinancialStatementPage = () => {
   
   // Handle tab click
   const handleTabClick = (index) => {
-    if (index === 3) { // Y-14 Report Generation tab
+    if (index === 1) {
+      // Already on this page, do nothing
+    } else if (index === 3) { // Y-14 Report Generation tab
       navigate('/y14-report/large');
+    } else if (index === 4) { // Covenant Monitoring tab
+      navigate('/covenant-monitoring');
     } else {
       setActiveTabIndex(index);
+      // For future implementation of other tabs
     }
   };
   
