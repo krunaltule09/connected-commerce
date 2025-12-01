@@ -1,0 +1,71 @@
+/* Ensure black background for the entire page */
+:global(body) {
+  background-color: #000 !important;
+}
+
+/* Navigation buttons */
+.navigationButtons {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 150px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 15px !important;
+  z-index: 10 !important;
+}
+
+.backButton, .nextButton {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem 2rem !important;
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.25rem !important;
+  color: #FFFFFF !important;
+  border-radius: 2rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 120px !important;
+  height: 24px !important;
+}
+
+.backButton {
+  border: 2px solid #C3C3CB !important;
+}
+
+.backButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(195, 195, 203, 0.5) !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+.nextButton {
+  background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D !important;
+  background-blend-mode: color-burn, plus-lighter !important;
+  box-shadow: inset 3px 3px 1px -3px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 1px -2px rgba(179, 179, 179, 0.5),
+              inset -2px -2px 1px -2px rgba(179, 179, 179, 0.5),
+              inset 0px 0px 20px rgba(242, 242, 242, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #21CFFF !important;
+  border: 2px solid transparent !important;
+}
+
+.nextButton:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(33, 207, 255, 0.5) !important;
+  border: 2px solid #21CFFF !important;
+}
+
+/* EY Logo */
+.eyLogo {
+  position: fixed !important;
+  width: 80px !important;
+  height: 84px !important;
+  right: 40px !important;
+  bottom: 30px !important;
+  z-index: 10 !important;
+}
