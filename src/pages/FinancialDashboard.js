@@ -10,7 +10,7 @@ export default function FinancialDashboard() {
   const navigate = useNavigate();
   
   const handleNextStep = () => {
-    navigate('/operational-doc-scan');
+    navigate('/anomaly-detection');
   };
 
   const handleGoBack = () => {

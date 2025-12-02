@@ -57,7 +57,8 @@ const LottieBackgroundPanel = ({
   animationData,
   bulletPoints = [], 
   icon = null,
-  sx = {} 
+  sx = {},
+  contentContainerSx={}
 }) => {
   const lottieRef = useRef(null);
 
@@ -76,7 +77,7 @@ const LottieBackgroundPanel = ({
         />
       </LottieBackground>
       
-      <ContentContainer sx={{ position: 'absolute', top: '60%', transform: 'translateY(-50%)', zIndex: 1, left: '18%' }}>
+      <ContentContainer sx={{ position: 'absolute', transform: 'translateY(-50%)', zIndex: 1, left: '18%', ...contentContainerSx }}>
         <List disablePadding>
           {bulletPoints.map((point, index) => (
             <ListItem key={index} disableGutters sx={{ p: 0 }}>

@@ -104,7 +104,7 @@ const OperationalDocScan = () => {
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={scanProgress >= 50} timeout={800}>
           <Box className={styles.aiChipContainer}>
-            <AIRecommendations recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
+            <AIRecommendations contentContainerSx={{top:"60%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
           </Box>
         </Grow>
         

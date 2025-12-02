@@ -70,7 +70,7 @@ export default function AnomalyDetection() {
         
         <Grid item xs={12} md={3}>
           <Box>
-            <AIRecommendations recommendations={recommendations} />
+            <AIRecommendations contentContainerSx={{top:"60%"}} recommendations={recommendations} />
           </Box>
         </Grid>
       </Grid>
