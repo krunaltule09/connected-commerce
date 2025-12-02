@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan } from '../pages';
+import { LandingPage, ExplorePage, FinancialDashboard, DocumentScan, EnterpriseLoanServicing } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
@@ -13,9 +13,13 @@ const routes = [
     path: '/',
     element: <LandingPage />,
   },
+  // {
+  //   path: '/enterprise-loan-servicing',
+  //   element: <EnterpriseLoanServicing />,
+  // },
   {
     path: '/explore',
-    element: <ExplorePage />,
+    element: <EnterpriseLoanServicing />,
   },
   {
     path: '/document-scan',
