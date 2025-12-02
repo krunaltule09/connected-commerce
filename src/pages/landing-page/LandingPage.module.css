@@ -11,9 +11,25 @@
   height: 100%;
   left: 0;
   top: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46));
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+}
+
+.backgroundVideo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.videoOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  z-index: 1;
 }
 
 /* Vector graphics */
@@ -108,14 +124,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly; /* Center content vertically */
   padding: 0px;
-  gap: 48px;
-
+; /* Reduced gap since we're using margin on the button */
+  margin-top: 3%;
   position: absolute;
-  width: 1066.67px;
-  height: 429.33px;
-  left: calc(50% - 1066.67px/2 - 0.67px);
-  top: calc(50% - 429.33px/2 - 0.33px);
+  width: 100%; /* Full width */
+  height: 95%; /* Full height */
+  left: 0;
+/* Fine-tuned position to match the image */
+  z-index: 2; /* Ensure content appears above video and overlay */
+  perspective: 1000px; /* Add perspective for 3D effects */
+  opacity: 1 !important; /* Force visibility */
 }
 
 /* Frame 1000004742 */
@@ -124,16 +144,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 0px;
   gap: 35.56px;
 
-  width: 1066.67px;
-  height: 208.89px;
+  width: 100%;
+  max-width: 1066.67px;
+  margin: 0 auto;
+  text-align: center;
 
   /* Inside auto layout */
   flex: none;
   order: 0;
-  align-self: stretch;
+  align-self: center;
   flex-grow: 0;
 }
 
@@ -143,16 +166,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 0px;
-  gap: 24.89px;
+  gap: 16px; /* Reduced gap between heading and subheading */
 
-  width: 1066.67px;
-  height: 208.89px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 
   /* Inside auto layout */
   flex: none;
   order: 0;
-  align-self: stretch;
+  align-self: center;
   flex-grow: 0;
 }
 
@@ -173,7 +199,16 @@
   flex: none !important;
   order: 0 !important;
   flex-grow: 0 !important;
-  margin-bottom: 0.5rem !important;
+  margin: 0 auto 0.5rem auto !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+.heading span {
+  display: inline-block !important;
+  transform-origin: 50% 100% !important;
+  margin: 0 1px !important;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Turning covenant monitoring from a reactive task into a proactive advantage. */
@@ -194,6 +229,8 @@
   flex: none !important;
   order: 1 !important;
   flex-grow: 0 !important;
+  margin: 0 auto !important;
+  display: block !important;
 }
 
 /* Tab */
@@ -214,7 +251,8 @@
   box-shadow: inset 6.02667px 6.02667px 1.00444px -7.03111px rgba(255, 255, 255, 0.5),
               inset 4.01778px 4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.5),
               inset -4.01778px -4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.5),
-              inset 0px 0px 44.1956px rgba(242, 242, 242, 0.3) !important;
+              inset 0px 0px 44.1956px rgba(242, 242, 242, 0.3),
+              0px 0px 10px rgba(33, 207, 255, 0.2) !important; /* Added outer glow */
   backdrop-filter: blur(40.1778px) !important;
   border-radius: 100px !important;
   transition: all 0.3s ease !important;
@@ -225,8 +263,12 @@
   flex-grow: 0 !important;
   cursor: pointer !important;
   position: relative !important;
-  overflow: hidden !important;
-  border: none !important;
+  overflow: visible !important; /* Changed from hidden to visible for particles */
+  border: 1px solid rgba(33, 207, 255, 0.2) !important; /* Added subtle border */
+  transform-style: preserve-3d !important;
+  transform-origin: center center !important; /* Ensure scaling happens from center */
+  z-index: 10 !important; /* Ensure button is above other elements */
+  opacity: 1 !important; /* Force visibility */
 }
 
 .startJourneyButton:hover {
@@ -235,7 +277,8 @@
               inset 4.01778px 4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.7),
               inset -4.01778px -4.01778px 2.00889px -4.01778px rgba(179, 179, 179, 0.7),
               inset 0px 0px 44.1956px rgba(242, 242, 242, 0.5),
-              0px 0px 15px rgba(33, 207, 255, 0.3) !important;
+              0px 0px 20px rgba(33, 207, 255, 0.5) !important; /* Enhanced glow on hover */
+  border: 1px solid rgba(33, 207, 255, 0.5) !important; /* Enhanced border on hover */
 }
 
 .startJourneyButton:active {
@@ -265,6 +308,8 @@
   flex: none !important;
   order: 0 !important;
   flex-grow: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 /* EY_Logo_Beam_STFWC_Stacked_RGB_White_Yellow_EN 2 */
@@ -274,6 +319,7 @@
   height: 105px;
   right: 80px;
   bottom: 80px;
+  z-index: 2; /* Ensure logo appears above video and overlay */
 }
 
 /* Responsive adjustments */
@@ -409,4 +455,16 @@
     right: 15px;
     bottom: 15px;
   }
+}
+
+/* Particle effects for button */
+.particle {
+  position: absolute !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: var(--color-primary) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  box-shadow: 0 0 10px 2px rgba(33, 207, 255, 0.6) !important;
 }
