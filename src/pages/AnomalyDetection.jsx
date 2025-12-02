@@ -53,31 +53,33 @@ export default function AnomalyDetection() {
   return (
     <Box className={styles.container}>
 
-      <Grid container spacing={2.5}>
+      <Grid container spacing={2.5} >
         {/* Top Row */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4} sx={{height:"100%"}}>
           <GradientBorderBox>
             <QuarterlyDSCRLottie />
           </GradientBorderBox>
         </Grid>
         
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <GradientBorderBox>
             <FinancialDriversLottie />
           </GradientBorderBox>
         </Grid>
+
         
-        {/* Bottom Row */}
-        <Grid item xs={12} md={7}>
-          <GradientBorderBox py={3}>
-            <CovenantBreachLog documents={documents} />
-          </GradientBorderBox>
-        </Grid>
-        
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={3}>
           <Box>
             <AIRecommendations recommendations={recommendations} />
           </Box>
+        </Grid>
+      </Grid>
+
+      <Grid container mt={3}>
+        <Grid item xs={12} md={9}>
+                    <GradientBorderBox py={3}>
+            <CovenantBreachLog documents={documents} />
+          </GradientBorderBox>
         </Grid>
       </Grid>
       

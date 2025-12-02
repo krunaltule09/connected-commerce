@@ -76,7 +76,7 @@ const LottieBackgroundPanel = ({
         />
       </LottieBackground>
       
-      <ContentContainer sx={{ position: 'absolute', top: '44%', transform: 'translateY(-50%)', zIndex: 1, left: '60px' }}>
+      <ContentContainer sx={{ position: 'absolute', top: '60%', transform: 'translateY(-50%)', zIndex: 1, left: '18%' }}>
         <List disablePadding>
           {bulletPoints.map((point, index) => (
             <ListItem key={index} disableGutters sx={{ p: 0 }}>
