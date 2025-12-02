@@ -57,7 +57,6 @@ const LandingPage = () => {
             className={styles.startJourneyButton}
             onClick={handleStartJourney}
             sx={{ 
-              marginTop: '50px',
               transition: 'transform 0.3s, box-shadow 0.3s',
               '&:hover': {
                 transform: 'scale(1.05)',

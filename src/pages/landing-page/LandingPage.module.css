@@ -127,15 +127,15 @@
   justify-content: space-evenly; /* Center content vertically */
   padding: 0px;
 ; /* Reduced gap since we're using margin on the button */
-  margin-top: 3%;
   position: absolute;
   width: 100%; /* Full width */
-  height: 95%; /* Full height */
-  left: 0;
+  height: 100%; /* Full height */
+  /* left: 0; */
 /* Fine-tuned position to match the image */
   z-index: 2; /* Ensure content appears above video and overlay */
   perspective: 1000px; /* Add perspective for 3D effects */
   opacity: 1 !important; /* Force visibility */
+
 }
 
 /* Frame 1000004742 */
@@ -158,6 +158,7 @@
   order: 0;
   align-self: center;
   flex-grow: 0;
+    
 }
 
 /* Frame 1000004741 */
@@ -180,6 +181,7 @@
   order: 0;
   align-self: center;
   flex-grow: 0;
+  margin-top: 4%;
 }
 
 /* Reimagining Covenant Monitoring */
@@ -269,6 +271,7 @@
   transform-origin: center center !important; /* Ensure scaling happens from center */
   z-index: 10 !important; /* Ensure button is above other elements */
   opacity: 1 !important; /* Force visibility */
+  margin-top: -4%;
 }
 
 .startJourneyButton:hover {
