@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, Grid, Container, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Typography, Grid, Container, Paper, Fade, Grow, Slide, Zoom } from '@mui/material';
+import { styled, keyframes } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 import GradientButton from '../components/common/GradientButton';
 
 // Icons
@@ -88,6 +89,19 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
   }
 }));
 
+// Pulse animation for the activate button
+const pulseAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+`;
+
 const ActivateButton = styled(Paper)(({ theme }) => ({
   position: 'absolute',
   bottom: '80px',
@@ -99,14 +113,48 @@ const ActivateButton = styled(Paper)(({ theme }) => ({
   borderRadius: '10px',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
+  animation: `${pulseAnimation} 2s infinite`,
   '&:hover': {
     backgroundColor: 'rgba(29, 29, 29, 0.9)',
+    animation: 'none',
+    boxShadow: '0 0 15px rgba(255, 215, 0, 0.6)',
   },
 }));
 
+// Text animation variants for framer-motion
+const textVariants = {
+  hidden: { opacity: 0 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: i * 0.1 }
+  })
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', damping: 12, stiffness: 100 }
+  }
+};
+
 const EnterpriseLoanServicing = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [animationReady, setAnimationReady] = useState(false);
+  const [textAnimationComplete, setTextAnimationComplete] = useState(false);
   const navigate = useNavigate();
+  
+  // Trigger animations after video is loaded
+  useEffect(() => {
+    if (isVideoLoaded) {
+      // Small delay to ensure smooth animation start
+      const timer = setTimeout(() => {
+        setAnimationReady(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isVideoLoaded]);
 
   const menuItems = [
     { icon: <LoanAgreementIcon />, text: 'Loan Agreement', path: '/loan-agreement' },
@@ -150,15 +198,24 @@ const EnterpriseLoanServicing = () => {
         {/* Menu Grid */}
         <MenuGrid container spacing={2} justifyContent="center" sx={{ maxWidth: '1280px', mx: 'auto', px: 2 }}>
           {menuItems.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={index}>
-              <MenuButton
-
-                startIcon={item.icon}
-                sx={{ minWidth: 0 }}
-              >
-                <Typography variant="button" noWrap>{item.text}</Typography>
-              </MenuButton>
-            </Grid>
+            <Grow 
+              in={animationReady} 
+              timeout={300 + (index * 150)} 
+              key={index}
+              style={{ transformOrigin: 'center top' }}
+            >
+              <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+                <Slide direction="up" in={animationReady} timeout={400 + (index * 150)}>
+                  <MenuButton
+                    onClick={() => handleButtonClick(item.path)}
+                    startIcon={item.icon}
+                    sx={{ minWidth: 0 }}
+                  >
+                    <Typography variant="button" noWrap>{item.text}</Typography>
+                  </MenuButton>
+                </Slide>
+              </Grid>
+            </Grow>
           ))}
         </MenuGrid>
 
@@ -173,40 +230,110 @@ const EnterpriseLoanServicing = () => {
             width: '100%'
           }}
         >
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{
-              color: 'white',
-              fontWeight: 600,
-              textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
-              mb: 2,
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-            }}
+          <Fade in={animationReady} timeout={800}>
+            <Box>
+              <Box sx={{ position: 'relative', display: 'inline-block', mb: 2 }}>
+                <motion.div
+                  initial="hidden"
+                  animate={animationReady ? "visible" : "hidden"}
+                  variants={textVariants}
+                  onAnimationComplete={() => setTextAnimationComplete(true)}
+                  style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+                >
+                  {"Enterprise Loan Servicing".split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      variants={letterVariants}
+                      style={{
+                        display: 'inline-block',
+                        fontSize: 'clamp(2rem, 5vw, 3rem)',
+                        fontWeight: 600,
+                        color: 'white',
+                        textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
+                        marginRight: char === " " ? '0.5rem' : '0.05rem'
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </Box>
+            </Box>
+          </Fade>
+          <Fade 
+            in={animationReady} 
+            timeout={1200}
+            style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
           >
-            Enterprise Loan Servicing
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              color: 'white',
-              fontWeight: 400,
-              textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
-              fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
-            }}
-          >
-            Case: Vertex Logistics Corp - $18M Working Capital Facility
-          </Typography>
+            <Box>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={textAnimationComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ 
+                  type: 'spring', 
+                  damping: 12, 
+                  stiffness: 100, 
+                  delay: 0.5,
+                  duration: 0.8 
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 400,
+                    textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
+                    fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                    position: 'relative',
+                    display: 'inline-block'
+                  }}
+                >
+                  Case: Vertex Logistics Corp - $18M Working Capital Facility
+                </Typography>
+              </motion.div>
+            </Box>
+          </Fade>
         </Box>
 
         {/* Activate Button */}
-        <ActivateButton onClick={handleActivateServicing}>
-          <Typography variant="body1">Touch here to activate servicing mode</Typography>
-        </ActivateButton>
+        <Fade 
+          in={animationReady} 
+          timeout={1500}
+          style={{ transitionDelay: animationReady ? '1200ms' : '0ms' }}
+        >
+          <ActivateButton onClick={handleActivateServicing}>
+            <motion.div
+              animate={{ 
+                color: ['rgba(255,255,255,0.8)', 'rgba(255,215,0,1)', 'rgba(255,255,255,0.8)'] 
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                repeatType: 'reverse' 
+              }}
+            >
+              <Typography 
+                variant="body1"
+                sx={{ 
+                  letterSpacing: '0.5px',
+                  fontWeight: 500
+                }}
+              >
+                Touch here to activate servicing mode
+              </Typography>
+            </motion.div>
+          </ActivateButton>
+        </Fade>
 
         {/* EY Logo */}
-        <Logo src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`} alt="EY Logo" />
+        <Zoom 
+          in={animationReady} 
+          timeout={1000}
+          style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
+        >
+          <Logo src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`} alt="EY Logo" />
+        </Zoom>
       </Container>
     </Box>
   );
