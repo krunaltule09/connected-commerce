@@ -31,6 +31,15 @@ const GradientButton = ({
       padding: '12px 16px',
       justifyContent: 'flex-start',
       position: 'relative',
+      '&:hover': {
+        outline: 'none',
+        border: 'none',
+      },
+      '&:focus': {
+        outline: 'none',
+        border: 'none',
+      },
+      boxShadow: 'none',
     };
 
     // Variant-specific styles
@@ -44,11 +53,14 @@ const GradientButton = ({
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          minHeight: '50px',
+          minHeight: '55px',
           '&:hover': {
             backgroundImage: active
               ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
               : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+            outline: 'none',
+            border: 'none',
+            boxShadow: 'none',
           },
         };
       case 'primary': // Green style
@@ -59,6 +71,9 @@ const GradientButton = ({
           borderRadius: '20px',
           '&:hover': {
             backgroundColor: active ? '#B4FF00' : 'rgba(180, 255, 0, 0.1)',
+            outline: 'none',
+            border: 'none',
+            boxShadow: 'none',
           },
         };
       case 'secondary': // Yellow style
@@ -69,6 +84,9 @@ const GradientButton = ({
           borderRadius: '20px',
           '&:hover': {
             backgroundColor: active ? '#FFEB3B' : 'rgba(255, 235, 59, 0.1)',
+            outline: 'none',
+            border: 'none',
+            boxShadow: 'none',
           },
         };
       default: // Default dark style
@@ -79,6 +97,9 @@ const GradientButton = ({
           borderRadius: '20px',
           '&:hover': {
             backgroundColor: 'rgba(29, 29, 29, 0.9)',
+            outline: 'none',
+            border: 'none',
+            boxShadow: 'none',
           },
         };
     }
@@ -86,7 +107,7 @@ const GradientButton = ({
 
   return (
     <Button
-      variant="outlined"
+
       onClick={onClick}
       sx={{
         ...getButtonStyles(),

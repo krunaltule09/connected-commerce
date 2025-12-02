@@ -206,7 +206,6 @@ export default function FinancialChart() {
     <Box
       sx={{
         position: 'relative',
-        height: '100%',
         backgroundImage: `url('${process.env.PUBLIC_URL}/assets/Group%207.svg')`,
         backgroundSize: 'contain',
         backgroundPosition: 'center',
