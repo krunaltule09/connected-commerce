@@ -28,7 +28,8 @@ export default function FinancialMetricsSection() {
                 active={isSelected}
                 onClick={() => setSelectedMetric(metric)}
                 sx={{
-                  fontSize: '0.8rem',
+                  fontSize: '0.9rem',
+                  py: 0.5,
                 }}
               >
                 {metric}
