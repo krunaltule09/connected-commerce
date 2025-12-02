@@ -7,8 +7,6 @@ export const useShipmentData = () => {
   
   // Simulate live OCR scanning progress with linear progression
   useEffect(() => {
-    // Start at 0%
-    setScanProgress(0);
     
     // Calculate total scan duration and increment size for linear progression
     const totalScanDuration = 8000; // 8 seconds total scan time
@@ -44,7 +42,7 @@ export const useShipmentData = () => {
     
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
-  }, [revealStage]);
+  }, []); // Empty dependency array - only run once on mount
   const [shipments] = useState([
     {
       name: 'Shipment 1',
@@ -78,6 +76,13 @@ export const useShipmentData = () => {
     }
   ]);
 
+  // Function to reset the scan progress (useful for testing or restarting)
+  const resetScan = () => {
+    setScanProgress(0);
+    setRevealStage(0);
+    setScanComplete(false);
+  };
+
   // This would be replaced with actual API calls in a real implementation
   // For now, we're just returning the mock data and the live progress
   return {
@@ -85,6 +90,7 @@ export const useShipmentData = () => {
     scanProgress,
     isScanning: scanProgress < 100, // Indicates if scanning is still in progress
     revealStage,
-    scanComplete
+    scanComplete,
+    resetScan // Expose the reset function
   };
 };

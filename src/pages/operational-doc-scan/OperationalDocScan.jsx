@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Fade, Grow } from '@mui/material';
+import { Box, Typography, Fade, Grow, Slide, Zoom, Collapse } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
@@ -53,7 +53,8 @@ const OperationalDocScan = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         {/* Left panel - Document Preview */}
-        <GradientBorderBox className={styles.documentPreviewPanel}>
+        <Slide direction="right" in={true} timeout={800} mountOnEnter unmountOnExit>
+          <GradientBorderBox className={styles.documentPreviewPanel}>
           <Box className={styles.panelTitle}>Scanned Document Preview</Box>
           
           <Box className={styles.documentImageContainer}>
@@ -98,6 +99,7 @@ const OperationalDocScan = () => {
           </Box>
           
         </GradientBorderBox>
+        </Slide>
         
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={scanProgress >= 50} timeout={800}>
@@ -107,7 +109,7 @@ const OperationalDocScan = () => {
         </Grow>
         
         {/* Right panel - Shipment Details */}
-        <Fade in={revealStage >= 1} timeout={800}>
+        <Slide direction="left" in={revealStage >= 1} timeout={800}>
           <GradientBorderBox className={styles.shipmentDetailsPanel}>
             <Box className={styles.panelTitle}>Shipment Details</Box>
             
@@ -181,10 +183,10 @@ const OperationalDocScan = () => {
               })}
             </Box>
           </GradientBorderBox>
-        </Fade>
+        </Slide>
         
         {/* Bottom panel - KPIs */}
-        <Fade in={revealStage >= 2} timeout={1000}>
+        <Zoom in={revealStage >= 2} timeout={1000} style={{ transitionDelay: revealStage >= 2 ? '300ms' : '0ms' }}>
           <GradientBorderBox className={styles.kpiPanel}>
             <Box className={styles.panelTitle}>Operational KPIs</Box>
             
@@ -218,14 +220,18 @@ const OperationalDocScan = () => {
               </Box>
               
               <Box className={styles.kpiFilters}>
-                <Box className={styles.filterButton}>
-                  <FilterListIcon sx={{ fontSize: 20, color: '#AFAEBA' }} />
-                  <Box className={styles.filterText}>Filter by category</Box>
-                </Box>
-                <Box className={styles.filterButton}>
-                  <FilterListIcon sx={{ fontSize: 20, color: '#AFAEBA' }} />
-                  <Box className={styles.filterText}>Filter by time</Box>
-                </Box>
+                <Collapse in={scanProgress >= 70} timeout={800} orientation="horizontal">
+                  <Box className={styles.filterButton}>
+                    <FilterListIcon sx={{ fontSize: 20, color: '#AFAEBA' }} />
+                    <Box className={styles.filterText}>Filter by category</Box>
+                  </Box>
+                </Collapse>
+                <Collapse in={scanProgress >= 80} timeout={800} orientation="horizontal">
+                  <Box className={styles.filterButton}>
+                    <FilterListIcon sx={{ fontSize: 20, color: '#AFAEBA' }} />
+                    <Box className={styles.filterText}>Filter by time</Box>
+                  </Box>
+                </Collapse>
               </Box>
             </Box>
             
@@ -276,9 +282,10 @@ const OperationalDocScan = () => {
                 </Box>
                 
                 {/* Chart legend with sequential reveal - now below the pie chart */}
-                <Fade 
+                <Collapse 
                   in={scanProgress >= 95} 
-                  timeout={800}
+                  timeout={1200}
+                  orientation="vertical"
                 >
                   <Box sx={{ 
                     display: 'flex', 
@@ -321,37 +328,43 @@ const OperationalDocScan = () => {
                       </Typography>
                     </Box>
                   </Box>
-                </Fade>
+                </Collapse>
               </Box>
             </Box>
           </Box>
         </GradientBorderBox>
-        </Fade>
+        </Zoom>
      
       </Box>
          {/* Navigation buttons */}
          <Box className={styles.navigationButtons}>
-          <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-          <Box 
-            className={`${styles.nextButton} ${!nextButtonEnabled ? styles.disabledButton : ''}`} 
-            onClick={handleNextStep}
-            sx={{
-              opacity: nextButtonEnabled ? 1 : 0.5,
-              cursor: nextButtonEnabled ? 'pointer' : 'not-allowed',
-              transition: 'opacity 0.3s ease'
-            }}
-          >
-            Next step
-          </Box>
+          <Slide direction="right" in={true} timeout={1000} mountOnEnter>
+            <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
+          </Slide>
+          <Slide direction="left" in={true} timeout={1000} mountOnEnter>
+            <Box 
+              className={`${styles.nextButton} ${!nextButtonEnabled ? styles.disabledButton : ''}`} 
+              onClick={handleNextStep}
+              sx={{
+                opacity: nextButtonEnabled ? 1 : 0.5,
+                cursor: nextButtonEnabled ? 'pointer' : 'not-allowed',
+                transition: 'opacity 0.3s ease'
+              }}
+            >
+              Next step
+            </Box>
+          </Slide>
         </Box>
       
       {/* EY Logo */}
-      <Box 
-        component="img"
-        src="/assets/ey-logo.svg"
-        alt="EY Logo"
-        className={styles.eyLogo}
-      />
+      <Zoom in={true} timeout={1500} style={{ transitionDelay: '500ms' }}>
+        <Box 
+          component="img"
+          src="/assets/ey-logo.svg"
+          alt="EY Logo"
+          className={styles.eyLogo}
+        />
+      </Zoom>
     </Box>
   );
 };
