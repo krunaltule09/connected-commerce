@@ -1,0 +1,215 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Typography, Grid, Container, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import GradientButton from '../components/common/GradientButton';
+
+// Icons
+import LoanAgreementIcon from '@mui/icons-material/Description';
+import CovenantRegisterIcon from '@mui/icons-material/ListAlt';
+import Y14ReportingIcon from '@mui/icons-material/Assessment';
+import ForensicsIcon from '@mui/icons-material/Search';
+import OCRMLIcon from '@mui/icons-material/Psychology';
+import RiskDashboardIcon from '@mui/icons-material/Dashboard';
+import ClientDemonstrationIcon from '@mui/icons-material/Slideshow';
+import FinancierWidgetIcon from '@mui/icons-material/AccountBalance';
+import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
+
+// Styled components
+const VideoBackground = styled('video')({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  minWidth: '100%',
+  minHeight: '100%',
+  width: 'auto',
+  height: 'auto',
+  zIndex: -1,
+  objectFit: 'cover',
+});
+
+const Overlay = styled(Box)({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0, 0, 0, 0.64)',
+  zIndex: -1,
+});
+
+const Logo = styled('img')({
+  position: 'absolute',
+  bottom: '20px',
+  right: '20px',
+  width: '80px',
+  height: 'auto',
+});
+
+const MenuGrid = styled(Grid)(({ theme }) => ({
+  marginTop: theme.spacing(4),
+  marginBottom: theme.spacing(4),
+  width: '100%',
+}));
+
+const MenuButton = styled(GradientButton)(({ theme }) => ({
+  width: '100%',
+  height: '50px',
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  fontSize: '0.75rem !important',
+  padding: theme.spacing(1.5, 2),
+  backgroundColor: 'rgba(29, 29, 29, 0.3)',
+  borderRadius: '8px',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  backdropFilter: 'blur(5px)',
+  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  '&:hover': {
+    backgroundColor: 'rgba(29, 29, 29, 0.5)',
+    boxShadow: '0 6px 8px rgba(0, 0, 0, 0.15)',
+  },
+  '& .MuiSvgIcon-root': {
+    marginRight: theme.spacing(1),
+    color: '#FFD700',
+    fontSize: '0.87rem',
+    flexShrink: 0,
+  },
+  '& .MuiTypography-root': {
+    fontWeight: 600,
+    fontSize: '0.78rem',
+    color: '#FFD700',
+    letterSpacing: '0.3px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  }
+}));
+
+const ActivateButton = styled(Paper)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '80px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  padding: theme.spacing(1.5,10),
+  backgroundColor: 'rgba(29, 29, 29, 0.8)',
+  color: 'white',
+  borderRadius: '10px',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    backgroundColor: 'rgba(29, 29, 29, 0.9)',
+  },
+}));
+
+const EnterpriseLoanServicing = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const navigate = useNavigate();
+
+  const menuItems = [
+    { icon: <LoanAgreementIcon />, text: 'Loan Agreement', path: '/loan-agreement' },
+    { icon: <CovenantRegisterIcon />, text: 'Covenant Register', path: '/covenant-register' },
+    { icon: <InsertDriveFileOutlinedIcon />, text: 'FR Y-14 Reporting', path: '/y14-report' },
+    { icon: <ForensicsIcon />, text: 'Forensics & ESG Reports', path: '/forensics' },
+    { icon: <OCRMLIcon />, text: 'OCR/ML Tax', path: '/ocr-ml-tax' },
+    { icon: <RiskDashboardIcon />, text: 'Risk Dashboard', path: '/risk-dashboard' },
+    { icon: <ClientDemonstrationIcon />, text: 'Client Demonstration', path: '/client-demonstration' },
+    { icon: <FinancierWidgetIcon />, text: 'Financier\'s Widget', path: '/financier-widget' },
+  ];
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
+  const handleButtonClick = (path) => {
+    // Navigate to the specified path
+    console.log(`Navigating to: ${path}`);
+    navigate(path);
+  };
+
+  const handleActivateServicing = () => {
+    console.log('Activating servicing mode');
+    navigate('/document-centre')
+    // Implementation for activating servicing mode
+  };
+
+  return (
+    <Box sx={{ height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
+      <VideoBackground
+        autoPlay
+        loop
+        muted
+        onLoadedData={handleVideoLoad}
+        src={`${process.env.PUBLIC_URL}/assets/bg-loan.mp4`}
+      />
+      <Overlay />
+
+      <Container maxWidth="lg" sx={{ height: '100%', position: 'relative', pt: 3 }}>
+        {/* Menu Grid */}
+        <MenuGrid container spacing={2} justifyContent="center" sx={{ maxWidth: '1280px', mx: 'auto', px: 2 }}>
+          {menuItems.map((item, index) => (
+            <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={index}>
+              <MenuButton
+
+                startIcon={item.icon}
+                sx={{ minWidth: 0 }}
+              >
+                <Typography variant="button" noWrap>{item.text}</Typography>
+              </MenuButton>
+            </Grid>
+          ))}
+        </MenuGrid>
+
+        {/* Main Content */}
+        <Box 
+          sx={{ 
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            textAlign: 'center',
+            width: '100%'
+          }}
+        >
+          <Typography
+            variant="h2"
+            component="h1"
+            sx={{
+              color: 'white',
+              fontWeight: 600,
+              textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
+              mb: 2,
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+            }}
+          >
+            Enterprise Loan Servicing
+          </Typography>
+          <Typography
+            variant="h5"
+            component="h2"
+            sx={{
+              color: 'white',
+              fontWeight: 400,
+              textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
+              fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+            }}
+          >
+            Case: Vertex Logistics Corp - $18M Working Capital Facility
+          </Typography>
+        </Box>
+
+        {/* Activate Button */}
+        <ActivateButton onClick={handleActivateServicing}>
+          <Typography variant="body1">Touch here to activate servicing mode</Typography>
+        </ActivateButton>
+
+        {/* EY Logo */}
+        <Logo src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`} alt="EY Logo" />
+      </Container>
+    </Box>
+  );
+};
+
+export default EnterpriseLoanServicing;
