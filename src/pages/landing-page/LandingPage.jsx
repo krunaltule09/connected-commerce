@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Fade, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
@@ -36,63 +35,55 @@ const LandingPage = () => {
         {/* Text frame with animated text */}
         <Box className={styles.textFrame}>
           <Box className={styles.innerTextFrame}>
-            {/* Animated heading */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-            >
+            {/* Animated heading with MUI Fade */}
+            <Fade in={true} timeout={1200}>
               <Typography className={styles.heading} align="center">
                 Reimagining Covenant Monitoring
               </Typography>
-            </motion.div>
+            </Fade>
             
-            {/* Animated subheading */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
-            >
+            {/* Animated subheading with MUI Fade */}
+            <Fade in={true} timeout={1500} style={{ transitionDelay: '300ms' }}>
               <Typography className={styles.subheading} align="center">
                 Turning covenant monitoring from a reactive task into a proactive advantage.
               </Typography>
-            </motion.div>
+            </Fade>
           </Box>
         </Box>
         
-        {/* Animated button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: "0px 0px 15px rgba(33, 207, 255, 0.5)"
-          }}
-          whileTap={{ scale: 0.95 }}
-
-        >
+        {/* Animated button with MUI Zoom */}
+        <Zoom in={true} style={{ transitionDelay: '600ms' }}>
           <Box
- /* Preserve the margin */
             className={styles.startJourneyButton}
             onClick={handleStartJourney}
+            sx={{ 
+              marginTop: '50px',
+              transition: 'transform 0.3s, box-shadow 0.3s',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: '0px 0px 15px rgba(33, 207, 255, 0.5)'
+              },
+              '&:active': {
+                transform: 'scale(0.95)'
+              }
+            }}
           >
             <Box className={styles.buttonText}>
               Start Journey
             </Box>
           </Box>
-        </motion.div>
+        </Zoom>
       </Box>
       
-      {/* Animated EY Logo */}
-      <motion.img 
-        src="/assets/ey-logo.svg"
-        alt="EY Logo"
-        className={styles.eyLogo}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-      />
+      {/* Animated EY Logo with MUI Fade */}
+      <Fade in={true} timeout={1000} style={{ transitionDelay: '1000ms' }}>
+        <Box 
+          component="img"
+          src="/assets/ey-logo.svg"
+          alt="EY Logo"
+          className={styles.eyLogo}
+        />
+      </Fade>
     </Box>
   );
 };
