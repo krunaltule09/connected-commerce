@@ -27,7 +27,7 @@
   height: 80% !important;
   z-index: 2 !important;
   display: grid !important;
-  grid-template-columns: 1fr 1.5fr !important;
+  grid-template-columns: 1fr 1.5fr 0.8fr !important;
   grid-template-rows: 1fr 1fr !important;
   grid-template-areas:
     "document-preview shipment-details"
@@ -655,9 +655,9 @@
   z-index: 10 !important;
 }
 
-/* AI Chip Container */
+AI Chip Container
 .aiChipContainer {
-  position: absolute !important;
+
   width: 38% !important;
   box-sizing: border-box !important;
   padding: 10px !important;
@@ -666,8 +666,6 @@
   align-items: center !important;
   gap: 10px !important;
   border-radius: 8px !important;
-  left: 18px !important;
-  bottom: 70px !important;
   z-index: 5 !important;
 }
 

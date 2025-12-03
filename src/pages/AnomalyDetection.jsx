@@ -157,7 +157,7 @@ export default function AnomalyDetection() {
                   animate={animateMiddle ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 >
-                  <AIRecommendations contentContainerSx={{top:"60%"}} recommendations={recommendations} />
+                  <AIRecommendations contentContainerSx={{top:"60%", left:"18%"}} recommendations={recommendations} />
                 </motion.div>
               </Box>
             </Fade>
