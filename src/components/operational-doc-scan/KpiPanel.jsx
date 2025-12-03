@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Collapse, Zoom } from '@mui/material';
+import { Box, Typography, Collapse, Zoom, Grow } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import GradientBorderBox from '../common/GradientBorderBox';
 import GradientButton from '../common/GradientButton';
