@@ -31,7 +31,7 @@ const OperationalDocScan = () => {
   
   const handleNextStep = () => {
     if (nextButtonEnabled) {
-      navigate('/anomaly-detection');
+      navigate('/data-simulator');
     }
   };
 
