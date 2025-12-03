@@ -1,5 +1,6 @@
-import React from 'react';
-import { Box, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
 import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
@@ -12,6 +13,27 @@ import GradientBorderBox from '../components/common/GradientBorderBox';
 
 export default function AnomalyDetection() {
   const navigate = useNavigate();
+  
+  // Animation states
+  const [animateTop, setAnimateTop] = useState(false);
+  const [animateMiddle, setAnimateMiddle] = useState(false);
+  const [animateBottom, setAnimateBottom] = useState(false);
+  const [animateNav, setAnimateNav] = useState(false);
+  
+  // Staggered animation timing
+  useEffect(() => {
+    const topTimer = setTimeout(() => setAnimateTop(true), 300);
+    const middleTimer = setTimeout(() => setAnimateMiddle(true), 800);
+    const bottomTimer = setTimeout(() => setAnimateBottom(true), 1200);
+    const navTimer = setTimeout(() => setAnimateNav(true), 1500);
+    
+    return () => {
+      clearTimeout(topTimer);
+      clearTimeout(middleTimer);
+      clearTimeout(bottomTimer);
+      clearTimeout(navTimer);
+    };
+  }, []);
   
   // Handle navigation to Y14 Report Generation page
   const handleNextStep = () => {
@@ -50,52 +72,167 @@ export default function AnomalyDetection() {
     'Cross-check delayed shipments'
   ];
 
+  // Animation variants for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 12
+      }
+    }
+  };
+
   return (
     <Box className={styles.container}>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <Grid container spacing={2.5}>
+          {/* Top Row */}
+          <Grid item xs={12} md={4} sx={{height:"100%"}}>
+            <Grow in={animateTop} timeout={800}>
+              <Box>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                >
+                  <GradientBorderBox sx={{ 
+                    transform: "translateZ(0)",
+                    transition: "box-shadow 0.3s ease-in-out",
+                    '&:hover': {
+                      boxShadow: "0 0 15px rgba(255, 235, 59, 0.3)"
+                    }
+                  }}>
+                    <QuarterlyDSCRLottie />
+                  </GradientBorderBox>
+                </motion.div>
+              </Box>
+            </Grow>
+          </Grid>
+          
+          <Grid item xs={12} md={5}>
+            <Grow in={animateTop} timeout={1000}>
+              <Box>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+                >
+                  <GradientBorderBox sx={{ 
+                    transform: "translateZ(0)",
+                    transition: "box-shadow 0.3s ease-in-out",
+                    '&:hover': {
+                      boxShadow: "0 0 15px rgba(33, 207, 255, 0.3)"
+                    }
+                  }}>
+                    <FinancialDriversLottie />
+                  </GradientBorderBox>
+                </motion.div>
+              </Box>
+            </Grow>
+          </Grid>
 
-      <Grid container spacing={2.5} >
-        {/* Top Row */}
-        <Grid item xs={12} md={4} sx={{height:"100%"}}>
-          <GradientBorderBox>
-            <QuarterlyDSCRLottie />
-          </GradientBorderBox>
+          <Grid item xs={12} md={3}>
+            <Fade in={animateMiddle} timeout={1200}>
+              <Box>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={animateMiddle ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                >
+                  <AIRecommendations contentContainerSx={{top:"60%"}} recommendations={recommendations} />
+                </motion.div>
+              </Box>
+            </Fade>
+          </Grid>
         </Grid>
-        
-        <Grid item xs={12} md={5}>
-          <GradientBorderBox>
-            <FinancialDriversLottie />
-          </GradientBorderBox>
-        </Grid>
+      </motion.div>
 
-        
-        <Grid item xs={12} md={3}>
-          <Box>
-            <AIRecommendations contentContainerSx={{top:"60%"}} recommendations={recommendations} />
-          </Box>
+      <Slide direction="up" in={animateBottom} timeout={1000} mountOnEnter>
+        <Grid container mt={3}>
+          <Grid item xs={12} md={9}>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
+            >
+              <GradientBorderBox py={3} sx={{ 
+                transform: "translateZ(0)",
+                transition: "box-shadow 0.3s ease-in-out",
+                '&:hover': {
+                  boxShadow: "0 0 20px rgba(180, 255, 0, 0.2)"
+                }
+              }}>
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate={animateBottom ? "visible" : "hidden"}
+                >
+                  <CovenantBreachLog documents={documents} />
+                </motion.div>
+              </GradientBorderBox>
+            </motion.div>
+          </Grid>
         </Grid>
-      </Grid>
-
-      <Grid container mt={3}>
-        <Grid item xs={12} md={9}>
-                    <GradientBorderBox py={3}>
-            <CovenantBreachLog documents={documents} />
-          </GradientBorderBox>
-        </Grid>
-      </Grid>
+      </Slide>
       
       {/* Navigation buttons */}
-      <Box className={styles.navigationButtons}>
-        <Box className={styles.backButton} onClick={handleGoBack}>Go back</Box>
-        <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
-      </Box>
+      <Fade in={animateNav} timeout={1000}>
+        <Box className={styles.navigationButtons}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={animateNav ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Box className={styles.backButton} onClick={handleGoBack}>Go back</Box>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={animateNav ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
+          </motion.div>
+        </Box>
+      </Fade>
       
       {/* EY Logo */}
-      <Box 
-        component="img"
-        src="/assets/ey-logo.svg"
-        alt="EY Logo"
-        className={styles.eyLogo}
-      />
+      <Fade in={animateNav} timeout={1500}>
+        <Box 
+          component="img"
+          src="/assets/ey-logo.svg"
+          alt="EY Logo"
+          className={styles.eyLogo}
+          sx={{
+            transition: "transform 0.3s ease",
+            '&:hover': {
+              transform: "scale(1.1)"
+            }
+          }}
+        />
+      </Fade>
     </Box>
   );
 }
