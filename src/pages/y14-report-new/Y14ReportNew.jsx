@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography, Stack, Grow, Fade } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -13,6 +13,21 @@ import GradientBorderBox from '../../components/common/GradientBorderBox';
 export default function Y14ReportNew() {
   const navigate = useNavigate();
   const [expandedAccordion, setExpandedAccordion] = useState('borrower');
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(false);
+  const [showFindings, setShowFindings] = useState(false);
+
+  // Staggered mount so panels render one-by-one slowly
+  useEffect(() => {
+    const t1 = setTimeout(() => setShowLeft(true), 200);       // left starts
+    const t2 = setTimeout(() => setShowRight(true), 1400);     // then right
+    const t3 = setTimeout(() => setShowFindings(true), 2600);  // then findings
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
 
   const handleAccordionToggle = (accordionId) => {
     setExpandedAccordion(expandedAccordion === accordionId ? null : accordionId);
@@ -46,7 +61,7 @@ export default function Y14ReportNew() {
       <Box className={styles.mainContainer}>
         {/* Left: Schedule Template with gradient border and grow */}
         <Box className={styles.leftColumn}>
-          <Grow in timeout={900} appear>
+          <Grow in={showLeft} timeout={1200} appear>
             <GradientBorderBox>
               <Box className={styles.scheduleTemplatePanel}>
                 <Box className={styles.panelHeader}>
@@ -219,7 +234,7 @@ export default function Y14ReportNew() {
         </Box>
 
         {/* Right column - Replaced with static SVG */}
-        <Fade in timeout={1200}>
+        <Fade in={showRight} timeout={1200} appear>
           <Box className={styles.rightColumn}>
             <Box className={styles.workflowPanel}>
               <Box
@@ -233,7 +248,7 @@ export default function Y14ReportNew() {
         </Fade>
 
         {/* Detailed Findings replaced by static SVG */}
-        <Fade in timeout={1400}>
+        <Fade in={showFindings} timeout={1400} appear>
           <Box className={styles.findingsPanel}>
             <Box
               component="img"
