@@ -8,6 +8,7 @@ import AIRecommendations from '../../components/anomaly-detection/AIRecommendati
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 
+
 const OperationalDocScan = () => {
   const navigate = useNavigate();
   const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
@@ -31,7 +32,7 @@ const OperationalDocScan = () => {
   
   const handleNextStep = () => {
     if (nextButtonEnabled) {
-      navigate('/anomaly-detection');
+      navigate('/data-simulator');
     }
   };
 
@@ -103,8 +104,8 @@ const OperationalDocScan = () => {
         
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={scanProgress >= 50} timeout={800}>
-          <Box className={styles.aiChipContainer}>
-            <AIRecommendations contentContainerSx={{top:"60%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
+          <Box >
+            <AIRecommendations contentContainerSx={{top:"18%",left:"14%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
           </Box>
         </Grow>
         

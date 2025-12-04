@@ -50,7 +50,7 @@ export default function Y14ReportGeneration() {
   };
 
   const handleNextStep = () => {
-    navigate('/data-simulator');
+    navigate('/operational-doc-scan');
   };
 
   const handleGoBack = () => {
