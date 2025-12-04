@@ -4,7 +4,7 @@ import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';
 import FeedbackPage from '../pages/FeedbackPage';
-import Y14ReportGeneration from '../pages/y14-report/Y14ReportGeneration';
+import Y14ReportNew from '../pages/y14-report-new/Y14ReportNew';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
 
 // Define routes configuration
@@ -43,11 +43,15 @@ const routes = [
   },
   {
     path: '/y14-report',
-    element: <Y14ReportGeneration />,
+    element: <Y14ReportNew />,
   },
   {
     path: '/data-simulator',
     element: <DataSimulator />,
+  },
+  {
+    path: '/y14-report-new',
+    element: <Y14ReportNew />,
   },
   {
     path: '/anomaly-detection',

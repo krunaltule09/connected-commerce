@@ -1,0 +1,861 @@
+.reportGenerationPage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* move main container closer to top */
+  padding-top: 16px !important; /* tighter top spacing */
+  align-items: center;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1;
+}
+
+.backgroundVideo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Main content container */
+.mainContainer {
+  position: relative;
+  width: 94%;
+  max-width: 1616px;
+  height: calc(100vh - 180px);
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: minmax(480px, auto) minmax(320px, auto);
+  grid-template-areas:
+    'left right'
+    'findings right';
+  column-gap: 16px; /* horizontal gap between left and right */
+  row-gap: 80px !important; /* vertical gap between schedule and findings */
+  overflow: hidden;
+  margin-bottom: 60px;
+  align-items: start;
+}
+
+/* Left column */
+.leftColumn {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-area: left;
+}
+
+/* Two-column container for the 8 accordions */
+.templateContent {
+  display: flex; /* make columns independent in height */
+  gap: 24px;
+  width: 100%;
+}
+
+/* Accordion column */
+.accordionColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Right column */
+.rightColumn {
+  flex: 1;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  grid-area: right;
+  align-self: start;
+  justify-self: end;
+}
+
+/* Panel styling */
+.scheduleTemplatePanel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  background: #1A1A24;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  grid-area: left;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 2; /* ensure left panel sits above right plate */
+}
+
+.workflowPanel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0; /* image should fill the panel */
+  gap: 0;
+  height: auto;
+  grid-area: right;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1; /* behind left and findings */
+  align-self: flex-start;
+  justify-self: end;
+}
+
+/* subtle stacked shadow plate behind workflow */
+.workflowPanel::after { content: none; }
+
+/* Static builder workflow artwork */
+.workflowImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.findingsPanel {
+  grid-area: findings;
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  background: transparent;
+  width: 100%;
+  position: relative;
+  box-shadow: none;
+  z-index: 2; /* above right panel plate */
+  min-height: auto;
+  overflow: visible; /* allow content to size naturally */
+}
+
+/* Static findings artwork */
+.findingsImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Panel header styling */
+.panelHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 0px 14px;
+  gap: 24px;
+  width: 100%;
+}
+
+.panelTitle {
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height:30px;
+  color: #FFE600;
+}
+
+.headerButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 4px;
+  gap: 12px;
+}
+
+.submitButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  height: 32px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #8A8A9B !important;
+  text-transform: none !important;
+  cursor: default !important;
+}
+
+.saveButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 16px !important;
+  gap: 10px !important;
+  min-width: 140px !important;
+  height: 40px !important;
+  background: #A6A5B3 !important; /* soft lilac-grey */
+  border: 1px solid #8C8B9A !important;
+  border-radius: 6px !important;
+  color: #F3F3F5 !important;
+  text-transform: none !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset !important;
+}
+
+.generateButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 16px !important;
+  gap: 10px !important;
+  min-width: 160px !important;
+  height: 40px !important;
+  background: #2B2B35 !important;
+  border: 1px solid #3A3A44 !important;
+  border-radius: 6px !important;
+  color: #737387 !important;
+  text-transform: none !important;
+  opacity: 0.9 !important; /* disabled look */
+  box-shadow: none !important;
+}
+
+.buttonIcon {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 8px !important;
+  color: currentColor !important; /* icons follow text color */
+}
+
+.buttonText {
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+/* Accordion styling */
+.accordion {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  isolation: isolate;
+  width: 100%;
+  background: #23232F;
+  border: 1px solid #33333E;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.accordionTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* keep icon to the right */
+  padding: 8px 4px;
+  width: 100%;
+}
+
+.accordionHeader {
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #DEDEE2;
+  flex: 1 1 auto;
+}
+
+.accordionIcon {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.accordionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 8px 8px;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 190px; /* show 5 rows without scroll in half panel */
+  overflow-y: auto;
+}
+
+.detailsGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 0px 8px;
+}
+
+.textRow {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline; /* align label/value baselines */
+  justify-content: space-between;
+  padding: 0 0 8px;
+  gap: 24px;
+  min-height: 28px;
+  width: 100%;
+}
+
+.textLabel {
+  width: 240px;
+  height: 20px;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px !important;  /* reduced */
+  line-height: 20px;
+  color: #FFFFFF; /* match screenshot */
+  flex: 0 0 240px;
+}
+
+.textValue {
+  height: 20px;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 13px !important; /* slightly reduced for compact look */
+  line-height: 20px;
+  color: #FFFFFF;
+  flex: 1 1 auto;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Workflow styling */
+.progressSteps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  padding: 0px 8px 8px;
+  column-gap: 24px;
+  width: 100%;
+  min-height: 110px;
+  margin-bottom: 20px;
+}
+
+.progressSteps::before {
+  content: '';
+  position: absolute;
+  top: 16px; /* through icon centers */
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: #4A4A56;
+  border-radius: 2px;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+}
+
+.stepIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  z-index: 1; /* above the line */
+}
+
+.completedStepIcon {
+  width: 24px;
+  height: 24px;
+  background: #26A04B;
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkIcon {
+  color: #FFFFFF;
+}
+
+.currentStepIcon {
+  width: 24px;
+  height: 24px;
+  background: #462602;
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentStepDot {
+  width: 8px;
+  height: 8px;
+  background: #D07200;
+  border-radius: 50%;
+}
+
+.inactiveStepIcon {
+  width: 24px;
+  height: 24px;
+  background: #2E2E38;
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inactiveStepDot {
+  width: 8px;
+  height: 8px;
+  background: #4E4E5D;
+  border-radius: 50%;
+}
+
+.connector { display: none; }
+
+.inactiveConnector { display: none; }
+
+.disabledConnector { display: none; }
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+
+.stepTitle {
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px; /* reduced */
+  line-height: 22px;
+  color: #DEDEE2;
+}
+
+.stepDescription {
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px; /* reduced */
+  line-height: 20px;
+  color: #A4A3B1;
+}
+
+.reportPreviewContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px; /* recessed panel padding */
+  gap: 0;
+  width: 100%;
+  height: 240px;
+}
+
+.reportPreviewCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
+  width: 180px;
+  height: 220px;
+  background: #343340;
+  border-radius: 12px;
+  border: 1px solid #3D3D48;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.reportPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #FFFFFF; /* page look */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+
+/* Findings styling */
+.findingAlert {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+  width: 100%;
+  height: 34px;
+}
+
+/* Findings left navigation */
+.findingsBody {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+}
+
+.findingsNav {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 240px;
+}
+
+.findingsBar {
+  width: 6px;
+  height: 100%;
+  background: #FFE600;
+  border-radius: 3px;
+}
+
+.navItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: #A4A3B1;
+}
+
+.navItemActive {
+  color: #FFE600;
+}
+
+.navItemIcon {
+  width: 18px;
+  height: 18px;
+  color: #A4A3B1;
+}
+
+.navItemActive .navItemIcon { color: #FFE600; }
+
+.navText {
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px; /* reduced */
+  line-height: 20px;
+  color: #DEDEE2;
+}
+
+.accordionColumn {
+  flex: 1 1 0;
+  min-width: 0; /* allow columns to shrink without overflow */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.findingsContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.alertBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #EA011D;
+  border-radius: 50%;
+}
+
+.alertIcon {
+  width: 18px;
+  height: 18px;
+  color: #EA011D;
+}
+
+.alertText {
+  width: auto;
+  height: 28px;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px; /* reduced */
+  line-height: 28px;
+  color: #FFFFFF;
+}
+
+.documentsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  padding: 4px 0 0;
+  gap: 24px;
+  width: 100%;
+}
+
+.documentCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  gap: 12px;
+  width: 100%;
+  height: 150px;
+  background: #2A2A35;
+  border: 1px solid #3A3A44;
+  border-radius: 8px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 0 0 1px rgba(0,0,0,0.25) inset;
+  overflow: hidden; /* keep inner bar inside card */
+  min-width: 0; /* prevent grid overflow */
+}
+
+.documentHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+  width: 100%;
+  height: 54px;
+}
+
+.documentIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px; /* slightly smaller */
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px; /* no flex shrink */
+  box-sizing: border-box;
+  aspect-ratio: 1 / 1; /* always circular */
+  background: #B5B39A; /* khaki disk */
+  border: 1px solid #D8D6C2;
+  border-radius: 50%;
+}
+
+.documentInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 4px 0px 0px;
+  width: auto;
+  height: 54px;
+}
+
+.documentTitle {
+  width: 100%;
+  height: 24px;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px; /* reduced */
+  line-height: 24px;
+  color: #DEDEE2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.documentSubtitle {
+  width: 100%;
+  height: 20px;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px; /* reduced */
+  line-height: 20px;
+  color: #A4A3B1;
+}
+
+/* Document action bar inside card */
+.documentActionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* include border in width calc */
+  height: 44px;
+  padding: 0 16px;
+  background: #2E2E38;
+  border: 1px solid #44444F;
+  border-radius: 6px;
+  color: #737387;
+}
+
+.documentActionBarActive {
+  background: #3A3A44;
+  border-color: #4C4C58;
+  color: #CFCFD8;
+}
+
+.actionText {
+  font-family: 'EYInterstate', sans-serif;
+  font-size: 14px; /* reduced */
+  line-height: 20px;
+}
+
+.actionIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Navigation buttons */
+.navigationButtons {
+  position: absolute;
+  width: 529px;
+  height: 72px;
+  left: calc(50% - 529px/2);
+  bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 40px;
+  z-index: 10;
+}
+
+.backButton {
+  width: 200px !important;
+  height: 64px !important;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 24px !important;
+  line-height: 32px !important;
+  color: #FFFFFF !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.nextButton {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: 200px !important;
+  height: 64px !important;
+  background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D !important;
+  background-blend-mode: color-burn, plus-lighter !important;
+  box-shadow: inset 6px 6px 1px -7px rgba(255, 255, 255, 0.5), 
+              inset 4px 4px 2px -4px #B3B3B3,
+              inset -4px -4px 2px -4px #B3B3B3,
+              inset 0px 0px 44px rgba(242, 242, 242, 0.5);
+  backdrop-filter: blur(40px) ;
+  border-radius: 200px !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.nextButtonText {
+  width: 53px !important;
+  height: 24px !important;
+  font-family: 'EYInterstate', sans-serif;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 24px !important;
+  line-height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  text-align: center !important;
+  color: #21CFFF !important;
+}
+
+/* EY Logo */
+.eyLogo {
+  position: absolute;
+  width: 100px;
+  height: 105px;
+  right: 80px;
+  bottom: 24px; /* align with navigation buttons bottom */
+  z-index: 10;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .mainContainer {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    padding-bottom: 100px;
+  }
+  
+  .leftColumn, .rightColumn {
+    width: 100%;
+  }
+  
+  .navigationButtons {
+    position: fixed;
+    bottom: 30px;
+    right: 150px;
+    margin: 0;
+    justify-content: center;
+    z-index: 100;
+  }
+  
+  .eyLogo {
+    position: fixed;
+    right: 80px;
+    bottom: 30px; /* align with responsive nav bottom */
+    margin: 0;
+    z-index: 100;
+  }
+  
+  .documentsContainer {
+    flex-direction: column;
+  }
+  
+  .documentCard {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .panelHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .headerButtons {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .progressSteps {
+    flex-direction: column;
+    height: auto;
+  }
+}
