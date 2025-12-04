@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button } from '@mui/material';
+import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button, Snackbar, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
+import navigationService from '../services/NavigationService';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
@@ -13,6 +14,7 @@ export default function DocumentCentrePage() {
   const [selectedId, setSelectedId] = useState(null);
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
 
   // Fetch all documents on component mount
   useEffect(() => {
@@ -76,11 +78,37 @@ export default function DocumentCentrePage() {
     setSelectedId(null);
   };
 
-  const handleScanDocument = () => {
-    // Navigate to financial dashboard
-    navigate('/financial-dashboard');
+  const handleScanDocument = async () => {
     // Close the modal
     handleCloseModal();
+    
+    navigate('/financial-dashboard')
+    
+    try {
+      // Send navigation event to operate-experience app
+      await navigationService.navigateToOperateExperience('/financial-statement', {
+        referrer: 'document-centre',
+        action: 'SCAN_DOCUMENT',
+        documentId: selectedId
+      });
+      
+      setNotification({
+        open: true,
+        message: 'Navigation event sent to operate-experience',
+        severity: 'success'
+      });
+    } catch (error) {
+      console.error('Failed to send navigation event:', error);
+      setNotification({
+        open: true,
+        message: 'Failed to send navigation event',
+        severity: 'error'
+      });
+    }
+  };
+  
+  const handleCloseNotification = () => {
+    setNotification({ ...notification, open: false });
   };
 
   const count = documents.length;
@@ -346,6 +374,17 @@ export default function DocumentCentrePage() {
           </AnimatePresence>
         </Modal>
       </Container>
+      {/* Notification */}
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={6000} 
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={handleCloseNotification} severity={notification.severity} sx={{ width: '100%' }}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

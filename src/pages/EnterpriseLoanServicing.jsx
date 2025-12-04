@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, Grid, Container, Paper, Fade, Grow, Slide, Zoom } from '@mui/material';
+import { Box, Typography, Grid, Container, Paper, Fade, Grow, Slide, Zoom, Snackbar, Alert } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
 import { motion } from 'framer-motion';
+import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
 
 // Icons
@@ -143,6 +144,7 @@ const EnterpriseLoanServicing = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [animationReady, setAnimationReady] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
   const navigate = useNavigate();
   
   // Trigger animations after video is loaded
@@ -177,10 +179,36 @@ const EnterpriseLoanServicing = () => {
     navigate(path);
   };
 
-  const handleActivateServicing = () => {
+  const handleActivateServicing = async () => {
     console.log('Activating servicing mode');
-    navigate('/document-centre')
-    // Implementation for activating servicing mode
+    
+    // Navigate locally
+    navigate('/document-centre');
+    
+    try {
+      // Send navigation event to operate-experience app
+      await navigationService.navigateToOperateExperience('/loan-service', {
+        referrer: 'enterprise-loan-servicing',
+        action: 'ACTIVATE_SERVICING'
+      });
+      
+      setNotification({
+        open: true,
+        message: 'Navigation event sent to operate-experience',
+        severity: 'success'
+      });
+    } catch (error) {
+      console.error('Failed to send navigation event:', error);
+      setNotification({
+        open: true,
+        message: 'Failed to send navigation event',
+        severity: 'error'
+      });
+    }
+  };
+  
+  const handleCloseNotification = () => {
+    setNotification({ ...notification, open: false });
   };
 
   return (
@@ -334,6 +362,18 @@ const EnterpriseLoanServicing = () => {
         >
           <Logo src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`} alt="EY Logo" />
         </Zoom>
+        
+        {/* Notification */}
+        <Snackbar 
+          open={notification.open} 
+          autoHideDuration={6000} 
+          onClose={handleCloseNotification}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          <Alert onClose={handleCloseNotification} severity={notification.severity} sx={{ width: '100%' }}>
+            {notification.message}
+          </Alert>
+        </Snackbar>
       </Container>
     </Box>
   );

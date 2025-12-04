@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
+import { Box, Grid, Fade, Grow, Slide, Snackbar, Alert } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
+import navigationService from '../services/NavigationService';
 import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
 import FinancialDriversLottie from '../components/anomaly-detection/FinancialDriversLottie';
 import CovenantBreachLog from '../components/anomaly-detection/CovenantBreachLog';
@@ -13,6 +14,7 @@ import GradientBorderBox from '../components/common/GradientBorderBox';
 
 export default function AnomalyDetection() {
   const navigate = useNavigate();
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
   
   // Animation states
   const [animateTop, setAnimateTop] = useState(false);
@@ -36,13 +38,39 @@ export default function AnomalyDetection() {
   }, []);
   
   // Handle navigation to Y14 Report Generation page
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
+    // Navigate locally
     navigate('/y14-report');
+    
+    try {
+      // Send navigation event to operate-experience app
+      await navigationService.navigateToOperateExperience('/y14-report/large', {
+        referrer: 'anomaly-detection',
+        action: 'NEXT_STEP'
+      });
+      
+      setNotification({
+        open: true,
+        message: 'Navigation event sent to operate-experience',
+        severity: 'success'
+      });
+    } catch (error) {
+      console.error('Failed to send navigation event:', error);
+      setNotification({
+        open: true,
+        message: 'Failed to send navigation event',
+        severity: 'error'
+      });
+    }
   };
   
   // Handle going back to previous page
   const handleGoBack = () => {
     window.history.back();
+  };
+  
+  const handleCloseNotification = () => {
+    setNotification({ ...notification, open: false });
   };
   
   // No need for DSCR data as we're using Lottie animation
@@ -233,6 +261,18 @@ export default function AnomalyDetection() {
           }}
         />
       </Fade>
+      
+      {/* Notification */}
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={6000} 
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={handleCloseNotification} severity={notification.severity} sx={{ width: '100%' }}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

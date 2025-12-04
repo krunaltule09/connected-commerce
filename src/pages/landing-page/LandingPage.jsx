@@ -1,14 +1,41 @@
-import React from 'react';
-import { Box, Typography, Fade, Zoom } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Fade, Zoom, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
+import navigationService from '../../services/NavigationService';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
 
-  const handleStartJourney = () => {
-    // Navigate directly without animation
-    navigate('/explore');
+  const handleStartJourney = async () => {
+    try {
+      // Navigate locally
+      navigate('/explore');
+      
+      // Send navigation event to operate-experience app
+      await navigationService.navigateToOperateExperience('/personal-welcome', {
+        referrer: 'landing-page',
+        action: 'START_JOURNEY'
+      });
+      
+      setNotification({
+        open: true,
+        message: 'Navigation event sent to operate-experience',
+        severity: 'success'
+      });
+    } catch (error) {
+      console.error('Failed to send navigation event:', error);
+      setNotification({
+        open: true,
+        message: 'Failed to send navigation event',
+        severity: 'error'
+      });
+    }
+  };
+  
+  const handleCloseNotification = () => {
+    setNotification({ ...notification, open: false });
   };
 
   return (
@@ -83,6 +110,17 @@ const LandingPage = () => {
           className={styles.eyLogo}
         />
       </Fade>
+      {/* Notification */}
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={6000} 
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={handleCloseNotification} severity={notification.severity} sx={{ width: '100%' }}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
