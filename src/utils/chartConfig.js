@@ -56,20 +56,6 @@ export const createChartOptions = (metricTitle, formatValue) => ({
     }
   },
   plugins: {
-    title: {
-      display: true,
-      text: metricTitle,
-      color: '#FFFFFF',
-      font: {
-        size: 16,
-        weight: 'bold',
-      },
-      align: 'start',
-      padding: {
-        top: 10,
-        bottom: 30,
-      },
-    },
     legend: {
       display: false,
     },
