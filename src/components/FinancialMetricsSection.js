@@ -6,10 +6,10 @@ import GradientButton from './common/GradientButton';
 import FinancialChart from './FinancialChart';
 import ChartBreakdown from './ChartBreakdown';
 import { useScanning } from '../context/ScanningContext';
+import { useFinancialData } from '../context/FinancialDataContext';
 
 export default function FinancialMetricsSection() {
-  const metrics = ['Revenue', 'EBITDA', 'Debt', 'Equity', 'Interest', 'Expense'];
-  const [selectedMetric, setSelectedMetric] = useState('Revenue');
+  const { metrics, selectedMetric, setSelectedMetric } = useFinancialData();
   const { isFinancialDataReady, scanProgress } = useScanning();
   const [animateTitle, setAnimateTitle] = useState(false);
   const [animateMetrics, setAnimateMetrics] = useState(false);
@@ -199,7 +199,7 @@ export default function FinancialMetricsSection() {
                     }}
                   >
                     <Box>
-                      <ChartBreakdown selectedMetric={selectedMetric} />
+                      <ChartBreakdown />
                     </Box>
                   </motion.div>
                 )}

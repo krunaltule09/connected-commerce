@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useScanning } from '../context/ScanningContext';
+import { useFinancialData } from '../context/FinancialDataContext';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -15,18 +16,23 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function FinancialChart() {
+  const { selectedMetric, getSelectedData, formatValue } = useFinancialData();
   const chartRef = useRef(null);
   const { isFinancialDataReady } = useScanning();
   const [animationProgress, setAnimationProgress] = useState(0);
+  // Get the current data for the selected metric
+  const currentData = useMemo(() => getSelectedData(), [selectedMetric, getSelectedData]);
+  
   // Calculate visible data points based on animation progress
   const calculateVisibleData = () => {
-    const fullData = [30, 25, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80];
+    const fullData = currentData.map(item => item[1]);
     const visibleCount = Math.ceil(fullData.length * animationProgress);
     return fullData.map((value, index) => index < visibleCount ? value : 0);
   };
   
-  const data = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  // Memoize chart data
+  const data = useMemo(() => ({
+    labels: currentData.map(item => item[0]),
     datasets: [
       {
         label: 'YoY Trend',
@@ -44,9 +50,10 @@ export default function FinancialChart() {
         hoverBorderWidth: 2,
       },
     ],
-  };
+  }), [currentData, animationProgress]);
 
-  const options = {
+  // Memoize chart options
+  const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: true,
     animation: {
@@ -75,7 +82,7 @@ export default function FinancialChart() {
     plugins: {
       title: {
         display: true,
-        text: '',
+        text: selectedMetric,
         color: '#FFFFFF',
         font: {
           size: 16,
@@ -106,10 +113,10 @@ export default function FinancialChart() {
         displayColors: false,
         callbacks: {
           title: function(tooltipItems) {
-            return tooltipItems[0].label + ' 2025';
+            return tooltipItems[0].label;
           },
           label: function(context) {
-            return '$' + context.parsed.y.toFixed(2);
+            return formatValue(context.parsed.y);
           }
         }
       },
@@ -149,13 +156,25 @@ export default function FinancialChart() {
           },
           padding: 10,
           callback: function(value) {
-            return value + 'K';
+            if (selectedMetric === 'Interest' || selectedMetric === 'Expense') {
+              return '$' + value + 'M';
+            }
+            return '$' + value + 'B';
           }
         },
         beginAtZero: true,
       },
     },
-  };
+  }), [selectedMetric]);
+
+  // Reset animation and force chart update when metric changes
+  useEffect(() => {
+    // Reset animation progress
+    setAnimationProgress(0);
+    
+    // We don't need to manually update the chart since we're using a key prop
+    // on the Bar component that will force a complete re-render
+  }, [selectedMetric]);
 
   // Effect for progressive chart animation
   useEffect(() => {
@@ -182,7 +201,7 @@ export default function FinancialChart() {
         cancelAnimationFrame(animationFrame);
       }
     };
-  }, [isFinancialDataReady]);
+  }, [isFinancialDataReady, selectedMetric]);
   
   // Effect for custom animation on chart initialization
   useEffect(() => {
@@ -200,7 +219,7 @@ export default function FinancialChart() {
         }, 300);
       }
     }
-  }, [isFinancialDataReady]);
+  }, [isFinancialDataReady, selectedMetric]);
 
   return (
     <Box
@@ -217,7 +236,12 @@ export default function FinancialChart() {
       }}
     >
       <Box sx={{ position: 'relative', width: '100%', height: '82%', p: 1 }}>
-        <Bar ref={chartRef} data={data} options={options} />
+        <Bar 
+          key={`chart-${selectedMetric}`} 
+          ref={chartRef} 
+          data={data} 
+          options={options} 
+        />
       </Box>
     </Box>
   );

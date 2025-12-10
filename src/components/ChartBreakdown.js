@@ -2,8 +2,10 @@ import { Box, Stack, Typography } from '@mui/material';
 import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScanning } from '../context/ScanningContext';
+import { useFinancialData } from '../context/FinancialDataContext';
 
-export default function ChartBreakdown({ selectedMetric }) {
+export default function ChartBreakdown() {
+  const { selectedMetric } = useFinancialData();
   // eslint-disable-next-line no-unused-vars
   const { isFinancialDataReady } = useScanning();
   
