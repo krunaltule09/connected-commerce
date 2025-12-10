@@ -77,3 +77,35 @@
   background-size: cover !important;
   background-position: center !important;
 }
+
+/* Experience Center Animations */
+@keyframes breathingPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.012);
+    filter: brightness(1.03);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+  }
+  75% {
+    transform: scale(1.012);
+    filter: brightness(1.03);
+  }
+}
+
+@keyframes ambientGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(255, 230, 0, 0.12),
+      0 0 40px rgba(255, 230, 0, 0.06);
+  }
+}

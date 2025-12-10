@@ -143,9 +143,15 @@ export default function AnomalyDetection() {
                 >
                   <GradientBorderBox sx={{ 
                     transform: "translateZ(0)",
-                    transition: "box-shadow 0.3s ease-in-out",
+                    transition: "box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease",
+                    animation: 'breathingPulse 4s ease-in-out 1s infinite, ambientGlow 5s ease-in-out 1s infinite',
+                    transformOrigin: 'center',
                     '&:hover': {
-                      boxShadow: "0 0 15px rgba(255, 235, 59, 0.3)"
+                      animationPlayState: 'paused',
+                      transform: 'scale(1.02) !important',
+                      filter: 'brightness(1.08) !important',
+                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
+                      cursor: 'pointer'
                     }
                   }}>
                     <QuarterlyDSCRLottie />
@@ -165,9 +171,15 @@ export default function AnomalyDetection() {
                 >
                   <GradientBorderBox sx={{ 
                     transform: "translateZ(0)",
-                    transition: "box-shadow 0.3s ease-in-out",
+                    transition: "box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease",
+                    animation: 'breathingPulse 4s ease-in-out 1.5s infinite, ambientGlow 5s ease-in-out 2s infinite',
+                    transformOrigin: 'center',
                     '&:hover': {
-                      boxShadow: "0 0 15px rgba(33, 207, 255, 0.3)"
+                      animationPlayState: 'paused',
+                      transform: 'scale(1.02) !important',
+                      filter: 'brightness(1.08) !important',
+                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
+                      cursor: 'pointer'
                     }
                   }}>
                     <FinancialDriversLottie />
@@ -203,9 +215,15 @@ export default function AnomalyDetection() {
             >
               <GradientBorderBox py={3} sx={{ 
                 transform: "translateZ(0)",
-                transition: "box-shadow 0.3s ease-in-out",
+                transition: "box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease",
+                animation: 'breathingPulse 4s ease-in-out 2s infinite, ambientGlow 5s ease-in-out 3s infinite',
+                transformOrigin: 'center',
                 '&:hover': {
-                  boxShadow: "0 0 20px rgba(180, 255, 0, 0.2)"
+                  animationPlayState: 'paused',
+                  transform: 'scale(1.02) !important',
+                  filter: 'brightness(1.08) !important',
+                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
+                  cursor: 'pointer'
                 }
               }}>
                 <motion.div

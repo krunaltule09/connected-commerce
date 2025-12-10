@@ -49,6 +49,49 @@
   overflow-y: auto !important;
   position: relative !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  animation: breathingPulse 4s ease-in-out 1s infinite, ambientGlow 5s ease-in-out 1s infinite !important;
+  transform-origin: center !important;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease !important;
+}
+
+.mainPanel:hover {
+  animation-play-state: paused !important;
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer !important;
+}
+
+/* Experience Center Animations */
+@keyframes breathingPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.012);
+    filter: brightness(1.03);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+  }
+  75% {
+    transform: scale(1.012);
+    filter: brightness(1.03);
+  }
+}
+
+@keyframes ambientGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(255, 230, 0, 0.12),
+      0 0 40px rgba(255, 230, 0, 0.06);
+  }
 }
 
 .panelTitle {

@@ -1,0 +1,86 @@
+/* Experience Center Animations - Reusable across all pages */
+
+/* Subtle Pop Animation for Panels - Initial Entry */
+@keyframes subtlePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+  60% {
+    transform: scale(1.03) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Continuous Breathing Pulse - Creates Living Feel */
+@keyframes breathingPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.008);
+    filter: brightness(1.02);
+  }
+  50% {
+    transform: scale(1.015);
+    filter: brightness(1.05);
+  }
+  75% {
+    transform: scale(1.008);
+    filter: brightness(1.02);
+  }
+}
+
+/* Ambient Glow Animation - Very Subtle Pulsing Effect */
+@keyframes ambientGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 6px 16px rgba(0, 0, 0, 0.55),
+      0 0 8px rgba(255, 230, 0, 0.03);
+  }
+}
+
+/* Apply to any element with this class */
+.experiencePanel {
+  animation: 
+    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    breathingPulse 6s ease-in-out 1s infinite,
+    ambientGlow 8s ease-in-out 1s infinite;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Staggered delays for multiple panels */
+.experiencePanel:nth-child(1) {
+  animation-delay: 0s, 1s, 1s;
+}
+
+.experiencePanel:nth-child(2) {
+  animation-delay: 0.3s, 1.5s, 2s;
+}
+
+.experiencePanel:nth-child(3) {
+  animation-delay: 0.6s, 2s, 3s;
+}
+
+.experiencePanel:nth-child(4) {
+  animation-delay: 0.9s, 2.5s, 4s;
+}
+
+/* Hover Enhancement for Interactive Feel */
+.experiencePanel:hover {
+  animation-play-state: paused;
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.65),
+    0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
