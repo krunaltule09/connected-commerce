@@ -295,8 +295,8 @@ const DataSimulator = () => {
       
       {/* Navigation buttons */}
       <Box className={styles.navigationButtons}>
-        <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-        <Box className={styles.nextButton} onClick={() => navigate('/feedback')}>Next step</Box>
+        <Box className={styles.backButton} onClick={() => window.history.back()}>Back</Box>
+        <Box className={styles.nextButton} onClick={() => navigate('/feedback')}>Next</Box>
       </Box>
       
       {/* EY Logo */}

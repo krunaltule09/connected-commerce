@@ -2,7 +2,8 @@
 .navigationButtons {
   position: fixed !important;
   bottom: 30px !important;
-  right: 150px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   display: flex !important;
   flex-direction: row !important;
   gap: 15px !important;
@@ -108,4 +109,91 @@
       0 0 20px rgba(255, 230, 0, 0.12),
       0 0 40px rgba(255, 230, 0, 0.06);
   }
+}
+
+@keyframes subtlePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+  60% {
+    transform: scale(1.03) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Panel styling */
+.dscrPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: 
+    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    breathingPulse 4s ease-in-out 1s infinite,
+    ambientGlow 5s ease-in-out 1s infinite;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.dscrPanel:hover {
+  animation-play-state: paused;
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
+
+.driversPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: 
+    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards,
+    breathingPulse 4s ease-in-out 1.5s infinite,
+    ambientGlow 5s ease-in-out 2s infinite;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.driversPanel:hover {
+  animation-play-state: paused;
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
+
+.aiPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: 
+    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards,
+    breathingPulse 4s ease-in-out 1.8s infinite,
+    ambientGlow 5s ease-in-out 2.5s infinite;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.aiPanel:hover {
+  animation-play-state: paused;
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
+
+.covenantPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: 
+    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards,
+    breathingPulse 4s ease-in-out 2s infinite,
+    ambientGlow 5s ease-in-out 3s infinite;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.covenantPanel:hover {
+  animation-play-state: paused;
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
 }

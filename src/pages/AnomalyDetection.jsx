@@ -141,19 +141,7 @@ export default function AnomalyDetection() {
                   animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15 }}
                 >
-                  <GradientBorderBox sx={{ 
-                    transform: "translateZ(0)",
-                    transition: "box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease",
-                    animation: 'breathingPulse 4s ease-in-out 1s infinite, ambientGlow 5s ease-in-out 1s infinite',
-                    transformOrigin: 'center',
-                    '&:hover': {
-                      animationPlayState: 'paused',
-                      transform: 'scale(1.02) !important',
-                      filter: 'brightness(1.08) !important',
-                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
-                      cursor: 'pointer'
-                    }
-                  }}>
+                  <GradientBorderBox className={styles.dscrPanel}>
                     <QuarterlyDSCRLottie />
                   </GradientBorderBox>
                 </motion.div>
@@ -169,19 +157,7 @@ export default function AnomalyDetection() {
                   animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
                 >
-                  <GradientBorderBox sx={{ 
-                    transform: "translateZ(0)",
-                    transition: "box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease",
-                    animation: 'breathingPulse 4s ease-in-out 1.5s infinite, ambientGlow 5s ease-in-out 2s infinite',
-                    transformOrigin: 'center',
-                    '&:hover': {
-                      animationPlayState: 'paused',
-                      transform: 'scale(1.02) !important',
-                      filter: 'brightness(1.08) !important',
-                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
-                      cursor: 'pointer'
-                    }
-                  }}>
+                  <GradientBorderBox className={styles.driversPanel}>
                     <FinancialDriversLottie />
                   </GradientBorderBox>
                 </motion.div>
@@ -197,7 +173,9 @@ export default function AnomalyDetection() {
                   animate={animateMiddle ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 >
-                  <AIRecommendations contentContainerSx={{top:"60%", left:"18%"}} recommendations={recommendations} />
+                  <Box className={styles.aiPanel}>
+                    <AIRecommendations contentContainerSx={{top:"60%", left:"18%"}} recommendations={recommendations} />
+                  </Box>
                 </motion.div>
               </Box>
             </Fade>
@@ -213,19 +191,7 @@ export default function AnomalyDetection() {
               animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
             >
-              <GradientBorderBox py={3} sx={{ 
-                transform: "translateZ(0)",
-                transition: "box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease",
-                animation: 'breathingPulse 4s ease-in-out 2s infinite, ambientGlow 5s ease-in-out 3s infinite',
-                transformOrigin: 'center',
-                '&:hover': {
-                  animationPlayState: 'paused',
-                  transform: 'scale(1.02) !important',
-                  filter: 'brightness(1.08) !important',
-                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
-                  cursor: 'pointer'
-                }
-              }}>
+              <GradientBorderBox py={3} className={styles.covenantPanel}>
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"
@@ -249,7 +215,7 @@ export default function AnomalyDetection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Box className={styles.backButton} onClick={handleGoBack}>Go back</Box>
+            <Box className={styles.backButton} onClick={handleGoBack}> Back</Box>
           </motion.div>
           
           <motion.div
@@ -259,7 +225,7 @@ export default function AnomalyDetection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Box className={styles.nextButton} onClick={handleNextStep}>Next step</Box>
+            <Box className={styles.nextButton} onClick={handleNextStep}> Next</Box>
           </motion.div>
         </Box>
       </Fade>

@@ -481,7 +481,8 @@
 .navigationButtons {
   position: fixed !important;
   bottom: 30px !important;
-  right: 150px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   display: flex !important;
   flex-direction: row !important;
   gap: 15px !important;
