@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Tooltip } from '@mui/material';
 
 export default function CovenantTile({ covenant }) {
   // Determine the indicator icon and color based on status
@@ -28,17 +28,23 @@ export default function CovenantTile({ covenant }) {
       }}
     >
       {/* Covenant Name */}
-      <Typography 
-        variant="h6" 
-        sx={{ 
-          color: '#FFFFFF', 
-          fontWeight: 600, 
-          fontSize: '1rem',
-          mb: 2
-        }}
-      >
-        {covenant.name}
-      </Typography>
+      <Tooltip title={covenant.name} placement="top" arrow>
+        <Typography 
+          variant="h6" 
+          sx={{ 
+            color: '#FFFFFF', 
+            fontWeight: 600, 
+            fontSize: '1rem',
+            mb: 2,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxWidth: '100%'
+          }}
+        >
+          {covenant.name}
+        </Typography>
+      </Tooltip>
 
       {/* Main Content - Flexbox layout instead of Grid */}
       <Box sx={{ 
@@ -59,20 +65,22 @@ export default function CovenantTile({ covenant }) {
           >
             Value
           </Typography>
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              color: '#FFFFFF',
-              fontWeight: 500,
-              fontSize: '0.75rem',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              maxWidth: '100%'
-            }}
-          >
-            {covenant.value}
-          </Typography>
+          <Tooltip title={covenant.value} placement="top" arrow>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: '#FFFFFF',
+                fontWeight: 500,
+                fontSize: '0.75rem',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '100%'
+              }}
+            >
+              {covenant.value}
+            </Typography>
+          </Tooltip>
         </Box>
         
         {/* Indicator Section */}
@@ -94,16 +102,22 @@ export default function CovenantTile({ covenant }) {
               alt={covenant.indicator} 
               sx={{ mr: 1, height: 18, width: 18 }}
             />
-            <Typography 
-              variant="body2" 
-              sx={{ 
-                color: indicatorDetails.color,
-                fontSize: '0.75rem',
-                fontWeight: 500,
-              }}
-            >
-              {covenant.indicator}
-            </Typography>
+            <Tooltip title={covenant.indicator} placement="top" arrow>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  color: indicatorDetails.color,
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxWidth: '100%'
+                }}
+              >
+                {covenant.indicator}
+              </Typography>
+            </Tooltip>
           </Box>
         </Box>
         
@@ -129,15 +143,17 @@ export default function CovenantTile({ covenant }) {
               },
             }}
           >
-            <Box sx={{
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              width: '100%',
-              display: 'block'
-            }}>
-              View Formula & Historical
-            </Box>
+            <Tooltip title="View Formula & Historical Values" placement="top" arrow>
+              <Box sx={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                width: '100%',
+                display: 'block'
+              }}>
+                View Formula & Historical
+              </Box>
+            </Tooltip>
           </Button>
         </Box>
       </Box>

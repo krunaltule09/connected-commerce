@@ -8,19 +8,19 @@ export default function CovenantStatusSection() {
   const covenants = [
     {
       name: 'DSCR',
-      value: '1.1 (Below 1.25 Covenant)',
+      value: '1.10 (Below 1.25 Covenant)',
       indicator: 'Alert',
       status: 'alert',
     },
     {
       name: 'Debt/Equity',
-      value: '2,300 Cr',
+      value: '3.2x (Above 3.0 Threshold)',
       indicator: 'Warning',
       status: 'warning',
     },
     {
       name: 'Current Ratio',
-      value: '12.3',
+      value: '12.3 (Unusually high vs. 1.5–2.0 industry norm)',
       indicator: 'Alert',
       status: 'alert',
     },
