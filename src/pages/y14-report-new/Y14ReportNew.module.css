@@ -97,10 +97,7 @@
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   z-index: 2; /* ensure left panel sits above right plate */
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-    breathingPulse 4s ease-in-out 1s infinite,
-    ambientGlow 5s ease-in-out 1s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease;
 }
@@ -119,10 +116,7 @@
   z-index: 1; /* behind left and findings */
   align-self: flex-start;
   justify-self: end;
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards,
-    breathingPulse 4s ease-in-out 1.5s infinite,
-    ambientGlow 5s ease-in-out 2s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease;
 }
@@ -150,9 +144,7 @@
   z-index: 2; /* above right panel plate */
   height: fit-content;
   overflow: visible;
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s backwards,
-    breathingPulse 4s ease-in-out 2s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s backwards;
   transform-origin: center;
   transition: filter 0.3s ease;
 }

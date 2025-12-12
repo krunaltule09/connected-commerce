@@ -128,16 +128,12 @@
 /* Panel styling */
 .dscrPanel {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-    breathingPulse 4s ease-in-out 1s infinite,
-    ambientGlow 5s ease-in-out 1s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .dscrPanel:hover {
-  animation-play-state: paused;
   transform: scale(1.02) !important;
   filter: brightness(1.08) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
@@ -146,16 +142,12 @@
 
 .driversPanel {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards,
-    breathingPulse 4s ease-in-out 1.5s infinite,
-    ambientGlow 5s ease-in-out 2s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .driversPanel:hover {
-  animation-play-state: paused;
   transform: scale(1.02) !important;
   filter: brightness(1.08) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
@@ -164,16 +156,12 @@
 
 .aiPanel {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards,
-    breathingPulse 4s ease-in-out 1.8s infinite,
-    ambientGlow 5s ease-in-out 2.5s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .aiPanel:hover {
-  animation-play-state: paused;
   transform: scale(1.02) !important;
   filter: brightness(1.08) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
@@ -182,16 +170,12 @@
 
 .covenantPanel {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  animation: 
-    subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards,
-    breathingPulse 4s ease-in-out 2s infinite,
-    ambientGlow 5s ease-in-out 3s infinite;
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .covenantPanel:hover {
-  animation-play-state: paused;
   transform: scale(1.02) !important;
   filter: brightness(1.08) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
