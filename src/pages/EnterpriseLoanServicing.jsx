@@ -7,15 +7,14 @@ import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
 
 // Icons
-import LoanAgreementIcon from '@mui/icons-material/Description';
-import CovenantRegisterIcon from '@mui/icons-material/ListAlt';
-import Y14ReportingIcon from '@mui/icons-material/Assessment';
-import ForensicsIcon from '@mui/icons-material/Search';
-import OCRMLIcon from '@mui/icons-material/Psychology';
-import RiskDashboardIcon from '@mui/icons-material/Dashboard';
-import ClientDemonstrationIcon from '@mui/icons-material/Slideshow';
-import FinancierWidgetIcon from '@mui/icons-material/AccountBalance';
-import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
+import LoanAgreementIcon from '@mui/icons-material/ArticleOutlined';
+import CovenantRegisterIcon from '@mui/icons-material/ShieldOutlined';
+import Y14ReportingIcon from '@mui/icons-material/DescriptionOutlined';
+import FinancialsESGIcon from '@mui/icons-material/SummarizeOutlined';
+import KYCAMLIcon from '@mui/icons-material/SensorOccupied';
+import RiskDashboardIcon from '@mui/icons-material/BarChartOutlined';
+import ClientCommunicationIcon from '@mui/icons-material/Message';
+import BlockchainLedgerIcon from '@mui/icons-material/ViewInArOutlined';
 
 // Styled components
 const VideoBackground = styled('video')({
@@ -161,12 +160,12 @@ const EnterpriseLoanServicing = () => {
   const menuItems = [
     { icon: <LoanAgreementIcon />, text: 'Loan Agreement', path: '/loan-agreement' },
     { icon: <CovenantRegisterIcon />, text: 'Covenant Register', path: '/covenant-register' },
-    { icon: <InsertDriveFileOutlinedIcon />, text: 'FR Y-14 Reporting', path: '/y14-report' },
-    { icon: <ForensicsIcon />, text: 'Forensics & ESG Reports', path: '/forensics' },
-    { icon: <OCRMLIcon />, text: 'OCR/ML Tax', path: '/ocr-ml-tax' },
+    { icon: <Y14ReportingIcon />, text: 'FR Y-14 Reporting', path: '/y14-report' },
+    { icon: <FinancialsESGIcon />, text: 'Financials & ESG Reports', path: '/financials-esg' },
+    { icon: <KYCAMLIcon />, text: 'KYC/AML file', path: '/kyc-aml' },
     { icon: <RiskDashboardIcon />, text: 'Risk Dashboard', path: '/risk-dashboard' },
-    { icon: <ClientDemonstrationIcon />, text: 'Client Demonstration', path: '/client-demonstration' },
-    { icon: <FinancierWidgetIcon />, text: 'Financier\'s Widget', path: '/financier-widget' },
+    { icon: <ClientCommunicationIcon />, text: 'Client Communication', path: '/client-communication' },
+    { icon: <BlockchainLedgerIcon />, text: 'Blockchain ledger', path: '/blockchain-ledger' },
   ];
 
   const handleVideoLoad = () => {
