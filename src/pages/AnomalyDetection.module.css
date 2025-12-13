@@ -2,7 +2,8 @@
 .navigationButtons {
   position: fixed !important;
   bottom: 30px !important;
-  right: 150px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   display: flex !important;
   flex-direction: row !important;
   gap: 15px !important;
@@ -76,4 +77,107 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../public/assets/background-texture.jpg") !important;
   background-size: cover !important;
   background-position: center !important;
+}
+
+/* Experience Center Animations */
+@keyframes breathingPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.012);
+    filter: brightness(1.03);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+  }
+  75% {
+    transform: scale(1.012);
+    filter: brightness(1.03);
+  }
+}
+
+@keyframes ambientGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(255, 230, 0, 0.12),
+      0 0 40px rgba(255, 230, 0, 0.06);
+  }
+}
+
+@keyframes subtlePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+  60% {
+    transform: scale(1.03) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Panel styling */
+.dscrPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.dscrPanel:hover {
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
+
+.driversPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.driversPanel:hover {
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
+
+.aiPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.aiPanel:hover {
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
+}
+
+.covenantPanel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards;
+  transform-origin: center;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.covenantPanel:hover {
+  transform: scale(1.02) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
+  cursor: pointer;
 }
