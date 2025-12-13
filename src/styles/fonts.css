@@ -1,0 +1,64 @@
+/* Interstate Font Definitions */
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-Regular.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-Bold.ttf") format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-Italic.ttf") format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-BoldItalic.ttf") format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-Light.ttf") format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-LightItalic.ttf") format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-LightBold.ttf") format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Interstate';
+  src: url("../assets/font_Interstate/EYInterstate-LightBoldItalic.ttf") format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
