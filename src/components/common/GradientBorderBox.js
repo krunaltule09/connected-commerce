@@ -7,7 +7,7 @@ export default function GradientBorderBox({ children, sx = {}, ...props }) {
         position: 'relative',
         borderRadius: 2,
         bgcolor: '#1A1A24',
-        border: '0.1px solid',
+        border: '0.01rem solid',
         borderImage: 'linear-gradient(90deg, #EEF96E 0%, rgba(244, 167, 157, 0) 100%);',
         borderImageSlice: 1,
         ...sx
