@@ -5,6 +5,7 @@ import { styled, keyframes } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
+import { useButtonSound } from '../hooks';
 
 // Icons
 import LoanAgreementIcon from '@mui/icons-material/Description';
@@ -173,13 +174,15 @@ const EnterpriseLoanServicing = () => {
     setIsVideoLoaded(true);
   };
 
-  const handleButtonClick = (path) => {
+  // Handle button click with sound effect
+  const handleButtonClick = useButtonSound((path) => {
     // Navigate to the specified path
     console.log(`Navigating to: ${path}`);
     navigate(path);
-  };
+  });
 
-  const handleActivateServicing = async () => {
+  // Handle activate servicing with sound effect
+  const handleActivateServicing = useButtonSound(async () => {
     console.log('Activating servicing mode');
     
     // Navigate locally
@@ -205,7 +208,7 @@ const EnterpriseLoanServicing = () => {
         severity: 'error'
       });
     }
-  };
+  });
   
   const handleCloseNotification = () => {
     setNotification({ ...notification, open: false });

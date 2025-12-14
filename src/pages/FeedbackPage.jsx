@@ -5,6 +5,7 @@ import { Box, Typography, Button, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // Removed unused import: CheckCircleOutlineIcon
 import { useNavigate } from 'react-router-dom';
+import { useButtonSound } from '../hooks';
 import Lottie from 'lottie-react';
 import feedbackAnimationData from '../lottie/FEEDBACK UI.json';
 
@@ -112,9 +113,10 @@ export default function FeedbackPage() {
     return () => clearTimeout(timer);
   }, []);
   
-  const handleBackToHome = () => {
+  // Handle back to home with sound effect
+  const handleBackToHome = useButtonSound(() => {
     navigate('/');
-  };
+  });
 
   return (
     <PageContainer>

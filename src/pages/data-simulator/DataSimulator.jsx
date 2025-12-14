@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Button, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
+import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
 
 const DataSimulator = () => {
@@ -293,10 +294,20 @@ const DataSimulator = () => {
         </GradientBorderBox>
       </Box>
       
-      {/* Navigation buttons */}
+      {/* Navigation buttons with sound effects */}
       <Box className={styles.navigationButtons}>
-        <Box className={styles.backButton} onClick={() => window.history.back()}>Back</Box>
-        <Box className={styles.nextButton} onClick={() => navigate('/feedback')}>Next</Box>
+        <Box 
+          className={styles.backButton} 
+          onClick={useButtonSound(() => window.history.back())}
+        >
+          Back
+        </Box>
+        <Box 
+          className={styles.nextButton} 
+          onClick={useButtonSound(() => navigate('/feedback'))}
+        >
+          Next
+        </Box>
       </Box>
       
       {/* EY Logo */}

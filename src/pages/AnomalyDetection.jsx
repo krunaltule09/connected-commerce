@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
+import { useButtonSound } from '../hooks';
 import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
 import FinancialDriversLottie from '../components/anomaly-detection/FinancialDriversLottie';
 import CovenantBreachLog from '../components/anomaly-detection/CovenantBreachLog';
@@ -37,8 +38,8 @@ export default function AnomalyDetection() {
     };
   }, []);
   
-  // Handle navigation to Y14 Report Generation page
-  const handleNextStep = async () => {
+  // Handle navigation to Y14 Report Generation page with sound effect
+  const handleNextStep = useButtonSound(async () => {
     // Navigate locally
     navigate('/y14-report');
     
@@ -62,12 +63,12 @@ export default function AnomalyDetection() {
         severity: 'error'
       });
     }
-  };
+  });
   
-  // Handle going back to previous page
-  const handleGoBack = () => {
+  // Handle going back to previous page with sound effect
+  const handleGoBack = useButtonSound(() => {
     window.history.back();
-  };
+  });
   
   const handleCloseNotification = () => {
     setNotification({ ...notification, open: false });

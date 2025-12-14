@@ -4,23 +4,26 @@ import routes from './routes';
 import { SyncRouteProvider } from './context/SyncRouteContext';
 import { FinancialDataProvider } from './context/FinancialDataContext';
 import { ScanningProvider } from './context/ScanningContext';
+import { SoundProvider } from './context/SoundContext';
 // SyncIndicator removed
 
 function App() {
   return (
     <Router>
-      <SyncRouteProvider>
-        <ScanningProvider>
-          <FinancialDataProvider>
-            <Routes>
-              {routes.map((route, index) => (
-                <Route key={index} path={route.path} element={route.element} />
-              ))}
-            </Routes>
-            {/* SyncIndicator removed */}
-          </FinancialDataProvider>
-        </ScanningProvider>
-      </SyncRouteProvider>
+      <SoundProvider>
+        <SyncRouteProvider>
+          <ScanningProvider>
+            <FinancialDataProvider>
+              <Routes>
+                {routes.map((route, index) => (
+                  <Route key={index} path={route.path} element={route.element} />
+                ))}
+              </Routes>
+              {/* SyncIndicator removed */}
+            </FinancialDataProvider>
+          </ScanningProvider>
+        </SyncRouteProvider>
+      </SoundProvider>
     </Router>
   );
 }

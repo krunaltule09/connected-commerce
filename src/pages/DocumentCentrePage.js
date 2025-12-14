@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import navigationService from '../services/NavigationService';
+import { useButtonSound } from '../hooks';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
@@ -78,7 +79,8 @@ export default function DocumentCentrePage() {
     setSelectedId(null);
   };
 
-  const handleScanDocument = async () => {
+  // Handle scan document with sound effect
+  const handleScanDocument = useButtonSound(async () => {
     // Close the modal
     handleCloseModal();
     
@@ -105,7 +107,7 @@ export default function DocumentCentrePage() {
         severity: 'error'
       });
     }
-  };
+  });
   
   const handleCloseNotification = () => {
     setNotification({ ...notification, open: false });

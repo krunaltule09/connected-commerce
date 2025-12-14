@@ -7,12 +7,13 @@ import { ScanningProvider } from '../context/ScanningContext';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import RightSection from '../components/dashboard/RightSection';
 import navigationService from '../services/NavigationService';
+import { useButtonSound } from '../hooks';
 
 export default function FinancialDashboard() {
   const navigate = useNavigate();
   const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
   
-  const handleNextStep = async () => {
+  const handleNextStep = useButtonSound(async () => {
     navigate('/anomaly-detection')
     try {
       // Send navigation event to operate-experience app
@@ -34,11 +35,11 @@ export default function FinancialDashboard() {
         severity: 'error'
       });
     }
-  };
+  });
 
-  const handleGoBack = () => {
+  const handleGoBack = useButtonSound(() => {
     window.history.back();
-  };
+  });
   
   const handleCloseNotification = () => {
     setNotification({ ...notification, open: false });

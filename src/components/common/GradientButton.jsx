@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import { useSound } from '../../hooks';
 
 /**
  * A reusable button component that matches the styling from FinancialMetricsSection
@@ -17,8 +18,19 @@ const GradientButton = ({
   children, 
   sx = {}, 
   onClick,
+  soundPath = '/assets/sounds/button-click.mp3',
   ...rest 
 }) => {
+  // Initialize sound hook
+  const playSound = useSound(soundPath, { volume: 0.5 });
+  
+  // Handle click with sound
+  const handleClick = (event) => {
+    playSound();
+    if (onClick) {
+      onClick(event);
+    }
+  };
   // Determine button styles based on variant and active state
   const getButtonStyles = () => {
     // Base styles for all buttons
@@ -107,8 +119,7 @@ const GradientButton = ({
 
   return (
     <Button
-
-      onClick={onClick}
+      onClick={handleClick}
       sx={{
         ...getButtonStyles(),
         ...sx,

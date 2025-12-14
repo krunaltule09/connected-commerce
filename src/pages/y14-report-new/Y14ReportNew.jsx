@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InsertDriveFileOutlined from '@mui/icons-material/InsertDriveFileOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
+import { useButtonSound } from '../../hooks';
 // removed unused ErrorIcon
 // removed findings icon imports (panel replaced with SVG)
 // removed stepper CheckIcon
@@ -37,13 +38,15 @@ export default function Y14ReportNew() {
     setExpandedAccordion(accordionId);
   };
 
-  const handleNextStep = () => {
+  // Handle next step with sound effect
+  const handleNextStep = useButtonSound(() => {
     navigate('/data-simulator');
-  };
+  });
 
-  const handleGoBack = () => {
+  // Handle go back with sound effect
+  const handleGoBack = useButtonSound(() => {
     navigate('/anomaly-detection');
-  };
+  });
 
   return (
     <Box className={styles.reportGenerationPage}>

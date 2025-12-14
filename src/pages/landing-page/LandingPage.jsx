@@ -3,12 +3,14 @@ import { Box, Typography, Fade, Zoom, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
+import { useButtonSound } from '../../hooks';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
 
-  const handleStartJourney = async () => {
+  // Create a click handler with sound effect
+  const handleStartJourney = useButtonSound(async () => {
     try {
       // Navigate locally
       navigate('/explore');
@@ -32,7 +34,7 @@ const LandingPage = () => {
         severity: 'error'
       });
     }
-  };
+  });
   
   const handleCloseNotification = () => {
     setNotification({ ...notification, open: false });
