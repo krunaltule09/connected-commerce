@@ -592,7 +592,8 @@
 .navigationButtons {
   position: fixed !important;
   bottom: 30px !important;
-  right: 150px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   display: flex !important;
   flex-direction: row !important;
   gap: 15px !important;
@@ -613,8 +614,8 @@
   border-radius: 2rem !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
-  min-width: 120px !important;
-  height: 24px !important;
+  min-width: 164px !important;
+  height: 60px !important;
 }
 
 .backButton {
@@ -733,6 +734,8 @@ AI Chip Container
   
   .navigationButtons {
     position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .eyLogo {
@@ -764,7 +767,8 @@ AI Chip Container
   
   .navigationButtons {
     bottom: 1rem;
-    right: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .backButton, .nextButton {

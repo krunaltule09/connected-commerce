@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import GradientButton from '../../components/common/GradientButton';
 import AIRecommendations from '../../components/anomaly-detection/AIRecommendations';
+import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
+import { useButtonSound } from '../../hooks';
 
 
 const OperationalDocScan = () => {
@@ -30,11 +32,15 @@ const OperationalDocScan = () => {
     setActiveTab(tab);
   };
   
-  const handleNextStep = () => {
+  const handleNextStep = useButtonSound(() => {
     if (nextButtonEnabled) {
       navigate('/data-simulator');
     }
-  };
+  });
+
+  const handleGoBack = useButtonSound(() => {
+    navigate('/y14-report');
+  });
 
   return (
     <Box className={styles.operationalDocScanPage}>
@@ -338,24 +344,11 @@ const OperationalDocScan = () => {
      
       </Box>
          {/* Navigation buttons */}
-         <Box className={styles.navigationButtons}>
-          <Slide direction="right" in={true} timeout={1000} mountOnEnter>
-            <Box className={styles.backButton} onClick={() => window.history.back()}>Go back</Box>
-          </Slide>
-          <Slide direction="left" in={true} timeout={1000} mountOnEnter>
-            <Box 
-              className={`${styles.nextButton} ${!nextButtonEnabled ? styles.disabledButton : ''}`} 
-              onClick={handleNextStep}
-              sx={{
-                opacity: nextButtonEnabled ? 1 : 0.5,
-                cursor: nextButtonEnabled ? 'pointer' : 'not-allowed',
-                transition: 'opacity 0.3s ease'
-              }}
-            >
-              Next step
-            </Box>
-          </Slide>
-        </Box>
+      <NavigationButtons 
+        handleGoBack={handleGoBack} 
+        handleNextStep={handleNextStep} 
+        nextButtonEnabled={nextButtonEnabled} 
+      />
       
       {/* EY Logo */}
       <Zoom in={true} timeout={1500} style={{ transitionDelay: '500ms' }}>
