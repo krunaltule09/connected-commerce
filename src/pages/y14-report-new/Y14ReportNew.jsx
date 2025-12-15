@@ -69,7 +69,7 @@ export default function Y14ReportNew() {
         {/* Left: Schedule Template with gradient border and grow */}
         <Box className={styles.leftColumn}>
           <Grow in={showLeft} timeout={1200} appear>
-            <GradientBorderBox animated>
+            <GradientBorderBox>
               <Box className={styles.scheduleTemplatePanel}>
                 <Box className={styles.panelHeader}>
                   <Typography className={styles.panelTitle}>FR Y-14 Schedule Template</Typography>

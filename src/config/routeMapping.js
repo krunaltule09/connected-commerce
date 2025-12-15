@@ -14,6 +14,7 @@ const ROUTE_MAPPING = {
   '/y14-report': '/y14-report/large',
   '/operational-doc-scan': '/covenant-monitoring',
   '/data-simulator': '/benefits-summary',
+
 };
 
 export default ROUTE_MAPPING;
