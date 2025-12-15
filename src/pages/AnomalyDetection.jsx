@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, Fade, Grow, Slide, Snackbar, Alert } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
@@ -108,19 +108,6 @@ export default function AnomalyDetection() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2
-      }
-    }
-  };
-  
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 12
       }
     }
   };
