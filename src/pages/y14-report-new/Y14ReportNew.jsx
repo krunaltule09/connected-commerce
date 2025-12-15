@@ -97,33 +97,23 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Obligor name</Typography>
-                        <Tooltip title="Vertex Logistics Corp." placement="top" arrow>
-                          <Typography className={styles.textValue}>Vertex Logistics Corp.</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Vertex Logistics Corp.</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Obligor ID</Typography>
-                        <Tooltip title="00492-WHSL" placement="top" arrow>
-                          <Typography className={styles.textValue}>00492-WHSL</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>00492-WHSL</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Country</Typography>
-                        <Tooltip title="United States" placement="top" arrow>
-                          <Typography className={styles.textValue}>United States</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>United States</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Industry/NAICS code</Typography>
-                        <Tooltip title="488510 – Freight Transportation Arrangement" placement="top" arrow>
-                          <Typography className={styles.textValue}>488510 – Freight Transportation Arrangement</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>488510 – Freight Transportation Arrangement</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Obligor type</Typography>
-                        <Tooltip title="Corporate" placement="top" arrow>
-                          <Typography className={styles.textValue}>Corporate</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Corporate</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -146,63 +136,43 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Loan Type</Typography>
-                        <Tooltip title="Working Capital Revolver" placement="top" arrow>
-                          <Typography className={styles.textValue}>Working Capital Revolver</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Working Capital Revolver</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Origination Date</Typography>
-                        <Tooltip title="15-Jan-21" placement="top" arrow>
-                          <Typography className={styles.textValue}>15-Jan-21</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>15-Jan-21</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Maturity Date</Typography>
-                        <Tooltip title="15-Jan-26" placement="top" arrow>
-                          <Typography className={styles.textValue}>15-Jan-26</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>15-Jan-26</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Original Commitment</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Current Outstanding Balance</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Unused Commitment</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Interest Rate Type</Typography>
-                        <Tooltip title="Floating (SOFR + 2.10%)" placement="top" arrow>
-                          <Typography className={styles.textValue}>Floating (SOFR + 2.10%)</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Floating (SOFR + 2.10%)</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Current Interest Rate</Typography>
-                        <Tooltip title="7.35%" placement="top" arrow>
-                          <Typography className={styles.textValue}>7.35%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>7.35%</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Payment Frequency</Typography>
-                        <Tooltip title="Monthly" placement="top" arrow>
-                          <Typography className={styles.textValue}>Monthly</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Monthly</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Next Payment Due</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -225,45 +195,31 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Collateral Type</Typography>
-                        <Tooltip title="Accounts Receivable + Inventory" placement="top" arrow>
-                          <Typography className={styles.textValue}>Accounts Receivable + Inventory</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Accounts Receivable + Inventory</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Collateral Code</Typography>
-                        <Tooltip title="24" placement="top" arrow>
-                          <Typography className={styles.textValue}>24</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>24</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Collateral Value</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>LTV (Calculated)</Typography>
-                        <Tooltip title="64%" placement="top" arrow>
-                          <Typography className={styles.textValue}>64%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>64%</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Lien Position</Typography>
-                        <Tooltip title="1st Lien" placement="top" arrow>
-                          <Typography className={styles.textValue}>1st Lien</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>1st Lien</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Guarantee Indicator</Typography>
-                        <Tooltip title="Yes (Corporate Guarantee)" placement="top" arrow>
-                          <Typography className={styles.textValue}>Yes (Corporate Guarantee)</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Yes (Corporate Guarantee)</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Guarantee Amount</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -294,15 +250,9 @@ export default function Y14ReportNew() {
                       
                       {/* DSCR */}
                       <Box className={styles.covenantRow}>
-                        <Tooltip title="DSCR" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>DSCR</Typography>
-                        </Tooltip>
-                        <Tooltip title="≥ 1.20" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>≥ 1.20</Typography>
-                        </Tooltip>
-                        <Tooltip title="0.75" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>0.75</Typography>
-                        </Tooltip>
+                        <Typography className={styles.covenantCell}>DSCR</Typography>
+                        <Typography className={styles.covenantCell}>≥ 1.20</Typography>
+                        <Typography className={styles.covenantCell}>0.75</Typography>
                         <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Box sx={{ width: 16, height: 16, bgcolor: '#FF9800', borderRadius: 1, mr: 1 }}></Box>
                           <Typography>At Risk</Typography>
@@ -311,15 +261,9 @@ export default function Y14ReportNew() {
                       
                       {/* LTV */}
                       <Box className={styles.covenantRow}>
-                        <Tooltip title="LTV" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>LTV</Typography>
-                        </Tooltip>
-                        <Tooltip title="≤ 70%" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>≤ 70%</Typography>
-                        </Tooltip>
-                        <Tooltip title="64%" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>64%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.covenantCell}>LTV</Typography>
+                        <Typography className={styles.covenantCell}>≤ 70%</Typography>
+                        <Typography className={styles.covenantCell}>64%</Typography>
                         <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Box sx={{ width: 16, height: 16, bgcolor: '#4CAF50', borderRadius: 1, mr: 1 }}></Box>
                           <Typography>Compliant</Typography>
@@ -328,15 +272,9 @@ export default function Y14ReportNew() {
                       
                       {/* Leverage Ratio */}
                       <Box className={styles.covenantRow}>
-                        <Tooltip title="Leverage Ratio" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>Leverage Ratio</Typography>
-                        </Tooltip>
-                        <Tooltip title="≤ 3.50x" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>≤ 3.50x</Typography>
-                        </Tooltip>
-                        <Tooltip title="3.20x" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>3.20x</Typography>
-                        </Tooltip>
+                        <Typography className={styles.covenantCell}>Leverage Ratio</Typography>
+                        <Typography className={styles.covenantCell}>≤ 3.50x</Typography>
+                        <Typography className={styles.covenantCell}>3.20x</Typography>
                         <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Box sx={{ width: 16, height: 16, bgcolor: '#4CAF50', borderRadius: 1, mr: 1 }}></Box>
                           <Typography>Compliant</Typography>
@@ -345,15 +283,9 @@ export default function Y14ReportNew() {
                       
                       {/* ESG Filing */}
                       <Box className={styles.covenantRow}>
-                        <Tooltip title="ESG Filing" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>ESG Filing</Typography>
-                        </Tooltip>
-                        <Tooltip title="Q2 Filing Required" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>Q2 Filing Required</Typography>
-                        </Tooltip>
-                        <Tooltip title="Overdue" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>Overdue</Typography>
-                        </Tooltip>
+                        <Typography className={styles.covenantCell}>ESG Filing</Typography>
+                        <Typography className={styles.covenantCell}>Q2 Filing Required</Typography>
+                        <Typography className={styles.covenantCell}>Overdue</Typography>
                         <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Box sx={{ width: 16, height: 16, bgcolor: '#F44336', borderRadius: 1, mr: 1 }}></Box>
                           <Typography>Breached</Typography>
@@ -362,15 +294,9 @@ export default function Y14ReportNew() {
                       
                       {/* Financial Reporting */}
                       <Box className={styles.covenantRow}>
-                        <Tooltip title="Financial Reporting" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>Financial Reporting</Typography>
-                        </Tooltip>
-                        <Tooltip title="Quarterly, within 30 days" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>Quarterly, within 30 days</Typography>
-                        </Tooltip>
-                        <Tooltip title="Submitted" placement="top" arrow>
-                          <Typography className={styles.covenantCell}>Submitted</Typography>
-                        </Tooltip>
+                        <Typography className={styles.covenantCell}>Financial Reporting</Typography>
+                        <Typography className={styles.covenantCell}>Quarterly, within 30 days</Typography>
+                        <Typography className={styles.covenantCell}>Submitted</Typography>
                         <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Box sx={{ width: 16, height: 16, bgcolor: '#4CAF50', borderRadius: 1, mr: 1 }}></Box>
                           <Typography>Compliant</Typography>
@@ -399,45 +325,31 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Internal Risk Rating</Typography>
-                        <Tooltip title="6 (Moderate Risk)" placement="top" arrow>
-                          <Typography className={styles.textValue}>6 (Moderate Risk)</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>6 (Moderate Risk)</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Prob. of Default (PD)</Typography>
-                        <Tooltip title="1.90%" placement="top" arrow>
-                          <Typography className={styles.textValue}>1.90%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>1.90%</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Loss Given Default (LGD)</Typography>
-                        <Tooltip title="38%" placement="top" arrow>
-                          <Typography className={styles.textValue}>38%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>38%</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Exposure at Default (EAD)</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Accrued Interest</Typography>
-                        <Tooltip title="$72,400" placement="top" arrow>
-                          <Typography className={styles.textValue}>$72,400</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>$72,400</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Non-Accrual Indicator</Typography>
-                        <Tooltip title="No" placement="top" arrow>
-                          <Typography className={styles.textValue}>No</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>No</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Troubled Debt Restructuring</Typography>
-                        <Tooltip title="No" placement="top" arrow>
-                          <Typography className={styles.textValue}>No</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>No</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -460,39 +372,27 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Days Past Due</Typography>
-                        <Tooltip title="0" placement="top" arrow>
-                          <Typography className={styles.textValue}>0</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>0</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Past Due Indicator</Typography>
-                        <Tooltip title="No" placement="top" arrow>
-                          <Typography className={styles.textValue}>No</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>No</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Last Payment Date</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Next Payment Date</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Payment Status</Typography>
-                        <Tooltip title="Current" placement="top" arrow>
-                          <Typography className={styles.textValue}>Current</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Current</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Interest Expense (YTD)</Typography>
-                        <Tooltip title="Value hidden" placement="top" arrow>
-                          <Typography className={styles.textValue}>########</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>########</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -515,39 +415,27 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Accounting Standard</Typography>
-                        <Tooltip title="GAAP" placement="top" arrow>
-                          <Typography className={styles.textValue}>GAAP</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>GAAP</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Accrual Status</Typography>
-                        <Tooltip title="Performing" placement="top" arrow>
-                          <Typography className={styles.textValue}>Performing</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Performing</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Impairment Status</Typography>
-                        <Tooltip title="Not Impaired" placement="top" arrow>
-                          <Typography className={styles.textValue}>Not Impaired</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Not Impaired</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Charge-Off Amount</Typography>
-                        <Tooltip title="$0" placement="top" arrow>
-                          <Typography className={styles.textValue}>$0</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>$0</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Restructured Indicator</Typography>
-                        <Tooltip title="No" placement="top" arrow>
-                          <Typography className={styles.textValue}>No</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>No</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Basel Exposure Class</Typography>
-                        <Tooltip title="Corporate Exposure" placement="top" arrow>
-                          <Typography className={styles.textValue}>Corporate Exposure</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Corporate Exposure</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -570,69 +458,47 @@ export default function Y14ReportNew() {
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>DSCR (Reported)</Typography>
-                        <Tooltip title="0.75" placement="top" arrow>
-                          <Typography className={styles.textValue}>0.75</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>0.75</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>DSCR (Trend YoY)</Typography>
-                        <Tooltip title="5%" placement="top" arrow>
-                          <Typography className={styles.textValue}>5%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>5%</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>LTV (Reported)</Typography>
-                        <Tooltip title="64%" placement="top" arrow>
-                          <Typography className={styles.textValue}>64%</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>64%</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>EBITDA (TTM)</Typography>
-                        <Tooltip title="$1.2B" placement="top" arrow>
-                          <Typography className={styles.textValue}>$1.2B</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>$1.2B</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Revenue (TTM)</Typography>
-                        <Tooltip title="$12.5B" placement="top" arrow>
-                          <Typography className={styles.textValue}>$12.5B</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>$12.5B</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Total Debt</Typography>
-                        <Tooltip title="$3.8B" placement="top" arrow>
-                          <Typography className={styles.textValue}>$3.8B</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>$3.8B</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Equity</Typography>
-                        <Tooltip title="$1.2B" placement="top" arrow>
-                          <Typography className={styles.textValue}>$1.2B</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>$1.2B</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Covenant Breach</Typography>
-                        <Tooltip title="ESG report overdue (Q2)" placement="top" arrow>
-                          <Typography className={styles.textValue}>ESG report overdue (Q2)</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>ESG report overdue (Q2)</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Remediation Plan</Typography>
-                        <Tooltip title="Client notified; 30-day cure period issued" placement="top" arrow>
-                          <Typography className={styles.textValue}>Client notified; 30-day cure period issued</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Client notified; 30-day cure period issued</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Internal Comments</Typography>
-                        <Tooltip title="No financial covenant defaults; ESG breach does not trigger cross-default" placement="top" arrow>
-                          <Typography className={styles.textValue}>No financial covenant defaults; ESG breach does not trigger cross-default</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>No financial covenant defaults; ESG breach does not trigger cross-default</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Stress Scenario Tested</Typography>
-                        <Tooltip title="Revenue – 10% = DSCR falls to 0.62" placement="top" arrow>
-                          <Typography className={styles.textValue}>Revenue – 10% = DSCR falls to 0.62</Typography>
-                        </Tooltip>
+                        <Typography className={styles.textValue}>Revenue – 10% = DSCR falls to 0.62</Typography>
                       </Box>
                     </Box>
                   </Box>

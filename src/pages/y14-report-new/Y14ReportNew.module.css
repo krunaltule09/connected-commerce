@@ -37,7 +37,7 @@
   min-height: calc(100vh - 180px);
   z-index: 2;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 65% 35%;
   grid-template-rows: minmax(480px, auto) auto;
   grid-template-areas:
     'left right'
@@ -304,7 +304,7 @@
   gap: 16px;
   width: 100%;
   box-sizing: border-box;
-  max-height: 190px; /* show 5 rows without scroll in half panel */
+  max-height: 300px; /* increased height to show more content */
   overflow-y: auto;
 }
 
@@ -326,10 +326,11 @@
 .covenantRow {
   display: grid;
   grid-template-columns: 1.5fr 1.5fr 1fr 1.5fr;
-  align-items: center;
+  align-items: start; /* align to top for multi-line content */
   width: 100%;
   min-height: 32px;
-  margin-bottom: 4px;
+  height: auto; /* allow height to grow with content */
+  margin-bottom: 8px; /* increased bottom margin for better spacing */
 }
 
 .covenantCell {
@@ -340,50 +341,55 @@
   line-height: 20px;
   color: #FFFFFF;
   padding: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0; /* allows flex items to shrink below content size */
+  white-space: normal; /* allow text to wrap */
+  overflow: visible; /* show all content */
+  word-break: break-word; /* break long words if needed */
+  min-width: 0;
 }
 
 .textRow {
   display: flex;
   flex-direction: row;
-  align-items: baseline; /* align label/value baselines */
+  align-items: flex-start; /* align to top for multi-line content */
   justify-content: space-between;
-  padding: 0 0 8px;
+  padding: 0 0 12px; /* increased bottom padding for better spacing */
   gap: 24px;
   min-height: 28px;
+  height: auto; /* allow height to grow with content */
   width: 100%;
 }
 
 .textLabel {
   width: 240px;
-  height: 20px;
+  min-height: 20px;
+  height: auto; /* allow height to grow with content */
   font-family: 'EYInterstate', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px !important;  /* reduced */
+  font-size: 12px !important;
   line-height: 20px;
-  color: #FFFFFF; /* match screenshot */
+  color: #FFFFFF;
   flex: 0 0 240px;
+  white-space: normal; /* allow text to wrap */
+  word-break: break-word; /* break long words if needed */
 }
 
 .textValue {
-  height: 20px;
+  min-height: 20px;
+  height: auto;
   font-family: 'EYInterstate', sans-serif;
   font-style: normal;
   font-weight: 300;
-  font-size: 13px !important; /* slightly reduced for compact look */
+  font-size: 13px !important;
   line-height: 20px;
   color: #FFFFFF;
   flex: 1 1 auto;
   text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 220px; /* limit width to ensure ellipsis works */
-  cursor: default; /* show default cursor on hover to indicate tooltip */
+  white-space: normal; /* allow text to wrap */
+  overflow: visible; /* show all content */
+  word-break: break-word; /* break long words if needed */
+  max-width: none; /* remove max width limitation */
+  cursor: default;
 }
 
 /* Workflow styling */
