@@ -40,7 +40,7 @@ export default function Y14ReportNew() {
 
   // Handle next step with sound effect
   const handleNextStep = useButtonSound(() => {
-    navigate('/data-simulator');
+    navigate('/operational-doc-scan');
   });
 
   // Handle go back with sound effect
