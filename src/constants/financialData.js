@@ -31,19 +31,12 @@ export const FINANCIAL_METRICS = {
     ["2022", 1.15],
     ["2023", 1.2]
   ],
-  'Interest': [
+  'Interest Expense': [
     ["2019", 180],
     ["2020", 190],
     ["2021", 195],
     ["2022", 205],
     ["2023", 210]
-  ],
-  'Expense': [
-    ["2019", 120],
-    ["2020", 125],
-    ["2021", 130],
-    ["2022", 135],
-    ["2023", 140]
   ]
 };
 
@@ -55,8 +48,7 @@ export const METRIC_UNITS = {
   'EBITDA': 'B',
   'Debt': 'B',
   'Equity': 'B',
-  'Interest': 'M',
-  'Expense': 'M'
+  'Interest Expense': 'M',
 };
 
 /**

@@ -142,7 +142,7 @@ export default function AnomalyDetection() {
                   animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15 }}
                 >
-                  <GradientBorderBox className={styles.dscrPanel}>
+                  <GradientBorderBox animated className={styles.dscrPanel}>
                     <QuarterlyDSCRLottie />
                   </GradientBorderBox>
                 </motion.div>
@@ -158,7 +158,7 @@ export default function AnomalyDetection() {
                   animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
                 >
-                  <GradientBorderBox className={styles.driversPanel}>
+                  <GradientBorderBox animated className={styles.driversPanel}>
                     <FinancialDriversLottie />
                   </GradientBorderBox>
                 </motion.div>
@@ -192,7 +192,7 @@ export default function AnomalyDetection() {
               animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
             >
-              <GradientBorderBox py={3} className={styles.covenantPanel}>
+              <GradientBorderBox animated py={3} className={styles.covenantPanel}>
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"

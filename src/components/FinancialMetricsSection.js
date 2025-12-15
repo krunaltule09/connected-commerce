@@ -53,7 +53,7 @@ export default function FinancialMetricsSection() {
   };
 
   return (
-    <GradientBorderBox sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <GradientBorderBox animated sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Slide direction="down" in={animateTitle} timeout={700}>
         <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 500, fontSize: '1rem', mb: 1, p: 1.5 }}>Extracted Key Metrics</Typography>
       </Slide>

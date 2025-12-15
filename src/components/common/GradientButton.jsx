@@ -42,6 +42,7 @@ const GradientButton = ({
       fontSize: '0.85rem',
       padding: '12px 16px',
       justifyContent: 'flex-start',
+      textAlign: 'left',
       position: 'relative',
       '&:hover': {
         outline: 'none',

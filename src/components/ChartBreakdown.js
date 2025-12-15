@@ -27,13 +27,9 @@ export default function ChartBreakdown() {
       'Stable equity position supports Net Worth / Equity Maintenance covenants.',
       'Equity cushion reduces risk of LTV covenant deterioration during adverse market cycles.'
     ],
-    'Interest': [
+    'Interest Expense': [
       'Rising interest expense may pressure Interest Coverage covenants if EBITDA slows.',
       'Higher servicing costs could impact DSCR compliance, requiring ongoing monitoring.'
-    ],
-    'Expense': [
-      'Expense ratios remain within covenant thresholds, supporting operational efficiency requirements.',
-      'Cost control measures align with financial covenants for sustainable debt service.'
     ]
   }), []);
 

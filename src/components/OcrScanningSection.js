@@ -37,7 +37,7 @@ export default function OcrScanningSection() {
   };
 
   return (
-    <GradientBorderBox sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <GradientBorderBox animated sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Stack spacing={1.5} sx={{ flexGrow: 1, overflow: 'hidden' }}>
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
@@ -127,23 +127,7 @@ export default function OcrScanningSection() {
                   position: 'absolute',
                 }}
               />
-              <motion.div
-                animate={{ 
-                  x: ['-100%', '100%'],
-                  opacity: [0, 0.3, 0]
-                }}
-                transition={{ 
-                  repeat: Infinity, 
-                  duration: 2,
-                  ease: "linear"
-                }}
-                style={{
-                  height: '100%',
-                  width: '30%',
-                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-                  position: 'absolute',
-                }}
-              />
+
             </Box>
           </Box>
         </GradientBorderBox>
