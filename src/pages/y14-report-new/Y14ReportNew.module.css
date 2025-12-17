@@ -304,7 +304,7 @@
   gap: 16px;
   width: 100%;
   box-sizing: border-box;
-  max-height: 300px; /* increased height to show more content */
+  max-height: 172px;
   overflow-y: auto;
 }
 
@@ -788,13 +788,13 @@
   justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: 40px;
+  gap: 24px;
   z-index: 10;
 }
 
 .backButton {
-  width: 165px !important;
-  height: 64px !important;
+  width: 164px !important;
+  height: 60px !important;
   font-family: 'EYInterstate', sans-serif;
   font-style: normal;
   font-weight: 400 !important;
@@ -809,6 +809,10 @@
   transition: all 0.3s ease !important;
   position: relative !important;
   overflow: hidden !important;
+}
+
+.backButton {
+  border: 2px solid #C3C3CB !important;
 }
 
 .backButton:hover {
@@ -848,8 +852,8 @@
   justify-content: center !important;
   align-items: center !important;
   gap: 14px !important;
-  width: 165px !important;
-  height: 64px !important;
+  width: 164px !important;
+  height: 60px !important;
   background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D !important;
   background-blend-mode: color-burn, plus-lighter ;
   box-shadow: inset 6px 6px 1px -7px rgba(255, 255, 255, 0.5), 

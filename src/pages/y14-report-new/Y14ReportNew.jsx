@@ -148,15 +148,15 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Original Commitment</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$1,80,00,000 </Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Current Outstanding Balance</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$1,42,00,000 </Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Unused Commitment</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$38,00,000 </Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Interest Rate Type</Typography>
@@ -172,7 +172,7 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Next Payment Due</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>12/10/2025</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -203,7 +203,7 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Collateral Value</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$2,10,00,000 </Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>LTV (Calculated)</Typography>
@@ -219,7 +219,7 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Guarantee Amount</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$1,80,00,000 </Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -337,7 +337,7 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Exposure at Default (EAD)</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$1,80,00,000 </Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Accrued Interest</Typography>
@@ -380,11 +380,11 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Last Payment Date</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>12-Sep-25</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Next Payment Date</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>12-Oct-25</Typography>
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Payment Status</Typography>
@@ -392,7 +392,7 @@ export default function Y14ReportNew() {
                       </Box>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Interest Expense (YTD)</Typography>
-                        <Typography className={styles.textValue}>########</Typography>
+                        <Typography className={styles.textValue}>$21,00,00,000  </Typography>
                       </Box>
                     </Box>
                   </Box>

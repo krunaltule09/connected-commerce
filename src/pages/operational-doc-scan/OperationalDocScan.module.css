@@ -27,7 +27,6 @@
   z-index: 2 !important;
   display: grid !important;
   grid-template-columns: 1fr 1.5fr 0.8fr !important;
-  grid-template-rows: 1fr 1fr !important;
   grid-template-areas:
     "document-preview shipment-details"
     "document-preview kpi-panel" !important;
