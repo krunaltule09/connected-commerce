@@ -97,9 +97,8 @@
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   z-index: 2; /* ensure left panel sits above right plate */
-  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transform-origin: center;
-  transition: box-shadow 0.4s ease;
+  /* transition: box-shadow 0.4s ease; */
 }
 
 .workflowPanel {
@@ -116,13 +115,9 @@
   z-index: 1; /* behind left and findings */
   align-self: flex-start;
   justify-self: end;
-  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
   transform-origin: center;
-  transition: box-shadow 0.4s ease;
 }
 
-/* subtle stacked shadow plate behind workflow */
-.workflowPanel::after { content: none; }
 
 /* Static builder workflow artwork */
 .workflowImage {
@@ -144,9 +139,7 @@
   z-index: 2; /* above right panel plate */
   height: fit-content;
   overflow: visible;
-  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s backwards;
   transform-origin: center;
-  transition: filter 0.3s ease;
 }
 
 /* Static findings artwork */
@@ -954,65 +947,4 @@
     flex-direction: column;
     height: auto;
   }
-}
-
-/* Subtle Pop Animation for Panels - Initial Entry */
-@keyframes subtlePop {
-  0% {
-    opacity: 0;
-    transform: scale(0.92) translateY(10px);
-  }
-  60% {
-    transform: scale(1.03) translateY(-2px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* Continuous Breathing Pulse - Creates Living Feel */
-@keyframes breathingPulse {
-  0%, 100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  25% {
-    transform: scale(1.012);
-    filter: brightness(1.03);
-  }
-  50% {
-    transform: scale(1.02);
-    filter: brightness(1.08);
-  }
-  75% {
-    transform: scale(1.012);
-    filter: brightness(1.03);
-  }
-}
-
-/* Ambient Glow Animation - Enhanced Pulsing Effect */
-@keyframes ambientGlow {
-  0%, 100% {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  }
-  50% {
-    box-shadow: 
-      0 8px 24px rgba(0, 0, 0, 0.6),
-      0 0 20px rgba(255, 230, 0, 0.12),
-      0 0 40px rgba(255, 230, 0, 0.06);
-  }
-}
-
-/* Hover Enhancement for Interactive Feel */
-.scheduleTemplatePanel:hover,
-.workflowPanel:hover,
-.findingsPanel:hover {
-  animation-play-state: paused;
-  transform: scale(1.02) !important;
-  filter: brightness(1.08) !important;
-  box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.65),
-    0 0 15px rgba(255, 230, 0, 0.08) !important;
-  cursor: pointer;
 }
