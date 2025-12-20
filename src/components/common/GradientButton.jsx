@@ -63,14 +63,35 @@ const GradientButton = ({
           backgroundImage: active 
             ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
             : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
-          backgroundSize: 'contain',
+          backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          width: '100%',
+          maxWidth: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          padding: {
+            xs: '0.5rem 0.75rem',
+            sm: '0.6rem 0.9rem',
+            md: '0.75rem 1.1rem'
+          },
+          fontSize: {
+            xs: '0.75rem',
+            sm: '0.82rem',
+            md: '0.9rem'
+          },
+          lineHeight: 1.25,
+          whiteSpace: 'normal',
+          wordBreak: 'break-word',
+          textAlign: 'left',
+          minHeight: '55px',
           minHeight: '55px',
           '&:hover': {
             backgroundImage: active
               ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
               : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+            backgroundSize: '100% 100%',
             outline: 'none',
             border: 'none',
             boxShadow: 'none',

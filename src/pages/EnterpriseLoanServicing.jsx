@@ -108,17 +108,27 @@ const ActivateButton = styled(Paper)(({ theme }) => ({
   bottom: '80px',
   left: '50%',
   transform: 'translateX(-50%)',
-  padding: theme.spacing(1.5,10),
-  backgroundColor: 'rgba(29, 29, 29, 0.8)',
-  color: 'white',
-  borderRadius: '10px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '24rem',
+  height: '3.5rem',
+  padding: theme.spacing(0.75, 2.4),
+  background: 'rgba(29, 29, 29, 0.7)',
+  backgroundBlendMode: 'color-burn, plus-lighter',
+  boxShadow: 'inset 6.03px 6.03px 1px -7.03px rgba(255, 255, 255, 0.5), inset 4.02px 4.02px 2.01px -4.02px rgba(179, 179, 179, 0.5), inset -4.02px -4.02px 2.01px -4.02px rgba(179, 179, 179, 0.5), inset 0px 0px 44.2px rgba(242, 242, 242, 0.3), 0px 0px 10px rgba(33, 207, 255, 0.2)',
+  backdropFilter: 'blur(40.18px)',
+  borderRadius: '100px',
+  border: '1px solid rgba(33, 207, 255, 0.2)',
   cursor: 'pointer',
-  transition: 'all 0.3s ease',
-  animation: `${pulseAnimation} 2s infinite`,
+  transition: 'transform 0.3s, box-shadow 0.3s, border 0.3s',
   '&:hover': {
-    backgroundColor: 'rgba(29, 29, 29, 0.9)',
-    animation: 'none',
-    boxShadow: '0 0 15px rgba(255, 215, 0, 0.6)',
+    transform: 'translateX(-50%) scale(1.05)',
+    boxShadow: 'inset 6.03px 6.03px 1px -7.03px rgba(255, 255, 255, 0.7), inset 4.02px 4.02px 2.01px -4.02px rgba(179, 179, 179, 0.7), inset -4.02px -4.02px 2.01px -4.02px rgba(179, 179, 179, 0.7), inset 0px 0px 44.2px rgba(242, 242, 242, 0.5), 0px 0px 20px rgba(33, 207, 255, 0.5)',
+    border: '1px solid rgba(33, 207, 255, 0.5)',
+  },
+  '&:active': {
+    transform: 'translateX(-50%) scale(0.98)',
   },
 }));
 
@@ -333,26 +343,17 @@ const EnterpriseLoanServicing = () => {
           style={{ transitionDelay: animationReady ? '1200ms' : '0ms' }}
         >
           <ActivateButton onClick={handleActivateServicing}>
-            <motion.div
-              animate={{ 
-                color: ['rgba(255,255,255,0.8)', 'rgba(255,215,0,1)', 'rgba(255,255,255,0.8)'] 
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity,
-                repeatType: 'reverse' 
+            <Typography 
+              variant="body1"
+              sx={{ 
+                letterSpacing: '0.5px',
+                fontWeight: 500,
+                color: 'var(--color-primary)',
+                textShadow: '0px 0px 8px rgba(33, 207, 255, 0.4)'
               }}
             >
-              <Typography 
-                variant="body1"
-                sx={{ 
-                  letterSpacing: '0.5px',
-                  fontWeight: 500
-                }}
-              >
-                Touch here to activate servicing mode
-              </Typography>
-            </motion.div>
+              Touch here to activate servicing mode
+            </Typography>
           </ActivateButton>
         </Fade>
 
