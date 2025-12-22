@@ -42,8 +42,8 @@
   grid-template-areas:
     'left right'
     'findings right';
-  column-gap: 16px; /* horizontal gap between left and right */
-  row-gap: 20px !important; /* vertical gap between schedule and findings */
+  column-gap: 10px; /* horizontal gap between left and right */
+  row-gap: 10px !important; /* vertical gap between schedule and findings */
   overflow: hidden;
   align-items: start;
 }
@@ -145,10 +145,10 @@
 /* Static findings artwork */
 .findingsImage {
   display: block;
-  width: 100%;
-  max-width: 100%;
+  width: 150%;
+  max-width: 1600px;
   height: auto;
-  max-height: none;
+  max-height: 360px !important;
   object-fit: contain;
 }
 
@@ -773,7 +773,7 @@
 .navigationButtons {
   position: absolute;
   width: 529px;
-  height: 72px;
+  height: 60px;
   left: calc(50% - 529px/2);
   bottom: 24px;
   display: flex;

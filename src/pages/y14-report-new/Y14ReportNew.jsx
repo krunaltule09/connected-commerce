@@ -551,7 +551,7 @@ export default function Y14ReportNew() {
           <Box className={styles.findingsPanel}>
             <Box
               component="img"
-              src={`${process.env.PUBLIC_URL}/assets/deatiled-findings.svg`}
+              src={`${process.env.PUBLIC_URL}/assets/detailed-findings.svg`}
               alt="Detailed Findings"
               className={styles.findingsImage}
             />
