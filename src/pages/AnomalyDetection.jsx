@@ -7,8 +7,6 @@ import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
 import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
 import FinancialDriversLottie from '../components/anomaly-detection/FinancialDriversLottie';
-import CovenantBreachLog from '../components/anomaly-detection/CovenantBreachLog';
-import AIRecommendations from '../components/anomaly-detection/AIRecommendations';
 import GradientBorderBox from '../components/common/GradientBorderBox';
 
 // Removed unused Title component
@@ -78,40 +76,6 @@ export default function AnomalyDetection() {
 
   // No need for financial drivers data as we're using Lottie animation
 
-  const documents = [
-    {
-      id: 1,
-      title: 'Finance operations.xls',
-      subtitle: 'Shipment 1',
-    },
-    {
-      id: 2,
-      title: 'Finance operations.xls',
-      subtitle: 'Shipment 1',
-    },
-    {
-      id: 3,
-      title: 'Finance operations.xls',
-      subtitle: 'Shipment 1',
-    }
-  ];
-
-  const recommendations = [
-    'Investigate cash flow variance',
-    'Cross-check delayed shipments'
-  ];
-
-  // Animation variants for staggered children
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
   return (
     <Box className={styles.container}>
       <motion.div
@@ -119,50 +83,81 @@ export default function AnomalyDetection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Grid container spacing={2.5}>
+        <Grid container spacing={2.5} alignItems="stretch">
           {/* Top Row */}
-          <Grid item xs={12} md={4} sx={{height:"100%"}}>
+          <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
             <Grow in={animateTop} timeout={800}>
-              <Box>
+              <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15 }}
                 >
-                  <GradientBorderBox className={styles.dscrPanel}>
-                    <QuarterlyDSCRLottie />
+                  <GradientBorderBox
+                    className={styles.dscrPanel}
+                    sx={{
+                      minHeight: { xs: 320, md: 364, lg: 420 },
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}
+                  >
+                    <Box className={styles.panelContent}>
+                      <QuarterlyDSCRLottie />
+                    </Box>
                   </GradientBorderBox>
                 </motion.div>
               </Box>
             </Grow>
           </Grid>
           
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={5} sx={{ display: 'flex' }}>
             <Grow in={animateTop} timeout={1000}>
-              <Box>
+              <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
                 >
-                  <GradientBorderBox className={styles.driversPanel}>
-                    <FinancialDriversLottie />
+                  <GradientBorderBox
+                    className={styles.driversPanel}
+                    sx={{
+                      minHeight: { xs: 320, md: 364, lg: 420 },
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}
+                  >
+                    <Box className={styles.panelContent}>
+                      <FinancialDriversLottie />
+                    </Box>
                   </GradientBorderBox>
                 </motion.div>
               </Box>
             </Grow>
           </Grid>
 
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} sx={{ display: 'flex' }}>
             <Fade in={animateMiddle} timeout={1200}>
-              <Box>
+              <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={animateMiddle ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 >
-                  <Box className={styles.aiPanel}>
-                    <AIRecommendations contentContainerSx={{top:"60%", left:"18%"}} recommendations={recommendations} />
+                  <Box
+                    className={styles.svgPanel}
+                    sx={{
+                      minHeight: { xs: 320, md: 364, lg: 420 },
+                      width: '100%'
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src="/assets/anamoly-ai-chip.svg"
+                      alt="AI Chip Insights"
+                      className={styles.panelImage}
+                    />
                   </Box>
                 </motion.div>
               </Box>
@@ -172,22 +167,21 @@ export default function AnomalyDetection() {
       </motion.div>
 
       <Slide direction="up" in={animateBottom} timeout={1000} mountOnEnter>
-        <Grid container mt={3}>
-          <Grid item xs={12} md={9}>
+        <Grid container mt={3} alignItems="stretch" justifyContent="flex-start">
+          <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
             >
-              <GradientBorderBox py={3} className={styles.covenantPanel}>
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate={animateBottom ? "visible" : "hidden"}
-                >
-                  <CovenantBreachLog documents={documents} />
-                </motion.div>
-              </GradientBorderBox>
+              <Box className={styles.svgPanel} sx={{ width: '100%' }}>
+                <Box
+                  component="img"
+                  src="/anamoly-q3-highlight.svg"
+                  alt="Q3 Highlight"
+                  className={`${styles.panelImage} ${styles.highlightImage}`}
+                />
+              </Box>
             </motion.div>
           </Grid>
         </Grid>

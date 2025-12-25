@@ -46,34 +46,53 @@ export const useShipmentData = () => {
   const [shipments] = useState([
     {
       name: 'Shipment 1',
-      promisedDate: '12, Aug 2025',
-      actualDate: '10, Aug 2025',
-      status: 'on-time'
+      promisedDate: '12 Aug 2025',
+      actualDate: '10 Aug 2025',
+      status: 'early'
     },
     {
       name: 'Shipment 2',
-      promisedDate: '2, Jun 2025',
-      actualDate: '1, Jun 2025',
+      promisedDate: '02 Jun 2025',
+      actualDate: '01 Jun 2025',
       status: 'on-time'
     },
     {
       name: 'Shipment 3',
-      promisedDate: '1, May 2025',
-      actualDate: '10, May 2025',
+      promisedDate: '01 May 2025',
+      actualDate: '10 May 2025',
       status: 'delayed'
     },
     {
       name: 'Shipment 4',
-      promisedDate: '12, Apr 2025',
-      actualDate: '12, Apr 2025',
+      promisedDate: '12 Apr 2025',
+      actualDate: '12 Apr 2025',
       status: 'on-time'
     },
     {
       name: 'Shipment 5',
-      promisedDate: '18, Feb 2025',
-      actualDate: '22, Feb 2025',
+      promisedDate: '25 Mar 2025',
+      actualDate: '25 Mar 2025',
+      status: 'on-time'
+    },
+    {
+      name: 'Shipment 6',
+      promisedDate: '14 Feb 2025',
+      actualDate: '18 Feb 2025',
       status: 'delayed'
-    }
+    },
+    {
+      name: 'Shipment 7',
+      promisedDate: '02 Feb 2025',
+      actualDate: '02 Feb 2025',
+      status: 'on-time'
+    },
+    {
+      name: 'Shipment 9',
+      promisedDate: '26 Jan 2025',
+      actualDate: '26 Jan 2025',
+      status: 'on-time'
+    },    
+    
   ]);
 
   // Function to reset the scan progress (useful for testing or restarting)

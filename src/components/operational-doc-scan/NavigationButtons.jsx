@@ -11,7 +11,7 @@ const NavigationButtons = ({ handleGoBack, handleNextStep, nextButtonEnabled }) 
   return (
     <Box className={styles.navigationButtons}>
       <Slide direction="right" in={true} timeout={1000} mountOnEnter>
-        <Box className={styles.backButton} onClick={handleBackWithSound}>Go back</Box>
+        <Box className={styles.backButton} onClick={handleBackWithSound}>Back</Box>
       </Slide>
       <Slide direction="left" in={true} timeout={1000} mountOnEnter>
         <Box 
@@ -23,7 +23,7 @@ const NavigationButtons = ({ handleGoBack, handleNextStep, nextButtonEnabled }) 
             transition: 'opacity 0.3s ease'
           }}
         >
-          Next step
+          Next 
         </Box>
       </Slide>
     </Box>

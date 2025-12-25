@@ -42,8 +42,8 @@
   grid-template-areas:
     'left right'
     'findings right';
-  column-gap: 16px; /* horizontal gap between left and right */
-  row-gap: 20px !important; /* vertical gap between schedule and findings */
+  column-gap: 10px; /* horizontal gap between left and right */
+  row-gap: 10px !important; /* vertical gap between schedule and findings */
   overflow: hidden;
   align-items: start;
 }
@@ -97,9 +97,8 @@
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   z-index: 2; /* ensure left panel sits above right plate */
-  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transform-origin: center;
-  transition: box-shadow 0.4s ease;
+  /* transition: box-shadow 0.4s ease; */
 }
 
 .workflowPanel {
@@ -116,13 +115,9 @@
   z-index: 1; /* behind left and findings */
   align-self: flex-start;
   justify-self: end;
-  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
   transform-origin: center;
-  transition: box-shadow 0.4s ease;
 }
 
-/* subtle stacked shadow plate behind workflow */
-.workflowPanel::after { content: none; }
 
 /* Static builder workflow artwork */
 .workflowImage {
@@ -144,18 +139,16 @@
   z-index: 2; /* above right panel plate */
   height: fit-content;
   overflow: visible;
-  animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s backwards;
   transform-origin: center;
-  transition: filter 0.3s ease;
 }
 
 /* Static findings artwork */
 .findingsImage {
   display: block;
-  width: 100%;
-  max-width: 100%;
+  width: 150%;
+  max-width: 1600px;
   height: auto;
-  max-height: none;
+  max-height: 360px !important;
   object-fit: contain;
 }
 
@@ -304,7 +297,7 @@
   gap: 16px;
   width: 100%;
   box-sizing: border-box;
-  max-height: 300px; /* increased height to show more content */
+  max-height: 172px;
   overflow-y: auto;
 }
 
@@ -780,7 +773,7 @@
 .navigationButtons {
   position: absolute;
   width: 529px;
-  height: 72px;
+  height: 60px;
   left: calc(50% - 529px/2);
   bottom: 24px;
   display: flex;
@@ -788,13 +781,13 @@
   justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: 40px;
+  gap: 24px;
   z-index: 10;
 }
 
 .backButton {
-  width: 165px !important;
-  height: 64px !important;
+  width: 164px !important;
+  height: 60px !important;
   font-family: 'EYInterstate', sans-serif;
   font-style: normal;
   font-weight: 400 !important;
@@ -809,6 +802,10 @@
   transition: all 0.3s ease !important;
   position: relative !important;
   overflow: hidden !important;
+}
+
+.backButton {
+  border: 2px solid #C3C3CB !important;
 }
 
 .backButton:hover {
@@ -848,8 +845,8 @@
   justify-content: center !important;
   align-items: center !important;
   gap: 14px !important;
-  width: 165px !important;
-  height: 64px !important;
+  width: 164px !important;
+  height: 60px !important;
   background: linear-gradient(0deg, rgba(29, 29, 29, 0.2), rgba(29, 29, 29, 0.2)), #1D1D1D !important;
   background-blend-mode: color-burn, plus-lighter ;
   box-shadow: inset 6px 6px 1px -7px rgba(255, 255, 255, 0.5), 
@@ -950,65 +947,4 @@
     flex-direction: column;
     height: auto;
   }
-}
-
-/* Subtle Pop Animation for Panels - Initial Entry */
-@keyframes subtlePop {
-  0% {
-    opacity: 0;
-    transform: scale(0.92) translateY(10px);
-  }
-  60% {
-    transform: scale(1.03) translateY(-2px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* Continuous Breathing Pulse - Creates Living Feel */
-@keyframes breathingPulse {
-  0%, 100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  25% {
-    transform: scale(1.012);
-    filter: brightness(1.03);
-  }
-  50% {
-    transform: scale(1.02);
-    filter: brightness(1.08);
-  }
-  75% {
-    transform: scale(1.012);
-    filter: brightness(1.03);
-  }
-}
-
-/* Ambient Glow Animation - Enhanced Pulsing Effect */
-@keyframes ambientGlow {
-  0%, 100% {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  }
-  50% {
-    box-shadow: 
-      0 8px 24px rgba(0, 0, 0, 0.6),
-      0 0 20px rgba(255, 230, 0, 0.12),
-      0 0 40px rgba(255, 230, 0, 0.06);
-  }
-}
-
-/* Hover Enhancement for Interactive Feel */
-.scheduleTemplatePanel:hover,
-.workflowPanel:hover,
-.findingsPanel:hover {
-  animation-play-state: paused;
-  transform: scale(1.02) !important;
-  filter: brightness(1.08) !important;
-  box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.65),
-    0 0 15px rgba(255, 230, 0, 0.08) !important;
-  cursor: pointer;
 }

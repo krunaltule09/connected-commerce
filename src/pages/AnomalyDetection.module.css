@@ -131,6 +131,7 @@
   animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+  height: 100% !important;
 }
 
 .dscrPanel:hover {
@@ -145,6 +146,7 @@
   animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+  height: 100% !important;
 }
 
 .driversPanel:hover {
@@ -159,6 +161,7 @@
   animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+  height: 100% !important;
 }
 
 .aiPanel:hover {
@@ -173,6 +176,45 @@
   animation: subtlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards;
   transform-origin: center;
   transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+  height: 100% !important;
+}
+
+.panelContent {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+}
+
+.panelImage {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .panelContent,
+  .panelImage {
+    padding: 0.75rem !important;
+  }
+}
+
+.highlightImage {
+  width: 100% !important;
+  max-width: 99% !important;
+  max-height: 100% !important;
+  height: auto !important;
+}
+
+.svgPanel {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .covenantPanel:hover {
