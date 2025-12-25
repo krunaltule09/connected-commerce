@@ -6,6 +6,7 @@ import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan
 import FeedbackPage from '../pages/FeedbackPage';
 import Y14ReportNew from '../pages/y14-report-new/Y14ReportNew';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
+import Q3ReportPage from '../pages/Q3ReportPage';
 
 // Define routes configuration
 const routes = [
@@ -56,6 +57,10 @@ const routes = [
   {
     path: '/anomaly-detection',
     element: <AnomalyDetection />,
+  },
+  {
+    path: '/q3-report',
+    element: <Q3ReportPage />,
   },
   {
     path: '*',
