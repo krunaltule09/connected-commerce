@@ -59,7 +59,7 @@ export default function FinancialMetricsSection() {
       </Slide>
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {/* Metrics buttons column */}
-        <Grid item xs={6} md={3.5} lg={2.5}>
+        <Grid item xs={6} md={3} lg={2.5}>
           <Fade in={animateMetrics} timeout={800}>
             <Box sx={{p: 1.5, height: '95%', overflow: 'auto' }}>
               <motion.div
@@ -79,14 +79,13 @@ export default function FinancialMetricsSection() {
                             active={isSelected}
                             onClick={() => setSelectedMetric(metric)}
                             sx={{
-                              fontSize: metric === 'Interest Expense' ? '0.85rem' : '0.9rem',
+                              fontSize: '0.9rem',
                               py: 0.5,
                               position: 'relative',
                               overflow: 'hidden',
                               ...(metric === 'Interest Expense' && {
-                                lineHeight: 1.2,
-                                letterSpacing: '-0.01em',
-                                paddingX: { xs: '0.9rem', sm: '1.1rem', md: '1.3rem' }
+                                fontSize: '0.85rem',
+                                letterSpacing: '-0.01em'
                               }),
                               '&::after': isSelected ? {
                                 content: '""',
@@ -104,7 +103,9 @@ export default function FinancialMetricsSection() {
                               } : {}
                             }}
                           >
-                            {metric}
+                            {metric === 'Interest Expense' ? (
+                              <span style={{ whiteSpace: 'nowrap' }}>Interest&nbsp;Expense</span>
+                            ) : metric}
                           </GradientButton>
                         </div>
                       </Tooltip>
@@ -118,7 +119,7 @@ export default function FinancialMetricsSection() {
         </Grid>
 
         {/* Chart column */}
-        <Grid item xs={12} md={8.5} lg={9.5}>
+        <Grid item xs={12} md={9} lg={9.5}>
           <Fade in={animateChart} timeout={900}>
             <Box sx={{ p: 1.5, height: '95%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
               <Box sx={{ flexGrow: 1, minHeight: 0, position: 'relative', display: 'flex', flexDirection: 'column' }}>
