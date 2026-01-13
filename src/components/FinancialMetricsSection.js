@@ -87,9 +87,7 @@ export default function FinancialMetricsSection() {
                                 fontSize: '0.85rem',
                                 letterSpacing: '-0.01em',
                                 paddingTop: '0.3rem',
-                                paddingBottom: '0.3rem',
-                                justifyContent: 'center',
-                                textAlign: 'center'
+                                paddingBottom: '0.3rem'
                               }),
                               '&::after': isSelected ? {
                                 content: '""',
@@ -108,9 +106,9 @@ export default function FinancialMetricsSection() {
                             }}
                           >
                             {metric === 'Interest Expense' ? (
-                              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                                <Typography variant="body2" sx={{ lineHeight: 1, mb: 0.3 }}>Interest</Typography>
-                                <Typography variant="body2" sx={{ lineHeight: 1 }}>Expense</Typography>
+                              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', pl: 0.2 }}>
+                                <Typography variant="body2" sx={{ lineHeight: 1.1, mb: 0.2, fontWeight: 'inherit', color: 'inherit' }}>Interest</Typography>
+                                <Typography variant="body2" sx={{ lineHeight: 1.1, fontWeight: 'inherit', color: 'inherit' }}>Expense</Typography>
                               </Box>
                             ) : metric}
                           </GradientButton>
