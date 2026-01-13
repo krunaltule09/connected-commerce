@@ -1,4 +1,4 @@
-import { Box, Stack, Grid, Typography, CircularProgress, Fade, Slide } from '@mui/material';
+import { Box, Stack, Grid, Typography, CircularProgress, Fade, Slide, Tooltip } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GradientBorderBox from './common/GradientBorderBox';
@@ -59,7 +59,7 @@ export default function FinancialMetricsSection() {
       </Slide>
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {/* Metrics buttons column */}
-        <Grid item xs={6} md={3} lg={2}>
+        <Grid item xs={6} md={3.5} lg={2.5}>
           <Fade in={animateMetrics} timeout={800}>
             <Box sx={{p: 1.5, height: '95%', overflow: 'auto' }}>
               <motion.div
@@ -72,33 +72,42 @@ export default function FinancialMetricsSection() {
                   const isSelected = selectedMetric === metric;
                   return (
                     <motion.div key={metric} variants={itemVariants} custom={index}>
-                      <GradientButton
-                        variant="metric"
-                        active={isSelected}
-                        onClick={() => setSelectedMetric(metric)}
-                        sx={{
-                          fontSize: '0.9rem',
-                          py: 0.5,
-                          position: 'relative',
-                          overflow: 'hidden',
-                          '&::after': isSelected ? {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
-                            animation: 'shine 2s infinite',
-                            '@keyframes shine': {
-                              '0%': { transform: 'translateX(-100%)' },
-                              '100%': { transform: 'translateX(100%)' }
-                            }
-                          } : {}
-                        }}
-                      >
-                        {metric}
-                      </GradientButton>
+                      <Tooltip title={metric} arrow placement="right">
+                        <div>
+                          <GradientButton
+                            variant="metric"
+                            active={isSelected}
+                            onClick={() => setSelectedMetric(metric)}
+                            sx={{
+                              fontSize: metric === 'Interest Expense' ? '0.85rem' : '0.9rem',
+                              py: 0.5,
+                              position: 'relative',
+                              overflow: 'hidden',
+                              ...(metric === 'Interest Expense' && {
+                                lineHeight: 1.2,
+                                letterSpacing: '-0.01em',
+                                paddingX: { xs: '0.9rem', sm: '1.1rem', md: '1.3rem' }
+                              }),
+                              '&::after': isSelected ? {
+                                content: '""',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
+                                animation: 'shine 2s infinite',
+                                '@keyframes shine': {
+                                  '0%': { transform: 'translateX(-100%)' },
+                                  '100%': { transform: 'translateX(100%)' }
+                                }
+                              } : {}
+                            }}
+                          >
+                            {metric}
+                          </GradientButton>
+                        </div>
+                      </Tooltip>
                     </motion.div>
                   );
                 })}
@@ -109,7 +118,7 @@ export default function FinancialMetricsSection() {
         </Grid>
 
         {/* Chart column */}
-        <Grid item xs={12} md={9} lg={10}>
+        <Grid item xs={12} md={8.5} lg={9.5}>
           <Fade in={animateChart} timeout={900}>
             <Box sx={{ p: 1.5, height: '95%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
               <Box sx={{ flexGrow: 1, minHeight: 0, position: 'relative', display: 'flex', flexDirection: 'column' }}>
