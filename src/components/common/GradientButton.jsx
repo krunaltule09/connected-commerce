@@ -86,7 +86,7 @@ const GradientButton = ({
           whiteSpace: 'normal',
           wordBreak: 'break-word',
           textAlign: 'left',
-          minHeight: '45px',
+          minHeight: '50px',
           '&:hover': {
             backgroundImage: active
               ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
