@@ -104,7 +104,10 @@ export default function FinancialMetricsSection() {
                             }}
                           >
                             {metric === 'Interest Expense' ? (
-                              <span style={{ whiteSpace: 'nowrap' }}>Interest&nbsp;Expense</span>
+                              <>
+                                <span style={{ display: 'block', lineHeight: '1.1' }}>Interest</span>
+                                <span style={{ display: 'block', lineHeight: '1.1' }}>Expense</span>
+                              </>
                             ) : metric}
                           </GradientButton>
                         </div>
