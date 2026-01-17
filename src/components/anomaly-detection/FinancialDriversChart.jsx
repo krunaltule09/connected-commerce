@@ -1,0 +1,144 @@
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useFinancialDriversData } from '../../hooks';
+
+/**
+ * Financial Drivers Chart Component
+ * Displays quarter-by-quarter financial drivers using an area chart
+ */
+export default function FinancialDriversChart({ style = {} }) {
+  const { data, loading } = useFinancialDriversData();
+
+  if (loading) {
+    return (
+      <Box 
+        sx={{ 
+          width: '100%', 
+          height: '100%', 
+          minHeight: 400,
+          backgroundColor: '#1A1A24', 
+          borderRadius: 2, 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          ...style
+        }}
+      >
+        <Typography sx={{ color: 'rgba(252, 252, 252, 0.5)' }}>Loading...</Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box 
+      sx={{ 
+        width: '100%', 
+        height: '100%',
+        backgroundColor: '#1A1A24', 
+        borderRadius: 2, 
+        p: 3,
+        ...style
+      }}
+    >
+      <Typography 
+        variant="h6" 
+        sx={{ 
+          color: '#FFE600', 
+          fontSize: { xs: '1.125rem', md: '1.25rem' },
+          fontWeight: 500, 
+          mb: 3 
+        }}
+      >
+        Quarter-by-quarter financial drivers
+      </Typography>
+      <ResponsiveContainer width="100%" height={350}>
+        <AreaChart
+          data={data}
+          margin={{ top: 10, right: 30, left: 20, bottom: 40 }}
+        >
+          <defs>
+            <linearGradient id="colorDebt" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#FFE600" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#8B6F47" stopOpacity={0.6}/>
+            </linearGradient>
+            <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#D97642" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#A64B2A" stopOpacity={0.7}/>
+            </linearGradient>
+            <linearGradient id="colorCashFlow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#34D399" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#047857" stopOpacity={0.7}/>
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={true} horizontal={true} />
+          <XAxis 
+            dataKey="quarter" 
+            stroke="#9CA3AF" 
+            tick={{ fill: '#D1D5DB', fontSize: 14 }}
+            axisLine={{ stroke: '#3F4254' }}
+          />
+          <YAxis 
+            stroke="#9CA3AF"
+            tick={{ fill: '#D1D5DB', fontSize: 12 }}
+            tickFormatter={(value) => `$${value / 1000}K`}
+            label={{ 
+              value: 'Total Amount', 
+              angle: -90, 
+              position: 'insideLeft', 
+              fill: '#9CA3AF', 
+              fontSize: 12 
+            }}
+            axisLine={{ stroke: '#3F4254' }}
+            domain={[15000, 35000]}
+            ticks={[15000, 20000, 25000, 30000, 35000]}
+          />
+          <Tooltip 
+            contentStyle={{ 
+              backgroundColor: '#1F2937', 
+              border: 'none', 
+              borderRadius: '8px',
+              color: '#F3F4F6'
+            }}
+            formatter={(value) => `$${(value / 1000).toFixed(1)}K`}
+          />
+          <Legend 
+            verticalAlign="bottom" 
+            height={36}
+            iconType="circle"
+            wrapperStyle={{ paddingTop: '20px' }}
+            formatter={(value) => (
+              <span style={{ color: '#D1D5DB', fontSize: '14px', marginLeft: '5px' }}>
+                {value}
+              </span>
+            )}
+          />
+          <Area 
+            type="monotone" 
+            dataKey="debt" 
+            stackId="1" 
+            stroke="#FFE600" 
+            fill="url(#colorDebt)"
+            name="Debt"
+          />
+          <Area 
+            type="monotone" 
+            dataKey="interest" 
+            stackId="1" 
+            stroke="#D97642" 
+            fill="url(#colorInterest)"
+            name="Interest"
+          />
+          <Area 
+            type="monotone" 
+            dataKey="cashFlow" 
+            stackId="1" 
+            stroke="#34D399" 
+            fill="url(#colorCashFlow)"
+            name="Cash Flow"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </Box>
+  );
+}

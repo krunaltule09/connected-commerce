@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
-import QuarterlyDSCRLottie from '../components/anomaly-detection/QuarterlyDSCRLottie';
-import FinancialDriversLottie from '../components/anomaly-detection/FinancialDriversLottie';
+import QuarterlyDSCRChart from '../components/anomaly-detection/QuarterlyDSCRChart';
+import FinancialDriversChart from '../components/anomaly-detection/FinancialDriversChart';
 import GradientBorderBox from '../components/common/GradientBorderBox';
 
 // Removed unused Title component
@@ -103,7 +103,7 @@ export default function AnomalyDetection() {
                     }}
                   >
                     <Box className={styles.panelContent}>
-                      <QuarterlyDSCRLottie />
+                      <QuarterlyDSCRChart />
                     </Box>
                   </GradientBorderBox>
                 </motion.div>
@@ -129,7 +129,7 @@ export default function AnomalyDetection() {
                     }}
                   >
                     <Box className={styles.panelContent}>
-                      <FinancialDriversLottie />
+                      <FinancialDriversChart />
                     </Box>
                   </GradientBorderBox>
                 </motion.div>
