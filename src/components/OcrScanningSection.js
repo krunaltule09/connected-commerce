@@ -112,19 +112,14 @@ export default function OcrScanningSection() {
                 position: 'relative',
               }}
             >
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                transition={{ 
-                  duration: 1.5, 
-                  ease: "easeOut",
-                  delay: 1
-                }}
-                style={{
+              <Box
+                sx={{
                   height: '100%',
+                  width: `${progress}%`,
                   backgroundColor: '#FFE600',
                   borderRadius: 4,
                   position: 'absolute',
+                  transition: 'width 0.3s ease-out'
                 }}
               />
 

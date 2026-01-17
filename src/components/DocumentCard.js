@@ -12,8 +12,8 @@ export default function DocumentCard({ document, onClick }) {
     <Box
       sx={{
         position: 'relative',
-        minWidth: 240,
-        maxWidth: 240,
+        minWidth: 320,
+        maxWidth: 320,
         mr: 3,
         cursor: 'pointer',
         borderRadius: 2,
@@ -65,7 +65,7 @@ export default function DocumentCard({ document, onClick }) {
           zIndex: 2,
           display: 'flex',
           flexDirection: 'column',
-          padding: 2,
+          padding: 2.5,
         }}
       >
       {/* Document title */}
@@ -74,10 +74,10 @@ export default function DocumentCard({ document, onClick }) {
           color: '#FFE600',
           fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
           fontWeight: 700,
-          fontSize: '1rem',
-          lineHeight: '1.2',
-          mb: 1,
-          height: '2.4em',
+          fontSize: '1.125rem',
+          lineHeight: '1.3',
+          mb: 1.5,
+          height: '2.6em',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
         }}
