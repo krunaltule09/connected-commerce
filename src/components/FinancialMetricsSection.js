@@ -79,15 +79,17 @@ export default function FinancialMetricsSection() {
                             active={isSelected}
                             onClick={() => setSelectedMetric(metric)}
                             sx={{
-                              fontSize: '0.9rem',
+                              fontSize: '0.85rem', // Standardized font size for all buttons
                               py: 0.5,
                               position: 'relative',
                               overflow: 'hidden',
+                              justifyContent: 'center', // Center align all button texts
+                              textAlign: 'center',
                               ...(metric === 'Interest Expense' && {
-                                fontSize: '0.85rem',
-                                letterSpacing: '-0.01em',
-                                paddingTop: '0.3rem',
-                                paddingBottom: '0.3rem'
+                                whiteSpace: 'nowrap', // Prevent text wrapping
+                                width: 'auto',
+                                minWidth: '140px', // Ensure enough width for the text
+                                letterSpacing: '-0.02em' // Slight letter spacing adjustment
                               }),
                               '&::after': isSelected ? {
                                 content: '""',
@@ -106,10 +108,7 @@ export default function FinancialMetricsSection() {
                             }}
                           >
                             {metric === 'Interest Expense' ? (
-                              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', pl: 0.2 }}>
-                                <Typography variant="body2" sx={{ lineHeight: 1.1, mb: 0.2, fontWeight: 'inherit', color: 'inherit' }}>Interest</Typography>
-                                <Typography variant="body2" sx={{ lineHeight: 1.1, fontWeight: 'inherit', color: 'inherit' }}>Expense</Typography>
-                              </Box>
+                              <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>Interest Expense</span>
                             ) : metric}
                           </GradientButton>
                         </div>

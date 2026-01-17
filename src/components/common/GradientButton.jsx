@@ -39,7 +39,7 @@ const GradientButton = ({
       border: 'none',
       backgroundColor: 'transparent',
       textTransform: 'none',
-      fontSize: '0.85rem',
+      fontSize: '0.85rem', // Standard font size
       padding: '12px 16px',
       justifyContent: 'flex-start',
       textAlign: 'left',
@@ -71,21 +71,17 @@ const GradientButton = ({
           minWidth: '120px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: 'center', // Changed from flex-start to center
           padding: {
             xs: '0.5rem 0.7rem',
             sm: '0.6rem 0.9rem',
             md: '0.7rem 1rem'
           },
-          fontSize: {
-            xs: '0.75rem',
-            sm: '0.8rem',
-            md: '0.85rem'
-          },
-          lineHeight: 1.25,
-          whiteSpace: 'normal',
-          wordBreak: 'break-word',
-          textAlign: 'left',
+          fontSize: '0.85rem', // Consistent font size across all breakpoints
+          lineHeight: 1.2,
+          whiteSpace: 'inherit', // Use inherit to respect the override from parent
+          wordBreak: 'normal',
+          textAlign: 'center', // Changed from left to center
           minHeight: '50px',
           '&:hover': {
             backgroundImage: active
