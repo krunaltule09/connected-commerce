@@ -85,10 +85,10 @@ export default function FinancialMetricsSection() {
                               overflow: 'hidden',
                               justifyContent: 'center', // Center align all button texts
                               textAlign: 'center',
+                              width: '140px', // Fixed width for all buttons
+                              maxWidth: '140px', // Maximum width for all buttons
                               ...(metric === 'Interest Expense' && {
                                 whiteSpace: 'nowrap', // Prevent text wrapping
-                                width: 'auto',
-                                minWidth: '140px', // Ensure enough width for the text
                                 letterSpacing: '-0.02em' // Slight letter spacing adjustment
                               }),
                               '&::after': isSelected ? {
@@ -212,7 +212,7 @@ export default function FinancialMetricsSection() {
                       damping: 15
                     }}
                   >
-                    <Box>
+                    <Box sx={{ mt: 4 }}>
                       <ChartBreakdown />
                     </Box>
                   </motion.div>

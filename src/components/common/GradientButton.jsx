@@ -66,9 +66,9 @@ const GradientButton = ({
           backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          width: '100%',
-          maxWidth: '100%',
-          minWidth: '120px',
+          width: '140px', // Fixed width for consistent button sizes
+          maxWidth: '140px',
+          minWidth: '140px', // Ensure all buttons have the same width
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center', // Changed from flex-start to center
