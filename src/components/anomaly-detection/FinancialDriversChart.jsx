@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useFinancialDriversData } from '../../hooks';
@@ -9,6 +9,17 @@ import { useFinancialDriversData } from '../../hooks';
  */
 export default function FinancialDriversChart({ style = {} }) {
   const { data, loading } = useFinancialDriversData();
+  const [animationProgress, setAnimationProgress] = useState(0);
+
+  // Animate the chart rendering with delay
+  useEffect(() => {
+    if (!loading && data.length > 0) {
+      const timer = setTimeout(() => {
+        setAnimationProgress(1);
+      }, 500); // Delay before starting animation
+      return () => clearTimeout(timer);
+    }
+  }, [loading, data]);
 
   if (loading) {
     return (
@@ -120,6 +131,10 @@ export default function FinancialDriversChart({ style = {} }) {
             stroke="#FFE600" 
             fill="url(#colorDebt)"
             name="Debt"
+            animationBegin={0}
+            animationDuration={2000}
+            animationEasing="ease-out"
+            isAnimationActive={animationProgress > 0}
           />
           <Area 
             type="monotone" 
@@ -128,6 +143,10 @@ export default function FinancialDriversChart({ style = {} }) {
             stroke="#D97642" 
             fill="url(#colorInterest)"
             name="Interest"
+            animationBegin={200}
+            animationDuration={2000}
+            animationEasing="ease-out"
+            isAnimationActive={animationProgress > 0}
           />
           <Area 
             type="monotone" 
@@ -136,6 +155,10 @@ export default function FinancialDriversChart({ style = {} }) {
             stroke="#34D399" 
             fill="url(#colorCashFlow)"
             name="Cash Flow"
+            animationBegin={400}
+            animationDuration={2000}
+            animationEasing="ease-out"
+            isAnimationActive={animationProgress > 0}
           />
         </AreaChart>
       </ResponsiveContainer>

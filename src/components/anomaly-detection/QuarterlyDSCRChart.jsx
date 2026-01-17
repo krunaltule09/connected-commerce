@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { useDSCRData } from '../../hooks';
@@ -47,6 +47,17 @@ const CustomTooltip = ({ active, payload }) => {
 export default function QuarterlyDSCRChart({ style = {} }) {
   const { data, loading } = useDSCRData();
   const [activeBar, setActiveBar] = useState(1); // Q2 index
+  const [animationProgress, setAnimationProgress] = useState(0);
+
+  // Animate the chart rendering with delay
+  useEffect(() => {
+    if (!loading && data.length > 0) {
+      const timer = setTimeout(() => {
+        setAnimationProgress(1);
+      }, 500); // Delay before starting animation
+      return () => clearTimeout(timer);
+    }
+  }, [loading, data]);
 
   if (loading) {
     return (
@@ -152,6 +163,10 @@ export default function QuarterlyDSCRChart({ style = {} }) {
             radius={[4, 4, 4, 4]}
             barSize={100}
             onMouseEnter={(_, index) => setActiveBar(index)}
+            animationBegin={0}
+            animationDuration={2500}
+            animationEasing="ease-out"
+            isAnimationActive={animationProgress > 0}
           />
         </BarChart>
       </ResponsiveContainer>

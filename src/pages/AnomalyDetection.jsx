@@ -78,6 +78,36 @@ export default function AnomalyDetection() {
 
   return (
     <Box className={styles.container}>
+      {/* Video Background */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -2,
+        '& video': {
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        }
+      }}>
+        <video autoPlay loop muted playsInline>
+          <source src="/assets/AdobeStock_1544892280.mp4" type="video/mp4" />
+        </video>
+      </Box>
+      
+      {/* Dark Overlay */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        zIndex: -1
+      }} />
+      
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -54,18 +54,35 @@ const DataSimulator = () => {
   };
   return (
     <Box className={styles.dataSimulatorPage}>
-      {/* Background overlay */}
-      <Box 
-        className={styles.backgroundOverlay}
-        sx={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/assets/operational-docu-scan.svg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+      {/* Video Background */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -2,
+        '& video': {
           width: '100%',
-          height: '100%'
-        }}
-      />
+          height: '100%',
+          objectFit: 'cover'
+        }
+      }}>
+        <video autoPlay loop muted playsInline>
+          <source src="/assets/AdobeStock_1544892280.mp4" type="video/mp4" />
+        </video>
+      </Box>
+      
+      {/* Dark Overlay */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        zIndex: -1
+      }} />
       
       {/* Main content */}
       <Box className={styles.contentContainer}>
