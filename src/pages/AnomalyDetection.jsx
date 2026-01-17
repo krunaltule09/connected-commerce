@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Fade, Grow, Slide, Snackbar, Alert } from '@mui/material';
+import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styles from './AnomalyDetection.module.css';
@@ -13,7 +13,6 @@ import GradientBorderBox from '../components/common/GradientBorderBox';
 
 export default function AnomalyDetection() {
   const navigate = useNavigate();
-  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
   
   // Animation states
   const [animateTop, setAnimateTop] = useState(false);
@@ -48,18 +47,8 @@ export default function AnomalyDetection() {
         action: 'NEXT_STEP'
       });
       
-      setNotification({
-        open: true,
-        message: 'Navigation event sent to operate-experience',
-        severity: 'success'
-      });
     } catch (error) {
       console.error('Failed to send navigation event:', error);
-      setNotification({
-        open: true,
-        message: 'Failed to send navigation event',
-        severity: 'error'
-      });
     }
   });
   
@@ -68,9 +57,6 @@ export default function AnomalyDetection() {
     window.history.back();
   });
   
-  const handleCloseNotification = () => {
-    setNotification({ ...notification, open: false });
-  };
   
   // No need for DSCR data as we're using Lottie animation
 
@@ -258,17 +244,6 @@ export default function AnomalyDetection() {
         />
       </Fade>
       
-      {/* Notification */}
-      <Snackbar 
-        open={notification.open} 
-        autoHideDuration={6000} 
-        onClose={handleCloseNotification}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      >
-        <Alert onClose={handleCloseNotification} severity={notification.severity} sx={{ width: '100%' }}>
-          {notification.message}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 }

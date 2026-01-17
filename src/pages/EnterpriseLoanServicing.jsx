@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, Grid, Container, Paper, Fade, Grow, Slide, Zoom, Snackbar, Alert } from '@mui/material';
+import { Box, Typography, Grid, Container, Paper, Fade, Grow, Slide, Zoom } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
@@ -154,7 +154,6 @@ const EnterpriseLoanServicing = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [animationReady, setAnimationReady] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
-  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
   const navigate = useNavigate();
   
   // Trigger animations after video is loaded
@@ -204,24 +203,11 @@ const EnterpriseLoanServicing = () => {
         action: 'ACTIVATE_SERVICING'
       });
       
-      setNotification({
-        open: true,
-        message: 'Navigation event sent to operate-experience',
-        severity: 'success'
-      });
     } catch (error) {
       console.error('Failed to send navigation event:', error);
-      setNotification({
-        open: true,
-        message: 'Failed to send navigation event',
-        severity: 'error'
-      });
     }
   });
   
-  const handleCloseNotification = () => {
-    setNotification({ ...notification, open: false });
-  };
 
   return (
     <Box sx={{ height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
@@ -366,17 +352,6 @@ const EnterpriseLoanServicing = () => {
           <Logo src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`} alt="EY Logo" />
         </Zoom>
         
-        {/* Notification */}
-        <Snackbar 
-          open={notification.open} 
-          autoHideDuration={6000} 
-          onClose={handleCloseNotification}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        >
-          <Alert onClose={handleCloseNotification} severity={notification.severity} sx={{ width: '100%' }}>
-            {notification.message}
-          </Alert>
-        </Snackbar>
       </Container>
     </Box>
   );
