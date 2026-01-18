@@ -9,13 +9,84 @@
   align-items: center !important;
 }
 
-.detailedFindingsImage {
-  display: block !important;
+/* Detailed Findings Panel */
+.detailedFindingsPanel {
+  display: flex !important;
+  flex-direction: column !important;
   width: 92% !important;
   max-width: 1616px !important;
-  height: auto !important;
-  object-fit: contain !important;
+  margin: 0 auto !important;
+  background: #1A1A24 !important;
+  border-radius: 8px !important;
   z-index: 2 !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.detailedFindingsHeader {
+  width: 100% !important;
+  padding: 12px 20px 8px !important;
+  box-sizing: border-box !important;
+}
+
+.detailedFindingsTitle {
+  font-family: var(--font-family-primary, 'EYInterstate') !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 24px !important;
+  letter-spacing: -0.02em !important;
+  color: #FFE600 !important;
+}
+
+/* Horizontally Scrollable Container */
+.findingsScrollContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  padding: 0 20px 16px !important;
+  gap: 20px !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #FFE600 #1A1A24 !important;
+  -webkit-overflow-scrolling: touch !important;
+  height: calc(100% - 44px) !important; /* Full height minus reduced header */
+  margin-top: 0 !important; /* Remove top margin */
+}
+
+/* Scrollbar styling */
+.findingsScrollContainer::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.findingsScrollContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 3px !important;
+}
+
+.findingsScrollContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 230, 0, 0.5) !important;
+  border-radius: 3px !important;
+}
+
+.findingsScrollContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 230, 0, 0.7) !important;
+}
+
+/* Individual Finding Image */
+.findingImage {
+  flex: 0 0 auto !important;
+  width: calc(20% - 16px) !important; /* Show approximately 5 images in viewport */
+  min-width: 280px !important;
+  height: 240px !important; /* Fixed height to match panel */
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  transition: transform 0.2s ease !important;
+  align-self: center !important;
+}
+
+.findingImage:hover {
+  transform: translateY(-4px) !important;
 }
 
 .backgroundOverlay {

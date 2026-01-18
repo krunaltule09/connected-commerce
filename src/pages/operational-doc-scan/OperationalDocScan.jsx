@@ -212,12 +212,60 @@ const OperationalDocScan = () => {
       
      
       </Box>
-      <Box 
-        component="img"
-        src={`${process.env.PUBLIC_URL}/assets/detail-find2.svg`}
-        alt="Detailed Findings Summary"
-        className={styles.detailedFindingsImage}
-      />
+      {/* Detailed Findings Panel with Gradient Border */}
+      <Fade in={true} timeout={1000} style={{ transitionDelay: '500ms' }}>
+        <GradientBorderBox className={styles.detailedFindingsPanel}>
+          <Box className={styles.detailedFindingsHeader}>
+            <Typography className={styles.detailedFindingsTitle}>Detailed Findings</Typography>
+          </Box>
+          
+          {/* Horizontally Scrollable Container for SVGs */}
+          <Box className={styles.findingsScrollContainer}>
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding1.svg`}
+              alt="Detailed Finding 1"
+              className={styles.findingImage}
+            />
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding2.svg`}
+              alt="Detailed Finding 2"
+              className={styles.findingImage}
+            />
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding3.svg`}
+              alt="Detailed Finding 3"
+              className={styles.findingImage}
+            />
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding4.svg`}
+              alt="Detailed Finding 4"
+              className={styles.findingImage}
+            />
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding5.svg`}
+              alt="Detailed Finding 5"
+              className={styles.findingImage}
+            />
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding6.svg`}
+              alt="Detailed Finding 6"
+              className={styles.findingImage}
+            />
+            <Box 
+              component="img"
+              src={`${process.env.PUBLIC_URL}/assets/detailfinding7.svg`}
+              alt="Detailed Finding 7"
+              className={styles.findingImage}
+            />
+          </Box>
+        </GradientBorderBox>
+      </Fade>
          {/* Navigation buttons */}
       <NavigationButtons 
         handleGoBack={handleGoBack} 
