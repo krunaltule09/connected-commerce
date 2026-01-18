@@ -532,18 +532,52 @@ export default function Y14ReportNew() {
           </Grow>
         </Box>
 
-        {/* Right column - Replaced with static SVG */}
+        {/* Right column - Report Builder Workflow */}
         <Fade in={showRight} timeout={1200} appear>
-          <Box className={styles.rightColumn}>
-            <Box className={styles.workflowPanel}>
-              <Box
-                component="img"
-                src={`${process.env.PUBLIC_URL}/assets/builder-workflow.svg`}
-                alt="Report Builder Workflow"
-                className={styles.workflowImage}
-              />
+          <GradientBorderBox>
+            <Box className={styles.rightColumn}>
+              <Box className={styles.panelHeader}>
+                <Typography className={styles.panelTitle}>Report Builder Workflow</Typography>
+              </Box>
+              
+              <Box className={styles.workflowContainer}>
+                {/* Workflow Steps SVG */}
+                <Box
+                  component="img"
+                  src={`${process.env.PUBLIC_URL}/assets/report-builder-workflow-step.svg`}
+                  alt="Report Builder Workflow Steps"
+                  className={styles.workflowStepsImage}
+                />
+                
+                {/* Document SVGs Container */}
+                <Box className={styles.docsContainer}>
+                  {/* First Document */}
+                  <Box
+                    component="img"
+                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
+                    alt="Report Builder Document 1"
+                    className={styles.docImage}
+                  />
+                  
+                  {/* Second Document */}
+                  <Box
+                    component="img"
+                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
+                    alt="Report Builder Document 2"
+                    className={styles.docImage}
+                  />
+                  
+                  {/* Third Document */}
+                  <Box
+                    component="img"
+                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
+                    alt="Report Builder Document 3"
+                    className={styles.docImage}
+                  />
+                </Box>
+              </Box>
             </Box>
-          </Box>
+          </GradientBorderBox>
         </Fade>
 
         {/* Detailed Findings replaced by static SVG */}
