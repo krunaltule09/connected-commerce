@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
 import { useButtonSound } from '../hooks';
+import bgLoanVideo from '../assets/bg-loan.mp4';
 
 // Icons
 import LoanAgreementIcon from '@mui/icons-material/ArticleOutlined';
@@ -216,7 +217,7 @@ const EnterpriseLoanServicing = () => {
         loop
         muted
         onLoadedData={handleVideoLoad}
-        src={`${process.env.PUBLIC_URL}/assets/bg-loan.mp4`}
+        src={bgLoanVideo}
       />
       <Overlay />
 
@@ -349,7 +350,7 @@ const EnterpriseLoanServicing = () => {
           timeout={1000}
           style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
         >
-          <Logo src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`} alt="EY Logo" />
+          <Logo src="/assets/ey-logo.svg" alt="EY Logo" />
         </Zoom>
         
       </Container>

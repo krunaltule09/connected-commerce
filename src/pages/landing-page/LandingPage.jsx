@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
 import { useButtonSound } from '../../hooks';
+import landingPageVideo from '../../assets/landing-page.mp4';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const LandingPage = () => {
           playsInline
           className={styles.backgroundVideo}
         >
-          <source src="/assets/landing-page.mp4" type="video/mp4" />
+          <source src={landingPageVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Box className={styles.videoOverlay}></Box>

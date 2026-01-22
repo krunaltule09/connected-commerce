@@ -28,8 +28,8 @@ export default function Y14ReportGeneration() {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-        : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+        ? `url('/assets/Group 4.svg')`
+        : `url('/assets/Group 554.svg')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -62,7 +62,7 @@ export default function Y14ReportGeneration() {
       <Box 
         className={styles.backgroundOverlay} 
         sx={{ 
-          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/operational-docu-scan.svg)`,
+          backgroundImage: `url(/assets/operational-docu-scan.svg)`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
@@ -115,7 +115,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                  src="/assets/balance-doc.svg"
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -236,7 +236,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={`${process.env.PUBLIC_URL}/assets/balance-doc.svg`}
+                  src="/assets/balance-doc.svg"
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />

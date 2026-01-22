@@ -5,12 +5,12 @@ export default function CovenantTile({ covenant }) {
   const getIndicatorIcon = (status) => {
     if (status === 'alert') {
       return {
-        icon: 'Vector (1).svg',
+        icon: '/assets/Vector (1).svg',
         color: '#FF3B30'
       };
     } else {
       return {
-        icon: 'shield-alert.svg',
+        icon: '/assets/shield-alert.svg',
         color: '#FFCC00'
       };
     }
@@ -98,7 +98,7 @@ export default function CovenantTile({ covenant }) {
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Box 
               component="img" 
-              src={`${process.env.PUBLIC_URL}/assets/${indicatorDetails.icon}`} 
+              src={indicatorDetails.icon} 
               alt={covenant.indicator} 
               sx={{ mr: 1, height: 18, width: 18 }}
             />

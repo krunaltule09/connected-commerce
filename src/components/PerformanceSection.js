@@ -15,7 +15,7 @@ export default function PerformanceSection() {
       >
         <Box
           component="img"
-          src={`${process.env.PUBLIC_URL}/assets/Group 1010107907.svg`}
+          src="/assets/Group 1010107907.svg"
           alt="Performance Metrics"
           sx={{
             maxWidth: '90%',

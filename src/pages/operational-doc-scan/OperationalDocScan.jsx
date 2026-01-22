@@ -214,7 +214,7 @@ const OperationalDocScan = () => {
       </Box>
       <Box 
         component="img"
-        src={`${process.env.PUBLIC_URL}/assets/detail-find2.svg`}
+        src="/assets/detail-find2.svg"
         alt="Detailed Findings Summary"
         className={styles.detailedFindingsImage}
       />

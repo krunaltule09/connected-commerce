@@ -201,11 +201,11 @@ export default function DocumentCardDetails({ document }) {
   
   // All document pages including cover
   const pages = [
-    { id: 0, url: document.url || `${process.env.PUBLIC_URL}/assets/doc1.svg` },
-    { id: 1, url: `${process.env.PUBLIC_URL}/assets/doc1.svg` },
-    { id: 2, url: `${process.env.PUBLIC_URL}/assets/doc2.svg` },
-    { id: 3, url: `${process.env.PUBLIC_URL}/assets/doc3.svg` },
-    { id: 4, url: document.url || `${process.env.PUBLIC_URL}/assets/doc1.svg` },
+    { id: 0, url: document.url || '/assets/doc1.svg' },
+    { id: 1, url: '/assets/doc1.svg' },
+    { id: 2, url: '/assets/doc2.svg' },
+    { id: 3, url: '/assets/doc3.svg' },
+    { id: 4, url: document.url || '/assets/doc1.svg' },
   ];
 
   return (

@@ -47,11 +47,11 @@ export default function DocumentCentrePage() {
           if (!updatedDoc.url) {
             const svgIndex = parseInt(updatedDoc.id) % 3;
             if (svgIndex === 0) {
-              updatedDoc.url = `${process.env.PUBLIC_URL}/assets/doc1.svg`;
+              updatedDoc.url = '/assets/doc1.svg';
             } else if (svgIndex === 1) {
-              updatedDoc.url = `${process.env.PUBLIC_URL}/assets/doc2.svg`;
+              updatedDoc.url = '/assets/doc2.svg';
             } else {
-              updatedDoc.url = `${process.env.PUBLIC_URL}/assets/doc3.svg`;
+              updatedDoc.url = '/assets/doc3.svg';
             }
           }
           
