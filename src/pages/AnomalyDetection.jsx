@@ -190,7 +190,7 @@ export default function AnomalyDetection() {
               animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
             >
-              <Box className={styles.svgPanel} sx={{ width: '100%' }}>
+              <Box className={styles.svgPanelQ3} sx={{ width: '100%' }}>
                 <Box
                   component="img"
                   src="/anamoly-q3-highlight.svg"
