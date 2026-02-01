@@ -68,15 +68,11 @@
 
 /* Container styles */
 .container {
-  background-color: #0A0A14 !important;
   min-height: 100vh !important;
   padding: 24px !important;
   color: #FFFFFF !important;
   position: relative !important;
   overflow: hidden !important;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../public/assets/background-texture.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
 }
 
 /* Experience Center Animations */

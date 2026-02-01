@@ -2,7 +2,6 @@
   position: relative !important;
   width: 100% !important;
   overflow: hidden !important;
-  background-color: #000000 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -16,7 +15,8 @@
   width: 92% !important;
   max-width: 1616px !important;
   margin: 0 auto !important;
-  background: #1A1A24 !important;
+  /* background: #1A1A24 !important; */
+
   border-radius: 8px !important;
   z-index: 2 !important;
   overflow: hidden !important;
@@ -59,7 +59,7 @@
 }
 
 .findingsScrollContainer::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05) !important;
+  /* background: rgba(255, 255, 255, 0.05) !important; */
   border-radius: 3px !important;
 }
 
@@ -96,6 +96,7 @@
   width: 100% !important;
   height: 100% !important;
   z-index: 1 !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
 }
 
 /* Main content container */
