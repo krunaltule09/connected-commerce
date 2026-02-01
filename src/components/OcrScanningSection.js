@@ -41,7 +41,7 @@ export default function OcrScanningSection() {
       <Stack spacing={1.5} sx={{ flexGrow: 1, overflow: 'hidden' }}>
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
-          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 500, fontSize: '1rem', mb: 1, p: 1.5 }}>Scanned Document Preview</Typography>
+          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '1.25rem', mb: 1, p: 1.5 }}>Scanned Document Preview</Typography>
         </Slide>
         <Grow in={animateDocument} timeout={800}>
           <GradientBorderBox p={1.5}>
