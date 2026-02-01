@@ -59,7 +59,7 @@ export default function OcrScanningSection() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundImage: `url('${process.env.PUBLIC_URL}/assets/docu_scan.svg')`,
+                  backgroundImage: `url('/assets/docu_scan.svg')`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',

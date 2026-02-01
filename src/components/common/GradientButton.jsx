@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useSound } from '../../hooks';
+import buttonClickSound from '../../assets/sounds/button-click.mp3';
 
 /**
  * A reusable button component that matches the styling from FinancialMetricsSection
@@ -18,7 +19,7 @@ const GradientButton = ({
   children, 
   sx = {}, 
   onClick,
-  soundPath = '/assets/sounds/button-click.mp3',
+  soundPath = buttonClickSound,
   ...rest 
 }) => {
   // Initialize sound hook
@@ -61,8 +62,8 @@ const GradientButton = ({
         return {
           ...baseStyles,
           backgroundImage: active 
-            ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-            : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+            ? `url('/assets/Group 4.svg')`
+            : `url('/assets/Group 554.svg')`,
           backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -85,8 +86,8 @@ const GradientButton = ({
           minHeight: '50px',
           '&:hover': {
             backgroundImage: active
-              ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-              : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+              ? `url('/assets/Group 4.svg')`
+              : `url('/assets/Group 554.svg')`,
             backgroundSize: '100% 100%',
             outline: 'none',
             border: 'none',

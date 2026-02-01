@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "Connected Commerce",
+  "productName": "BCM Operate",
   "version": "0.1.0",
-  "identifier": "com.connectedcommerce.app",
+  "identifier": "com.ey.bcmoperate",
   "build": {
     "frontendDist": "../build",
     "devUrl": "http://localhost:3000",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Connected Commerce",
+        "title": "BCM Operate",
         "width": 1920,
         "height": 1080,
         "resizable": true,

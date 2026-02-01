@@ -21,8 +21,8 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-        : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+        ? `url('/assets/Group 4.svg')`
+        : `url('/assets/Group 554.svg')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -104,8 +104,8 @@ const DataSimulator = () => {
                       ...getTabStyle(tab, isSelected),
                       '&:hover': {
                         backgroundImage: isSelected
-                          ? `url('${process.env.PUBLIC_URL}/assets/Group%204.svg')`
-                          : `url('${process.env.PUBLIC_URL}/assets/Group%20554.svg')`,
+                          ? `url('/assets/Group 4.svg')`
+                          : `url('/assets/Group 554.svg')`,
                       },
                     }}
                   >

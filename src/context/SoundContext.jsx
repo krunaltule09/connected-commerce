@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import buttonClickSound from '../assets/sounds/button-click.mp3';
 
 // Create context
 const SoundContext = createContext({
@@ -30,7 +31,7 @@ export const SoundProvider = ({ children }) => {
 
   // Preload the button click sound
   useEffect(() => {
-    const audio = new Audio('/assets/sounds/button-click.mp3');
+    const audio = new Audio(buttonClickSound);
     audio.preload = 'auto';
     
     // Just trigger the load but don't play

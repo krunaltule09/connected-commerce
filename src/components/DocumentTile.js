@@ -62,7 +62,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
             ) : (
               <Box
                 component="img"
-                src={`${process.env.PUBLIC_URL}/assets/Vector.svg`}
+                src="/assets/Vector.svg"
                 alt=""
                 sx={{ width: 31, height: 31 }}
               />

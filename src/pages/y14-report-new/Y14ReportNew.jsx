@@ -10,6 +10,7 @@ import { useButtonSound } from '../../hooks';
 // removed stepper CheckIcon
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
+import bgVideo from '../../assets/AdobeStock_1544892280.mp4';
 
 export default function Y14ReportNew() {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ export default function Y14ReportNew() {
         muted
         playsInline
       >
-        <source src={`${process.env.PUBLIC_URL}/assets/AdobeStock_1544892280.mp4`} type="video/mp4" />
+        <source src={bgVideo} type="video/mp4" />
       </video>
       
       {/* Background Overlay */}
@@ -585,7 +586,7 @@ export default function Y14ReportNew() {
           <Box className={styles.findingsPanel}>
             <Box
               component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailed-findings.svg`}
+              src="/assets/detailed-findings.svg"
               alt="Detailed Findings"
               className={styles.findingsImage}
             />
@@ -612,7 +613,7 @@ export default function Y14ReportNew() {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={`${process.env.PUBLIC_URL}/assets/ey-logo.svg`}
+        src="/assets/ey-logo.svg"
         alt="EY Logo"
         className={styles.eyLogo}
       />

@@ -112,7 +112,7 @@ export default function DocumentCard({ document, onClick }) {
         >
           <Box
             component="img"
-            src={document.url || `${process.env.PUBLIC_URL}/assets/Vector.svg`}
+            src={document.url || '/assets/Vector.svg'}
             alt={document.name}
             sx={{
               maxWidth: '100%',

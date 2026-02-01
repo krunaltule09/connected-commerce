@@ -98,7 +98,7 @@ export const ChartBackground = ({ children }) => (
   <Box
     sx={{
       position: 'relative',
-      backgroundImage: `url('${process.env.PUBLIC_URL}/assets/Group%207.svg')`,
+      backgroundImage: `url('/assets/Group 7.svg')`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',

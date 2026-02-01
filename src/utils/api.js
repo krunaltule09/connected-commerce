@@ -38,11 +38,11 @@ export async function fetchDocuments() {
       const svgIndex = i % 3;
       
       if (svgIndex === 0) {
-        url = `${process.env.PUBLIC_URL}/assets/doc1.svg`;
+        url = '/assets/doc1.svg';
       } else if (svgIndex === 1) {
-        url = `${process.env.PUBLIC_URL}/assets/doc2.svg`;
+        url = '/assets/doc2.svg';
       } else {
-        url = `${process.env.PUBLIC_URL}/assets/doc3.svg`;
+        url = '/assets/doc3.svg';
       }
       
       return {
