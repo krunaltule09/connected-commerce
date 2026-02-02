@@ -121,12 +121,8 @@ export default function FeedbackPage() {
   return (
     <PageContainer>
       <Container maxWidth="lg">
-        <Header>
-          <Title variant="h4">Feedback</Title>
-          <Subtitle variant="body1">Feedback & review</Subtitle>
-        </Header>
-        
-        <MainCard>
+
+         <MainCard>
           <LottieContainer>
             <Lottie
               lottieRef={lottieRef}
