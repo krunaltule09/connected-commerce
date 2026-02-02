@@ -54,7 +54,7 @@ export default function AnomalyDetection() {
   
   // Handle going back to previous page with sound effect
   const handleGoBack = useButtonSound(() => {
-    window.history.back();
+      navigate('/financial-dashboard');
   });
   
   
