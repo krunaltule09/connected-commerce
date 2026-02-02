@@ -96,7 +96,7 @@ export default function QuarterlyDSCRChart({ style = {} }) {
         sx={{ 
           color: '#FFE600', 
           fontSize: { xs: '1.125rem', md: '1.25rem' },
-          fontWeight: 500, 
+          fontWeight: 400, 
           mb: 1 
         }}
       >
@@ -106,9 +106,10 @@ export default function QuarterlyDSCRChart({ style = {} }) {
         <Typography 
           variant="body2" 
           sx={{ 
-            color: 'rgba(252, 252, 252, 0.7)', 
+            color: 'rgba(252, 252, 252, 1)', 
             fontSize: { xs: '0.875rem', md: '1rem' },
-            mb: 0.5
+            mb: 0.5,
+            fontWeight:300
           }}
         >
           Covenant threshold line
