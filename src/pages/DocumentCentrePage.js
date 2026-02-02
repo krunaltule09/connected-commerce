@@ -123,10 +123,10 @@ export default function DocumentCentrePage() {
                 </Typography>
                 <Typography
                   sx={{
-                    color: 'rgba(252,252,252,0.7)',
+                    color: '#FCFCFC',
                     fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                     fontWeight: 300,
-                    fontSize: '1.125rem',
+                    fontSize: '1.1rem',
                     lineHeight: '28px',
                     letterSpacing: 0,
                   }}
@@ -154,9 +154,10 @@ export default function DocumentCentrePage() {
                     color: '#FCFCFC',
                     fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
                     fontWeight: 300,
-                    fontSize: '1.125rem',
+                    fontSize: '1.1rem',
                     lineHeight: '28px',
                     letterSpacing: 0,
+                    marginRight:'10.5rem'
                   }}
                 >
                   {count}
