@@ -6,6 +6,7 @@ import GradientBorderBox from '../../components/common/GradientBorderBox';
 import GradientButton from '../../components/common/GradientButton';
 import AIRecommendations from '../../components/anomaly-detection/AIRecommendations';
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
+import OcrScanningSection from '../../components/OcrScanningSection';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 import { useButtonSound } from '../../hooks';
@@ -76,59 +77,15 @@ const OperationalDocScan = () => {
       
       {/* Main content */}
       <Box className={styles.contentContainer}>
-        {/* Left panel - Document Preview */}
-        <Slide direction="right" in={true} timeout={800} mountOnEnter unmountOnExit>
-          <GradientBorderBox className={styles.documentPreviewPanel}>
-          <Box className={styles.panelTitle}>Scanned Document Preview</Box>
-          
-          <Box className={styles.documentImageContainer}>
-            <Box 
-              component="img"
-              src="/assets/scanned-doc-preview.svg"
-              alt="Document Preview"
-              className={styles.documentImage}
-            />
-          </Box>
-          
-          <Box className={styles.scanProgressContainer}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: scanProgress >= 99 ? '#FFE600' : 'rgba(252, 252, 252, 0.7)',
-                  fontSize: '0.75rem',
-                }}
-              >
-                {scanProgress >= 99 ? 'Completed' : 'Analyzing'}
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#FFE600' }}>{`${Math.round(scanProgress)}%`}</Typography>
-            </Box>
-            <Box
-              sx={{
-                height: 8,
-                borderRadius: 4,
-                backgroundColor: 'rgba(255,255,255,0.1)',
-                overflow: 'hidden',
-              }}
-            >
-              <Box
-                sx={{
-                  height: '100%',
-                  width: `${scanProgress}%`,
-                  backgroundColor: '#FFE600',
-                  transition: 'width 0.3s ease',
-                }}
-              />
-            </Box>
-          </Box>
-          
-        </GradientBorderBox>
-        </Slide>
+        {/* Left panel - OCR Scanning Section */}
+        <Box>
+          <OcrScanningSection />
+        </Box>
         
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={scanProgress >= 50} timeout={800}>
           <Box >
-            <AIRecommendations contentContainerSx={{top:"15%",left:"14%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
+            <AIRecommendations contentContainerSx={{top:"13%",left:"14%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
           </Box>
         </Grow>
         
