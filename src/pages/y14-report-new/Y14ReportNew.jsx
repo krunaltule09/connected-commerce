@@ -94,7 +94,7 @@ export default function Y14ReportNew() {
                     </Box>
                   </Box>
                   {expandedAccordion === 'borrower' && (
-                  <Box className={styles.accordionContent}>
+                  <Box className={`${styles.accordionContent} ${styles.borrowerAccordionContent}`}>
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Obligor name</Typography>

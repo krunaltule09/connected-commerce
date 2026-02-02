@@ -215,7 +215,7 @@
 .findingsImage {
   display: block;
   width: 154%;
-  max-width: 1600px;
+  max-width: 1614px;
   height: auto;
   max-height: 360px !important;
   object-fit: contain;
@@ -368,6 +368,12 @@
   box-sizing: border-box;
   max-height: 172px;
   overflow-y: auto;
+}
+
+/* Remove scroll bar specifically for Borrower / Obligor Information accordion */
+.borrowerAccordionContent {
+  max-height: none;
+  overflow-y: visible;
 }
 
 .detailsGrid {
