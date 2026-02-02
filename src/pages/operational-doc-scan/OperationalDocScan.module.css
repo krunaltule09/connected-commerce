@@ -126,6 +126,7 @@
   align-items: flex-start !important;
   padding: 20px !important;
   gap: 20px !important;
+  margin-left: -4px;
   background: #1A1A24 !important;
   border-radius: 8px !important;
   height: 90% !important;
