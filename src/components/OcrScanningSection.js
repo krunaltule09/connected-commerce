@@ -37,7 +37,7 @@ export default function OcrScanningSection() {
   };
 
   return (
-    <GradientBorderBox animated sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <GradientBorderBox animated sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column', py:2 }}>
       <Stack spacing={1.5} sx={{ flexGrow: 1, overflow: 'hidden' }}>
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
