@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Box } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
 import { Bar } from 'react-chartjs-2';
 import { useScanning } from '../context/ScanningContext';
@@ -36,7 +37,11 @@ export default function FinancialChart() {
     datasets: [createChartDataset(visibleData)],
   };
   
-  const options = createChartOptions(selectedMetric, formatValue);
+  // Override options to disable aspect ratio constraint
+  const options = {
+    ...createChartOptions(selectedMetric, formatValue),
+    maintainAspectRatio: false
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -45,12 +50,14 @@ export default function FinancialChart() {
       ) : (
         <AnimatedChartContainer metricKey={selectedMetric}>
           <ChartBackground>
-            <Bar 
-              key={`chart-${selectedMetric}`} 
-              ref={chartRef} 
-              data={data} 
-              options={options} 
-            />
+            <Box sx={{ height: '14.5rem', width: '100%' }}>
+              <Bar 
+                key={`chart-${selectedMetric}`} 
+                ref={chartRef} 
+                data={data} 
+                options={options} 
+              />
+            </Box>
           </ChartBackground>
         </AnimatedChartContainer>
       )}
