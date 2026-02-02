@@ -1,16 +1,27 @@
 import axios from 'axios';
 
 /**
- * Service for cross-application navigation using Server-Sent Events
+ * Service for cross-application navigation using NATS
  */
 class NavigationService {
   constructor() {
-    this.baseUrl = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
+    this.baseUrl = process.env.REACT_APP_NATS_SERVICE_URL || process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
     this.appId = 'connected-commerce';
+    this.useNATS = true; // Flag to use NATS endpoints
+    
+    console.log('🔧 NavigationService initialized:', {
+      baseUrl: this.baseUrl,
+      appId: this.appId,
+      useNATS: this.useNATS,
+      env: {
+        REACT_APP_NATS_SERVICE_URL: process.env.REACT_APP_NATS_SERVICE_URL,
+        REACT_APP_SSE_SERVICE_URL: process.env.REACT_APP_SSE_SERVICE_URL
+      }
+    });
   }
 
   /**
-   * Send a navigation event to the SSE service
+   * Send a navigation event via NATS
    * @param {string} action - The action type
    * @param {string} targetAppId - Target application ID
    * @param {string} route - Target route to navigate to
@@ -18,8 +29,18 @@ class NavigationService {
    * @returns {Promise} - Promise resolving to the response
    */
   async sendNavigationEvent(action, targetAppId, route, data = {}) {
+    console.log('🚀 NavigationService.sendNavigationEvent called:', {
+      action,
+      targetAppId,
+      route,
+      baseUrl: this.baseUrl,
+      data
+    });
+    
     try {
-      const response = await axios.post(`${this.baseUrl}/api/navigation`, {
+      // Use legacy endpoint for backward compatibility
+      // Backend will forward to NATS
+      const payload = {
         action,
         targetAppId,
         route,
@@ -28,12 +49,21 @@ class NavigationService {
           sourceAppId: this.appId,
           timestamp: new Date().toISOString()
         }
-      });
+      };
       
-      console.log('Navigation event sent:', response.data);
+      console.log('📤 Sending POST to:', `${this.baseUrl}/api/navigation`, payload);
+      
+      const response = await axios.post(`${this.baseUrl}/api/navigation`, payload);
+      
+      console.log('✅ Navigation event sent via NATS:', response.data);
       return response.data;
     } catch (error) {
-      console.error('Failed to send navigation event:', error);
+      console.error('❌ Failed to send navigation event:', error);
+      console.error('Error details:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
       throw error;
     }
   }
