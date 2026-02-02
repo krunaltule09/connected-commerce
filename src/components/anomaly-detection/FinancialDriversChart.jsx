@@ -57,7 +57,7 @@ export default function FinancialDriversChart({ style = {} }) {
         sx={{ 
           color: '#FFE600', 
           fontSize: { xs: '1.125rem', md: '1.25rem' },
-          fontWeight: 500, 
+          fontWeight: 400, 
           mb: 3 
         }}
       >
@@ -109,9 +109,12 @@ export default function FinancialDriversChart({ style = {} }) {
               backgroundColor: '#1F2937', 
               border: 'none', 
               borderRadius: '8px',
-              color: '#F3F4F6'
+              color: 'rgba(255,255,255,1)',
+              fontWeight: 700
             }}
             formatter={(value) => `$${(value / 1000).toFixed(1)}K`}
+            labelStyle={{ color: 'rgba(255,255,255,1)', fontWeight: 700 }}
+            itemStyle={{ color: 'rgba(255,255,255,1)', fontWeight: 700 }}
           />
           <Legend 
             verticalAlign="bottom" 
@@ -119,7 +122,11 @@ export default function FinancialDriversChart({ style = {} }) {
             iconType="circle"
             wrapperStyle={{ paddingTop: '20px' }}
             formatter={(value) => (
-              <span style={{ color: '#D1D5DB', fontSize: '14px', marginLeft: '5px' }}>
+              <span style={{ 
+                color: 'rgba(255,255,255,1)', 
+                marginRight: '5px',
+                fontWeight: 700
+              }}>
                 {value}
               </span>
             )}
