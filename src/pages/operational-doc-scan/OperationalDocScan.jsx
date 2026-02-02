@@ -78,7 +78,7 @@ const OperationalDocScan = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         {/* Left panel - OCR Scanning Section */}
-        <Box>
+        <Box style={{height:"99%"}}>
           <OcrScanningSection />
         </Box>
         
