@@ -43,8 +43,8 @@ const Overlay = styled(Box)({
 
 const Logo = styled('img')({
   position: 'absolute',
-  bottom: '20px',
-  right: '20px',
+  bottom: '8%',
+  right: '-16%',
   width: '80px',
   height: 'auto',
 });
@@ -56,10 +56,10 @@ const MenuGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const MenuButton = styled(GradientButton)(({ theme }) => ({
-  width: '100%',
+  width: '80%', // Reduced width from 100% to 80%
   height: '50px',
   display: 'flex',
-  justifyContent: 'flex-start',
+  justifyContent: 'center', // Changed from flex-start to center
   alignItems: 'center',
   fontSize: '0.75rem !important',
   padding: theme.spacing(1.5, 2),
@@ -71,6 +71,7 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  margin: '0 auto', // Added to center the button in its container
   '&:hover': {
     backgroundColor: 'rgba(29, 29, 29, 0.5)',
     boxShadow: '0 6px 8px rgba(0, 0, 0, 0.15)',
@@ -80,6 +81,8 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
     color: '#FFD700',
     fontSize: '0.87rem',
     flexShrink: 0,
+    position: 'relative',
+    top: '-1px', // Slight vertical adjustment for better alignment
   },
   '& .MuiTypography-root': {
     fontWeight: 600,
@@ -88,6 +91,7 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
     letterSpacing: '0.3px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    textAlign: 'center', // Added to ensure text is centered
   }
 }));
 
@@ -112,15 +116,11 @@ const ActivateButton = styled(Paper)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '24rem',
+    width: '24rem',
   height: '3.5rem',
-  padding: theme.spacing(0.75, 2.4),
-  background: 'rgba(29, 29, 29, 0.7)',
-  backgroundBlendMode: 'color-burn, plus-lighter',
-  boxShadow: 'inset 6.03px 6.03px 1px -7.03px rgba(255, 255, 255, 0.5), inset 4.02px 4.02px 2.01px -4.02px rgba(179, 179, 179, 0.5), inset -4.02px -4.02px 2.01px -4.02px rgba(179, 179, 179, 0.5), inset 0px 0px 44.2px rgba(242, 242, 242, 0.3), 0px 0px 10px rgba(33, 207, 255, 0.2)',
-  backdropFilter: 'blur(40.18px)',
-  borderRadius: '100px',
-  border: '1px solid rgba(33, 207, 255, 0.2)',
+  background: 'rgba(218, 199, 199, 0.1)', // Using the background color from Figma
+  borderRadius: '8px', // Using the border radius from Figma
+  border: 'none',
   cursor: 'pointer',
   transition: 'transform 0.3s, box-shadow 0.3s, border 0.3s',
   '&:hover': {
@@ -231,7 +231,7 @@ const EnterpriseLoanServicing = () => {
               key={index}
               style={{ transformOrigin: 'center top' }}
             >
-              <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+              <Grid item xs={12} sm={6} md={3} lg={3} xl={3} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Slide direction="up" in={animationReady} timeout={400 + (index * 150)}>
                   <MenuButton
                     onClick={() => handleButtonClick(item.path)}
@@ -334,9 +334,10 @@ const EnterpriseLoanServicing = () => {
               variant="body1"
               sx={{ 
                 letterSpacing: '0.5px',
-                fontWeight: 500,
-                color: 'var(--color-primary)',
-                textShadow: '0px 0px 8px rgba(33, 207, 255, 0.4)'
+                fontStyle: 'normal',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                textTransform: 'none'
               }}
             >
               Touch here to activate servicing mode
