@@ -92,7 +92,7 @@ export default function OcrScanningSection() {
                     fontSize: '0.75rem',
                   }}
                 >
-                  {isComplete ? 'Completed' : 'OCR scanning in process...'}
+                  {isComplete ? 'Completed' : 'Analyzing'}
                 </Typography>
               </motion.div>
               <motion.div

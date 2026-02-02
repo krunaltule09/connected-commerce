@@ -27,7 +27,7 @@ const DocumentPreviewPanel = ({ scanProgress }) => {
                 fontSize: '0.75rem',
               }}
             >
-              {scanProgress >= 99 ? 'Completed' : 'OCR scanning in process...'}
+              {scanProgress >= 99 ? 'Completed' : 'Analyzing'}
             </Typography>
             <Typography variant="body2" sx={{ color: '#FFE600' }}>{`${Math.round(scanProgress)}%`}</Typography>
           </Box>
