@@ -85,7 +85,7 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
     top: '-1px', // Slight vertical adjustment for better alignment
   },
   '& .MuiTypography-root': {
-    fontWeight: 600,
+    fontWeight: 400,
     fontSize: '0.78rem',
     color: '#FFD700',
     letterSpacing: '0.3px',
@@ -223,7 +223,7 @@ const EnterpriseLoanServicing = () => {
 
       <Container maxWidth="lg" sx={{ height: '100%', position: 'relative', pt: 3 }}>
         {/* Menu Grid */}
-        <MenuGrid container spacing={2} justifyContent="center" sx={{ maxWidth: '1280px', mx: 'auto', px: 2 }}>
+        <MenuGrid container spacing={2} justifyContent="center" sx={{ maxWidth: '1280px', mx: 'auto', px: 2}}>
           {menuItems.map((item, index) => (
             <Grow 
               in={animationReady} 
@@ -238,7 +238,7 @@ const EnterpriseLoanServicing = () => {
                     startIcon={item.icon}
                     sx={{ minWidth: 0 }}
                   >
-                    <Typography variant="button" noWrap>{item.text}</Typography>
+                    <Typography sx={{fontWeight:400 }}  noWrap>{item.text}</Typography>
                   </MenuButton>
                 </Slide>
               </Grid>
@@ -274,7 +274,7 @@ const EnterpriseLoanServicing = () => {
                       style={{
                         display: 'inline-block',
                         fontSize: 'clamp(2rem, 5vw, 3rem)',
-                        fontWeight: 600,
+                        fontWeight: 300,
                         color: 'white',
                         textShadow: '0px 0px 10px rgba(0,0,0,0.5)',
                         marginRight: char === " " ? '0.5rem' : '0.05rem'
