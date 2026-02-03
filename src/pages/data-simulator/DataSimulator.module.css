@@ -40,7 +40,7 @@
   flex-direction: column !important;
   align-items: flex-start !important;
   padding: 24px !important;
-  gap: 24px !important;
+  gap: 0.5rem !important;
   background: #1A1A24 !important;
   border-radius: 8px !important;
   width: 100% !important;
@@ -48,12 +48,10 @@
   overflow-y: auto !important;
   position: relative !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
-  transform-origin: center !important;
-  transition: box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease !important;
+  transition: box-shadow 0.4s ease, filter 0.3s ease !important;
 }
 
 .mainPanel:hover {
-  transform: scale(1.02) !important;
   filter: brightness(1.08) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important;
   cursor: pointer !important;
@@ -181,7 +179,7 @@
   background: #1A1A24 !important;
   border-radius: 8px !important;
   flex: 1 !important;
-  height: 120% !important;
+  height: 160% !important;
   overflow: visible !important;
 }
 
@@ -335,6 +333,7 @@
   padding: 1px !important;
   background: linear-gradient(130deg, rgba(255, 230, 0, 1) 0%, rgba(46, 46, 56, 1) 60%) !important;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
   -webkit-mask-composite: xor !important;
   mask-composite: exclude !important;
   pointer-events: none !important;

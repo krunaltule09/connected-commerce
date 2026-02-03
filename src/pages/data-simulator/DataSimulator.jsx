@@ -90,7 +90,7 @@ const DataSimulator = () => {
           <Typography className={styles.panelTitle}>Data Simulator</Typography>
           
           {/* Tab buttons */}
-          <Box sx={{ mb: 2, width: '100%' }}>
+          <Box sx={{ width: '100%' }}>
             <Stack direction="row" spacing={1.5} sx={{ overflowX: 'auto', pb: 0.5 }}>
               {tabs.map((tab) => {
                 const isSelected = selectedTab === tab;
