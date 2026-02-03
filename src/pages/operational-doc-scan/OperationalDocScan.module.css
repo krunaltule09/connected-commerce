@@ -112,7 +112,8 @@
   gap: 20px !important;
   overflow: hidden !important;
   padding: 16px !important;
-  margin-bottom: -16px !important;
+  margin-bottom: -14px !important;
+  margin-left: -5px;;
 }
 
 /* Document Preview Panel */
