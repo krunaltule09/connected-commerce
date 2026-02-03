@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import GradientBorderBox from './common/GradientBorderBox';
 import { useScanning } from '../context/ScanningContext';
 
-export default function OcrScanningSection() {
+export default function OcrScanningSection({ isInOperationalDocScan=false }) {
   // Removed sections array and currentSectionIndex state as they're no longer needed
   const { scanProgress: progress, isComplete } = useScanning();
   const [animateDocument, setAnimateDocument] = useState(false);
@@ -37,14 +37,14 @@ export default function OcrScanningSection() {
   };
 
   return (
-    <GradientBorderBox animated sx={{ px: 1.5, height: '100%', display: 'flex', flexDirection: 'column', py:2 }}>
-      <Stack spacing={1.5} sx={{ flexGrow: 1, overflow: 'hidden' }}>
+    <GradientBorderBox animated sx={{ px: 1.45, height: '100%', display: 'flex', flexDirection: 'column', py:1.9 }}>
+      <Stack spacing={1.45} sx={{ flexGrow: 1, overflow: 'hidden', '& > *': { marginBottom: '0 !important' } }} className="ocr-scanning-stack">
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
-          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '1.25rem', mb: 1, p: 1.5 }}>Data Extraction Preview</Typography>
+          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '1.21rem', mb: 1 }}>Data Extraction Preview</Typography>
         </Slide>
         <Grow in={animateDocument} timeout={800}>
-          <GradientBorderBox p={1.5}>
+          <GradientBorderBox p={1.45}>
             <motion.div
               initial="hidden"
               animate="visible"
@@ -53,7 +53,7 @@ export default function OcrScanningSection() {
             >
               <Box
                 sx={{
-                  height: 400,
+                  height: isInOperationalDocScan ? 300 : 388,
                   bgcolor: '#343340',
                   borderRadius: 2,
                   display: 'flex',
@@ -77,9 +77,9 @@ export default function OcrScanningSection() {
       </Box>
 
       <Fade in={animateProgress} timeout={1000}>
-        <GradientBorderBox sx={{ p: 1.5 }}>
+        <GradientBorderBox sx={{ p: 1.45 }}>
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.97 }}>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -89,7 +89,7 @@ export default function OcrScanningSection() {
                   variant="caption"
                   sx={{
                     color: isComplete ? '#FFE600' : 'rgba(252, 252, 252, 0.7)',
-                    fontSize: '0.75rem',
+                    fontSize: '0.73rem',
                   }}
                 >
                   {isComplete ? 'Completed' : 'Analyzing'}
@@ -100,13 +100,13 @@ export default function OcrScanningSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <Typography variant="body2" sx={{ color: '#FFE600' }}>{`${Math.round(progress)}%`}</Typography>
+                <Typography variant="body2" sx={{ color: '#FFE600', fontSize: '0.85rem' }}>{`${Math.round(progress)}%`}</Typography>
               </motion.div>
             </Box>
             <Box
               sx={{
-                height: 8,
-                borderRadius: 4,
+                height: 7.8,
+                borderRadius: 3.9,
                 backgroundColor: 'rgba(255,255,255,0.1)',
                 overflow: 'hidden',
                 position: 'relative',

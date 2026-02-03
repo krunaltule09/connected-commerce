@@ -78,8 +78,8 @@ const OperationalDocScan = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         {/* Left panel - OCR Scanning Section */}
-        <Box style={{height:"99%"}}>
-          <OcrScanningSection />
+        <Box style={{height:"98%"}}>
+          <OcrScanningSection isInOperationalDocScan={true} />
         </Box>
         
         {/* AI Chip - positioned outside the document preview panel */}

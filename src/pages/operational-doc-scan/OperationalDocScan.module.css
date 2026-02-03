@@ -140,8 +140,8 @@
   font-family: var(--font-family-primary, 'EYInterstate') !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  font-size: 20px !important;
-  line-height: 24px !important;
+  font-size: 19.5px !important;
+  line-height: 23px !important;
   letter-spacing: -0.02em !important;
   color: #FFE600 !important;
   margin-bottom: 5px !important;
@@ -246,34 +246,44 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  padding: 20px !important;
-  gap: 15px !important;
+  padding: 19px !important;
+  gap: 10px !important;
   background: #1A1A24 !important;
   border-radius: 8px !important;
-  height: 99% !important;
+  height: 98% !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
 }
 
+/* Shipment details table container */
 .tableContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+/* Set specific gap for shipment details rows */
+.shipmentDetailsPanel .tableContainer {
+  row-gap: 0.5rem !important;
+}
+
+/* Add specific style for OCR scanning stack to prevent conflicts */
+:global(.ocr-scanning-stack) {
+  gap:0.1rem !important;
 }
 
 .tableHeader {
   display: grid !important;
   grid-template-columns: 1fr 1.2fr 1.2fr 0.4fr !important;
-  gap: 0.5rem !important;
-  padding: 0.25rem 0 !important;
+  gap: 0.48rem !important;
+  padding: 0.24rem 0 !important;
 }
 
 .tableHeaderCell {
   font-family: var(--font-family-primary, 'EYInterstate') !important;
   font-style: normal !important;
   font-weight: 300 !important;
-  font-size: 1.125rem !important;
-  line-height: 1.5rem !important;
+  font-size: 1.09rem !important;
+  line-height: 1.45rem !important;
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
@@ -287,8 +297,8 @@
 .tableRow {
   display: grid !important;
   grid-template-columns: 1fr 1.2fr 1.2fr 0.4fr !important;
-  gap: 0.5rem !important;
-  padding: 0.25rem 0 !important;
+  gap: 0.48rem !important;
+  padding: 0.24rem !important;
   align-items: center !important;
 }
 
@@ -296,8 +306,8 @@
   font-family: var(--font-family-primary, 'EYInterstate') !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  font-size: 1.125rem !important;
-  line-height: 1.5rem !important;
+  font-size: 1.09rem !important;
+  line-height: 1.45rem !important;
   color: #FFFFFF !important;
 }
 
