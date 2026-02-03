@@ -171,7 +171,10 @@ const OperationalDocScan = () => {
       </Box>
       {/* Detailed Findings Panel with Gradient Border */}
       <Fade in={true} timeout={1000} style={{ transitionDelay: '500ms' }}>
-        <GradientBorderBox className={styles.detailedFindingsPanel}>
+        <GradientBorderBox 
+          className={styles.detailedFindingsPanel} 
+          animated={true} 
+          sx={{ borderRadius: '12px' }}>
           <Box className={styles.detailedFindingsHeader}>
             <Typography className={styles.detailedFindingsTitle}>Detailed Findings</Typography>
           </Box>
