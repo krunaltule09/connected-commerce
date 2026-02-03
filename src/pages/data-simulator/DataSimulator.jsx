@@ -7,7 +7,7 @@ import styles from './DataSimulator.module.css';
 
 const DataSimulator = () => {
   const navigate = useNavigate();
-  const tabs = ['Benefit Blocks', 'Client-Specific ROI Calculator', 'Case Studies / Benchmarks'];
+  const tabs = ['Benefit Blocks', 'ROI Calculator', 'Case Studies / Benchmarks'];
   const [selectedTab, setSelectedTab] = useState('Benefit Blocks');
   
   // Custom background styles for each tab
