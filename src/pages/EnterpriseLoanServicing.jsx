@@ -56,7 +56,7 @@ const MenuGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const MenuButton = styled(GradientButton)(({ theme }) => ({
-  width: '80%', // Reduced width from 100% to 80%
+  width: '85%', // Reduced width from 100% to 80%
   height: '50px',
   display: 'flex',
   justifyContent: 'center', // Changed from flex-start to center
