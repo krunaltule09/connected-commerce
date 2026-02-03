@@ -37,7 +37,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
   };
 
   return (
-    <GradientBorderBox animated sx={{ px: 1.45, height: '100%', display: 'flex', flexDirection: 'column', py:1.9 }}>
+    <GradientBorderBox sx={{ px: 1.45, height: '100%', display: 'flex', flexDirection: 'column', py:1.9 }}>
       <Stack spacing={1.45} sx={{ flexGrow: 1, overflow: 'hidden', '& > *': { marginBottom: '0 !important' } }} className="ocr-scanning-stack">
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
@@ -53,7 +53,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
             >
               <Box
                 sx={{
-                  height: isInOperationalDocScan ? 300 : 388,
+                  height: isInOperationalDocScan ? 320 : 388,
                   bgcolor: '#343340',
                   borderRadius: 2,
                   display: 'flex',

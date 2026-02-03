@@ -78,7 +78,7 @@ const OperationalDocScan = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         {/* Left panel - OCR Scanning Section */}
-        <Box style={{height:"98%"}}>
+        <Box style={{height:"101%"}}>
           <OcrScanningSection isInOperationalDocScan={true} />
         </Box>
         
@@ -173,8 +173,7 @@ const OperationalDocScan = () => {
       <Fade in={true} timeout={1000} style={{ transitionDelay: '500ms' }}>
         <GradientBorderBox 
           className={styles.detailedFindingsPanel} 
-          animated={true} 
-          sx={{ borderRadius: '12px' }}>
+          sx={{ borderRadius: '8px' }}>
           <Box className={styles.detailedFindingsHeader}>
             <Typography className={styles.detailedFindingsTitle}>Detailed Findings</Typography>
           </Box>
