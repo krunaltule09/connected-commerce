@@ -11,12 +11,16 @@ export default function FinancialDriversChart({ style = {} }) {
   const { data, loading } = useFinancialDriversData();
   const [animationProgress, setAnimationProgress] = useState(0);
 
-  // Animate the chart rendering with delay
+  // Initialize animation progress immediately to prevent incorrect initial rendering
   useEffect(() => {
     if (!loading && data.length > 0) {
+      // Set animation progress to 0.001 immediately to establish proper baseline position
+      setAnimationProgress(0.001);
+      
+      // Then start the actual animation after a short delay
       const timer = setTimeout(() => {
         setAnimationProgress(1);
-      }, 500); // Delay before starting animation
+      }, 300); // Reduced delay for smoother transition
       return () => clearTimeout(timer);
     }
   }, [loading, data]);
@@ -65,10 +69,14 @@ export default function FinancialDriversChart({ style = {} }) {
       >
         Quarter-by-quarter financial drivers
       </Typography>
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer width="100%" height={280} key={`financial-drivers-chart-${animationProgress}`}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 20, bottom: 40 }}
+          baseValue={15000}
+          layout="horizontal"
+          stackOffset="none"
+          barCategoryGap="10%"
         >
           <defs>
             <linearGradient id="colorDebt" x1="0" y1="0" x2="0" y2="1">
@@ -105,6 +113,8 @@ export default function FinancialDriversChart({ style = {} }) {
             axisLine={{ stroke: '#3F4254' }}
             domain={[15000, 35000]}
             ticks={[15000, 20000, 25000, 30000, 35000]}
+            allowDataOverflow={false}
+            allowDecimals={false}
           />
           <Tooltip 
             contentStyle={{ 
@@ -141,9 +151,10 @@ export default function FinancialDriversChart({ style = {} }) {
             fill="url(#colorDebt)"
             name="Debt"
             animationBegin={0}
-            animationDuration={2000}
+            animationDuration={1500}
             animationEasing="ease-out"
             isAnimationActive={animationProgress > 0}
+            baseValue={15000} // Set explicit base value to match domain minimum
           />
           <Area 
             type="monotone" 
@@ -152,10 +163,11 @@ export default function FinancialDriversChart({ style = {} }) {
             stroke="#D97642" 
             fill="url(#colorInterest)"
             name="Interest"
-            animationBegin={200}
-            animationDuration={2000}
+            animationBegin={100}
+            animationDuration={1500}
             animationEasing="ease-out"
             isAnimationActive={animationProgress > 0}
+            baseValue={15000} // Set explicit base value to match domain minimum
           />
           <Area 
             type="monotone" 
@@ -164,10 +176,11 @@ export default function FinancialDriversChart({ style = {} }) {
             stroke="#34D399" 
             fill="url(#colorCashFlow)"
             name="Cash Flow"
-            animationBegin={400}
-            animationDuration={2000}
+            animationBegin={200}
+            animationDuration={1500}
             animationEasing="ease-out"
             isAnimationActive={animationProgress > 0}
+            baseValue={15000} // Set explicit base value to match domain minimum
           />
         </AreaChart>
       </ResponsiveContainer>

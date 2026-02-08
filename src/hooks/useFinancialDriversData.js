@@ -5,7 +5,13 @@ import { useState, useEffect } from 'react';
  * Fetches and manages quarter-by-quarter financial data
  */
 export const useFinancialDriversData = () => {
-  const [data, setData] = useState([]);
+  // Initialize with empty structure that matches final data shape
+  const [data, setData] = useState([
+    { quarter: 'Q1', cashFlow: 0, interest: 0, debt: 0 },
+    { quarter: 'Q2', cashFlow: 0, interest: 0, debt: 0 },
+    { quarter: 'Q3', cashFlow: 0, interest: 0, debt: 0 },
+    { quarter: 'Q4', cashFlow: 0, interest: 0, debt: 0 },
+  ]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,10 +24,11 @@ export const useFinancialDriversData = () => {
         { quarter: 'Q4', cashFlow: 6500, interest: 7000, debt: 13000 },
       ];
       
+      // Use a shorter timeout to minimize visible transition
       setTimeout(() => {
         setData(hardcodedData);
         setLoading(false);
-      }, 100);
+      }, 50);
     };
 
     fetchData();
