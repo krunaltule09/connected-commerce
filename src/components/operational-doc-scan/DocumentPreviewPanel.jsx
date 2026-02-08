@@ -6,7 +6,7 @@ import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.c
 const DocumentPreviewPanel = ({ scanProgress }) => {
   return (
     <Slide direction="right" in={true} timeout={800} mountOnEnter unmountOnExit>
-      <GradientBorderBox className={styles.documentPreviewPanel}>
+      <GradientBorderBox animated className={styles.documentPreviewPanel}>
         <Box className={styles.panelTitle}>Scanned Document Preview</Box>
         
         <Box className={styles.documentImageContainer}>
