@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import GradientBorderBoxLegacy from '../../components/common/GradientBorderBoxLegacy';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
@@ -86,7 +87,7 @@ const DataSimulator = () => {
       
       {/* Main content */}
       <Box className={styles.contentContainer}>
-        <GradientBorderBox className={styles.mainPanel}>
+        <GradientBorderBoxLegacy className={styles.mainPanel}>
           <Typography className={styles.panelTitle}>Data Simulator</Typography>
           
           {/* Tab buttons */}
@@ -159,12 +160,7 @@ const DataSimulator = () => {
               <Box className={styles.metricsContainer}>
                 <GradientBorderBox className={styles.metricBox} sx={{ 
                   mb: 2, 
-                  borderColor: '#FFE600',
-                  borderRadius: 1,
-                  bgcolor: '#1E1E28',
-                  border: '1px solid',
-                  borderImage: 'linear-gradient(130deg, rgba(255, 230, 0, 1) 0%, rgba(46, 46, 56, 1) 60%) 1',
-                  borderImageSlice: 1
+                
                 }}>
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <Box sx={{ 
@@ -206,12 +202,7 @@ const DataSimulator = () => {
                 </GradientBorderBox>
                 
                 <GradientBorderBox className={styles.metricBox} sx={{ 
-                  borderColor: '#FFE600',
-                  borderRadius: 1,
-                  bgcolor: '#1E1E28',
-                  border: '1px solid',
-                  borderImage: 'linear-gradient(130deg, rgba(255, 230, 0, 1) 0%, rgba(46, 46, 56, 1) 60%) 1',
-                  borderImageSlice: 1
+                 
                 }}>
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <Box sx={{ 
@@ -257,7 +248,7 @@ const DataSimulator = () => {
             {/* Compliance column */}
             <GradientBorderBox className={styles.column}>
               <Typography className={styles.columnTitle}>Compliance</Typography>
-              <GradientBorderBox className={styles.columnContent}>
+              <GradientBorderBoxLegacy className={styles.columnContent}>
                 <Box className={styles.alertBox} sx={{ background: 'rgba(255, 67, 50, 0.21)', width: '100%' }}>
                   <Box className={styles.alertHeader}>
                     <Box className={styles.alertIcon} sx={{ color: '#F22323' }}></Box>
@@ -305,10 +296,10 @@ const DataSimulator = () => {
                     </Box>
                   </Box>
                 </Box>
-              </GradientBorderBox>
+              </GradientBorderBoxLegacy>
             </GradientBorderBox>
           </Box>
-        </GradientBorderBox>
+        </GradientBorderBoxLegacy>
       </Box>
       
       {/* Navigation buttons with sound effects */}
