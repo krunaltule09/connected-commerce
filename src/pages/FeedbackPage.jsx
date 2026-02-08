@@ -82,7 +82,7 @@ const BackButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#F3F3F5',
   color: '#000000',
   borderRadius: '8px',
-  padding: theme.spacing(1.5, 4),
+  padding: theme.spacing(1, 2),
   fontWeight: 500,
   textTransform: 'none',
   fontSize: '16px',
