@@ -369,6 +369,9 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #FFE600 #33333E;
+  background: transparent;
+  border: none;
+  margin-top: 8px;
 }
 
 /* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */

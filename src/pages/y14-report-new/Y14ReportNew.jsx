@@ -79,18 +79,20 @@ export default function Y14ReportNew() {
                 <Box className={styles.templateContent}>
               <Box className={styles.accordionColumn}>
                 {/* Borrower / Obligor Information */}
-                <Box className={styles.accordion}>
-                  <Box 
-                    className={styles.accordionTitle}
-                    onClick={() => handleAccordionToggle('borrower')}
-                  >
-                    <Typography className={styles.accordionHeader}>Borrower / Obligor Information</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'borrower' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box 
+                      className={styles.accordionTitle}
+                      onClick={() => handleAccordionToggle('borrower')}
+                    >
+                      <Typography className={styles.accordionHeader}>Borrower / Obligor Information</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'borrower' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'borrower' && (
@@ -121,15 +123,17 @@ export default function Y14ReportNew() {
                 )}
                 </Box>
                 {/* Loan Characteristics */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('loan')}>
-                    <Typography className={styles.accordionHeader}>Loan Characteristics</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'loan' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('loan')}>
+                      <Typography className={styles.accordionHeader}>Loan Characteristics</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'loan' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'loan' && (
@@ -180,15 +184,17 @@ export default function Y14ReportNew() {
                 )}
                 </Box>
                 {/* Collateral Information */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('collateral')}>
-                    <Typography className={styles.accordionHeader}>Collateral Information</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'collateral' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('collateral')}>
+                      <Typography className={styles.accordionHeader}>Collateral Information</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'collateral' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'collateral' && (
@@ -227,15 +233,17 @@ export default function Y14ReportNew() {
                 )}
                 </Box>
                 {/* Covenant Information */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('covenant')}>
-                    <Typography className={styles.accordionHeader}>Covenant Information (Extracted)</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'covenant' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('covenant')}>
+                      <Typography className={styles.accordionHeader}>Covenant Information (Extracted)</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'covenant' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'covenant' && (
@@ -310,15 +318,17 @@ export default function Y14ReportNew() {
               </Box>
               <Box className={styles.accordionColumn}>
                 {/* Credit Quality & Risk Measures */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('credit')}>
-                    <Typography className={styles.accordionHeader}>Credit Quality & Risk Metrics</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'credit' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('credit')}>
+                      <Typography className={styles.accordionHeader}>Credit Quality & Risk Metrics</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'credit' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'credit' && (
@@ -357,15 +367,17 @@ export default function Y14ReportNew() {
                 )}
                 </Box>
                 {/* Performance & Payment Info */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('performance')}>
-                    <Typography className={styles.accordionHeader}>Performance & Payment Info</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'performance' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('performance')}>
+                      <Typography className={styles.accordionHeader}>Performance & Payment Info</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'performance' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'performance' && (
@@ -400,15 +412,17 @@ export default function Y14ReportNew() {
                 )}
                 </Box>
                 {/* Accounting & Reporting Attributes */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('accounting')}>
-                    <Typography className={styles.accordionHeader}>Accounting & Reporting Attributes</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'accounting' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('accounting')}>
+                      <Typography className={styles.accordionHeader}>Accounting & Reporting Attributes</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'accounting' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'accounting' && (
@@ -443,15 +457,17 @@ export default function Y14ReportNew() {
                 )}
                 </Box>
                 {/* Regulatory Schedule Mapping (Meta Fields) */}
-                <Box className={styles.accordion}>
-                  <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('regulatory')}>
-                    <Typography className={styles.accordionHeader}>Regulatory Schedule Mapping (Meta Fields)</Typography>
-                    <Box className={styles.accordionIcon}>
-                      {expandedAccordion === 'regulatory' ? (
-                        <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                      ) : (
-                        <ExpandMoreIcon />
-                      )}
+                <Box>
+                  <Box className={styles.accordion}>
+                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('regulatory')}>
+                      <Typography className={styles.accordionHeader}>Regulatory Schedule Mapping (Meta Fields)</Typography>
+                      <Box className={styles.accordionIcon}>
+                        {expandedAccordion === 'regulatory' ? (
+                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+                        ) : (
+                          <ExpandMoreIcon />
+                        )}
+                      </Box>
                     </Box>
                   </Box>
                   {expandedAccordion === 'regulatory' && (
