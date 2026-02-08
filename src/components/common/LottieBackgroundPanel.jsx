@@ -86,7 +86,7 @@ const LottieBackgroundPanel = ({
                 <Typography 
                   variant="body2" 
                   color="white"
-                  sx={{ fontSize: '14px', lineHeight: 1.5 }}
+                  sx={{ fontSize: '14px', lineHeight: 1.5, fontWeight: 'bold' }}
                 >
                   {point}
                 </Typography>

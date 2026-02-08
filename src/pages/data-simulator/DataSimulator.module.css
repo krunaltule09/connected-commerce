@@ -198,15 +198,24 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  padding: 16px !important;
   gap: 12px !important;
-  width: 94% !important;
-  background: #23232F !important;
-  border: none !important;
+  width: 100% !important;
   border-radius: 4px !important;
-
+  border: none !important;
   overflow: visible !important;
 }
+
+.columnContentSpeed {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  width: 100% !important;
+  border-radius: 4px !important;
+  padding: 16px !important;
+  overflow: visible !important;
+}
+
 
 .timelineTitle {
   width: 100% !important;
@@ -317,7 +326,7 @@
   padding: 16px !important;
   background: #1E1E28 !important;
   border-radius: 4px !important;
-  width: 92.5% !important;
+  width: 100% !important;
   position: relative !important;
   z-index: 1 !important;
 }
@@ -405,11 +414,11 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  padding: 12px !important;
+  padding: 1.3rem !important;
   gap: 8px !important;
   border-radius: 4px !important;
   margin-bottom: 8px !important;
-  width: 95% !important;
+  width: 100% !important;
 }
 
 .alertHeader {
@@ -459,8 +468,8 @@
 .alertDetailLabel {
   font-family: var(--font-family-primary, 'EYInterstate') !important;
   font-style: normal !important;
-  font-weight: 400 !important;
-  font-size: 8px !important;
+  font-weight: 500 !important;
+  font-size: 9px !important;
   color: #9897A6 !important;
 }
 

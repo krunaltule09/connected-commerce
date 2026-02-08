@@ -1,22 +1,22 @@
 .operationalDocScanPage {
   position: relative !important;
   width: 100% !important;
-  overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-  align-items: center !important;
+  align-items: flex-start !important;
+  padding: 1rem;
+  overflow: visible !important;
 }
 
 /* Detailed Findings Panel */
 .detailedFindingsPanel {
   display: flex !important;
   flex-direction: column !important;
-  width: 92% !important;
-  max-width: 1616px !important;
+  width: 98.7% !important;
   margin: 0 auto !important;
   z-index: 2 !important;
-  overflow: hidden !important;
+
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
   border-radius: 8px !important;
 }
@@ -100,8 +100,7 @@
 /* Main content container */
 .contentContainer {
   position: relative !important;
-  width: 94% !important;
-  max-width: 1616px !important;
+  width: 100% !important;
   height: 80% !important;
   z-index: 2 !important;
   display: grid !important;
@@ -110,7 +109,6 @@
     "document-preview shipment-details"
     "document-preview kpi-panel" !important;
   gap: 20px !important;
-  overflow: hidden !important;
   padding: 16px !important;
   margin-bottom: -14px !important;
   margin-left: -5px;;
@@ -129,7 +127,6 @@
   background: #1A1A24 !important;
   border-radius: 8px !important;
   height: 90% !important;
-  overflow: hidden !important;
   position: relative !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
 }
@@ -157,7 +154,6 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  overflow: hidden !important;
   border: 1px solid #FFE600 !important;
 }
 
@@ -206,7 +202,6 @@
   height: 12px !important;
   background: #3B4F54 !important;
   border-radius: 8px !important;
-  overflow: hidden !important;
 }
 
 .progressBar {
