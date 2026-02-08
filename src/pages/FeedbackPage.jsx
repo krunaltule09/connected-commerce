@@ -36,13 +36,12 @@ const Subtitle = styled(Typography)(({ theme }) => ({
 const MainCard = styled(Box)(({ theme }) => ({
   position: 'relative',
   borderRadius: '16px',
-  padding: theme.spacing(4),
+  padding: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  overflow: 'hidden',
-  minHeight: '500px',
+  minHeight: '600px',
   transformOrigin: 'center',
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease',
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
@@ -129,7 +128,7 @@ export default function FeedbackPage() {
               animationData={feedbackAnimationData}
               loop={true}
               autoplay={true}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '105%', height: '100%' }}
               rendererSettings={{
                 preserveAspectRatio: 'xMidYMid slice',
               }}
