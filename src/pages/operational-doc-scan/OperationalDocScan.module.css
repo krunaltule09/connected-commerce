@@ -18,7 +18,6 @@
   z-index: 2 !important;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
-  border-radius: 8px !important;
 }
 
 .detailedFindingsHeader {
@@ -242,7 +241,6 @@
   align-items: flex-start !important;
   padding: 19px !important;
   gap: 10px !important;
-  background: #1A1A24 !important;
   border-radius: 8px !important;
   height: 100.5% !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;

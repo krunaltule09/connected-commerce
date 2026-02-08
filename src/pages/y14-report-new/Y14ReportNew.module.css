@@ -43,7 +43,7 @@
     'findings right';
   column-gap: 10px; /* horizontal gap between left and right */
   row-gap: 10px !important; /* vertical gap between schedule and findings */
-  overflow: hidden;
+
   align-items: start;
 }
 

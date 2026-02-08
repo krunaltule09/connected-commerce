@@ -91,6 +91,7 @@ const OperationalDocScan = () => {
         
         {/* Right panel - Shipment Details */}
         <Slide direction="left" in={revealStage >= 1} timeout={800}>
+          
           <GradientBorderBox className={styles.shipmentDetailsPanel}>
             <Box className={styles.panelTitle}>Shipment Details</Box>
             
@@ -172,8 +173,7 @@ const OperationalDocScan = () => {
       {/* Detailed Findings Panel with Gradient Border */}
       <Fade in={true} timeout={1000} style={{ transitionDelay: '500ms' }}>
         <GradientBorderBox 
-          className={styles.detailedFindingsPanel} 
-          sx={{ borderRadius: '8px' }}>
+          className={styles.detailedFindingsPanel}>
           <Box className={styles.detailedFindingsHeader}>
             <Typography className={styles.detailedFindingsTitle}>Detailed Findings</Typography>
           </Box>

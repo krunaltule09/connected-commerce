@@ -1,4 +1,5 @@
 export { default as GradientBorderBox } from './GradientBorderBox';
+export { default as GradientBorderBoxLegacy } from './GradientBorderBoxLegacy';
 export { default as ProgressBar } from './ProgressBar';
 export { default as SectionTitle } from './SectionTitle';
 export { default as GradientButton } from './GradientButton';

@@ -1,21 +1,13 @@
 import { Box } from '@mui/material';
 
-export default function GradientBorderBox({ children, sx = {}, animated = false, p, px, py, pt, pb, pl, pr, ...props }) {
-  // Static border styles (no animation) - using pseudo-element for gradient border with border-radius
+export default function GradientBorderBoxLegacy({ children, sx = {}, animated = false, ...props }) {
+  // Static border styles (no animation) - using border-image (doesn't support border-radius)
   const staticStyles = {
     position: 'relative',
-    borderRadius: 2,
-    padding: '1px',
-    background: 'linear-gradient(95.1deg, #FFE600 0.33%, #2E2E38 100%)',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      inset: '1px',
-      borderRadius: '8px',
-      background: '#1A1A24',
-      zIndex: 0,
-      height: 'auto',
-    },
+    bgcolor: '#1A1A24',
+    border: '0.5px solid',
+    borderImageSource: 'linear-gradient(95.1deg, #FFE600 0.33%, #2E2E38 100%)',
+    borderImageSlice: 1,
   };
 
   // Animated border styles
@@ -65,9 +57,13 @@ export default function GradientBorderBox({ children, sx = {}, animated = false,
       }}
       {...props}
     >
-      <Box sx={{ position: 'relative', zIndex: 1 }}>
-        {children}
-      </Box>
+      {animated ? (
+        <Box sx={{ position: 'relative', zIndex: 2 }}>
+          {children}
+        </Box>
+      ) : (
+        children
+      )}
     </Box>
   );
 }

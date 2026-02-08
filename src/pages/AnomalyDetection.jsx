@@ -111,12 +111,7 @@ export default function AnomalyDetection() {
                 >
                   <GradientBorderBox
                     className={styles.dscrPanel}
-                    sx={{
-                      minHeight: { xs: 280, md: 320, lg: 350 },
-                      display: 'flex',
-                      alignItems: 'center',
-                      width: '100%'
-                    }}
+                    
                   >
                     <Box className={styles.panelContent}>
                       <QuarterlyDSCRChart />
@@ -137,12 +132,7 @@ export default function AnomalyDetection() {
                 >
                   <GradientBorderBox
                     className={styles.driversPanel}
-                    sx={{
-                      minHeight: { xs: 280, md: 320, lg: 350 },
-                      display: 'flex',
-                      alignItems: 'center',
-                      width: '100%'
-                    }}
+                    
                   >
                     <Box className={styles.panelContent}>
                       <FinancialDriversChart />
