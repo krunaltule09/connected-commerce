@@ -48,7 +48,7 @@ export default function FinancialDriversChart({ style = {} }) {
         height: '100%',
         backgroundColor: '#1A1A24', 
         borderRadius: 2, 
-        p: 3,
+        p: 0,
         ...style
       }}
     >
@@ -58,12 +58,14 @@ export default function FinancialDriversChart({ style = {} }) {
           color: '#FFE600', 
           fontSize: { xs: '1.125rem', md: '1.25rem' },
           fontWeight: 400, 
-          mb: 3 
+          mb: 3,
+          pl: 2,
+          pt: 2
         }}
       >
         Quarter-by-quarter financial drivers
       </Typography>
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="100%" height={280}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 20, bottom: 40 }}

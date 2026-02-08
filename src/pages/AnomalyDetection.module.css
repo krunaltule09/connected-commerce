@@ -69,10 +69,10 @@
 /* Container styles */
 .container {
   min-height: 100vh !important;
-  padding: 24px !important;
   color: #FFFFFF !important;
   position: relative !important;
   overflow: hidden !important;
+  padding: 24px !important;
 }
 
 /* Experience Center Animations */
@@ -181,7 +181,7 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 1rem !important;
+  padding: 0 !important;
 }
 
 .panelImage {
@@ -194,16 +194,16 @@
 @media (max-width: 900px) {
   .panelContent,
   .panelImage {
-    padding: 0.75rem !important;
+    padding: 0 !important;
   }
 }
 
 .highlightImage {
   width: 100% !important;
-  max-width: 99% !important;
-  max-height: 100% !important;
+  max-width: 100% !important;
+  max-height: 98% !important;
   height: auto !important;
-  margin-left: -8px !important;
+  margin-left: -4px !important;
 }
 
 .svgPanel {

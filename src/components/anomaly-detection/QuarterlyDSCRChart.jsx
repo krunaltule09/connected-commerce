@@ -87,7 +87,7 @@ export default function QuarterlyDSCRChart({ style = {} }) {
         height: '100%',
         backgroundColor: '#1A1A24', 
         borderRadius: 2, 
-        p: 3,
+        p: 0,
         ...style
       }}
     >
@@ -97,12 +97,14 @@ export default function QuarterlyDSCRChart({ style = {} }) {
           color: '#FFE600', 
           fontSize: { xs: '1.125rem', md: '1.25rem' },
           fontWeight: 400, 
-          mb: 1 
+          mb: 1,
+          pl: 2,
+          pt: 2
         }}
       >
         Quarterly DSCR
       </Typography>
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ mb: 1, pl: 2 }}>
         <Typography 
           variant="body2" 
           sx={{ 
@@ -118,17 +120,17 @@ export default function QuarterlyDSCRChart({ style = {} }) {
           variant="h4" 
           sx={{ 
             color: '#FCFCFC', 
-            fontSize: { xs: '2rem', md: '2.5rem' },
+            fontSize: { xs: '1.75rem', md: '2.25rem' },
             fontWeight: 600 
           }}
         >
           1.1
         </Typography>
       </Box>
-      <ResponsiveContainer width="100%" height={270}>
+      <ResponsiveContainer width="100%" height={220}>
         <BarChart
           data={data}
-          margin={{ top: 50, right: 30, left: 20, bottom: 20 }}
+          margin={{ top: 30, right: 30, left: 20, bottom: 20 }}
         >
           <defs>
             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
@@ -136,7 +138,7 @@ export default function QuarterlyDSCRChart({ style = {} }) {
               <stop offset="100%" stopColor="#3D3020" stopOpacity={1}/>
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={false} horizontal={false} />
+          {/* Removed CartesianGrid to eliminate stroke lines */}
           <XAxis 
             dataKey="quarter" 
             stroke="#9CA3AF" 
@@ -152,12 +154,7 @@ export default function QuarterlyDSCRChart({ style = {} }) {
             content={<CustomTooltip />}
             cursor={false}
           />
-          <ReferenceLine 
-            y={1.1} 
-            stroke="#6B7280" 
-            strokeDasharray="3 3" 
-            strokeWidth={2}
-          />
+          {/* Removed ReferenceLine to eliminate all strokes */}
           <Bar 
             dataKey="dscr" 
             fill="url(#barGradient)"
