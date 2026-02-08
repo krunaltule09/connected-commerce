@@ -123,7 +123,7 @@ const DataSimulator = () => {
             {/* Speed column */}
             <GradientBorderBox className={styles.column}>
               <Typography className={styles.columnTitle}>Speed</Typography>
-              <GradientBorderBox className={styles.columnContent}>
+              <GradientBorderBox className={styles.columnContentSpeed}>
                 <Typography className={styles.timelineTitle}>Before/After Impact Timeline</Typography>
                 
                 <Box className={styles.timelineItem}>
