@@ -6,12 +6,12 @@ export default function CovenantTile({ covenant }) {
     if (status === 'alert') {
       return {
         icon: '/assets/Vector (1).svg',
-        color: '#FF3B30'
+        color: '#fff'
       };
     } else {
       return {
         icon: '/assets/shield-alert.svg',
-        color: '#FFCC00'
+        color: '#fff'
       };
     }
   };
