@@ -315,7 +315,7 @@ const DataSimulator = () => {
       <Box className={styles.navigationButtons}>
         <Box 
           className={styles.backButton} 
-          onClick={useButtonSound(() => window.history.back())}
+          onClick={useButtonSound(() => navigate('/operational-doc-scan'))}
         >
           Back
         </Box>
