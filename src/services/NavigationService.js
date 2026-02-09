@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 /**
- * Service for cross-application navigation using NATS
+ * Service for cross-application navigation using SSE
  */
 class NavigationService {
   constructor() {
-    this.baseUrl = process.env.REACT_APP_NATS_SERVICE_URL || process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
+    this.baseUrl = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
     this.appId = 'connected-commerce';
-    this.useNATS = true; // Flag to use NATS endpoints
+    this.useNATS = false; // Flag to use NATS endpoints (now disabled)
     
     console.log('🔧 NavigationService initialized:', {
       baseUrl: this.baseUrl,
@@ -38,8 +38,7 @@ class NavigationService {
     });
     
     try {
-      // Use legacy endpoint for backward compatibility
-      // Backend will forward to NATS
+      // Use SSE navigation endpoint
       const payload = {
         action,
         targetAppId,
@@ -55,7 +54,7 @@ class NavigationService {
       
       const response = await axios.post(`${this.baseUrl}/api/navigation`, payload);
       
-      console.log('✅ Navigation event sent via NATS:', response.data);
+      console.log('✅ Navigation event sent via SSE:', response.data);
       return response.data;
     } catch (error) {
       console.error('❌ Failed to send navigation event:', error);

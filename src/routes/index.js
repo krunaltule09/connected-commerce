@@ -7,6 +7,7 @@ import FeedbackPage from '../pages/FeedbackPage';
 import Y14ReportNew from '../pages/y14-report-new/Y14ReportNew';
 import DataSimulator from '../pages/data-simulator/DataSimulator';
 import Q3ReportPage from '../pages/Q3ReportPage';
+import SSETestPage from '../pages/SSETestPage';
 
 // Define routes configuration
 const routes = [
@@ -61,6 +62,10 @@ const routes = [
   {
     path: '/q3-report',
     element: <Q3ReportPage />,
+  },
+  {
+    path: '/sse-test',
+    element: <SSETestPage />,
   },
   {
     path: '*',

@@ -8,6 +8,7 @@ import { SyncRouteProvider } from './context/SyncRouteContext';
 import { FinancialDataProvider } from './context/FinancialDataContext';
 import { ScanningProvider } from './context/ScanningContext';
 import { SoundProvider } from './context/SoundContext';
+import { SSEProvider } from './context/SSEContext';
 // SyncIndicator removed
 
 function App() {
@@ -16,19 +17,21 @@ function App() {
       <CssBaseline />
       <Router>
         <SoundProvider>
-        <SyncRouteProvider>
-          <ScanningProvider>
-            <FinancialDataProvider>
-            <Routes>
-              {routes.map((route, index) => (
-                <Route key={index} path={route.path} element={route.element} />
-              ))}
-            </Routes>
-            {/* SyncIndicator removed */}
-            </FinancialDataProvider>
-          </ScanningProvider>
-        </SyncRouteProvider>
-      </SoundProvider>
+        <SSEProvider>
+          <SyncRouteProvider>
+            <ScanningProvider>
+              <FinancialDataProvider>
+              <Routes>
+                {routes.map((route, index) => (
+                  <Route key={index} path={route.path} element={route.element} />
+                ))}
+              </Routes>
+              {/* SyncIndicator removed */}
+              </FinancialDataProvider>
+            </ScanningProvider>
+          </SyncRouteProvider>
+        </SSEProvider>
+        </SoundProvider>
       </Router>
     </ThemeProvider>
   );
