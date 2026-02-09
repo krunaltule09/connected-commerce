@@ -76,7 +76,30 @@ export default function DetailedFindings({
             </Box>
           )}
           
-          <Box sx={{ display: 'flex', width: '100%', overflowX: 'auto', justifyContent: 'flex-start', overflowY: 'hidden', transform: 'translateY(-0.6rem)' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            width: '100%', 
+            overflowX: 'auto', 
+            justifyContent: 'flex-start', 
+            overflowY: 'hidden', 
+            transform: 'translateY(-0.6rem)',
+            '&::-webkit-scrollbar': {
+              height: '8px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '4px',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'rgba(255, 230, 0, 1)',
+              borderRadius: '4px',
+              '&:hover': {
+                backgroundColor: 'rgba(255, 230, 0, 0.8)',
+              },
+            },
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(255, 230, 0, 1) rgba(255, 255, 255, 0.05)',
+          }}>
             {findings.map((finding, index) => (
               <Box 
                 key={index}
