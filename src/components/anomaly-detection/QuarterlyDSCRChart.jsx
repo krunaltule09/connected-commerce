@@ -127,7 +127,7 @@ export default function QuarterlyDSCRChart({ style = {} }) {
           1.1
         </Typography>
       </Box>
-      <ResponsiveContainer width="100%" height={220}>
+      <ResponsiveContainer width="100%" height={280}>
         <BarChart
           data={data}
           margin={{ top: 30, right: 30, left: 20, bottom: 20 }}
