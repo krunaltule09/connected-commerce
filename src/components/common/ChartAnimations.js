@@ -108,7 +108,7 @@ export const ChartBackground = ({ children }) => (
       p: 0,
     }}
   >
-    <Box sx={{ position: 'relative', width: '94%', height: '82%', p: 1 }}>
+    <Box sx={{ position: 'relative', width: '86%', height: '82%', p: 1 }}>
       {children}
     </Box>
   </Box>
