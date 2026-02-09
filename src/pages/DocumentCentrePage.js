@@ -270,61 +270,6 @@ export default function DocumentCentrePage() {
             gap: 3,
             flexWrap: 'wrap'
           }}>
-            {/* Plus Icon Button */}
-            <Tooltip 
-              title="Add Document" 
-              arrow
-              placement="top"
-              componentsProps={{
-                tooltip: {
-                  sx: {
-                    bgcolor: '#FFE600',
-                    color: '#000',
-                    fontSize: '0.875rem',
-                    fontWeight: 600,
-                    '& .MuiTooltip-arrow': {
-                      color: '#FFE600',
-                    },
-                  },
-                },
-              }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Box
-                  onClick={() => {
-                    // Show modal to select document
-                    if (documents.length > 0) {
-                      const nextDoc = documents.find(d => !addedDocuments.find(ad => ad.id === d.id));
-                      if (nextDoc) {
-                        handleAddDocument(nextDoc);
-                      }
-                    }
-                  }}
-                  sx={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: '50%',
-                    bgcolor: 'transparent',
-                    border: '3px dashed #FFE600',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      bgcolor: 'rgba(255, 230, 0, 0.1)',
-                      borderStyle: 'solid',
-                      boxShadow: '0 0 20px rgba(255, 230, 0, 0.3)',
-                    },
-                  }}
-                >
-                  <AddIcon sx={{ fontSize: 40, color: '#FFE600' }} />
-                </Box>
-              </motion.div>
-            </Tooltip>
 
             {/* Added Document Circles */}
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flex: 1 }}>
