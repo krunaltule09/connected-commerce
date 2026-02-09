@@ -603,7 +603,11 @@ export default function Y14ReportNew() {
           <Box className={styles.findingsPanel}>
             <Box  className={styles.findingsImage}>
             <GradientBorderBox>
-              <DetailedFindings />
+              <DetailedFindings 
+                cardMinWidth="300px"
+                cardMaxWidth="400px"
+                
+              />
             </GradientBorderBox>
             </Box>
           </Box>

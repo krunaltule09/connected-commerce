@@ -1,21 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Fade, Grow, Slide, Zoom, Collapse } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { Box, Fade, Grow, Slide, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import GradientButton from '../../components/common/GradientButton';
 import AIRecommendations from '../../components/anomaly-detection/AIRecommendations';
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
+import DetailedFindings from '../../components/y14-report/DetailedFindings';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 import { useButtonSound } from '../../hooks';
 
 
+const operationalFindings = [
+  {
+    title: 'On-Time Delivery (OTIF) Impact',
+    section: 'Tracking OTIF dropped to 91%, missing covenant threshold',
+    usedFor: 'Analyze root cause: late pickups, route inefficiency, or carrier performance'
+  },
+  {
+    title: 'Promised vs Delivered Variance',
+    section: 'Delivery lead times vary ±60% (2-10 days), impacting cash flow',
+    usedFor: 'Standardize lead time estimates and improve forecasting accuracy'
+  },
+  {
+    title: 'Cost Per Mile / Unit Cost Pressure',
+    section: 'Analyze cost per mile vs 8.5 p/mi, understand if cost pressure exists',
+    usedFor: 'Identify cost drivers: fuel, labor, maintenance, or route optimization gaps'
+  },
+  {
+    title: 'Capacity Utilization Decline',
+    section: 'Flagging utilization at 78%, impacting fixed cost absorption',
+    usedFor: 'Review load planning and asset allocation to improve utilization rates'
+  },
+  {
+    title: 'OTIF Gap/Time to Fulfil',
+    section: 'Tracking OTIF at 91% (Above 90%)',
+    usedFor: 'Monitor performance trends and identify improvement opportunities'
+  },
+  {
+    title: 'Fleet / Asset Availability',
+    section: 'Flagging Inactive fleet / 7% (not over-idle threshold)',
+    usedFor: 'Optimize fleet deployment and reduce idle time for better ROI'
+  }
+];
+
 const OperationalDocScan = () => {
   const navigate = useNavigate();
   const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
-  const [activeTab, setActiveTab] = useState('on-time');
   const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
   
   // Enable next button when scan is complete
@@ -28,10 +59,6 @@ const OperationalDocScan = () => {
       return () => clearTimeout(timer);
     }
   }, [scanComplete]);
-  
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
   
   const handleNextStep = useButtonSound(() => {
     if (nextButtonEnabled) {
@@ -172,57 +199,15 @@ const OperationalDocScan = () => {
       </Box>
       {/* Detailed Findings Panel with Gradient Border */}
       <Fade in={true} timeout={1000} style={{ transitionDelay: '500ms' }}>
-        <GradientBorderBox 
-          className={styles.detailedFindingsPanel}>
-          <Box className={styles.detailedFindingsHeader}>
-            <Typography className={styles.detailedFindingsTitle}>Detailed Findings</Typography>
-          </Box>
-          
-          {/* Horizontally Scrollable Container for SVGs */}
-          <Box className={styles.findingsScrollContainer}>
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding1.svg`}
-              alt="Detailed Finding 1"
-              className={styles.findingImage}
-            />
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding2.svg`}
-              alt="Detailed Finding 2"
-              className={styles.findingImage}
-            />
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding3.svg`}
-              alt="Detailed Finding 3"
-              className={styles.findingImage}
-            />
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding4.svg`}
-              alt="Detailed Finding 4"
-              className={styles.findingImage}
-            />
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding5.svg`}
-              alt="Detailed Finding 5"
-              className={styles.findingImage}
-            />
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding6.svg`}
-              alt="Detailed Finding 6"
-              className={styles.findingImage}
-            />
-            <Box 
-              component="img"
-              src={`${process.env.PUBLIC_URL}/assets/detailfinding7.svg`}
-              alt="Detailed Finding 7"
-              className={styles.findingImage}
-            />
-          </Box>
+        <GradientBorderBox className={styles.detailedFindingsPanel}>
+          <DetailedFindings 
+            findings={operationalFindings}
+            showWarning={false}
+            cardMinWidth="300px"
+            cardMaxWidth="400px"
+            cardHeight="220px"
+            buttonTransformY="-1rem"
+          />
         </GradientBorderBox>
       </Fade>
          {/* Navigation buttons */}

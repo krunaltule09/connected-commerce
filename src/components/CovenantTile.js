@@ -22,8 +22,8 @@ export default function CovenantTile({ covenant }) {
     <Box
       sx={{
         position: 'relative',
-        mb: 2.5,
-        pb: 2,
+        mb: 1,
+
         pt: 1,
       }}
     >
@@ -35,7 +35,7 @@ export default function CovenantTile({ covenant }) {
             color: '#FFFFFF', 
             fontWeight: 600, 
             fontSize: '1rem',
-            mb: 2,
+            mb: 1,
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -59,7 +59,7 @@ export default function CovenantTile({ covenant }) {
             variant="body2" 
             sx={{ 
               color: 'rgba(252, 252, 252, 0.7)', 
-              mb: 0.5,
+              mb: 1,
               fontSize: '0.75rem'
             }}
           >
@@ -89,7 +89,7 @@ export default function CovenantTile({ covenant }) {
             variant="body2" 
             sx={{ 
               color: 'rgba(252, 252, 252, 0.7)', 
-              mb: 0.5,
+              mb: 1,
               fontSize: '0.75rem'
             }}
           >

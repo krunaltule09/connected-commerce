@@ -41,19 +41,19 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
       <Stack spacing={1.45} sx={{ flexGrow: 1, overflow: 'hidden', '& > *': { marginBottom: '0 !important' } }} className="ocr-scanning-stack">
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
-          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '1.21rem', mb: 1 }}>Data Extraction Preview</Typography>
+          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '20px', mb: 1 }}>Data Extraction Preview</Typography>
         </Slide>
         <Grow in={animateDocument} timeout={800}>
-          <GradientBorderBox p={1.45} >
+          <GradientBorderBox p={2} >
             <motion.div
               initial="hidden"
               animate="visible"
               variants={documentVariants}
-              style={{ height: '100%', width: '100%' }}
             >
+            <Box p={1}>
               <Box
                 sx={{
-                  height: isInOperationalDocScan ? 320 : 388,
+                  height: 380 ,
                   bgcolor: '#343340',
                   borderRadius: 2,
                   display: 'flex',
@@ -71,6 +71,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
                   }
                 }}
               />
+  </Box>
             </motion.div>
           </GradientBorderBox>
         </Grow>
@@ -95,13 +96,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
                   {isComplete ? 'Completed' : 'Analyzing'}
                 </Typography>
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-              >
-                <Typography variant="body2" sx={{ color: '#FFE600', fontSize: '0.85rem' }}>{`${Math.round(progress)}%`}</Typography>
-              </motion.div>
+
             </Box>
             <Box
               sx={{
@@ -124,6 +119,13 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
               />
 
             </Box>
+                          <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+              >
+                <Typography variant="body2" sx={{ color:"rgba(156, 178, 186, 1)", fontSize: '0.85rem', mt: 1 }}>{`${Math.round(progress)}%`}</Typography>
+              </motion.div>
           </Box>
         </GradientBorderBox>
       </Fade>
