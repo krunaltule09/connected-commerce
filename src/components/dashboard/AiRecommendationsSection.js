@@ -15,7 +15,7 @@ export default function AiRecommendationsSection({ recommendations }) {
       transition={{ duration: 0.5, delay: 0.4 }}
       style={{ height: '25%', minHeight: '120px', marginBottom: '8px' }}
     >
-      <AIRecommendations contentContainerSx={{top:"45%", left:"18%"}} recommendations={recommendations} />
+      <AIRecommendations contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"55%",left:"2%"}} recommendations={recommendations} />
     </motion.div>
   );
 }
