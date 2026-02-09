@@ -137,7 +137,8 @@ export default function FinancialDriversChart({ style = {} }) {
               <span style={{ 
                 color: 'rgba(255,255,255,1)', 
                 marginRight: '5px',
-                fontWeight: 700
+                fontWeight: 700,
+                fontSize: "12.8px"
               }}>
                 {value}
               </span>
