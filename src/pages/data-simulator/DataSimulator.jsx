@@ -145,6 +145,7 @@ const DataSimulator = () => {
                     <Box className={styles.timelineIcon}>
                       <Box className={styles.sparkIcon}></Box>
                     </Box>
+                    <Box className={styles.timelineConnector}></Box>
                   </Box>
                   <Box className={styles.timelineContent}>
                     <Typography className={styles.timelineValue} sx={{ fontSize: '50px !important', mb: "10px !important"  }}>30 Minutes</Typography>
