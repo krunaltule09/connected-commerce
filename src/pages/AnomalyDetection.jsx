@@ -155,7 +155,7 @@ export default function AnomalyDetection() {
                   <Box
                     className={styles.svgPanel}
                     sx={{
-                      minHeight: { xs: 280, md: 320, lg: 350 },
+                      minHeight: { xs: 300, md: 340, lg: 360 },
                       width: '100%'
                     }}
                   >
