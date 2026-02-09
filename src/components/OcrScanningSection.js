@@ -53,7 +53,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
             <Box p={1}>
               <Box
                 sx={{
-                  height: 380 ,
+                  height: 340 ,
                   bgcolor: '#343340',
                   borderRadius: 2,
                   display: 'flex',

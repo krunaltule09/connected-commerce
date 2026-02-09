@@ -135,7 +135,7 @@ const DataSimulator = () => {
                     <Box className={styles.timelineConnector}></Box>
                   </Box>
                   <Box className={styles.timelineContent}>
-                    <Typography className={styles.timelineValue}>3 Days</Typography>
+                    <Typography className={styles.timelineValue} sx={{ fontSize: '50px !important', mb: "10px !important" }}>3 Days</Typography>
                     <Typography className={styles.timelineLabel}>Earlier (Without AI Integration)</Typography>
                   </Box>
                 </Box>
@@ -147,7 +147,7 @@ const DataSimulator = () => {
                     </Box>
                   </Box>
                   <Box className={styles.timelineContent}>
-                    <Typography className={styles.timelineValue}>30 Minutes</Typography>
+                    <Typography className={styles.timelineValue} sx={{ fontSize: '50px !important', mb: "10px !important"  }}>30 Minutes</Typography>
                     <Typography className={styles.timelineLabel}>Now (with AI)</Typography>
                   </Box>
                 </Box>
@@ -255,20 +255,20 @@ const DataSimulator = () => {
                     <Typography className={styles.alertTitle} sx={{ color: '#F22323' }}>Proactive Alerts</Typography>
                   </Box>
                   
-                  <Box className={styles.alertDetails}>
-                    <Box className={styles.alertDetail}>
+                  <Box className={styles.alertDetails} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
                       <Typography className={styles.alertDetailLabel}>Tampered Recipient</Typography>
-                      <Typography className={styles.alertDetailValue}>XYZ Holdings (Offshore)</Typography>
+                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>XYZ Holdings (Offshore)</Typography>
                     </Box>
                     
-                    <Box className={styles.alertDetail}>
+                    <Box className={styles.alertDetail} sx={{ width: '35%', minWidth: '200px' }}>
                       <Typography className={styles.alertDetailLabel}>Tampered Routing Path</Typography>
                       <Typography className={styles.alertDetailValue}>Rerouted through unknown server node (Hong Kong)</Typography>
                     </Box>
                     
-                    <Box className={styles.alertDetail}>
+                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
                       <Typography className={styles.alertDetailLabel}>Blockchain Hash Check</Typography>
-                      <Typography className={styles.alertDetailValue}>Mismatch – integrity violated</Typography>
+                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>Mismatch – integrity violated</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -279,20 +279,20 @@ const DataSimulator = () => {
                     <Typography className={styles.alertTitle} sx={{ color: '#FF8700' }}>Missed breaches in manual process</Typography>
                   </Box>
                   
-                  <Box className={styles.alertDetails}>
-                    <Box className={styles.alertDetail}>
+                  <Box className={styles.alertDetails} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
                       <Typography className={styles.alertDetailLabel}>Covenant Breach</Typography>
-                      <Typography className={styles.alertDetailValue}>DEBT RATIO EXCEEDED</Typography>
+                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>DEBT RATIO EXCEEDED</Typography>
                     </Box>
                     
-                    <Box className={styles.alertDetail}>
+                    <Box className={styles.alertDetail} sx={{ width: '35%', minWidth: '200px' }}>
                       <Typography className={styles.alertDetailLabel}>Reporting Deadline</Typography>
-                      <Typography className={styles.alertDetailValue}>MISSED BY 3 DAYS</Typography>
+                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>MISSED BY 3 DAYS</Typography>
                     </Box>
                     
-                    <Box className={styles.alertDetail}>
+                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
                       <Typography className={styles.alertDetailLabel}>Document Verification</Typography>
-                      <Typography className={styles.alertDetailValue}>INCOMPLETE</Typography>
+                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>INCOMPLETE</Typography>
                     </Box>
                   </Box>
                 </Box>

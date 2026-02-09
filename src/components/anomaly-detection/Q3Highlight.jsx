@@ -70,7 +70,7 @@ export default function Q3Highlight({ highlights = defaultHighlights }) {
             <Typography
               variant="h6"
               sx={{
-                color: 'rgba(252, 252, 252, 1)',
+                color: 'rgba(255, 255, 255, 1)',
                 fontSize: { xs: '0.9rem', md: '1rem' },
                 mb: 0.5,
                 fontWeight: 400,
@@ -81,7 +81,7 @@ export default function Q3Highlight({ highlights = defaultHighlights }) {
               {item.title}
             </Typography>
             <Typography sx={{
-                color: 'rgba(252, 252, 252, 1)',
+                color: 'rgba(255, 255, 255, 1)',
                 fontSize: { xs: '0.8rem', md: '0.9rem' },
                 
                 fontWeight: 300,

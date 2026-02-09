@@ -65,7 +65,7 @@ export default function GradientBorderBox({ children, sx = {}, animated = false,
       }}
       {...props}
     >
-      <Box sx={{ position: 'relative', zIndex: 1 }}>
+      <Box sx={{ position: 'relative', zIndex: 1, width: '100%' }}>
         {children}
       </Box>
     </Box>

@@ -251,11 +251,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 1.1rem;
 }
 
 /* Set specific gap for shipment details rows */
 .shipmentDetailsPanel .tableContainer {
-  row-gap: 0.5rem !important;
+  row-gap: 1rem !important;
 }
 
 /* Add specific style for OCR scanning stack to prevent conflicts */
