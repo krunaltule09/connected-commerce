@@ -215,10 +215,7 @@
 .findingsImage {
   display: block;
   width: 154%;
-  max-width: 1614px;
-  height: auto;
-  max-height: 360px !important;
-  object-fit: contain;
+
 }
 
 /* Panel header styling */

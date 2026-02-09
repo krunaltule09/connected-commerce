@@ -11,6 +11,7 @@ import { useButtonSound } from '../../hooks';
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import bgVideo from '../../assets/AdobeStock_1544892280.mp4';
+import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
 export default function Y14ReportNew() {
   const navigate = useNavigate();
@@ -600,12 +601,11 @@ export default function Y14ReportNew() {
         {/* Detailed Findings replaced by static SVG */}
         <Fade in={showFindings} timeout={1400} appear>
           <Box className={styles.findingsPanel}>
-            <Box
-              component="img"
-              src="/assets/detailed-findings.svg"
-              alt="Detailed Findings"
-              className={styles.findingsImage}
-            />
+            <Box  className={styles.findingsImage}>
+            <GradientBorderBox>
+              <DetailedFindings />
+            </GradientBorderBox>
+            </Box>
           </Box>
         </Fade>
       </Box>

@@ -8,6 +8,7 @@ import { useButtonSound } from '../hooks';
 import QuarterlyDSCRChart from '../components/anomaly-detection/QuarterlyDSCRChart';
 import FinancialDriversChart from '../components/anomaly-detection/FinancialDriversChart';
 import GradientBorderBox from '../components/common/GradientBorderBox';
+import Q3Highlight from '../components/anomaly-detection/Q3Highlight';
 
 // Removed unused Title component
 
@@ -181,12 +182,11 @@ export default function AnomalyDetection() {
               transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
             >
               <Box className={styles.svgPanelQ3} sx={{ width: '100%' }}>
-                <Box
-                  component="img"
-                  src="/anamoly-q3-highlight.svg"
-                  alt="Q3 Highlight"
-                  className={`${styles.panelImage} ${styles.highlightImage}`}
-                />
+                <GradientBorderBox className={styles.driversPanel}>
+                  <Box className={styles.panelContent}>
+                  <Q3Highlight />
+                  </Box>
+                </GradientBorderBox>
               </Box>
             </motion.div>
           </Grid>
