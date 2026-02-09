@@ -135,7 +135,7 @@ const DataSimulator = () => {
                     <Box className={styles.timelineConnector}></Box>
                   </Box>
                   <Box className={styles.timelineContent}>
-                    <Typography className={styles.timelineValue} sx={{ fontSize: '50px !important', mb: "10px !important" }}>3 Days</Typography>
+                    <Typography className={styles.timelineValue} sx={{ fontSize: '41.5px !important', mb: "10px !important" }}>3 Days</Typography>
                     <Typography className={styles.timelineLabel}>Earlier (Without AI Integration)</Typography>
                   </Box>
                 </Box>
@@ -148,7 +148,7 @@ const DataSimulator = () => {
                     <Box className={styles.timelineConnector}></Box>
                   </Box>
                   <Box className={styles.timelineContent}>
-                    <Typography className={styles.timelineValue} sx={{ fontSize: '50px !important', mb: "10px !important"  }}>30 Minutes</Typography>
+                    <Typography className={styles.timelineValue} sx={{ fontSize: '41.5px !important', mb: "10px !important"  }}>30 Minutes</Typography>
                     <Typography className={styles.timelineLabel}>Now (with AI)</Typography>
                   </Box>
                 </Box>
