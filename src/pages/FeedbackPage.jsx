@@ -69,7 +69,7 @@ const OptionsContainer = styled(Box)(({ theme }) => ({
   flexWrap: 'wrap',
   zIndex: 2,
   position: 'absolute',
-  left: '1vw',
+  left: '2.5vw',
   bottom: '14vh',
 }));
 
