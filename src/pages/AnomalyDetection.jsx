@@ -113,7 +113,7 @@ export default function AnomalyDetection() {
                   <GradientBorderBox
                     className={styles.dscrPanel}
                     sx={{
-                      minHeight: { xs: 320, md: 380, lg: 420 },
+                      minHeight: { xs: 290, md: 350, lg: 390 },
                       display: 'flex',
                       alignItems: 'center',
                       width: '100%'
@@ -139,7 +139,7 @@ export default function AnomalyDetection() {
                   <GradientBorderBox
                     className={styles.driversPanel}
                     sx={{
-                      minHeight: { xs: 320, md: 380, lg: 420 },
+                      minHeight: { xs: 290, md: 350, lg: 390 },
                       display: 'flex',
                       alignItems: 'center',
                       width: '100%'
@@ -166,7 +166,7 @@ export default function AnomalyDetection() {
                     className={styles.svgPanel}
                     sx={{
                       minHeight: { xs: 300, md: 340, lg: 360 },
-                      width: '100%'
+                      width: '98%'
                     }}
                   >
                     <Box

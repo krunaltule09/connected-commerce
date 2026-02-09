@@ -69,7 +69,7 @@ export default function FinancialDriversChart({ style = {} }) {
       >
         Quarter-by-quarter financial drivers
       </Typography>
-      <ResponsiveContainer width="100%" height={340} key={`financial-drivers-chart-${animationProgress}`}>
+      <ResponsiveContainer width="100%" height={310} key={`financial-drivers-chart-${animationProgress}`}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 20, bottom: 40 }}
