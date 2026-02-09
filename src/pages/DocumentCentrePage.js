@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button } from '@mui/material';
+import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
@@ -15,6 +16,7 @@ export default function DocumentCentrePage() {
   const [selectedId, setSelectedId] = useState(null);
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [addedDocuments, setAddedDocuments] = useState([]);
 
   // Fetch all documents on component mount
   useEffect(() => {
@@ -72,6 +74,17 @@ export default function DocumentCentrePage() {
     setModalOpen(true);
   };
   
+  const handleAddDocument = useButtonSound((doc) => {
+    // Check if document is already added
+    if (!addedDocuments.find(d => d.id === doc.id)) {
+      setAddedDocuments(prev => [...prev, doc]);
+    }
+  });
+  
+  const handleRemoveDocument = (docId) => {
+    setAddedDocuments(prev => prev.filter(d => d.id !== docId));
+  };
+  
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedDocument(null);
@@ -80,8 +93,7 @@ export default function DocumentCentrePage() {
 
   // Handle scan document with sound effect
   const handleScanDocument = useButtonSound(async () => {
-    // Close the modal
-    handleCloseModal();
+    if (addedDocuments.length === 0) return;
     
     navigate('/financial-dashboard')
     
@@ -90,7 +102,7 @@ export default function DocumentCentrePage() {
       await navigationService.navigateToOperateExperience('/financial-statement', {
         referrer: 'document-centre',
         action: 'SCAN_DOCUMENT',
-        documentId: selectedId
+        documentIds: addedDocuments.map(d => d.id)
       });
       
     } catch (error) {
@@ -190,7 +202,7 @@ export default function DocumentCentrePage() {
               overflowY: 'hidden',
               py: 3,
               px: 1,
-              pb: 4, // Extra padding at bottom for scrollbar
+              pb: 4,
               '&::-webkit-scrollbar': {
                 height: '6px',
               },
@@ -237,6 +249,220 @@ export default function DocumentCentrePage() {
         </Box>
         </motion.div>
 
+        {/* Document Addition Section */}
+        <Box sx={{ mt: 6, mb: 4 }}>
+          <Typography
+            sx={{
+              color: '#FCFCFC',
+              fontFamily: 'var(--font-family-primary, Inter, Roboto, Helvetica, Arial, sans-serif)',
+              fontWeight: 600,
+              fontSize: '1.125rem',
+              mb: 3,
+              letterSpacing: '0.01em',
+            }}
+          >
+            Add Documents for Scanning
+          </Typography>
+          
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 3,
+            flexWrap: 'wrap'
+          }}>
+            {/* Plus Icon Button */}
+            <Tooltip 
+              title="Add Document" 
+              arrow
+              placement="top"
+              componentsProps={{
+                tooltip: {
+                  sx: {
+                    bgcolor: '#FFE600',
+                    color: '#000',
+                    fontSize: '0.875rem',
+                    fontWeight: 600,
+                    '& .MuiTooltip-arrow': {
+                      color: '#FFE600',
+                    },
+                  },
+                },
+              }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Box
+                  onClick={() => {
+                    // Show modal to select document
+                    if (documents.length > 0) {
+                      const nextDoc = documents.find(d => !addedDocuments.find(ad => ad.id === d.id));
+                      if (nextDoc) {
+                        handleAddDocument(nextDoc);
+                      }
+                    }
+                  }}
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    borderRadius: '50%',
+                    bgcolor: 'transparent',
+                    border: '3px dashed #FFE600',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      bgcolor: 'rgba(255, 230, 0, 0.1)',
+                      borderStyle: 'solid',
+                      boxShadow: '0 0 20px rgba(255, 230, 0, 0.3)',
+                    },
+                  }}
+                >
+                  <AddIcon sx={{ fontSize: 40, color: '#FFE600' }} />
+                </Box>
+              </motion.div>
+            </Tooltip>
+
+            {/* Added Document Circles */}
+            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flex: 1 }}>
+              <AnimatePresence>
+                {addedDocuments.map((doc, index) => (
+                  <motion.div
+                    key={doc.id}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0, opacity: 0 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                      delay: index * 0.1
+                    }}
+                  >
+                    <Tooltip 
+                      title={doc.name}
+                      arrow
+                      placement="top"
+                      componentsProps={{
+                        tooltip: {
+                          sx: {
+                            bgcolor: '#FFE600',
+                            color: '#000',
+                            fontSize: '0.875rem',
+                            fontWeight: 600,
+                            maxWidth: 200,
+                            '& .MuiTooltip-arrow': {
+                              color: '#FFE600',
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          position: 'relative',
+                          width: 80,
+                          height: 80,
+                          borderRadius: '50%',
+                          bgcolor: '#FFE600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          overflow: 'hidden',
+                          boxShadow: '0 4px 15px rgba(255, 230, 0, 0.4)',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            transform: 'translateY(-5px)',
+                            boxShadow: '0 8px 25px rgba(255, 230, 0, 0.6)',
+                          },
+                          '&:hover .remove-icon': {
+                            opacity: 1,
+                          },
+                        }}
+                        onClick={() => handleRemoveDocument(doc.id)}
+                      >
+                        {/* Document SVG */}
+                        <Box
+                          component="img"
+                          src={doc.url || '/assets/Vector.svg'}
+                          alt={doc.name}
+                          sx={{
+                            width: '60%',
+                            height: '60%',
+                            objectFit: 'contain',
+                            filter: 'brightness(0) invert(1)',
+                          }}
+                        />
+                        
+                        {/* Remove Icon Overlay */}
+                        <Box
+                          className="remove-icon"
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            bgcolor: 'rgba(0, 0, 0, 0.7)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            opacity: 0,
+                            transition: 'opacity 0.3s ease',
+                          }}
+                        >
+                          <CloseIcon sx={{ color: '#FFE600', fontSize: 32 }} />
+                        </Box>
+                      </Box>
+                    </Tooltip>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </Box>
+
+            {/* Scan Document Button */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Button
+                onClick={handleScanDocument}
+                disabled={addedDocuments.length === 0}
+                sx={{
+                  backgroundColor: addedDocuments.length > 0 ? '#FFE600' : 'rgba(255, 230, 0, 0.3)',
+                  color: addedDocuments.length > 0 ? '#000' : 'rgba(0, 0, 0, 0.5)',
+                  fontWeight: 600,
+                  px: 4,
+                  py: 1.5,
+                  borderRadius: '8px',
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  minWidth: 180,
+                  cursor: addedDocuments.length > 0 ? 'pointer' : 'not-allowed',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: addedDocuments.length > 0 ? '#d4c000' : 'rgba(255, 230, 0, 0.3)',
+                    transform: addedDocuments.length > 0 ? 'translateY(-2px)' : 'none',
+                    boxShadow: addedDocuments.length > 0 ? '0px 6px 20px rgba(255, 230, 0, 0.4)' : 'none',
+                  },
+                  '&:disabled': {
+                    backgroundColor: 'rgba(255, 230, 0, 0.2)',
+                    color: 'rgba(0, 0, 0, 0.4)',
+                  },
+                  boxShadow: addedDocuments.length > 0 ? '0px 4px 15px rgba(255, 230, 0, 0.3)' : 'none',
+                }}
+              >
+                Scan Documents ({addedDocuments.length})
+              </Button>
+            </motion.div>
+          </Box>
+        </Box>
+
         {/* Modal for Document Details */}
         <Modal
           open={modalOpen}
@@ -251,7 +477,6 @@ export default function DocumentCentrePage() {
             justifyContent: 'center'
           }}
           onKeyDown={(e) => {
-            // Prevent arrow key events from propagating
             if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
               e.stopPropagation();
             }
@@ -260,7 +485,7 @@ export default function DocumentCentrePage() {
           <AnimatePresence>
             {modalOpen && (
               <motion.div
-            tabIndex={0} /* Add tabIndex to capture keyboard events */
+            tabIndex={0}
             initial={{ opacity: 0, scale: 0.7, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.7, y: 50 }}
@@ -276,7 +501,6 @@ export default function DocumentCentrePage() {
               outline: 'none',
             }}
             onKeyDown={(e) => {
-              // Additional keyboard event handling at this level
               if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -297,7 +521,7 @@ export default function DocumentCentrePage() {
             borderRadius: 2,
             outline: 'none',
             mx: 'auto',
-            overflow: 'hidden', // Changed from auto to hidden
+            overflow: 'hidden',
           }}>
             <IconButton
               aria-label="close"
@@ -318,7 +542,6 @@ export default function DocumentCentrePage() {
             >
               <CloseIcon fontSize="medium" />
             </IconButton>
-            {/* Document content with flex-grow to take available space */}
             <Box sx={{ 
               flexGrow: 1, 
               overflow: 'auto',
@@ -327,18 +550,25 @@ export default function DocumentCentrePage() {
               <DocumentCardDetails document={selectedDocument} />
             </Box>
             
-            {/* Scan Button - fixed at bottom */}
+            {/* Add to Selection Button */}
             <Box sx={{ 
               display: 'flex', 
               justifyContent: 'center',
+              gap: 2,
               py: 2,
               position: 'relative',
               zIndex: 10,
-              mt: 'auto', // Push to bottom
+              mt: 'auto',
               borderTop: '1px solid rgba(255, 255, 255, 0.1)'
             }}>
               <Button
-                onClick={handleScanDocument}
+                onClick={() => {
+                  if (selectedDocument) {
+                    handleAddDocument(selectedDocument);
+                    handleCloseModal();
+                  }
+                }}
+                disabled={selectedDocument && addedDocuments.find(d => d.id === selectedDocument.id)}
                 sx={{
                   backgroundColor: '#FFE600',
                   color: '#000',
@@ -351,10 +581,16 @@ export default function DocumentCentrePage() {
                   '&:hover': {
                     backgroundColor: '#d4c000',
                   },
+                  '&:disabled': {
+                    backgroundColor: 'rgba(255, 230, 0, 0.3)',
+                    color: 'rgba(0, 0, 0, 0.5)',
+                  },
                   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)',
                 }}
               >
-                Scan Document
+                {selectedDocument && addedDocuments.find(d => d.id === selectedDocument.id) 
+                  ? 'Already Added' 
+                  : 'Add to Selection'}
               </Button>
             </Box>
           </Box>
