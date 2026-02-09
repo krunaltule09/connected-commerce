@@ -61,7 +61,24 @@ export default function FinancialMetricsSection() {
         {/* Metrics buttons column */}
         <Grid item xs={6} md={3} lg={2.5}>
           <Fade in={animateMetrics} timeout={800}>
-            <Box sx={{p: 1.5, height: '95%', overflow: 'auto' }}>
+            <Box sx={{p: 1.5, height: '95%', overflow: 'auto',
+              '&::-webkit-scrollbar': {
+                width: '8px',
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '4px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'rgba(255, 230, 0, 1)',
+                borderRadius: '4px',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 230, 0, 0.8)',
+                },
+              },
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'rgba(255, 230, 0, 1) rgba(255, 255, 255, 0.05)',
+            }}>
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
