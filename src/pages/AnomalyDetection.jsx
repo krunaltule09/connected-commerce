@@ -112,7 +112,12 @@ export default function AnomalyDetection() {
                 >
                   <GradientBorderBox
                     className={styles.dscrPanel}
-                    
+                    sx={{
+                      minHeight: { xs: 320, md: 380, lg: 420 },
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}
                   >
                     <Box className={styles.panelContent}>
                       <QuarterlyDSCRChart />
@@ -133,7 +138,12 @@ export default function AnomalyDetection() {
                 >
                   <GradientBorderBox
                     className={styles.driversPanel}
-                    
+                    sx={{
+                      minHeight: { xs: 320, md: 380, lg: 420 },
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}
                   >
                     <Box className={styles.panelContent}>
                       <FinancialDriversChart />
@@ -182,7 +192,15 @@ export default function AnomalyDetection() {
               transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
             >
               <Box className={styles.svgPanelQ3} sx={{ width: '100%' }}>
-                <GradientBorderBox className={styles.driversPanel}>
+                <GradientBorderBox 
+                  className={styles.driversPanel}
+                  sx={{
+                    minHeight: { xs: 320, md: 380, lg: 420 },
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%'
+                  }}
+                >
                   <Box className={styles.panelContent}>
                   <Q3Highlight />
                   </Box>
