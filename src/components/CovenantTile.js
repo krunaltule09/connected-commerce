@@ -54,7 +54,7 @@ export default function CovenantTile({ covenant }) {
         flexWrap: 'nowrap'
       }}>
         {/* Value Section - Increased width */}
-        <Box sx={{ width: '40%' }}>
+        <Box sx={{ width: '36%' }}>
           <Typography 
             variant="body2" 
             sx={{ 
@@ -147,8 +147,8 @@ export default function CovenantTile({ covenant }) {
                 variant="body2" 
                 sx={{ 
                   color: indicatorDetails.color,
-                  fontSize: '0.75rem',
-                  fontWeight: 500,
+                  fontSize: '0.7rem',
+                  fontWeight: 600,
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -162,7 +162,7 @@ export default function CovenantTile({ covenant }) {
         </Box>
         
         {/* Button Section */}
-        <Box sx={{ width: '38%', textAlign: 'right' }}>
+        <Box sx={{ width: '42%', textAlign: 'right' }}>
           <Button
             size="small"
             variant="outlined"
@@ -184,15 +184,15 @@ export default function CovenantTile({ covenant }) {
             }}
           >
             <Tooltip title="View Formula & Historical Values" placement="top" arrow>
-              <Box sx={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                width: '100%',
-                display: 'block'
-              }}>
-                View Formula & Historical
-              </Box>
+              <Button
+                sx={{
+                  padding: '1px 1px',
+                  color: '#FFFFFF',
+                  fontSize: '0.6rem',
+                  
+                }}>
+                View Formula & Historical Values
+              </Button>
             </Tooltip>
           </Button>
         </Box>
