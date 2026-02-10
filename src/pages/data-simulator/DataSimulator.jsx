@@ -87,7 +87,7 @@ const DataSimulator = () => {
       
       {/* Main content */}
       <Box className={styles.contentContainer}>
-        <GradientBorderBoxLegacy className={styles.mainPanel}>
+        <GradientBorderBox className={styles.mainPanel}>
           <Typography className={styles.panelTitle}>Data Simulator</Typography>
           
           {/* Tab buttons */}
@@ -300,7 +300,7 @@ const DataSimulator = () => {
               </GradientBorderBoxLegacy>
             </GradientBorderBox>
           </Box>
-        </GradientBorderBoxLegacy>
+        </GradientBorderBox>
       </Box>
       
       {/* Navigation buttons with sound effects */}
