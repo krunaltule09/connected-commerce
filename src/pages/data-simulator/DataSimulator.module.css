@@ -97,6 +97,7 @@
   line-height: 26px !important;
   letter-spacing: -0.02em !important;
   color: #FFE600 !important;
+  margin-bottom: 14px !important;
 }
 
 .tabsContainer {
@@ -155,6 +156,8 @@
   font-size: 18px !important;
   line-height: 26px !important;
   color: #FFFFFF !important;
+  margin-top: 14px !important;
+  margin-bottom: 14px !important;
 }
 
 .columnsContainer {
@@ -164,7 +167,7 @@
   padding: 0 !important;
   gap: 24px !important;
   width: 100% !important;
-  height: auto !important;
+  height: 76.6% !important;
   max-height: 400px !important;
 
 }
