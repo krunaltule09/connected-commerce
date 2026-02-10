@@ -11,8 +11,8 @@ const ROUTE_MAPPING = {
   '/document-centre': '/loan-service',
   '/financial-dashboard': '/financial-statement',
   '/anomaly-detection': '/dscr-trend',
-  '/y14-report': '/y14-report/large',
-  '/operational-doc-scan': '/covenant-monitoring',
+  '/y14-report': '/covenant-monitoring',
+  '/operational-doc-scan':  '/y14-report/large',
   '/data-simulator': '/benefits-summary',
 
 };
