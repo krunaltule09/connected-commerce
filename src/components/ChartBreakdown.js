@@ -71,15 +71,7 @@ export default function ChartBreakdown() {
           >
             <Stack spacing={0.75}>
               {breakdownItems.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.4,
-                    delay: index * 0.15, // Staggered animation
-                  }}
-                >
+                
                   <Typography
                     variant="caption"
                     sx={{
@@ -93,7 +85,7 @@ export default function ChartBreakdown() {
                     <span style={{ color: '#FFE600', fontWeight: 600, flexShrink: 0 }}>•</span>
                     {item}
                   </Typography>
-                </motion.div>
+               
               ))}
             </Stack>
           </motion.div>

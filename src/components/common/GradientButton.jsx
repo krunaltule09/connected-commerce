@@ -54,6 +54,7 @@ const GradientButton = ({
         border: 'none',
       },
       boxShadow: 'none',
+      marginBottom: '8px',
     };
 
     // Variant-specific styles
@@ -62,8 +63,8 @@ const GradientButton = ({
         return {
           ...baseStyles,
           backgroundImage: active 
-            ? `url('/assets/Group 4.svg')`
-            : `url('/assets/Group 554.svg')`,
+            ? `url('/assets/Group 5.svg')`
+            : `url('/assets/Group 4.svg')`,
           backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -86,8 +87,8 @@ const GradientButton = ({
           minHeight: '50px',
           '&:hover': {
             backgroundImage: active
-              ? `url('/assets/Group 4.svg')`
-              : `url('/assets/Group 554.svg')`,
+              ? `url('/assets/Group 5.svg')`
+              : `url('/assets/Group 4.svg')`,
             backgroundSize: '100% 100%',
             outline: 'none',
             border: 'none',
