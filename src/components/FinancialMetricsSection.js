@@ -88,7 +88,7 @@ export default function FinancialMetricsSection() {
                 {metrics.map((metric, index) => {
                   const isSelected = selectedMetric === metric;
                   return (
-                    <motion.div key={metric} variants={itemVariants} custom={index}>
+                    // <motion.div key={metric} variants={itemVariants} custom={index}>
                       <Tooltip title={metric} arrow placement="right">
                         <div>
                           <GradientButton
@@ -107,21 +107,8 @@ export default function FinancialMetricsSection() {
                               ...(metric === 'Interest Expense' && {
                                 whiteSpace: 'nowrap', // Prevent text wrapping
                                 letterSpacing: '-0.02em' // Slight letter spacing adjustment
-                              }),
-                              '&::after': isSelected ? {
-                                content: '""',
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
-                                animation: 'shine 2s infinite',
-                                '@keyframes shine': {
-                                  '0%': { transform: 'translateX(-100%)' },
-                                  '100%': { transform: 'translateX(100%)' }
-                                }
-                              } : {}
+                              })
+                              
                             }}
                           >
                             {metric === 'Interest Expense' ? (
@@ -130,7 +117,7 @@ export default function FinancialMetricsSection() {
                           </GradientButton>
                         </div>
                       </Tooltip>
-                    </motion.div>
+                    // </motion.div>
                   );
                 })}
                 </Stack>

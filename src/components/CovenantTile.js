@@ -76,28 +76,18 @@ export default function CovenantTile({ covenant }) {
                 if (bracketMatch) {
                   return (
                     <Box sx={{ display: 'flex', flexWrap: 'nowrap', alignItems: 'baseline' }}>
+
                       <Typography 
                         variant="body1" 
                         sx={{ 
                           color: '#FFFFFF',
-                          fontWeight: 600,
+                          fontWeight: 400,
                           fontSize: '0.7rem',
                           display: 'inline'
                         }}
                       >
-                        {bracketMatch[1]}
-                      </Typography>
-                      <Typography 
-                        variant="body1" 
-                        sx={{ 
-                          color: 'rgba(252, 252, 252, 0.7)', // Same color as the value label
-                          fontWeight: 400, // Keeping normal weight for brackets as requested
-                          fontSize: '0.7rem',
-                          display: 'inline',
-                          ml: bracketMatch[2] ? 0.5 : 0 // Add margin only if there was a space
-                        }}
-                      >
-                        {bracketMatch[3]}
+                        <span style={{color: '#FFFFFF', fontWeight: 600}}>{bracketMatch[1]}</span>
+                        <span style={{color: 'rgba(252, 252, 252, 0.7)',marginLeft: '0.5rem'}}>{bracketMatch[3]}</span>
                       </Typography>
                     </Box>
                   );
