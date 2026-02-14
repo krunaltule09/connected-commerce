@@ -64,7 +64,7 @@ export default function DashboardLayout({
         flexDirection: 'column', 
         py: 1, 
         mt: 5, // Added top margin to move content downward
-        height: "60vh" 
+        height: "54vh" 
       }}>
         <Grid container spacing={2} sx={{ flexGrow: 1, height: '100%' }}>
           {/* Left Section */}

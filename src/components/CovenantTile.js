@@ -34,7 +34,7 @@ export default function CovenantTile({ covenant }) {
           sx={{ 
             color: '#FFFFFF', 
             fontWeight: 600, 
-            fontSize: '1rem',
+            fontSize: '0.87rem',
             mb: 1,
             whiteSpace: 'nowrap',
             overflow: 'hidden',
