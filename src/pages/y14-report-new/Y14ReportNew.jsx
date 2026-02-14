@@ -97,8 +97,8 @@ export default function Y14ReportNew() {
                     </Box>
                   </Box>
                   {expandedAccordion === 'borrower' && (
-                  <Box className={`${styles.accordionContent} ${styles.borrowerAccordionContent}`}>
-                    <Box className={styles.detailsGrid}>
+                  <Box className={`${styles.accordionContent} ${styles.borrowerAccordionContent}`} sx={{overflowX:"hidden"}}>
+                    <Box className={styles.detailsGrid} >
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Obligor name</Typography>
                         <Typography className={styles.textValue}>Vertex Logistics Corp.</Typography>
@@ -138,8 +138,8 @@ export default function Y14ReportNew() {
                     </Box>
                   </Box>
                   {expandedAccordion === 'loan' && (
-                  <Box className={styles.accordionContent}>
-                    <Box className={styles.detailsGrid}>
+                  <Box className={styles.accordionContent} sx={{overflowX:"hidden"}}>
+                    <Box className={styles.detailsGrid} >
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Loan Type</Typography>
                         <Typography className={styles.textValue}>Working Capital Revolver</Typography>
@@ -199,7 +199,7 @@ export default function Y14ReportNew() {
                     </Box>
                   </Box>
                   {expandedAccordion === 'collateral' && (
-                  <Box className={styles.accordionContent}>
+                  <Box className={styles.accordionContent} sx={{overflowX:"hidden"}}>
                     <Box className={styles.detailsGrid}>
                       <Box className={styles.textRow}>
                         <Typography className={styles.textLabel}>Collateral Type</Typography>
@@ -248,7 +248,7 @@ export default function Y14ReportNew() {
                     </Box>
                   </Box>
                   {expandedAccordion === 'covenant' && (
-                  <Box className={styles.accordionContent}>
+                  <Box className={styles.accordionContent} sx={{overflowX:"hidden"}}>
                     <Box className={styles.covenantGrid}>
                       {/* Headers */}
                       <Box className={styles.covenantRow} sx={{ borderBottom: '1px solid #33333E', pb: 1, mb: 1 }}>

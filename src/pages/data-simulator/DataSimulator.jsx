@@ -22,7 +22,7 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('/assets/Group 4.svg')`
+        ? `url('/assets/Group 5.svg')`
         : `url('/assets/Group 554.svg')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
@@ -33,6 +33,11 @@ const DataSimulator = () => {
       wordWrap: 'break-word',
       textAlign: 'center',
       position: 'relative',
+      '&:hover': {
+        outline: 'none',
+        cursor: 'not-allowed',
+
+      },
     };
     
     // Add tab-specific adjustments
@@ -103,11 +108,7 @@ const DataSimulator = () => {
                     variant="outlined"
                     sx={{
                       ...getTabStyle(tab, isSelected),
-                      '&:hover': {
-                        backgroundImage: isSelected
-                          ? `url('/assets/Group 4.svg')`
-                          : `url('/assets/Group 554.svg')`,
-                      },
+
                     }}
                   >
                     {tab}

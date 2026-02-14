@@ -68,7 +68,7 @@ export default function DashboardLayout({
       }}>
         <Grid container spacing={2} sx={{ flexGrow: 1, height: '100%' }}>
           {/* Left Section */}
-          <Grid item xs={12} md={2.7} sx={{ height: '100%', mt: 2 }}>
+          <Grid item xs={12} md={2.4} sx={{ height: '100%', mt: 2 }}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -80,7 +80,7 @@ export default function DashboardLayout({
           </Grid>
           
           {/* Middle Section */}
-          <Grid item xs={12} md={6} sx={{ height: '100%', mt: 2}}>
+          <Grid item xs={12} md={6.3} sx={{ height: '100%', mt: 2}}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

@@ -100,7 +100,7 @@ export default function AnomalyDetection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Grid container spacing={2.5} alignItems="stretch">
+        <Grid container columnSpacing={2.5} alignItems="stretch">
           {/* Top Row */}
           <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
             <Grow in={animateTop} timeout={800}>
@@ -184,7 +184,7 @@ export default function AnomalyDetection() {
       </motion.div>
 
       <Slide direction="up" in={animateBottom} timeout={1000} mountOnEnter>
-        <Grid container mt={3} alignItems="stretch" justifyContent="flex-start">
+        <Grid container mt={3} columnSpacing={2.5} alignItems="stretch" >
           <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
             <motion.div
               initial={{ opacity: 0, y: 40 }}

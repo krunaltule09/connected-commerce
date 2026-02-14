@@ -161,7 +161,8 @@ export default function DetailedFindings({
                             fontSize: '0.87rem', 
                             lineHeight: 1.5, 
                             color: '#a4a3b1', 
-                            fontWeight: 400
+                            fontWeight: 400,
+                            fontStyle: 'italic'
                           }}>
                             {finding.usedFor}
                           </Typography>

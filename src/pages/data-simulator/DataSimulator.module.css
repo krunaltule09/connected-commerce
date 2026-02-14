@@ -25,7 +25,7 @@
   position: relative !important;
   width: 94% !important;
   max-width: 1616px !important;
-  height: 80vh !important;
+  height: 74vh !important;
   z-index: 2 !important;
   display: flex !important;
   flex-direction: column !important;
@@ -167,8 +167,7 @@
   padding: 0 !important;
   gap: 24px !important;
   width: 100% !important;
-  height: 77% !important;
-  max-height: 400px !important;
+  height: 100% !important;
 
 }
 
@@ -180,7 +179,7 @@
   padding: 16px !important;
   gap: 12px !important;
   flex: 1 !important;
-  height: 160% !important;
+  height: 100% !important;
   overflow: visible !important;
 }
 

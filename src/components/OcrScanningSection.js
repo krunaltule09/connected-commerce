@@ -53,13 +53,13 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
             <Box p={1}>
               <Box
                 sx={{
-                  height: 340 ,
+                  height: 350 ,
                   bgcolor: '#343340',
-                  borderRadius: 2,
+                
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundImage: `url('/assets/docu_scan.svg')`,
+                  backgroundImage: `url('/assets/doc-data-extraction.svg')`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',

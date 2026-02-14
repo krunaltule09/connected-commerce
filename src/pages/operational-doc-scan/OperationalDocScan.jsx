@@ -127,6 +127,7 @@ const OperationalDocScan = () => {
                 <Box className={styles.tableHeaderCell}>Shipment #</Box>
                 <Box className={styles.tableHeaderCell}>Promised Delivery Date</Box>
                 <Box className={styles.tableHeaderCell}>Actual Delivery Date</Box>
+                <Box className={styles.tableHeaderCell}>Status</Box>
                 <Box className={styles.tableHeaderCell}>Actions</Box>
               </Box>
               
@@ -168,18 +169,19 @@ const OperationalDocScan = () => {
                     >
                       <Box className={styles.tableCell}>{shipment.name}</Box>
                       <Box className={styles.tableCell}>{shipment.promisedDate}</Box>
+                      <Box className={styles.tableCell}>{shipment.actualDate}</Box>
                       <Box className={styles.tableCell}>
                         <Box className={styles.deliveryStatusContainer}>
                           <Box 
                             className={`${styles.statusIndicator} ${isOnTime ? styles.statusOnTime : styles.statusDelayed}`}
                           >
                             {isOnTime ? (
-                              <Box className={styles.checkIcon}></Box>
+                              <Box component="img" src="/assets/on-time-status.svg" alt="On Time" sx={{ width: '100%', height: '100%' }} />
                             ) : (
-                              <Box className={styles.alertIcon}></Box>
+                              <Box component="img" src="/assets/delayed-status.svg" alt="Delayed" sx={{ width: '100%', height: '100%' }} />
                             )}
                           </Box>
-                          <Box>{shipment.actualDate}</Box>
+                          <Box sx={{textTransform:"capitalize"}}>{shipment.status}</Box>
                         </Box>
                       </Box>
                       <Box className={styles.tableCell}>
