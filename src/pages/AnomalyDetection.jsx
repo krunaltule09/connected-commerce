@@ -9,6 +9,7 @@ import QuarterlyDSCRChart from '../components/anomaly-detection/QuarterlyDSCRCha
 import FinancialDriversChart from '../components/anomaly-detection/FinancialDriversChart';
 import GradientBorderBox from '../components/common/GradientBorderBox';
 import Q3Highlight from '../components/anomaly-detection/Q3Highlight';
+import AIRecommendationsWithGif from '../components/anomaly-detection/AIRecommendationsWithGif';
 
 // Removed unused Title component
 
@@ -100,9 +101,9 @@ export default function AnomalyDetection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Grid container columnSpacing={2.5} alignItems="stretch">
+        <Grid container columnSpacing={2.5} rowSpacing={0} alignItems="stretch">
           {/* Top Row */}
-          <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
+          <Grid item xs={12} md={3.7} sx={{ display: 'flex' }}>
             <Grow in={animateTop} timeout={800}>
               <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
@@ -128,7 +129,7 @@ export default function AnomalyDetection() {
             </Grow>
           </Grid>
           
-          <Grid item xs={12} md={5} sx={{ display: 'flex' }}>
+          <Grid item xs={12} md={4.7} sx={{ display: 'flex' }}>
             <Grow in={animateTop} timeout={1000}>
               <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
@@ -154,7 +155,7 @@ export default function AnomalyDetection() {
             </Grow>
           </Grid>
 
-          <Grid item xs={12} md={3} sx={{ display: 'flex' }}>
+          <Grid item xs={12} md={3.6} sx={{ display: 'flex' }}>
             <Fade in={animateMiddle} timeout={1200}>
               <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
@@ -166,15 +167,35 @@ export default function AnomalyDetection() {
                     className={styles.svgPanel}
                     sx={{
                       minHeight: { xs: 300, md: 340, lg: 360 },
-                      width: '98%'
+                      width: '98%',
+                      height: '100%',
+                      position: 'relative',
+                      overflow: 'hidden'
                     }}
                   >
-                    <Box
-                      component="img"
-                      src="/assets/anamoly-ai-chip.svg"
-                      alt="AI Chip Insights"
-                      className={styles.panelImage}
-                    />
+                    <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
+                      <AIRecommendationsWithGif
+                        size="large"
+                        recommendations={[
+                          "Operating cash flow improved steadily from $15K → $28K.",
+                          "However, interest and debt obligations grew faster, reducing coverage in Q2.",
+                          "DSCR fell to 1.10, below the required 1.25 covenant threshold.",
+                          "Improvement in Q3/Q4 signals stabilizing performance.",
+                          "Recommended: Reassess expense control and cross-check shipment delays."
+                        ]}
+                        imageTransform="translateY(-8%)"
+                        contentContainerSx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          top: "43%",
+                          zIndex: 2,
+                          left: "62%",
+                          width: "80%",
+                          transform: "translate(-50%, -50%)"
+                        }}
+                      />
+                    </Box>
                   </Box>
                 </motion.div>
               </Box>
@@ -184,8 +205,8 @@ export default function AnomalyDetection() {
       </motion.div>
 
       <Slide direction="up" in={animateBottom} timeout={1000} mountOnEnter>
-        <Grid container mt={3} columnSpacing={2.5} alignItems="stretch" >
-          <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
+        <Grid container mt={-7} columnSpacing={2.5} alignItems="stretch" >
+          <Grid item xs={12} md={3.7} sx={{ display: 'flex' }}>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}

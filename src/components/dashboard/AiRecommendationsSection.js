@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AIRecommendations from '../anomaly-detection/AIRecommendations';
+import AIRecommendationsWithGif from '../anomaly-detection/AIRecommendationsWithGif';
 
 /**
  * AiRecommendationsSection component that displays AI recommendations
  * @param {Object} props - Component props
  * @param {Array<string>} props.recommendations - List of AI recommendations
+ * @param {string} props.size - Size of the panel ('medium' or 'large')
  */
-export default function AiRecommendationsSection({ recommendations }) {
+export default function AiRecommendationsSection({ recommendations, size = 'medium' }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,7 +16,11 @@ export default function AiRecommendationsSection({ recommendations }) {
       transition={{ duration: 0.5, delay: 0.4 }}
       style={{ height: '25%', minHeight: '120px', marginBottom: '8px' }}
     >
-      <AIRecommendations contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"55%",left:"2%"}} recommendations={recommendations} />
+      <AIRecommendationsWithGif 
+        contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"55%",left:"2%"}} 
+        recommendations={recommendations}
+        size={size}
+      />
     </motion.div>
   );
 }
