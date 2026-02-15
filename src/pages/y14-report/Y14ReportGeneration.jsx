@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Box, Button, Typography, Accordion, AccordionSummary, AccordionDetails, Stack } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Button, Typography, Accordion, AccordionSummary, AccordionDetails, Stack, Grow, Fade } from '@mui/material';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -16,6 +17,24 @@ export default function Y14ReportGeneration() {
   const [expanded, setExpanded] = useState('panel1');
   const tabs = ['EXPLORE DOCUMENTS', 'SOURCE METRICS'];
   const [selectedTab, setSelectedTab] = useState('EXPLORE DOCUMENTS');
+  
+  // Animation states
+  const [animateLeft, setAnimateLeft] = useState(false);
+  const [animateRight, setAnimateRight] = useState(false);
+  const [animateNav, setAnimateNav] = useState(false);
+  
+  // Staggered animation timing
+  useEffect(() => {
+    const leftTimer = setTimeout(() => setAnimateLeft(true), 300);
+    const rightTimer = setTimeout(() => setAnimateRight(true), 600);
+    const navTimer = setTimeout(() => setAnimateNav(true), 900);
+    
+    return () => {
+      clearTimeout(leftTimer);
+      clearTimeout(rightTimer);
+      clearTimeout(navTimer);
+    };
+  }, []);
   
   // Custom background styles for each tab
   const getTabStyle = (tab, isSelected) => {

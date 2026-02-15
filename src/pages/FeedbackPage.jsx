@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import DeliveryOptionsSvg from '../components/DeliveryOptionsSvg';
 import RatingComponentSvg from '../components/RatingComponentSvg';
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container, Fade, Grow, Slide } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 // Removed unused import: CheckCircleOutlineIcon
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
@@ -94,10 +95,33 @@ const BackButton = styled(Button)(({ theme }) => ({
 
 export default function FeedbackPage() {
   const navigate = useNavigate();
-  // const [rating, setRating] = useState(0); // Removed unused state
+  const [rating, setRating] = useState(0);
+  const [deliveryOption, setDeliveryOption] = useState('');
+  const [submitted, setSubmitted] = useState(false);
   const lottieRef = useRef(null);
   const [showComponents, setShowComponents] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  
+  // Animation states
+  const [animateTop, setAnimateTop] = useState(false);
+  const [animateMiddle, setAnimateMiddle] = useState(false);
+  const [animateBottom, setAnimateBottom] = useState(false);
+  const [animateNav, setAnimateNav] = useState(false);
+  
+  // Staggered animation timing
+  useEffect(() => {
+    const topTimer = setTimeout(() => setAnimateTop(true), 300);
+    const middleTimer = setTimeout(() => setAnimateMiddle(true), 800);
+    const bottomTimer = setTimeout(() => setAnimateBottom(true), 1200);
+    const navTimer = setTimeout(() => setAnimateNav(true), 1500);
+    
+    return () => {
+      clearTimeout(topTimer);
+      clearTimeout(middleTimer);
+      clearTimeout(bottomTimer);
+      clearTimeout(navTimer);
+    };
+  }, []);
   
   useEffect(() => {
     // Show components after 5.2 seconds
@@ -118,34 +142,61 @@ export default function FeedbackPage() {
   return (
     <PageContainer>
       <Container maxWidth="lg">
-
-         <MainCard>
-          <LottieContainer>
-            <Lottie
-              lottieRef={lottieRef}
-              animationData={feedbackAnimationData}
-              loop={true}
-              autoplay={true}
-              style={{ width: '105%', height: '100%' }}
-              rendererSettings={{
-                preserveAspectRatio: 'xMidYMid slice',
-              }}
-            />
-          </LottieContainer>
-          
-          {showComponents && (
-            <OptionsContainer>
-              <DeliveryOptionsSvg isVisible={fadeIn} />
-              <RatingComponentSvg isVisible={fadeIn} />
-            </OptionsContainer>
-          )}
-        </MainCard>
+        <Grow in={animateTop} timeout={800}>
+          <Box sx={{ width: '100%' }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+            >
+              <MainCard>
+                <LottieContainer>
+                  <Lottie
+                    lottieRef={lottieRef}
+                    animationData={feedbackAnimationData}
+                    loop={true}
+                    autoplay={true}
+                    style={{ width: '105%', height: '100%' }}
+                    rendererSettings={{
+                      preserveAspectRatio: 'xMidYMid slice',
+                    }}
+                  />
+                </LottieContainer>
+                
+                {showComponents && (
+                  <Fade in={fadeIn && animateMiddle} timeout={1000}>
+                    <OptionsContainer>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={(fadeIn && animateMiddle) ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ type: "spring", stiffness: 90, damping: 15 }}
+                      >
+                        <DeliveryOptionsSvg isVisible={fadeIn} />
+                        <RatingComponentSvg isVisible={fadeIn} />
+                      </motion.div>
+                    </OptionsContainer>
+                  </Fade>
+                )}
+              </MainCard>
+            </motion.div>
+          </Box>
+        </Grow>
         
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: -1, position: 'relative', zIndex: 2 }}>
-          <BackButton onClick={handleBackToHome}>
-            Back to home
-          </BackButton>
-        </Box>
+        <Fade in={animateNav} timeout={1000}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: -1, position: 'relative', zIndex: 2 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={animateNav ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <BackButton onClick={handleBackToHome}>
+                Back to home
+              </BackButton>
+            </motion.div>
+          </Box>
+        </Fade>
       </Container>
     </PageContainer>
   );
