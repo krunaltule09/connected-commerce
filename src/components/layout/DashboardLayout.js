@@ -1,6 +1,5 @@
-import React from 'react';
-import { Box, Container, Grid } from '@mui/material';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { Box, Container, Grid, Grow, Fade } from '@mui/material';
 import styles from './DashboardLayout.module.css';
 
 /**
@@ -19,6 +18,30 @@ export default function DashboardLayout({
   onBack, 
   onNext 
 }) {
+  // Animation states
+  const [animateLeft, setAnimateLeft] = useState(false);
+  const [animateMiddle, setAnimateMiddle] = useState(false);
+  const [animateRight, setAnimateRight] = useState(false);
+  const [animateNav, setAnimateNav] = useState(false);
+  const [animateLogo, setAnimateLogo] = useState(false);
+  
+  // Staggered animation timing
+  useEffect(() => {
+    const leftTimer = setTimeout(() => setAnimateLeft(true), 300);
+    const middleTimer = setTimeout(() => setAnimateMiddle(true), 700);
+    const rightTimer = setTimeout(() => setAnimateRight(true), 1100);
+    const navTimer = setTimeout(() => setAnimateNav(true), 1500);
+    const logoTimer = setTimeout(() => setAnimateLogo(true), 1900);
+    
+    return () => {
+      clearTimeout(leftTimer);
+      clearTimeout(middleTimer);
+      clearTimeout(rightTimer);
+      clearTimeout(navTimer);
+      clearTimeout(logoTimer);
+    };
+  }, []);
+  
   return (
     <Box sx={{ 
       position: 'relative',
@@ -69,33 +92,31 @@ export default function DashboardLayout({
         <Grid container spacing={2} sx={{ flexGrow: 1, height: '100%' }}>
           {/* Left Section */}
           <Grid item xs={12} md={2.4} sx={{ height: '100%', mt: 2 }}>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              style={{ height: '100%' }}
-            >
-              {leftSection}
-            </motion.div>
+            <Grow in={animateLeft} timeout={800}>
+              <Box sx={{ height: '100%', width: '100%' }}>
+                {leftSection}
+              </Box>
+            </Grow>
           </Grid>
           
           {/* Middle Section */}
           <Grid item xs={12} md={6.1} sx={{ height: '100%', mt: 2}}>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              style={{ height: '100%' }}
-            >
-              {middleSection}
-            </motion.div>
+            <Grow in={animateMiddle} timeout={800}>
+              <Box sx={{ height: '100%', width: '100%' }}>
+                {middleSection}
+              </Box>
+            </Grow>
           </Grid>
           
           {/* Right Section */}
           <Grid item xs={12} md={3.2} sx={{ height: '100%', mt: 2 }}>
-            <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {rightSection}
-            </Box>
+            <Grow in={animateRight} timeout={800}>
+              <Box sx={{ height: '100%', width: '100%' }}>
+                <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {rightSection}
+                </Box>
+              </Box>
+            </Grow>
           </Grid>
         </Grid>
       </Container>
@@ -109,24 +130,40 @@ export default function DashboardLayout({
       }} />
       
       {/* Navigation buttons */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
+      <Fade in={animateNav} timeout={1000}>
         <Box className={styles.navigationButtons}>
-          <Box className={styles.backButton} onClick={onBack}>Back</Box>
-          <Box className={styles.nextButton} onClick={onNext}>Next</Box>
+          <Box 
+            className={styles.backButton} 
+            onClick={onBack}
+            sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' } }}
+          >
+            Back
+          </Box>
+          <Box 
+            className={styles.nextButton} 
+            onClick={onNext}
+            sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' } }}
+          >
+            Next
+          </Box>
         </Box>
-      </motion.div>
+      </Fade>
       
       {/* EY Logo */}
-      <Box 
-        component="img"
-        src="/assets/ey-logo.svg"
-        alt="EY Logo"
-        className={styles.eyLogo}
-      />
+      <Fade in={animateLogo} timeout={1000}>
+        <Box 
+          component="img"
+          src="/assets/ey-logo.svg"
+          alt="EY Logo"
+          className={styles.eyLogo}
+          sx={{
+            transition: "transform 0.3s ease",
+            '&:hover': {
+              transform: "scale(1.1)"
+            }
+          }}
+        />
+      </Fade>
     </Box>
   );
 }
