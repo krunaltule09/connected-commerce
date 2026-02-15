@@ -135,12 +135,12 @@ export default function DetailedFindings({
                     <Box sx={{ flex: '1 0 0', height: '172px' }}>
                       <Box sx={{ display: 'flex', flexDirection: 'column', pr: 0.5, height: '100%' }}>
                         <Typography sx={{ 
-                          fontSize: '1rem', 
-                          lineHeight: 1.2, 
+                          fontSize: '0.9rem', 
+                          lineHeight: 1, 
                           overflow: 'hidden', 
                           color: '#dedee2', 
                           fontWeight: 700, 
-                          width: '100%', 
+                          width: '95%', 
                           whiteSpace: 'nowrap',
                           textOverflow: 'ellipsis'
                         }}>
@@ -148,7 +148,7 @@ export default function DetailedFindings({
                         </Typography>
                         <Box sx={{ height: '142px', overflow: 'hidden' }}>
                           <Typography sx={{ 
-                            fontSize: '0.87rem', 
+                            fontSize: '0.8rem', 
                             lineHeight: 1.5, 
                             color: '#a4a3b1', 
                             fontWeight: 400,
@@ -158,7 +158,7 @@ export default function DetailedFindings({
                             {finding.section}
                           </Typography>
                           <Typography sx={{ 
-                            fontSize: '0.87rem', 
+                            fontSize: '0.8rem', 
                             lineHeight: 1.5, 
                             color: '#a4a3b1', 
                             fontWeight: 400,

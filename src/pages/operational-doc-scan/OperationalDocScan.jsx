@@ -36,11 +36,6 @@ const operationalFindings = [
     title: 'OTIF Gap/Time to Fulfil',
     section: 'Tracking OTIF at 91% (Above 90%)',
     usedFor: 'Monitor performance trends and identify improvement opportunities'
-  },
-  {
-    title: 'Fleet / Asset Availability',
-    section: 'Flagging Inactive fleet / 7% (not over-idle threshold)',
-    usedFor: 'Optimize fleet deployment and reduce idle time for better ROI'
   }
 ];
 
@@ -231,8 +226,8 @@ const OperationalDocScan = () => {
           <DetailedFindings 
             findings={operationalFindings}
             showWarning={false}
-            cardMinWidth="300px"
-            cardMaxWidth="400px"
+            cardMinWidth="220px"
+            cardMaxWidth="330px"
             cardHeight="220px"
             buttonTransformY="-1rem"
           />
