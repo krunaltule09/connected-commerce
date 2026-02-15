@@ -243,6 +243,7 @@ export default function DocumentCentrePage() {
               <DocumentCard 
                 document={doc} 
                 onClick={handleSelectDocument}
+                isSelected={addedDocuments.some(addedDoc => addedDoc.id === doc.id)}
               />
             </motion.div>
           ))}
