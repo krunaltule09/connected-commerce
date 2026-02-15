@@ -17,6 +17,10 @@ const PageContainer = styled(Box)(({ theme }) => ({
   color: '#FFFFFF',
   position: 'relative',
   overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const Header = styled(Box)(({ theme }) => ({
@@ -45,12 +49,6 @@ const MainCard = styled(Box)(({ theme }) => ({
   transformOrigin: 'center',
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease',
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
-  '&:hover': {
-    transform: 'scale(1.02) !important',
-    filter: 'brightness(1.08) !important',
-    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.65), 0 0 15px rgba(255, 230, 0, 0.08) !important',
-    cursor: 'pointer',
-  },
 }));
 
 const LottieContainer = styled(Box)(({ theme }) => ({
