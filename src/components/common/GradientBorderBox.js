@@ -10,7 +10,7 @@ export default function GradientBorderBox({ children, sx = {}, animated = false,
     '&::before': {
       content: '""',
       position: 'absolute',
-      inset: '0.03rem',
+      inset: '0.035rem',
       borderRadius: '8px',
       background: '#1A1A24',
       zIndex: 0,

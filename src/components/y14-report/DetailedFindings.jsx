@@ -41,6 +41,7 @@ export default function DetailedFindings({
       sx={{ 
         display: 'flex', 
         flexDirection: 'column', 
+        border:'none',
         position: 'relative', 
         width: '100%', 
         maxWidth: '2044px',
