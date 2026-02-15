@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Fade, Grow, Slide, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import AIRecommendations from '../../components/anomaly-detection/AIRecommendations';
+import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecommendationsWithGif';
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
@@ -133,7 +133,11 @@ const OperationalDocScan = () => {
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={animateAi} timeout={800}>
           <Box >
-            <AIRecommendations contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"14%",left:"8%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
+            <AIRecommendationsWithGif 
+              size="medium" 
+              contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"14%",left:"8%"}} 
+              recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} 
+            />
           </Box>
         </Grow>
         
