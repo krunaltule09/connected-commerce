@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import DescriptionIcon from '@mui/icons-material/Description';
 import AddIcon from '@mui/icons-material/Add';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -331,18 +332,13 @@ export default function DocumentCentrePage() {
                         }}
                         onClick={() => handleRemoveDocument(doc.id)}
                       >
-                        {/* Document SVG */}
-                        <Box
-                          component="img"
-                          src={doc.url || '/assets/Vector.svg'}
-                          alt={doc.name}
-                          sx={{
-                            width: '60%',
-                            height: '60%',
-                            objectFit: 'contain',
-                            filter: 'brightness(0) invert(1)',
-                          }}
-                        />
+                        {/* Document Icon */}
+                        <DescriptionIcon sx={{
+                          width: '60%',
+                          height: '60%',
+                          color: '#000',
+                          fontSize: '2.5rem'
+                        }} />
                         
                         {/* Remove Icon Overlay */}
                         <Box

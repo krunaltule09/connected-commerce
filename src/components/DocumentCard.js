@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { handleDocumentDragStart } from '../utils';
+import { GradientBorderBox } from './common';
 
 /**
  * DocumentCard component displays a document preview with its title
@@ -12,56 +13,28 @@ import { handleDocumentDragStart } from '../utils';
  */
 export default function DocumentCard({ document, onClick, isSelected }) {
   return (
-
+<GradientBorderBox 
+    sx={{
+      marginRight: '1rem'
+    }} 
+    isGradientBorder={!isSelected}
+    borderWidth={isSelected ? '0.14rem' : '1px'}
+  >
     <Box
       sx={{
         position: 'relative',
         minWidth: 320,
         maxWidth: 320,
-        mr: 3,
+
         cursor: 'pointer',
-        borderRadius: 2,
-        bgcolor: "rgba(26,26,36,1)",
+
         padding: '1px',
         overflow: 'hidden',
         transition: 'transform 0.2s',
-        '&:hover': {
-          transform: 'scale(1.02)',
-        },
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: '-50%',
-          left: '-50%',
-          width: '200%',
-          height: '200%',
-          background: 'conic-gradient(from 0deg, #EEF96E 0deg, rgba(244, 167, 157, 0.5) 90deg, transparent 180deg, transparent 270deg, #EEF96E 360deg)',
-          animation: 'rotate 4s linear infinite',
-          zIndex: 0,
-        },
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          top: '1px',
-          left: '1px',
-          right: '1px',
-          bottom: '1px',
-          background: "rgba(26,26,36,1)",
-          borderRadius: 'inherit',
-          zIndex: 1,
-        },
-        '@keyframes rotate': {
-          '0%': {
-            transform: 'rotate(0deg)',
-          },
-          '100%': {
-            transform: 'rotate(360deg)',
-          },
-        },
       }}
       onClick={() => onClick?.(document)}
-      draggable
-      onDragStart={handleDocumentDragStart(document)}
+
+
     >
       <Box 
         sx={{ 
@@ -143,5 +116,6 @@ export default function DocumentCard({ document, onClick, isSelected }) {
       </Box>
       </Box>
     </Box>
+    </GradientBorderBox>
   );
 }
