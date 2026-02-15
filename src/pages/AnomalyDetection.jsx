@@ -194,10 +194,10 @@ export default function AnomalyDetection() {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          top: "43%",
+                          top: "42%",
                           zIndex: 2,
-                          left: "62%",
-                          width: "80%",
+                          left: "55%",
+                          width: "72%",
                           transform: "translate(-50%, -50%)"
                         }}
                       />
