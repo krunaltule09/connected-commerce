@@ -15,7 +15,8 @@ export default function DocumentCard({ document, onClick, isSelected }) {
   return (
 <GradientBorderBox 
     sx={{
-      marginRight: '1rem'
+      marginRight: '1rem',
+      ...(isSelected && { border: '0.07rem solid #FFE600' })
     }} 
     isGradientBorder={!isSelected}
     borderWidth={isSelected ? '0.14rem' : '1px'}
