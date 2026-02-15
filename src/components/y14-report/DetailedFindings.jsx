@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Tooltip } from '@mui/material';
 
 const defaultFindings = [
   {
@@ -134,18 +134,39 @@ export default function DetailedFindings({
                     </Box>
                     <Box sx={{ flex: '1 0 0', height: '172px' }}>
                       <Box sx={{ display: 'flex', flexDirection: 'column', pr: 0.5, height: '100%' }}>
-                        <Typography sx={{ 
-                          fontSize: '0.9rem', 
-                          lineHeight: 1, 
-                          overflow: 'hidden', 
-                          color: '#dedee2', 
-                          fontWeight: 700, 
-                          width: '95%', 
-                          whiteSpace: 'nowrap',
-                          textOverflow: 'ellipsis'
-                        }}>
-                          {finding.title}
-                        </Typography>
+                        <Tooltip 
+                          title={finding.title}
+                          placement="top"
+                          arrow
+                          componentsProps={{
+                            tooltip: {
+                              sx: {
+                                bgcolor: '#FFE600',
+                                color: '#000',
+                                fontSize: '0.875rem',
+                                fontWeight: 600,
+                                maxWidth: 300,
+                                '& .MuiTooltip-arrow': {
+                                  color: '#FFE600',
+                                },
+                              },
+                            },
+                          }}
+                        >
+                          <Typography sx={{ 
+                            fontSize: '0.9rem', 
+                            lineHeight: 1, 
+                            overflow: 'hidden', 
+                            color: '#dedee2', 
+                            fontWeight: 700, 
+                            width: '95%', 
+                            whiteSpace: 'nowrap',
+                            textOverflow: 'ellipsis',
+                            cursor: 'pointer'
+                          }}>
+                            {finding.title}
+                          </Typography>
+                        </Tooltip>
                         <Box sx={{ height: '142px', overflow: 'hidden' }}>
                           <Typography sx={{ 
                             fontSize: '0.8rem', 
