@@ -91,14 +91,9 @@ export default function DashboardLayout({
           <Grid item xs={12} md={2.4} sx={{ height: '100%', mt: 2 }}>
             <Grow in={animateLeft} timeout={800}>
               <Box sx={{ height: '100%', width: '100%' }}>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={animateLeft ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                  style={{ height: '100%' }}
-                >
+                
                   {leftSection}
-                </motion.div>
+               
               </Box>
             </Grow>
           </Grid>
