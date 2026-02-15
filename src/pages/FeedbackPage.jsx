@@ -165,16 +165,18 @@ export default function FeedbackPage() {
                 
                 {showComponents && (
                   <Fade in={fadeIn && animateMiddle} timeout={1000}>
-                    <OptionsContainer>
-                      <motion.div
+                                         <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={(fadeIn && animateMiddle) ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                         transition={{ type: "spring", stiffness: 90, damping: 15 }}
                       >
+                    <OptionsContainer>
+ 
                         <DeliveryOptionsSvg isVisible={fadeIn} />
                         <RatingComponentSvg isVisible={fadeIn} />
-                      </motion.div>
+                      
                     </OptionsContainer>
+                    </motion.div>
                   </Fade>
                 )}
               </MainCard>
