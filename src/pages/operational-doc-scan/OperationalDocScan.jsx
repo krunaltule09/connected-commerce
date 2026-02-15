@@ -49,6 +49,30 @@ const OperationalDocScan = () => {
   const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
   const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
   
+  // Animation states for each section
+  const [animateOcr, setAnimateOcr] = useState(false);
+  const [animateAi, setAnimateAi] = useState(false);
+  const [animateShipment, setAnimateShipment] = useState(false);
+  const [animateFindings, setAnimateFindings] = useState(false);
+  const [animateLogo, setAnimateLogo] = useState(false);
+  
+  // Staggered animation timing with 400ms gaps
+  useEffect(() => {
+    const ocrTimer = setTimeout(() => setAnimateOcr(true), 0);
+    const shipmentTimer = setTimeout(() => setAnimateShipment(true), 500);
+    const aiTimer = setTimeout(() => setAnimateAi(true), 1200);
+    const findingsTimer = setTimeout(() => setAnimateFindings(true), 1700);
+    const logoTimer = setTimeout(() => setAnimateLogo(true), 2000);
+    
+    return () => {
+      clearTimeout(ocrTimer);
+      clearTimeout(aiTimer);
+      clearTimeout(shipmentTimer);
+      clearTimeout(findingsTimer);
+      clearTimeout(logoTimer);
+    };
+  }, []);
+  
   // Enable next button when scan is complete
   useEffect(() => {
     if (scanComplete) {
@@ -105,19 +129,21 @@ const OperationalDocScan = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         {/* Left panel - OCR Scanning Section */}
-        <Box style={{height:"101%"}}>
-          <OcrScanningSection isInOperationalDocScan={true} />
-        </Box>
+        <Grow in={animateOcr} timeout={800}>
+          <Box style={{height:"101%"}}>
+            <OcrScanningSection isInOperationalDocScan={true} />
+          </Box>
+        </Grow>
         
         {/* AI Chip - positioned outside the document preview panel */}
-        <Grow in={scanProgress >= 50} timeout={800}>
+        <Grow in={animateAi} timeout={800}>
           <Box >
             <AIRecommendations contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"14%",left:"8%"}} recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} />
           </Box>
         </Grow>
         
         {/* Right panel - Shipment Details */}
-        <Slide direction="left" in={revealStage >= 1} timeout={800}>
+        <Grow in={animateShipment && revealStage} timeout={800}>
           
           <GradientBorderBox className={styles.shipmentDetailsPanel}>
             <Box className={styles.panelTitle}>Shipment Details</Box>
@@ -195,12 +221,12 @@ const OperationalDocScan = () => {
               })}
             </Box>
           </GradientBorderBox>
-        </Slide>
+        </Grow>
       
      
       </Box>
       {/* Detailed Findings Panel with Gradient Border */}
-      <Fade in={true} timeout={1000} style={{ transitionDelay: '500ms' }}>
+      <Grow in={animateFindings} timeout={800}>
         <GradientBorderBox className={styles.detailedFindingsPanel}>
           <DetailedFindings 
             findings={operationalFindings}
@@ -211,7 +237,7 @@ const OperationalDocScan = () => {
             buttonTransformY="-1rem"
           />
         </GradientBorderBox>
-      </Fade>
+      </Grow>
          {/* Navigation buttons */}
       <NavigationButtons 
         handleGoBack={handleGoBack} 
@@ -220,7 +246,7 @@ const OperationalDocScan = () => {
       />
       
       {/* EY Logo */}
-      <Zoom in={true} timeout={1500} style={{ transitionDelay: '500ms' }}>
+      <Zoom in={animateLogo} timeout={800}>
         <Box 
           component="img"
           src="/assets/ey-logo.svg"

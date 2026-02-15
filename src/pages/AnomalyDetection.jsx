@@ -16,24 +16,30 @@ import AIRecommendationsWithGif from '../components/anomaly-detection/AIRecommen
 export default function AnomalyDetection() {
   const navigate = useNavigate();
   
-  // Animation states
-  const [animateTop, setAnimateTop] = useState(false);
-  const [animateMiddle, setAnimateMiddle] = useState(false);
-  const [animateBottom, setAnimateBottom] = useState(false);
+  // Animation states for each section
+  const [animateDscr, setAnimateDscr] = useState(false);
+  const [animateDrivers, setAnimateDrivers] = useState(false);
+  const [animateRecommendations, setAnimateRecommendations] = useState(false);
+  const [animateQ3, setAnimateQ3] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
+  const [animateLogo, setAnimateLogo] = useState(false);
   
-  // Staggered animation timing
+  // Staggered animation timing with 400ms gaps
   useEffect(() => {
-    const topTimer = setTimeout(() => setAnimateTop(true), 300);
-    const middleTimer = setTimeout(() => setAnimateMiddle(true), 800);
-    const bottomTimer = setTimeout(() => setAnimateBottom(true), 1200);
-    const navTimer = setTimeout(() => setAnimateNav(true), 1500);
+    const dscrTimer = setTimeout(() => setAnimateDscr(true), 0);
+    const driversTimer = setTimeout(() => setAnimateDrivers(true), 500);
+    const recommendationsTimer = setTimeout(() => setAnimateRecommendations(true), 1000);
+    const q3Timer = setTimeout(() => setAnimateQ3(true), 1500);
+    const navTimer = setTimeout(() => setAnimateNav(true), 2000);
+    const logoTimer = setTimeout(() => setAnimateLogo(true), 2500);
     
     return () => {
-      clearTimeout(topTimer);
-      clearTimeout(middleTimer);
-      clearTimeout(bottomTimer);
+      clearTimeout(dscrTimer);
+      clearTimeout(driversTimer);
+      clearTimeout(recommendationsTimer);
+      clearTimeout(q3Timer);
       clearTimeout(navTimer);
+      clearTimeout(logoTimer);
     };
   }, []);
   
@@ -104,11 +110,11 @@ export default function AnomalyDetection() {
         <Grid container columnSpacing={2.5} rowSpacing={0} alignItems="stretch">
           {/* Top Row */}
           <Grid item xs={12} md={3.7} sx={{ display: 'flex' }}>
-            <Grow in={animateTop} timeout={800}>
+            <Grow in={animateDscr} timeout={800}>
               <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
-                  animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  animate={animateDscr ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15 }}
                 >
                   <GradientBorderBox
@@ -130,11 +136,11 @@ export default function AnomalyDetection() {
           </Grid>
           
           <Grid item xs={12} md={4.7} sx={{ display: 'flex' }}>
-            <Grow in={animateTop} timeout={1000}>
+            <Grow in={animateDrivers} timeout={800}>
               <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
-                  animate={animateTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  animate={animateDrivers ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
                 >
                   <GradientBorderBox
@@ -156,11 +162,11 @@ export default function AnomalyDetection() {
           </Grid>
 
           <Grid item xs={12} md={3.6} sx={{ display: 'flex' }}>
-            <Fade in={animateMiddle} timeout={1200}>
+            <Grow in={animateRecommendations} timeout={800}>
               <Box sx={{ height: '100%', width: '100%' }}>
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
-                  animate={animateMiddle ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  animate={animateRecommendations ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 >
                   <Box
@@ -199,19 +205,15 @@ export default function AnomalyDetection() {
                   </Box>
                 </motion.div>
               </Box>
-            </Fade>
+            </Grow>
           </Grid>
         </Grid>
       </motion.div>
 
-      <Slide direction="up" in={animateBottom} timeout={1000} mountOnEnter>
+      <Grow in={animateQ3} timeout={800}>
         <Grid container mt={-7} columnSpacing={2.5} alignItems="stretch" >
           <Grid item xs={12} md={3.7} sx={{ display: 'flex' }}>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={animateBottom ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.2 }}
-            >
+            
               <Box className={styles.svgPanelQ3} sx={{ width: '100%' }}>
                 <GradientBorderBox 
                   className={styles.driversPanel}
@@ -227,13 +229,13 @@ export default function AnomalyDetection() {
                   </Box>
                 </GradientBorderBox>
               </Box>
-            </motion.div>
+            
           </Grid>
         </Grid>
-      </Slide>
+      </Grow>
       
       {/* Navigation buttons */}
-      <Fade in={animateNav} timeout={1000}>
+      <Fade in={animateNav} timeout={800}>
         <Box className={styles.navigationButtons}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -258,7 +260,7 @@ export default function AnomalyDetection() {
       </Fade>
       
       {/* EY Logo */}
-      <Fade in={animateNav} timeout={1500}>
+      <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
           src="/assets/ey-logo.svg"

@@ -17,19 +17,28 @@ export default function Y14ReportNew() {
   const navigate = useNavigate();
   // Keep 'borrower' accordion open by default
   const [expandedAccordion, setExpandedAccordion] = useState('borrower');
-  const [showLeft, setShowLeft] = useState(false);
-  const [showRight, setShowRight] = useState(false);
-  const [showFindings, setShowFindings] = useState(false);
+  
+  // Animation states for each section
+  const [animateLeft, setAnimateLeft] = useState(false);
+  const [animateRight, setAnimateRight] = useState(false);
+  const [animateFindings, setAnimateFindings] = useState(false);
+  const [animateNav, setAnimateNav] = useState(false);
+  const [animateLogo, setAnimateLogo] = useState(false);
 
-  // Staggered mount so panels render one-by-one slowly
+  // Staggered animation timing with 500ms gaps
   useEffect(() => {
-    const t1 = setTimeout(() => setShowLeft(true), 200);       // left starts
-    const t2 = setTimeout(() => setShowRight(true), 1400);     // then right
-    const t3 = setTimeout(() => setShowFindings(true), 2600);  // then findings
+    const leftTimer = setTimeout(() => setAnimateLeft(true), 0);
+    const rightTimer = setTimeout(() => setAnimateRight(true), 500);
+    const findingsTimer = setTimeout(() => setAnimateFindings(true), 1000);
+    const navTimer = setTimeout(() => setAnimateNav(true), 1500);
+    const logoTimer = setTimeout(() => setAnimateLogo(true), 2000);
+    
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
+      clearTimeout(leftTimer);
+      clearTimeout(rightTimer);
+      clearTimeout(findingsTimer);
+      clearTimeout(navTimer);
+      clearTimeout(logoTimer);
     };
   }, []);
 
@@ -70,7 +79,7 @@ export default function Y14ReportNew() {
       <Box className={styles.mainContainer}>
         {/* Left: Schedule Template with gradient border and grow */}
         <Box className={styles.leftColumn}>
-          <Grow in={showLeft} timeout={1200} appear>
+          <Grow in={animateLeft} timeout={800} appear>
             <GradientBorderBox>
               <Box className={styles.scheduleTemplatePanel}>
                 <Box className={styles.panelHeader}>
@@ -551,7 +560,7 @@ export default function Y14ReportNew() {
         </Box>
 
         {/* Right column - Report Builder Workflow */}
-        <Fade in={showRight} timeout={1200} appear>
+        <Grow in={animateRight} timeout={800} appear>
           <GradientBorderBox>
             <Box className={styles.rightColumn}>
               <Box className={styles.panelHeader}>
@@ -596,10 +605,10 @@ export default function Y14ReportNew() {
               </Box>
             </Box>
           </GradientBorderBox>
-        </Fade>
+        </Grow>
 
         {/* Detailed Findings replaced by static SVG */}
-        <Fade in={showFindings} timeout={1400} appear>
+        <Grow in={animateFindings} timeout={800} appear>
           <Box className={styles.findingsPanel}>
             <Box  className={styles.findingsImage}>
             <GradientBorderBox>
@@ -611,11 +620,12 @@ export default function Y14ReportNew() {
             </GradientBorderBox>
             </Box>
           </Box>
-        </Fade>
+        </Grow>
       </Box>
       
       {/* Navigation buttons */}
-      <Box className={styles.navigationButtons}>
+      <Fade in={animateNav} timeout={800}>
+        <Box className={styles.navigationButtons}>
         <Button 
           className={styles.backButton}
           onClick={handleGoBack}
@@ -629,14 +639,17 @@ export default function Y14ReportNew() {
           <Typography className={styles.nextButtonText}>Next</Typography>
         </Button>
       </Box>
+      </Fade>
       
       {/* EY Logo */}
-      <Box 
-        component="img"
-        src="/assets/ey-logo.svg"
-        alt="EY Logo"
-        className={styles.eyLogo}
-      />
+      <Fade in={animateLogo} timeout={800}>
+        <Box 
+          component="img"
+          src="/assets/ey-logo.svg"
+          alt="EY Logo"
+          className={styles.eyLogo}
+        />
+      </Fade>
     </Box>
   );
 }
