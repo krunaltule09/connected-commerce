@@ -263,7 +263,7 @@ export default function DocumentCentrePage() {
               letterSpacing: '0.01em',
             }}
           >
-            Add Documents for Scanning
+            Selected Documents
           </Typography>
           
           <Box sx={{ 
