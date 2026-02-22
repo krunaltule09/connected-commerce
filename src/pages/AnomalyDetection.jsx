@@ -179,7 +179,7 @@ export default function AnomalyDetection() {
                       overflow: 'hidden'
                     }}
                   >
-                    <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
+                    <Box sx={{ width: '99%', height: '100%', position: 'relative' }}>
                       <AIRecommendationsWithGif
                         size="large"
                         recommendations={[

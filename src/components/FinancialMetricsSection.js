@@ -140,6 +140,7 @@ export default function FinancialMetricsSection() {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5 }}
                       style={{ 
+                    
                         display: 'flex', 
                         flexDirection: 'column',
                         alignItems: 'center', 
@@ -195,7 +196,7 @@ export default function FinancialMetricsSection() {
                         stiffness: 100,
                         damping: 15
                       }}
-                      style={{ position: 'relative', flexGrow: 1, overflow: 'visible' }}
+                      style={{ position: 'relative', flexGrow: 1, overflow: 'visible', marginLeft:"-6rem" }}
                     >
                       <FinancialChart />
                     </motion.div>
