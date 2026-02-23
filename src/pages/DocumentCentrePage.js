@@ -172,14 +172,7 @@ export default function DocumentCentrePage() {
             </Grid>
           </Grid>
 
-          {/* Horizontal Separator */}
-          <Box>
-            <hr style={{
-              width: '100%',
-              border: '1px solid #1D8583',
-              margin: "20px 0px"
-            }} />
-          </Box>
+      
         </Box>
 
         {/* Horizontally Scrollable Document List */}
