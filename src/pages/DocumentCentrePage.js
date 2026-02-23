@@ -48,14 +48,7 @@ export default function DocumentCentrePage() {
           // Ensure the document has a URL, or assign one based on index
           const updatedDoc = { ...full };
           if (!updatedDoc.url) {
-            const svgIndex = parseInt(updatedDoc.id) % 3;
-            if (svgIndex === 0) {
-              updatedDoc.url = '/assets/doc1.svg';
-            } else if (svgIndex === 1) {
-              updatedDoc.url = '/assets/doc2.svg';
-            } else {
-              updatedDoc.url = '/assets/doc3.svg';
-            }
+            updatedDoc.url = '/assets/doc_preview.jpeg';
           }
           
           setDocuments((prev) => 

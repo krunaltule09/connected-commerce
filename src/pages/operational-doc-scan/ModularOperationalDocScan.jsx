@@ -41,7 +41,7 @@ const ModularOperationalDocScan = () => {
   };
 
   const handleGoBack = () => {
-    window.history.back();
+    navigate('/y14-report');
   };
 
   return (

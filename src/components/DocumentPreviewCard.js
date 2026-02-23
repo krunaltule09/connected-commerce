@@ -52,7 +52,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src="/assets/doc1.svg"
+                      src="/assets/doc_preview.jpeg"
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -78,7 +78,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src="/assets/doc2.svg"
+                      src="/assets/doc_preview.jpeg"
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -104,7 +104,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src="/assets/doc3.svg"
+                      src="/assets/doc_preview.jpeg"
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',

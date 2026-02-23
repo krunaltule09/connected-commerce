@@ -32,24 +32,11 @@ export async function fetchDocuments() {
       const isPpt = name.endsWith('.pptx');
       const isDoc = name.endsWith('.docx');
       
-      // Use local SVG files for document previews
-      let url;
-      // Rotate between the three SVG files
-      const svgIndex = i % 3;
-      
-      if (svgIndex === 0) {
-        url = '/assets/doc1.svg';
-      } else if (svgIndex === 1) {
-        url = '/assets/doc2.svg';
-      } else {
-        url = '/assets/doc3.svg';
-      }
-      
       return {
         id: String(i + 1),
         name: name,
         type: isPdf ? 'pdf' : (isExcel ? 'excel' : (isPpt ? 'powerpoint' : (isDoc ? 'word' : 'image'))),
-        url: url,
+        url: '/assets/doc_preview.jpeg',
       };
     });
     return docs;

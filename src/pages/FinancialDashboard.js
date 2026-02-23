@@ -26,7 +26,7 @@ export default function FinancialDashboard() {
   });
 
   const handleGoBack = useButtonSound(() => {
-    window.history.back();
+    navigate('/document-centre');
   });
   
   
