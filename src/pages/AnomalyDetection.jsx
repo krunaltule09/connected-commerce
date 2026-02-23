@@ -196,7 +196,7 @@ export default function AnomalyDetection() {
                           justifyContent: "center",
                           top: "42%",
                           zIndex: 2,
-                          left: "55%",
+                          left: "52%",
                           width: "72%",
                           transform: "translate(-50%, -50%)"
                         }}
