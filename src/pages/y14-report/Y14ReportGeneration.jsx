@@ -134,7 +134,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src="/assets/doc_preview.jpeg"
+                  src="/assets/balance-doc.svg"
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -255,7 +255,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src="/assets/doc_preview.jpeg"
+                  src="/assets/balance-doc.svg"
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />

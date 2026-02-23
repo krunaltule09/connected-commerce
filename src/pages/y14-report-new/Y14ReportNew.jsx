@@ -581,7 +581,7 @@ export default function Y14ReportNew() {
                   {/* First Document */}
                   <Box
                     component="img"
-                    src={`${process.env.PUBLIC_URL}/assets/doc_preview.jpeg`}
+                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
                     alt="Report Builder Document 1"
                     className={styles.docImage}
                   />
@@ -589,7 +589,7 @@ export default function Y14ReportNew() {
                   {/* Second Document */}
                   <Box
                     component="img"
-                    src={`${process.env.PUBLIC_URL}/assets/doc_preview.jpeg`}
+                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
                     alt="Report Builder Document 2"
                     className={styles.docImage}
                   />
@@ -597,7 +597,7 @@ export default function Y14ReportNew() {
                   {/* Third Document */}
                   <Box
                     component="img"
-                    src={`${process.env.PUBLIC_URL}/assets/doc_preview.jpeg`}
+                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
                     alt="Report Builder Document 3"
                     className={styles.docImage}
                   />

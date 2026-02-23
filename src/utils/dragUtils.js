@@ -33,7 +33,7 @@ export const createDocumentTileGhostImage = (doc) => (e) => {
   
   // Add the same document icon as in the tile
   const iconImg = document.createElement('img');
-  iconImg.src = '/assets/doc_preview.jpeg';
+  iconImg.src = '/assets/Vector.svg';
   iconImg.style.width = '31px';
   iconImg.style.height = '31px';
   previewArea.appendChild(iconImg);

@@ -69,14 +69,10 @@ export default function FinancialDriversChart({ style = {} }) {
       >
         Quarter-by-quarter financial drivers
       </Typography>
-      <ResponsiveContainer width="100%" height={310} key={`financial-drivers-chart-${animationProgress}`}>
+      <ResponsiveContainer width="100%" height={310}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 20, bottom: 40 }}
-          baseValue={15000}
-          layout="horizontal"
-          stackOffset="none"
-          barCategoryGap="10%"
         >
           <defs>
             <linearGradient id="colorDebt" x1="0" y1="0" x2="0" y2="1">
@@ -84,15 +80,15 @@ export default function FinancialDriversChart({ style = {} }) {
               <stop offset="95%" stopColor="#8B6F47" stopOpacity={0.6}/>
             </linearGradient>
             <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#D97642" stopOpacity={0.9}/>
-              <stop offset="95%" stopColor="#A64B2A" stopOpacity={0.7}/>
+              <stop offset="5%" stopColor="#EF4444" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#991B1B" stopOpacity={0.7}/>
             </linearGradient>
             <linearGradient id="colorCashFlow" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#34D399" stopOpacity={0.9}/>
               <stop offset="95%" stopColor="#047857" stopOpacity={0.7}/>
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={true} horizontal={true} />
+          <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={false} horizontal={true} />
           <XAxis 
             dataKey="quarter" 
             stroke="#9CA3AF" 
@@ -100,22 +96,21 @@ export default function FinancialDriversChart({ style = {} }) {
             axisLine={{ stroke: '#3F4254' }}
           />
           <YAxis 
-            stroke="#9CA3AF"
-            tick={{ fill: '#D1D5DB', fontSize: 12 }}
-            tickFormatter={(value) => `$${value / 1000}K`}
-            label={{ 
-              value: 'Total Amount', 
-              angle: -90, 
-              position: 'insideLeft', 
-              fill: '#9CA3AF', 
-              fontSize: 12 
-            }}
-            axisLine={{ stroke: '#3F4254' }}
-            domain={[15000, 35000]}
-            ticks={[15000, 20000, 25000, 30000, 35000]}
-            allowDataOverflow={false}
-            allowDecimals={false}
-          />
+  stroke="#9CA3AF"
+  tick={{ fill: '#D1D5DB', fontSize: 12 }}
+  tickFormatter={(value) => `$${value / 1000}K`}
+  label={{ 
+    value: 'Total Amount', 
+    angle: -90, 
+    position: 'insideLeft', 
+    fill: '#9CA3AF', 
+    fontSize: 12 
+  }}
+  axisLine={{ stroke: '#3F4254' }}
+  domain={[15000, 'dataMax']}
+  ticks={[15000, 20000, 25000, 30000, 35000]}
+  allowDecimals={false}
+/>
           <Tooltip 
             contentStyle={{ 
               backgroundColor: '#1F2937', 
@@ -146,42 +141,36 @@ export default function FinancialDriversChart({ style = {} }) {
           />
           <Area 
             type="monotone" 
-            dataKey="debt" 
-            stackId="1" 
-            stroke="#FFE600" 
-            fill="url(#colorDebt)"
-            name="Debt"
+            dataKey="cashFlow" 
+            stroke="#34D399" 
+            fill="url(#colorCashFlow)"
+            name="Cash Flow"
             animationBegin={0}
             animationDuration={1500}
             animationEasing="ease-out"
             isAnimationActive={animationProgress > 0}
-            baseValue={15000} // Set explicit base value to match domain minimum
           />
           <Area 
             type="monotone" 
             dataKey="interest" 
-            stackId="1" 
-            stroke="#D97642" 
+            stroke="#EF4444" 
             fill="url(#colorInterest)"
             name="Interest"
             animationBegin={100}
             animationDuration={1500}
             animationEasing="ease-out"
             isAnimationActive={animationProgress > 0}
-            baseValue={15000} // Set explicit base value to match domain minimum
           />
           <Area 
             type="monotone" 
-            dataKey="cashFlow" 
-            stackId="1" 
-            stroke="#34D399" 
-            fill="url(#colorCashFlow)"
-            name="Cash Flow"
+            dataKey="debt" 
+            stroke="#FFE600" 
+            fill="url(#colorDebt)"
+            name="Debt"
             animationBegin={200}
             animationDuration={1500}
             animationEasing="ease-out"
             isAnimationActive={animationProgress > 0}
-            baseValue={15000} // Set explicit base value to match domain minimum
           />
         </AreaChart>
       </ResponsiveContainer>

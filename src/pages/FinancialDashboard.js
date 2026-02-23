@@ -21,7 +21,7 @@ export default function FinancialDashboard() {
       });
       
     } catch (error) {
-      console.error('Failed to send navigation event:', error);
+      console.error('Failed to send navigation event:', error); 
     }
   });
 

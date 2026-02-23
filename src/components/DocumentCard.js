@@ -104,7 +104,7 @@ export default function DocumentCard({ document, onClick, isSelected }) {
         >
           <Box
             component="img"
-            src={document.url || '/assets/doc_preview.jpeg'}
+            src={document.url || '/assets/Vector.svg'}
             alt={document.name}
             sx={{
               maxWidth: '100%',

@@ -17,12 +17,12 @@ export const useFinancialDriversData = () => {
   useEffect(() => {
     // Simulate data fetching
     const fetchData = () => {
-      const hardcodedData = [
-        { quarter: 'Q1', cashFlow: 2000, interest: 3000, debt: 10000 },
-        { quarter: 'Q2', cashFlow: 3500, interest: 4500, debt: 12000 },
-        { quarter: 'Q3', cashFlow: 5000, interest: 6000, debt: 14000 },
-        { quarter: 'Q4', cashFlow: 6500, interest: 7000, debt: 13000 },
-      ];
+   const hardcodedData = [
+  { quarter: 'Q1', cashFlow: 15000, interest: 15000, debt: 15000 },
+  { quarter: 'Q2', cashFlow: 18000, interest: 17500, debt: 16800 },
+  { quarter: 'Q3', cashFlow: 25500, interest: 23000, debt: 21000 },
+  { quarter: 'Q4', cashFlow: 36000, interest: 31000, debt: 27000 },
+];
       
       // Use a shorter timeout to minimize visible transition
       setTimeout(() => {
