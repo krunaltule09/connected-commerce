@@ -53,6 +53,8 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
             <Box p={1}>
               <Box
                 sx={{
+                  width:isInOperationalDocScan ? '93%' : '100%',
+                  marginLeft:isInOperationalDocScan ? '0.6rem' : '0',
                   height: 400 ,
                   bgcolor: '#343340',
                 
@@ -60,7 +62,8 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundImage: `url('/assets/1.svg')`,
-                  backgroundSize: 'cover',
+                  backgroundSize: isInOperationalDocScan ? '100%' : '94%',
+                  
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.3)',

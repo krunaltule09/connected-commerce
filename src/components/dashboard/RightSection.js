@@ -14,9 +14,12 @@ export default function RightSection({ recommendations }) {
       display: 'flex', 
       flexDirection: 'column', 
       height: '100%',
-      gap: 1
+      gap: 1,
     }}>
-      <AiRecommendationsSection recommendations={recommendations} />
+      <AiRecommendationsSection 
+        recommendations={recommendations} 
+        containerStyle={{ marginLeft: '1rem' }}
+      />
       <CovenantStatusWrapper />
     </Box>
   );

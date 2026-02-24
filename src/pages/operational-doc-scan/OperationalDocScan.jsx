@@ -132,7 +132,7 @@ const OperationalDocScan = () => {
         
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={animateAi} timeout={800}>
-          <Box >
+          <Box sx={{ marginLeft: '1rem' }}>
             <AIRecommendationsWithGif 
               size="medium" 
               contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"14%",left:"8%"}} 

@@ -8,13 +8,13 @@ import AIRecommendationsWithGif from '../anomaly-detection/AIRecommendationsWith
  * @param {Array<string>} props.recommendations - List of AI recommendations
  * @param {string} props.size - Size of the panel ('medium' or 'large')
  */
-export default function AiRecommendationsSection({ recommendations, size = 'medium' }) {
+export default function AiRecommendationsSection({ recommendations, size = 'medium', containerStyle = {} }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      style={{ height: '25%', minHeight: '120px', marginBottom: '8px' }}
+      style={{ height: '28%', minHeight: '120px', marginBottom: '8px', ...containerStyle }}
     >
       <AIRecommendationsWithGif 
         contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"55%",left:"2%"}} 
