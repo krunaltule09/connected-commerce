@@ -54,7 +54,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
               <Box
                 sx={{
                   width:isInOperationalDocScan ? '93%' : '100%',
-                  marginLeft:isInOperationalDocScan ? '0.6rem' : '0',
+                  marginLeft:isInOperationalDocScan ? '0.8rem' : '0',
                   height: 400 ,
                   bgcolor: '#343340',
                 
