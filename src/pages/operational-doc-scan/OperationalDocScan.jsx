@@ -135,7 +135,7 @@ const OperationalDocScan = () => {
           <Box sx={{ marginLeft: '1rem' }}>
             <AIRecommendationsWithGif 
               size="medium" 
-              contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"14%",left:"8%"}} 
+              contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"13%",left:"3%"}} 
               recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} 
             />
           </Box>

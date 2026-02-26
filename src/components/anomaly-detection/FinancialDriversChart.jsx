@@ -88,7 +88,7 @@ export default function FinancialDriversChart({ style = {} }) {
               <stop offset="95%" stopColor="#047857" stopOpacity={0.7}/>
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={false} horizontal={true} />
+          <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={true} horizontal={false} />
           <XAxis 
             dataKey="quarter" 
             stroke="#9CA3AF" 
