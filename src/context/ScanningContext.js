@@ -2,7 +2,7 @@ import { createContext, useState, useContext, useEffect, useCallback, useRef } f
 
 const ScanningContext = createContext();
 
-const SSE_API_URL = `${process.env.REACT_APP_SSE_SERVICE_URL}/api/sse`;
+const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
 
 export function ScanningProvider({ children }) {
   const [scanProgress, setScanProgress] = useState(0);
@@ -10,14 +10,14 @@ export function ScanningProvider({ children }) {
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
   const lastPublishedProgress = useRef(-1);
 
-  // Publish progress to SSE service
+  // Publish progress to SSE service (same pattern as NavigationService)
   const publishProgress = useCallback(async (progress, pageId = 'financial-statement') => {
     // Only publish if progress changed significantly (avoid flooding)
     if (Math.floor(progress) === lastPublishedProgress.current) return;
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await fetch(`${SSE_API_URL}/api/progress`, {
+      await fetch(`${SSE_BASE_URL}/api/progress`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
