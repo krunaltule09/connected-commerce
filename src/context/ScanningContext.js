@@ -48,6 +48,19 @@ export function ScanningProvider({ children }) {
     return () => clearInterval(timer);
   }, []);
 
+  // Listen for reset events
+  useEffect(() => {
+    const handleReset = () => {
+      setScanProgress(0);
+      setIsFinancialDataReady(false);
+      setIsCovenantDataReady(false);
+      lastPublishedProgress.current = -1;
+    };
+
+    window.addEventListener('reset-scanning-progress', handleReset);
+    return () => window.removeEventListener('reset-scanning-progress', handleReset);
+  }, []);
+
   // Publish progress to SSE whenever it changes
   useEffect(() => {
     publishProgress(scanProgress);

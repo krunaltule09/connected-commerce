@@ -10,6 +10,13 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
   const [animateDocument, setAnimateDocument] = useState(false);
   const [animateProgress, setAnimateProgress] = useState(false);
   
+  // Reset progress to 0 on mount
+  useEffect(() => {
+    // Reset scanning context progress
+    const resetEvent = new CustomEvent('reset-scanning-progress');
+    window.dispatchEvent(resetEvent);
+  }, []);
+  
   // Staggered animation timing
   useEffect(() => {
     const documentTimer = setTimeout(() => setAnimateDocument(true), 300);
