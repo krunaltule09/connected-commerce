@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Box, Button, Typography, Stack, Grow, Fade } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -13,6 +13,8 @@ import GradientBorderBox from '../../components/common/GradientBorderBox';
 import bgVideo from '../../assets/AdobeStock_1544892280.mp4';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
+const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
+
 export default function Y14ReportNew() {
   const navigate = useNavigate();
   // Keep 'borrower' accordion open by default
@@ -24,6 +26,52 @@ export default function Y14ReportNew() {
   const [animateFindings, setAnimateFindings] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
   const [animateLogo, setAnimateLogo] = useState(false);
+
+  // Progress state for Y14 report generation
+  const [reportProgress, setReportProgress] = useState(0);
+  const lastPublishedProgress = useRef(-1);
+
+  // Publish progress to SSE service (same pattern as ScanningContext)
+  const publishProgress = useCallback(async (progress) => {
+    // Only publish if progress changed significantly (avoid flooding)
+    if (Math.floor(progress) === lastPublishedProgress.current) return;
+    lastPublishedProgress.current = Math.floor(progress);
+
+    try {
+      await fetch(`${SSE_BASE_URL}/api/progress`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pageId: 'y14-report',
+          progress: Math.floor(progress),
+          status: progress >= 100 ? 'complete' : 'generating',
+          metadata: {
+            reportReady: progress >= 100
+          }
+        })
+      });
+    } catch (error) {
+      // Silently fail - SSE service may not be running
+      console.debug('SSE publish failed:', error.message);
+    }
+  }, []);
+
+  // Progress simulation for Y14 report generation
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setReportProgress((oldProgress) => {
+        const increment = Math.max(1, 10 * (1 - oldProgress / 100));
+        return Math.min(oldProgress + increment, 100);
+      });
+    }, 300);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Publish progress to SSE whenever it changes
+  useEffect(() => {
+    publishProgress(reportProgress);
+  }, [reportProgress, publishProgress]);
 
   // Staggered animation timing with 500ms gaps
   useEffect(() => {
