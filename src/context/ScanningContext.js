@@ -2,7 +2,7 @@ import { createContext, useState, useContext, useEffect, useCallback, useRef } f
 
 const ScanningContext = createContext();
 
-const SSE_API_URL = process.env.REACT_APP_SSE_URL || 'http://localhost:3001';
+const SSE_API_URL = process.env.REACT_APP_SSE_SERVICE_URL
 
 export function ScanningProvider({ children }) {
   const [scanProgress, setScanProgress] = useState(0);
