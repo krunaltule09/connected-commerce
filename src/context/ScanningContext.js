@@ -1,11 +1,40 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect, useCallback, useRef } from 'react';
 
 const ScanningContext = createContext();
+
+const SSE_API_URL = process.env.REACT_APP_SSE_URL || 'http://localhost:3001';
 
 export function ScanningProvider({ children }) {
   const [scanProgress, setScanProgress] = useState(0);
   const [isFinancialDataReady, setIsFinancialDataReady] = useState(false);
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
+  const lastPublishedProgress = useRef(-1);
+
+  // Publish progress to SSE service
+  const publishProgress = useCallback(async (progress, pageId = 'financial-statement') => {
+    // Only publish if progress changed significantly (avoid flooding)
+    if (Math.floor(progress) === lastPublishedProgress.current) return;
+    lastPublishedProgress.current = Math.floor(progress);
+
+    try {
+      await fetch(`${SSE_API_URL}/api/progress`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pageId,
+          progress: Math.floor(progress),
+          status: progress >= 100 ? 'complete' : 'scanning',
+          metadata: {
+            isFinancialDataReady: progress >= 60,
+            isCovenantDataReady: progress >= 85
+          }
+        })
+      });
+    } catch (error) {
+      // Silently fail - SSE service may not be running
+      console.debug('SSE publish failed:', error.message);
+    }
+  }, []);
   
   // Update scan progress
   useEffect(() => {
@@ -18,6 +47,11 @@ export function ScanningProvider({ children }) {
 
     return () => clearInterval(timer);
   }, []);
+
+  // Publish progress to SSE whenever it changes
+  useEffect(() => {
+    publishProgress(scanProgress);
+  }, [scanProgress, publishProgress]);
   
   // Set financial data ready when progress reaches 60%
   useEffect(() => {
