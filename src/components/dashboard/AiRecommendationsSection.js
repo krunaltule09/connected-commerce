@@ -17,7 +17,7 @@ export default function AiRecommendationsSection({ recommendations, size = 'medi
       style={{ height: '28%', minHeight: '120px', marginBottom: '8px', ...containerStyle }}
     >
       <AIRecommendationsWithGif 
-        contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"40%",left:"0%"}} 
+        contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"55%",left:"0%"}} 
         recommendations={recommendations}
         size={size}
       />

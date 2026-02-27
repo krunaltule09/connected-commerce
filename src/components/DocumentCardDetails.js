@@ -116,6 +116,7 @@ export default function DocumentCardDetails({ document }) {
     
     let initialDistance = 0;
     let initialScale = 1;
+    let lastScale = scale;
     
     const getDistance = (touches) => {
       return Math.hypot(
@@ -133,9 +134,9 @@ export default function DocumentCardDetails({ document }) {
         e.preventDefault();
         e.stopPropagation();
         
-        // Initialize pinch-to-zoom
+        // Initialize pinch-to-zoom with current scale
         initialDistance = getDistance(touches);
-        initialScale = scale;
+        initialScale = lastScale;
         
         // Initialize two-finger pan
         setIsPanning(true);
@@ -158,6 +159,7 @@ export default function DocumentCardDetails({ document }) {
         const currentDistance = getDistance(touches);
         const scaleFactor = currentDistance / initialDistance;
         const newScale = Math.max(1, Math.min(3, initialScale * scaleFactor));
+        lastScale = newScale;
         setScale(newScale);
         
         // Handle two-finger pan
