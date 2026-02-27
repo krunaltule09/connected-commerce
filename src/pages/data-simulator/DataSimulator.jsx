@@ -5,6 +5,8 @@ import GradientBorderBoxLegacy from '../../components/common/GradientBorderBoxLe
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
+import errorsIcon from '../../assets/errors.svg';
+import covenantChecksIcon from '../../assets/convetChecks.svg';
 
 const DataSimulator = () => {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ const DataSimulator = () => {
   const getTabStyle = (tab, isSelected) => {
     const baseStyle = {
       color: '#FCFCFC',
-      border: 'none',
+      border: 'none !important',
       backgroundColor: 'transparent',
       textTransform: 'none',
       fontSize: '0.85rem',
@@ -33,10 +35,24 @@ const DataSimulator = () => {
       wordWrap: 'break-word',
       textAlign: 'center',
       position: 'relative',
+      outline: 'none !important',
+      boxShadow: 'none !important',
       '&:hover': {
-        outline: 'none',
+        outline: 'none !important',
+        border: 'none !important',
         cursor: 'not-allowed',
-
+      },
+      '&:focus': {
+        outline: 'none !important',
+        border: 'none !important',
+      },
+      '&:active': {
+        outline: 'none !important',
+        border: 'none !important',
+      },
+      '&.Mui-focusVisible': {
+        outline: 'none !important',
+        border: 'none !important',
       },
     };
     
@@ -176,22 +192,18 @@ const DataSimulator = () => {
                     <Box sx={{ 
                       width: 40, 
                       height: 40, 
-                      bgcolor: '#23232F', 
                       borderRadius: '4px', 
                       display: 'flex', 
                       alignItems: 'center', 
                       justifyContent: 'center' 
                     }}>
                       <Box 
-                        component="span" 
+                        component="img"
+                        src={covenantChecksIcon}
+                        alt="Faster Covenant Checks"
                         sx={{ 
-                          width: 24, 
-                          height: 24, 
-                          display: 'flex',
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E")`,
-                          backgroundSize: 'contain',
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'center'
+                          width: 36, 
+                          height: 36
                         }}
                       />
                     </Box>
@@ -218,22 +230,18 @@ const DataSimulator = () => {
                     <Box sx={{ 
                       width: 40, 
                       height: 40, 
-                      bgcolor: '#23232F', 
                       borderRadius: '4px', 
                       display: 'flex', 
                       alignItems: 'center', 
                       justifyContent: 'center' 
                     }}>
                       <Box 
-                        component="span" 
+                        component="img"
+                        src={errorsIcon}
+                        alt="Fewer Errors"
                         sx={{ 
-                          width: 24, 
-                          height: 24, 
-                          display: 'flex',
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E")`,
-                          backgroundSize: 'contain',
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'center'
+                          width: 36, 
+                          height: 36
                         }}
                       />
                     </Box>
