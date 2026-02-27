@@ -40,7 +40,7 @@ export default function ChartBreakdown() {
   );
   
   return (
-    <Box sx={{ mt: 4, mb: 0.5 }}> {/* Increased top margin from 1 to 4 */}
+    <Box sx={{ mt: '-3rem', mb: 0.5 }}> {/* Negative margin to move section up */}
       <motion.div
         key={selectedMetric} // Key helps React identify when to animate
         initial={{ opacity: 0 }}

@@ -130,7 +130,16 @@ export default function FinancialMetricsSection() {
         <Grid item xs={12} md={9} lg={9.5}>
           <Fade in={animateChart} timeout={900}>
             <Box sx={{ p: 1.5, height: '95%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-              <Box sx={{ flexGrow: 1, minHeight: 0, position: 'relative', display: 'flex', flexDirection: 'column' }}>
+             <Box
+                sx={{
+                  flexGrow: 1,
+                  minHeight: 320,
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
                 <AnimatePresence mode="wait">
                   {!isFinancialDataReady ? (
                     <motion.div
@@ -141,30 +150,30 @@ export default function FinancialMetricsSection() {
                       transition={{ duration: 0.5 }}
                       style={{ 
                     
-                        display: 'flex', 
-                        flexDirection: 'column',
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                         height: '100%',
                         width: '100%'
                       }}
                     >
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      >
-                        <CircularProgress 
-                          variant="determinate" 
-                          value={Math.min(100, scanProgress * 1.5)} 
-                          sx={{ 
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        >
+                          <CircularProgress 
+                            variant="determinate" 
+                            value={Math.min(100, scanProgress * 1.5)} 
+                            sx={{ 
                             color: '#FFE600',
                             mb: 2
-                          }} 
-                        />
-                      </motion.div>
+                            }} 
+                          />
+                        </motion.div>
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
                       >
                         <Typography 
@@ -182,7 +191,7 @@ export default function FinancialMetricsSection() {
                             Analyzing financial data...
                           </motion.span>
                           <br />
-                          {Math.min(100, Math.round(scanProgress * 1.5))}% complete
+                          {Math.min(100, Math.round(scanProgress * 1))}% complete
                         </Typography>
                       </motion.div>
                     </motion.div>

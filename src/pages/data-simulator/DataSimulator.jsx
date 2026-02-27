@@ -97,18 +97,26 @@ const DataSimulator = () => {
           
           {/* Tab buttons */}
           <Box sx={{ width: '100%' }}>
-            <Stack direction="row" spacing={1.5} sx={{ overflowX: 'auto', pb: 0.5 }}>
-              {tabs.map((tab) => {
+            <Stack direction="row" spacing={3} sx={{ overflowX: 'auto', pb: 0.6, justifyContent: 'left' }}>
+              {tabs.map((tab, index) => {
                 const isSelected = selectedTab === tab;
+                const isDisabled = tab === 'ROI Calculator' || tab === 'Case Studies / Benchmarks';
                 // Removed unused bgColor variable
                 return (
                   <Button
                     key={tab}
-                    onClick={() => setSelectedTab(tab)}
+                    onClick={() => !isDisabled && setSelectedTab(tab)}
                     variant="outlined"
+                    disabled={isDisabled}
                     sx={{
                       ...getTabStyle(tab, isSelected),
-
+                      ...(index === 2 && { marginLeft: '2rem !important' }),
+                      ...(isDisabled && {
+                        opacity: 0.5,
+                        cursor: 'not-allowed !important',
+                        pointerEvents: 'auto',
+                        color: '#FCFCFC !important'
+                      })
                     }}
                   >
                     {tab}

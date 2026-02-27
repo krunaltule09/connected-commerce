@@ -25,6 +25,8 @@ const ContentContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
 }));
 
 const BulletPoint = styled(Box)(({ theme }) => ({
@@ -92,7 +94,13 @@ const GifBackgroundPanel = ({
                 <Typography 
                   variant="body2" 
                   color="white"
-                  sx={{ fontSize: '14px', lineHeight: 1.5, fontWeight: '300' }}
+                  sx={{ 
+                    fontSize: '14px', 
+                    lineHeight: 1.5, 
+                    fontWeight: '300',
+                    fontFamily: 'Interstate, sans-serif',
+                    textAlign: 'left'
+                  }}
                 >
                   {point}
                 </Typography>
