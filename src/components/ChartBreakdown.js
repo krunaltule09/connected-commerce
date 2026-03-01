@@ -5,38 +5,14 @@ import { useScanning } from '../context/ScanningContext';
 import { useFinancialData } from '../context/FinancialDataContext';
 
 export default function ChartBreakdown() {
-  const { selectedMetric } = useFinancialData();
+  const { selectedMetric, getInfoLines } = useFinancialData();
   // eslint-disable-next-line no-unused-vars
   const { isFinancialDataReady } = useScanning();
   
-  // Define different breakdown items for each metric
-  const breakdownItemsByMetric = useMemo(() => ({
-    'Revenue': [
-      'Revenue growth supports minimum turnover covenant, reducing risk of operating underperformance.',
-      'Stable YoY increase indicates low likelihood of cash-flow stress, supporting DSCR maintenance.'
-    ],
-    'EBITDA': [
-      'Rising EBITDA strengthens Debt/EBITDA covenant compliance, improving borrower creditworthiness.',
-      'Sustained profitability trend reduces risk of breach on interest coverage or leverage covenants.'
-    ],
-    'Debt': [
-      'Current leverage remains within allowable Debt/EBITDA thresholds, though trending upward.',
-      'Monitoring required to avoid breaching maximum leverage or total indebtedness covenants.'
-    ],
-    'Equity': [
-      'Stable equity position supports Net Worth / Equity Maintenance covenants.',
-      'Equity cushion reduces risk of LTV covenant deterioration during adverse market cycles.'
-    ],
-    'Interest Expense': [
-      'Rising interest expense may pressure Interest Coverage covenants if EBITDA slows.',
-      'Higher servicing costs could impact DSCR compliance, requiring ongoing monitoring.'
-    ]
-  }), []);
-
-  // Get the current breakdown items based on selected metric
+  // Get the current breakdown items from API data via context
   const breakdownItems = useMemo(() => 
-    breakdownItemsByMetric[selectedMetric] || [], 
-    [breakdownItemsByMetric, selectedMetric]
+    getInfoLines() || [], 
+    [getInfoLines, selectedMetric]
   );
   
   return (
