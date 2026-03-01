@@ -68,16 +68,16 @@ const OperationalDocScan = () => {
     };
   }, []);
   
-  // Enable next button when scan is complete
+  // Enable next button after all animations complete and shipments are revealed
   useEffect(() => {
-    if (scanComplete) {
-      // Add a small delay before enabling the next button for better UX
+    if (scanComplete && animateFindings && animateShipment) {
+      // Add delay to ensure all shipment rows have animated in
       const timer = setTimeout(() => {
         setNextButtonEnabled(true);
-      }, 1000);
+      }, 1000); // Increased delay to account for shipment animations
       return () => clearTimeout(timer);
     }
-  }, [scanComplete]);
+  }, [scanComplete, animateFindings, animateShipment]);
   
   const handleNextStep = useButtonSound(() => {
     if (nextButtonEnabled) {
@@ -87,6 +87,13 @@ const OperationalDocScan = () => {
 
   const handleGoBack = useButtonSound(() => {
     navigate('/y14-report');
+  });
+
+  const handleLogoClick = useButtonSound(() => {
+    // Navigate to home/welcome page
+    navigate('/');
+    // Reload the page to reset the app state
+    window.location.reload();
   });
 
   return (
@@ -245,14 +252,28 @@ const OperationalDocScan = () => {
       />
       
       {/* EY Logo */}
-      <Zoom in={animateLogo} timeout={800}>
-        <Box 
-          component="img"
-          src="/assets/ey-logo.svg"
-          alt="EY Logo"
-          className={styles.eyLogo}
-        />
-      </Zoom>
+      <Box 
+        onClick={handleLogoClick}
+        sx={{
+          cursor: 'pointer',
+          display: 'inline-block'
+        }}
+      >
+        <Zoom in={animateLogo} timeout={800}>
+          <Box 
+            component="img"
+            src="/assets/ey-logo.svg"
+            alt="EY Logo"
+            className={styles.eyLogo}
+            sx={{
+              transition: 'opacity 0.3s ease',
+              '&:hover': {
+                opacity: 0.8
+              }
+            }}
+          />
+        </Zoom>
+      </Box>
     </Box>
   );
 };

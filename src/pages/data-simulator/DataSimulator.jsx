@@ -61,6 +61,12 @@ const DataSimulator = () => {
       return {
         ...baseStyle,
         minWidth: '220px',
+        '&:hover': {
+          outline: 'none !important',
+          border: 'none !important',
+          cursor: 'pointer',
+          backgroundColor: 'transparent',
+        },
       };
     } else if (tab === 'Client-Specific ROI Calculator') {
       return {
@@ -342,6 +348,12 @@ const DataSimulator = () => {
         src="/assets/ey-logo.svg"
         alt="EY Logo"
         className={styles.eyLogo}
+        onClick={() => { navigate('/'); window.location.reload(); }}
+        sx={{
+          cursor: 'pointer',
+          transition: 'opacity 0.3s ease',
+          '&:hover': { opacity: 0.8 }
+        }}
       />
     </Box>
   );

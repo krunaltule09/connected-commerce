@@ -150,20 +150,29 @@ export default function DashboardLayout({
       </Fade>
       
       {/* EY Logo */}
-      <Fade in={animateLogo} timeout={1000}>
-        <Box 
-          component="img"
-          src="/assets/ey-logo.svg"
-          alt="EY Logo"
-          className={styles.eyLogo}
-          sx={{
-            transition: "transform 0.3s ease",
-            '&:hover': {
-              transform: "scale(1.1)"
-            }
-          }}
-        />
-      </Fade>
+      <Box 
+        onClick={() => { window.location.href = '/'; }}
+        sx={{
+          cursor: 'pointer',
+          display: 'inline-block'
+        }}
+      >
+        <Fade in={animateLogo} timeout={1000}>
+          <Box 
+            component="img"
+            src="/assets/ey-logo.svg"
+            alt="EY Logo"
+            className={styles.eyLogo}
+            sx={{
+              transition: "opacity 0.3s ease, transform 0.3s ease",
+              '&:hover': {
+                opacity: 0.8,
+                transform: "scale(1.05)"
+              }
+            }}
+          />
+        </Fade>
+      </Box>
     </Box>
   );
 }

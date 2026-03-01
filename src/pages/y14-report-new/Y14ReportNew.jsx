@@ -17,8 +17,7 @@ const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:
 
 export default function Y14ReportNew() {
   const navigate = useNavigate();
-  // Keep 'borrower' accordion open by default
-  const [expandedAccordion, setExpandedAccordion] = useState('borrower');
+  const [expandedAccordion, setExpandedAccordion] = useState(null);
   
   // Animation states for each section
   const [animateLeft, setAnimateLeft] = useState(false);
@@ -696,6 +695,12 @@ export default function Y14ReportNew() {
           src="/assets/ey-logo.svg"
           alt="EY Logo"
           className={styles.eyLogo}
+          onClick={() => { navigate('/'); window.location.reload(); }}
+          sx={{
+            cursor: 'pointer',
+            transition: 'opacity 0.3s ease',
+            '&:hover': { opacity: 0.8 }
+          }}
         />
       </Fade>
     </Box>

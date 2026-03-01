@@ -266,10 +266,13 @@ export default function AnomalyDetection() {
           src="/assets/ey-logo.svg"
           alt="EY Logo"
           className={styles.eyLogo}
+          onClick={() => { window.location.href = '/'; }}
           sx={{
-            transition: "transform 0.3s ease",
+            cursor: 'pointer',
+            transition: "opacity 0.3s ease, transform 0.3s ease",
             '&:hover': {
-              transform: "scale(1.1)"
+              opacity: 0.8,
+              transform: "scale(1.05)"
             }
           }}
         />

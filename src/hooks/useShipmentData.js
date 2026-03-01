@@ -87,7 +87,7 @@ export const useShipmentData = () => {
       status: 'on-time'
     },
     {
-      name: 'Shipment 9',
+      name: 'Shipment 8',
       promisedDate: '26 Jan 2025',
       actualDate: '26 Jan 2025',
       status: 'on-time'
