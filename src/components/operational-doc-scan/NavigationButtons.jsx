@@ -20,6 +20,7 @@ const NavigationButtons = ({ handleGoBack, handleNextStep, nextButtonEnabled }) 
           sx={{
             opacity: nextButtonEnabled ? 1 : 0.5,
             cursor: nextButtonEnabled ? 'pointer' : 'not-allowed',
+            pointerEvents: nextButtonEnabled ? 'auto' : 'none',
             transition: 'opacity 0.3s ease'
           }}
         >
