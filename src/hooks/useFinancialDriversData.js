@@ -15,20 +15,35 @@ export const useFinancialDriversData = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate data fetching
-    const fetchData = () => {
-   const hardcodedData = [
-  { quarter: 'Q1', cashFlow: 15000, interest: 15000, debt: 15000 },
-  { quarter: 'Q2', cashFlow: 18000, interest: 17500, debt: 16800 },
-  { quarter: 'Q3', cashFlow: 25500, interest: 23000, debt: 21000 },
-  { quarter: 'Q4', cashFlow: 36000, interest: 31000, debt: 27000 },
-];
-      
-      // Use a shorter timeout to minimize visible transition
-      setTimeout(() => {
-        setData(hardcodedData);
+    const fetchData = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+        const response = await fetch(`${apiUrl}/api/case/1/quarter-by-quarter-financial-drivers`);
+        const result = await response.json();
+        const dataPoints = result.data?.dataPoints || [];
+        
+        // Map API response to expected format
+        const mappedData = dataPoints.map(item => ({
+          quarter: item.quarter,
+          cashFlow: item.cashFlow,
+          interest: item.interest,
+          debt: item.debt
+        }));
+        
+        setData(mappedData);
         setLoading(false);
-      }, 50);
+      } catch (error) {
+        console.error('Failed to fetch financial drivers data:', error);
+        // Fallback to default data
+        const fallbackData = [
+          { quarter: 'Q1', cashFlow: 15000, interest: 15000, debt: 15000 },
+          { quarter: 'Q2', cashFlow: 18000, interest: 17500, debt: 16800 },
+          { quarter: 'Q3', cashFlow: 25500, interest: 23000, debt: 21000 },
+          { quarter: 'Q4', cashFlow: 36000, interest: 31000, debt: 27000 },
+        ];
+        setData(fallbackData);
+        setLoading(false);
+      }
     };
 
     fetchData();

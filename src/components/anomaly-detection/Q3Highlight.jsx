@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 
 /**
@@ -40,7 +40,37 @@ const defaultHighlights = [
  * @param {Q3HighlightProps} props - Component props
  * @returns {JSX.Element} - Rendered component
  */
-export default function Q3Highlight({ highlights = defaultHighlights }) {
+export default function Q3Highlight({ highlights: propHighlights }) {
+  const [highlights, setHighlights] = useState(propHighlights || defaultHighlights);
+
+  // Fetch Q3 highlights from API
+  useEffect(() => {
+    const fetchHighlights = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+        const response = await fetch(`${apiUrl}/api/case/1/q3-highlights`);
+        const result = await response.json();
+        const apiHighlights = result.data?.highlights || [];
+        
+        // Map API response to expected format (name -> title)
+        const mappedHighlights = apiHighlights.map(item => ({
+          title: item.name,
+          description: item.description
+        }));
+        
+        if (mappedHighlights.length > 0) {
+          setHighlights(mappedHighlights);
+        }
+      } catch (error) {
+        console.error('Failed to fetch Q3 highlights:', error);
+        // Keep default highlights on error
+      }
+    };
+
+    if (!propHighlights) {
+      fetchHighlights();
+    }
+  }, [propHighlights]);
   return (
     <article className="bg-[#1a1a24] flex flex-col gap-6 p-6 relative rounded-lg w-full max-w-4xl mx-auto">
       {/* Yellow border overlay */}
