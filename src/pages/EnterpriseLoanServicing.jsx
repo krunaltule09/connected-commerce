@@ -151,12 +151,61 @@ const letterVariants = {
   }
 };
 
+// Icon mapping for services
+const iconMap = {
+  'Loan Agreement': <LoanAgreementIcon />,
+  'Covenant Register': <CovenantRegisterIcon />,
+  'FR Y-14 Reporting': <Y14ReportingIcon />,
+  'Financials & ESG Reports': <FinancialsESGIcon />,
+  'KYC/AML file': <KYCAMLIcon />,
+  'Risk Dashboard': <RiskDashboardIcon />,
+  'Client Communication': <ClientCommunicationIcon />,
+  'Blockchain ledger': <BlockchainLedgerIcon />,
+};
+
+// Path mapping for services
+const pathMap = {
+  'Loan Agreement': '/loan-agreement',
+  'Covenant Register': '/covenant-register',
+  'FR Y-14 Reporting': '/y14-report',
+  'Financials & ESG Reports': '/financials-esg',
+  'KYC/AML file': '/kyc-aml',
+  'Risk Dashboard': '/risk-dashboard',
+  'Client Communication': '/client-communication',
+  'Blockchain ledger': '/blockchain-ledger',
+};
+
 const EnterpriseLoanServicing = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [animationReady, setAnimationReady] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
+  const [menuItems, setMenuItems] = useState([]);
   const navigate = useNavigate();
   
+  // Fetch available services from API
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL
+        const response = await fetch(`${apiUrl}/api/available-services`);
+        const result = await response.json();
+        const services = result.data?.services || [];
+        
+        const items = services.map((service) => ({
+          icon: iconMap[service.name] || <LoanAgreementIcon />,
+          text: service.name,
+          path: pathMap[service.name] || '/',
+        }));
+        
+        setMenuItems(items);
+      } catch (error) {
+        console.error('Failed to fetch available services:', error);
+      }
+    };
+    
+    fetchServices();
+  }, []);
+
   // Trigger animations after video is loaded
   useEffect(() => {
     if (isVideoLoaded) {
@@ -167,17 +216,6 @@ const EnterpriseLoanServicing = () => {
       return () => clearTimeout(timer);
     }
   }, [isVideoLoaded]);
-
-  const menuItems = [
-    { icon: <LoanAgreementIcon />, text: 'Loan Agreement', path: '/loan-agreement' },
-    { icon: <CovenantRegisterIcon />, text: 'Covenant Register', path: '/covenant-register' },
-    { icon: <Y14ReportingIcon />, text: 'FR Y-14 Reporting', path: '/y14-report' },
-    { icon: <FinancialsESGIcon />, text: 'Financials & ESG Reports', path: '/financials-esg' },
-    { icon: <KYCAMLIcon />, text: 'KYC/AML file', path: '/kyc-aml' },
-    { icon: <RiskDashboardIcon />, text: 'Risk Dashboard', path: '/risk-dashboard' },
-    { icon: <ClientCommunicationIcon />, text: 'Client Communication', path: '/client-communication' },
-    { icon: <BlockchainLedgerIcon />, text: 'Blockchain ledger', path: '/blockchain-ledger' },
-  ];
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
