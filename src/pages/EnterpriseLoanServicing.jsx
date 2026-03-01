@@ -180,13 +180,14 @@ const EnterpriseLoanServicing = () => {
   const [animationReady, setAnimationReady] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
+  const [caseName, setCaseName] = useState('Loading...');
   const navigate = useNavigate();
   
   // Fetch available services from API
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const apiUrl = process.env.REACT_APP_API_URL
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
         const response = await fetch(`${apiUrl}/api/available-services`);
         const result = await response.json();
         const services = result.data?.services || [];
@@ -204,6 +205,27 @@ const EnterpriseLoanServicing = () => {
     };
     
     fetchServices();
+  }, []);
+
+  // Fetch case details from API
+  useEffect(() => {
+    const fetchCaseDetails = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+        const response = await fetch(`${apiUrl}/api/case/1`);
+        const result = await response.json();
+        const caseData = result.data?.case;
+        
+        if (caseData?.name) {
+          setCaseName(`Case: ${caseData.name}`);
+        }
+      } catch (error) {
+        console.error('Failed to fetch case details:', error);
+        setCaseName('Case: Vertex Logistics Corp - $18M Working Capital Facility');
+      }
+    };
+    
+    fetchCaseDetails();
   }, []);
 
   // Trigger animations after video is loaded
@@ -354,7 +376,7 @@ const EnterpriseLoanServicing = () => {
                     display: 'inline-block'
                   }}
                 >
-                  Case: Vertex Logistics Corp - $18M Working Capital Facility
+                  {caseName}
                 </Typography>
               </motion.div>
             </Box>
