@@ -1,30 +1,35 @@
 import { Stack, Typography, Box, CircularProgress, Fade, Skeleton } from '@mui/material';
+import { useState, useEffect } from 'react';
 import GradientBorderBox from './common/GradientBorderBox';
 import CovenantTile from './CovenantTile';
 import { useScanning } from '../context/ScanningContext';
 
 export default function CovenantStatusSection() {
   const { isCovenantDataReady, scanProgress } = useScanning();
-  const covenants = [
-    {
-      name: 'DSCR',
-      value: '1.10 (Below 1.25 Covenant)',
-      indicator: 'Alert',
-      status: 'alert',
-    },
-    {
-      name: 'Debt/Equity',
-      value: '3.2x (Above 3.0 Threshold)',
-      indicator: 'Warning',
-      status: 'warning',
-    },
-    {
-      name: 'Current Ratio',
-      value: '12.3 (Unusually high vs. 1.5–2.0 industry norm)',
-      indicator: 'Alert',
-      status: 'alert',
-    },
-  ];
+  const [covenants, setCovenants] = useState([]);
+
+  // Fetch covenant status from API
+  useEffect(() => {
+    const fetchCovenantStatus = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+        const response = await fetch(`${apiUrl}/api/case/1/covenant-status`);
+        const result = await response.json();
+        const covenantData = result.data?.covenants || [];
+        setCovenants(covenantData);
+      } catch (error) {
+        console.error('Failed to fetch covenant status:', error);
+        // Fallback to default data
+        setCovenants([
+          { name: 'DSCR', value: '1.10 (Below 1.25 Covenant)', indicator: 'Alert', status: 'alert' },
+          { name: 'Debt/Equity', value: '3.2x (Above 3.0 Threshold)', indicator: 'Warning', status: 'warning' },
+          { name: 'Current Ratio', value: '12.3 (Unusually high vs. 1.5–2.0 industry norm)', indicator: 'Alert', status: 'alert' },
+        ]);
+      }
+    };
+
+    fetchCovenantStatus();
+  }, []);
 
   return (
     <GradientBorderBox sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#121214', p: 0 }}>

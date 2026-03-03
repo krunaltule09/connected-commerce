@@ -6,10 +6,38 @@ const api = axios.create({
 
 export async function fetchDocuments() {
   try {
-    if (!api.defaults.baseURL) throw new Error('No base URL configured');
-    const { data } = await api.get('/documents');
-    return data;
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+    const response = await fetch(`${apiUrl}/api/case/1/documents`);
+    const result = await response.json();
+    const documents = result.data?.documents || [];
+    
+    // Map documents from API and assign local SVG URLs for preview
+    const docs = documents.map((doc, i) => {
+      // Rotate between the three SVG files for preview
+      const svgIndex = i % 3;
+      let previewUrl;
+      
+      if (svgIndex === 0) {
+        previewUrl = '/assets/doc1.svg';
+      } else if (svgIndex === 1) {
+        previewUrl = '/assets/doc2.svg';
+      } else {
+        previewUrl = '/assets/doc3.svg';
+      }
+      
+      return {
+        id: String(doc.id),
+        name: doc.filename || doc.name,
+        type: doc.type || 'pdf',
+        url: previewUrl, // Use local SVG for preview, not the API URL
+        description: doc.description,
+        filename: doc.filename,
+      };
+    });
+    
+    return docs;
   } catch (e) {
+    console.error('Failed to fetch documents from API:', e);
     // Fallback mock data with realistic document names matching the screenshot
     const documentNames = [
       'Loan Agreement.pdf',
