@@ -9,6 +9,7 @@ export function ScanningProvider({ children }) {
   const [isFinancialDataReady, setIsFinancialDataReady] = useState(false);
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
   const lastPublishedProgress = useRef(-1);
+  const hasBeenInitialized = useRef(false);
 
   // Publish progress to SSE service (same pattern as NavigationService)
   const publishProgress = useCallback(async (progress, pageId = 'financial-statement') => {
@@ -35,7 +36,7 @@ export function ScanningProvider({ children }) {
       console.debug('SSE publish failed:', error.message);
     }
   }, []);
-  
+
   // Update scan progress
   useEffect(() => {
     const timer = setInterval(() => {

@@ -111,8 +111,6 @@ export default function Y14ReportNew() {
       {/* Background Video */}
       <video 
         className={styles.backgroundVideo}
-        autoPlay
-        loop
         muted
         playsInline
       >

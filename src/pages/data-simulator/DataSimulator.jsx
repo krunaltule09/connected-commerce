@@ -96,7 +96,7 @@ const DataSimulator = () => {
           objectFit: 'cover'
         }
       }}>
-        <video autoPlay loop muted playsInline>
+        <video muted playsInline>
           <source src="/assets/AdobeStock_1544892280.mp4" type="video/mp4" />
         </video>
       </Box>

@@ -158,19 +158,14 @@ export default function FinancialMetricsSection() {
                         width: '100%'
                       }}
                     >
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        >
-                          <CircularProgress 
-                            variant="determinate" 
-                            value={Math.min(100, scanProgress * 1.5)} 
-                            sx={{ 
+                        <CircularProgress 
+                          variant="determinate" 
+                          value={Math.min(100, scanProgress * 1.5)} 
+                          sx={{ 
                             color: '#FFE600',
                             mb: 2
-                            }} 
-                          />
-                        </motion.div>
+                          }} 
+                        />
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

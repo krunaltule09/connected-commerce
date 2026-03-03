@@ -12,9 +12,9 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
   
   // Reset progress to 0 on mount
   useEffect(() => {
-    // Reset scanning context progress
-    const resetEvent = new CustomEvent('reset-scanning-progress');
-    window.dispatchEvent(resetEvent);
+      // Reset scanning context progress
+      const resetEvent = new CustomEvent('reset-scanning-progress');
+      window.dispatchEvent(resetEvent);
   }, []);
   
   // Staggered animation timing
