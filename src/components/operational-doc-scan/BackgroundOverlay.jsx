@@ -8,7 +8,7 @@ const BackgroundOverlay = () => {
     <Box 
       className={styles.backgroundOverlay}
       sx={{
-        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('${ASSETS.OPERATIONAL_DOC_SCAN_BG}')`,
+        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Operational_Doc_Scan_BG.svg']}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

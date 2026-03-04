@@ -13,7 +13,7 @@ const DocumentPreviewPanel = ({ scanProgress }) => {
         <Box className={styles.documentImageContainer}>
           <Box 
             component="img"
-            src={ASSETS.SCANNED_DOC_PREVIEW}
+            src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Scanned_Doc_Preview.svg']}
             alt="Document Preview"
             className={styles.documentImage}
           />

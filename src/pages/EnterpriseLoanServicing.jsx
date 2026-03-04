@@ -277,7 +277,7 @@ const EnterpriseLoanServicing = () => {
         loop
         muted
         onLoadedData={handleVideoLoad}
-        src={ASSETS.LOAN_BACKGROUND_VIDEO}
+        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Loan_Background_Video.mp4']}
       />
       <Overlay />
 
@@ -411,7 +411,7 @@ const EnterpriseLoanServicing = () => {
           timeout={1000}
           style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
         >
-          <Logo src={ASSETS.EY_LOGO} alt="EY Logo" />
+          <Logo src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']} alt="EY Logo" />
         </Zoom>
         
       </Container>

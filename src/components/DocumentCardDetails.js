@@ -204,11 +204,11 @@ export default function DocumentCardDetails({ document }) {
   
   // All document pages including cover
   const pages = [
-    { id: 0, url: document.url || ASSETS.DOCUMENT_TEMPLATE_1 },
-    { id: 1, url: ASSETS.DOCUMENT_TEMPLATE_1 },
-    { id: 2, url: ASSETS.DOCUMENT_TEMPLATE_2 },
-    { id: 3, url: ASSETS.DOCUMENT_TEMPLATE_3 },
-    { id: 4, url: document.url || ASSETS.DOCUMENT_TEMPLATE_1 },
+    { id: 0, url: document.url || ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'] },
+    { id: 1, url: ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'] },
+    { id: 2, url: ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg'] },
+    { id: 3, url: ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg'] },
+    { id: 4, url: document.url || ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'] },
   ];
 
   return (

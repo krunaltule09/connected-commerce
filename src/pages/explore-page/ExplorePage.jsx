@@ -25,7 +25,7 @@ const ExplorePage = () => {
       <Box 
         className={styles.backgroundOverlay}
         sx={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${ASSETS.PAGE_LAYOUT_2}')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Page_Layout_2.svg']}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -46,7 +46,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS.LOAN_SERVICE}
+                src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Loan_Service.svg']}
                 alt="Loan Service" 
                 className={styles.svgIcon}
               />
@@ -58,7 +58,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS.TRANSPARENT_COMPLIANCE}
+                src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Transparent_Compliance.svg']}
                 alt="Transparent Compliance" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -74,7 +74,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS.AUTOMATED_SERVICING}
+                src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Automated_Servicing.svg']}
                 alt="Automated Servicing" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -87,7 +87,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS.AUTOMATED_SERVICING_ALT}
+                src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Automated_Servicing_Alt.svg']}
                 alt="Automated Servicing 2" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -117,7 +117,7 @@ const ExplorePage = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS.EY_LOGO}
+        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

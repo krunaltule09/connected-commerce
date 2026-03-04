@@ -88,7 +88,7 @@ export default function AnomalyDetection() {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -264,7 +264,7 @@ export default function AnomalyDetection() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src={ASSETS.EY_LOGO}
+          src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { window.location.href = '/'; }}

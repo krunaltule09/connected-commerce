@@ -7,7 +7,7 @@ import { ASSETS } from '../../data/assetPaths';
  * This component uses event delegation to handle clicks on buttons and other clickable elements
  */
 const ButtonSound = () => {
-  const playSound = useSound(ASSETS.BUTTON_CLICK, { volume: 0.5, preload: true });
+  const playSound = useSound(ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3'], { volume: 0.5, preload: true });
   
   useEffect(() => {
     // Function to handle click events using event delegation

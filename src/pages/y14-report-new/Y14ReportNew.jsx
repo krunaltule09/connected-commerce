@@ -114,7 +114,7 @@ export default function Y14ReportNew() {
         muted
         playsInline
       >
-        <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+        <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
       </video>
       
       {/* Background Overlay */}
@@ -616,7 +616,7 @@ export default function Y14ReportNew() {
                 {/* Workflow Steps SVG */}
                 <Box
                   component="img"
-                  src={ASSETS.REPORT_WORKFLOW_STEP}
+                  src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Report_Workflow_Step.svg']}
                   alt="Report Builder Workflow Steps"
                   className={styles.workflowStepsImage}
                 />
@@ -626,7 +626,7 @@ export default function Y14ReportNew() {
                   {/* First Document */}
                   <Box
                     component="img"
-                    src={ASSETS.REPORT_BUILDER_DOCUMENT}
+                    src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Report_Builder_Document.svg']}
                     alt="Report Builder Document 1"
                     className={styles.docImage}
                   />
@@ -634,7 +634,7 @@ export default function Y14ReportNew() {
                   {/* Second Document */}
                   <Box
                     component="img"
-                    src={ASSETS.REPORT_BUILDER_DOCUMENT}
+                    src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Report_Builder_Document.svg']}
                     alt="Report Builder Document 2"
                     className={styles.docImage}
                   />
@@ -642,7 +642,7 @@ export default function Y14ReportNew() {
                   {/* Third Document */}
                   <Box
                     component="img"
-                    src={ASSETS.REPORT_BUILDER_DOCUMENT}
+                    src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Report_Builder_Document.svg']}
                     alt="Report Builder Document 3"
                     className={styles.docImage}
                   />
@@ -690,7 +690,7 @@ export default function Y14ReportNew() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src={ASSETS.EY_LOGO}
+          src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { navigate('/'); window.location.reload(); }}

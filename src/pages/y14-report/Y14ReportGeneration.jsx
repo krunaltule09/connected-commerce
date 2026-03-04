@@ -96,8 +96,8 @@ export default function Y14ReportGeneration() {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${ASSETS.BUTTON_BACKGROUND_DEFAULT}')`
-        : `url('${ASSETS.BUTTON_BACKGROUND_ALT}')`,
+        ? `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Default.svg']}')`
+        : `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -130,7 +130,7 @@ export default function Y14ReportGeneration() {
       <Box 
         className={styles.backgroundOverlay} 
         sx={{ 
-          backgroundImage: `url(${ASSETS.OPERATIONAL_DOC_SCAN_BG})`,
+          backgroundImage: `url(${ASSETS['Connected_Commerce_Operate_Touch_Screen_Operational_Doc_Scan_BG.svg']})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
@@ -183,7 +183,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={ASSETS.BALANCE_DOCUMENT}
+                  src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Balance_Document.svg']}
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -304,7 +304,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={ASSETS.BALANCE_DOCUMENT}
+                  src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Balance_Document.svg']}
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />
@@ -423,7 +423,7 @@ export default function Y14ReportGeneration() {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS.EY_LOGO}
+        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

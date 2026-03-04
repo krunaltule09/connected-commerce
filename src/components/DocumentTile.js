@@ -63,7 +63,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
             ) : (
               <Box
                 component="img"
-                src={ASSETS.VECTOR_ICON}
+                src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Vector_Icon.svg']}
                 alt=""
                 sx={{ width: 31, height: 31 }}
               />

@@ -12,7 +12,7 @@ export default function FinancialDriversLottie({ style = {} }) {
 
   // Fetch Lottie animation JSON from URL
   useEffect(() => {
-    fetch(ASSETS.FINANCIAL_DRIVERS_LOTTIE)
+    fetch(ASSETS['Connected_Commerce_Operate_Touch_Screen_Financial_Drivers.json'])
       .then(res => res.json())
       .then(data => setAnimationData(data))
       .catch(err => console.error('Failed to load Financial Drivers animation:', err));

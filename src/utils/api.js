@@ -19,11 +19,11 @@ export async function fetchDocuments() {
       let previewUrl;
       
       if (svgIndex === 0) {
-        previewUrl = ASSETS.DOCUMENT_TEMPLATE_1;
+        previewUrl = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'];
       } else if (svgIndex === 1) {
-        previewUrl = ASSETS.DOCUMENT_TEMPLATE_2;
+        previewUrl = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg'];
       } else {
-        previewUrl = ASSETS.DOCUMENT_TEMPLATE_3;
+        previewUrl = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg'];
       }
       
       return {
@@ -67,11 +67,11 @@ export async function fetchDocuments() {
       const svgIndex = i % 3;
       
       if (svgIndex === 0) {
-        url = ASSETS.DOCUMENT_TEMPLATE_1;
+        url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'];
       } else if (svgIndex === 1) {
-        url = ASSETS.DOCUMENT_TEMPLATE_2;
+        url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg'];
       } else {
-        url = ASSETS.DOCUMENT_TEMPLATE_3;
+        url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg'];
       }
       
       return {

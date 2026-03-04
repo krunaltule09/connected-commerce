@@ -19,7 +19,7 @@ const GradientButton = ({
   children, 
   sx = {}, 
   onClick,
-  soundPath = ASSETS.BUTTON_CLICK,
+  soundPath = ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3'],
   ...rest 
 }) => {
   // Initialize sound hook
@@ -63,8 +63,8 @@ const GradientButton = ({
         return {
           ...baseStyles,
           backgroundImage: active 
-            ? `url('${ASSETS.BUTTON_BACKGROUND_ACTIVE}')`
-            : `url('${ASSETS.BUTTON_BACKGROUND_DEFAULT}')`,
+            ? `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Active.svg']}')`
+            : `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Default.svg']}')`,
           backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -87,8 +87,8 @@ const GradientButton = ({
           minHeight: '50px',
           '&:hover': {
             backgroundImage: active
-              ? `url('${ASSETS.BUTTON_BACKGROUND_ACTIVE}')`
-              : `url('${ASSETS.BUTTON_BACKGROUND_DEFAULT}')`,
+              ? `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Active.svg']}')`
+              : `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Default.svg']}')`,
             backgroundSize: '100% 100%',
             outline: 'none',
             border: 'none',

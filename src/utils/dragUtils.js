@@ -35,7 +35,7 @@ export const createDocumentTileGhostImage = (doc) => (e) => {
   
   // Add the same document icon as in the tile
   const iconImg = document.createElement('img');
-  iconImg.src = ASSETS.VECTOR_ICON;
+  iconImg.src = ASSETS['Connected_Commerce_Operate_Touch_Screen_Vector_Icon.svg'];
   iconImg.style.width = '31px';
   iconImg.style.height = '31px';
   previewArea.appendChild(iconImg);

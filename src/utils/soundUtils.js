@@ -9,7 +9,7 @@ import { ASSETS } from '../data/assetPaths';
  * @param {string} options.soundPath - Path to the sound file
  * @param {number} options.volume - Volume level (0-1)
  */
-export const playButtonSound = ({ soundPath = ASSETS.BUTTON_CLICK, volume = 0.5 } = {}) => {
+export const playButtonSound = ({ soundPath = ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3'], volume = 0.5 } = {}) => {
   try {
     // Create audio element
     const audio = new Audio(soundPath);

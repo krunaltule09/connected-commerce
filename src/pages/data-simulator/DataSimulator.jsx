@@ -23,8 +23,8 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${ASSETS.BUTTON_BACKGROUND_ACTIVE}')`
-        : `url('${ASSETS.BUTTON_BACKGROUND_ALT}')`,
+        ? `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Active.svg']}')`
+        : `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -96,7 +96,7 @@ const DataSimulator = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -204,7 +204,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={ASSETS.COVENANT_CHECKS}
+                        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Covenant_Checks.svg']}
                         alt="Faster Covenant Checks"
                         sx={{ 
                           width: 36, 
@@ -242,7 +242,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={ASSETS.ERRORS_ICON}
+                        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Errors_Icon.svg']}
                         alt="Fewer Errors"
                         sx={{ 
                           width: 36, 
@@ -344,7 +344,7 @@ const DataSimulator = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS.EY_LOGO}
+        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={() => { navigate('/'); window.location.reload(); }}

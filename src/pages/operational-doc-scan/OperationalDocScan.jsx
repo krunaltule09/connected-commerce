@@ -114,7 +114,7 @@ const OperationalDocScan = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -209,9 +209,9 @@ const OperationalDocScan = () => {
                             className={`${styles.statusIndicator} ${isOnTime ? styles.statusOnTime : styles.statusDelayed}`}
                           >
                             {isOnTime ? (
-                              <Box component="img" src={ASSETS.ON_TIME_STATUS} alt="On Time" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={ASSETS['Connected_Commerce_Operate_Touch_Screen_On_Time_Status.svg']} alt="On Time" sx={{ width: '100%', height: '100%' }} />
                             ) : (
-                              <Box component="img" src={ASSETS.DELAYED_STATUS} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Delayed_Status.svg']} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
                             )}
                           </Box>
                           <Box sx={{textTransform:"capitalize"}}>{shipment.status}</Box>
@@ -263,7 +263,7 @@ const OperationalDocScan = () => {
         <Zoom in={animateLogo} timeout={800}>
           <Box 
             component="img"
-            src={ASSETS.EY_LOGO}
+            src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

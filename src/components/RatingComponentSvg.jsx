@@ -25,7 +25,7 @@ const RatingComponentSvg = ({ isVisible }) => {
     <SvgContainer className={isVisible ? 'visible' : ''}>
       <Box 
         component="img" 
-        src={ASSETS.RATING_FRAME}
+        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Rating_Frame.svg']}
         alt="Rate Us" 
         sx={{ width: '200px', height: 'auto' }}
       />

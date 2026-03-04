@@ -70,7 +70,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundImage: `url('${ASSETS.OCR_BACKGROUND}')`,
+                  backgroundImage: `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_OCR_Background.svg']}')`,
                   // backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.3)',

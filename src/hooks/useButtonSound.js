@@ -10,7 +10,7 @@ import { ASSETS } from '../data/assetPaths';
  * @param {number} options.volume - Volume level (0-1)
  * @returns {Function} - Enhanced click handler with sound
  */
-export const useButtonSound = (onClick, { soundPath = ASSETS.BUTTON_CLICK, volume = 0.5 } = {}) => {
+export const useButtonSound = (onClick, { soundPath = ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3'], volume = 0.5 } = {}) => {
   // Get sound enabled state from context
   const { soundEnabled } = useSoundContext();
   

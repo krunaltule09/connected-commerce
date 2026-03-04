@@ -6,12 +6,12 @@ export default function CovenantTile({ covenant }) {
   const getIndicatorIcon = (status) => {
     if (status === 'alert') {
       return {
-        icon: ASSETS.ALERT_ICON,
+        icon: ASSETS['Connected_Commerce_Operate_Touch_Screen_Alert_Icon.svg'],
         color: '#fff'
       };
     } else {
       return {
-        icon: ASSETS.SHIELD_ALERT,
+        icon: ASSETS['Connected_Commerce_Operate_Touch_Screen_Shield_Alert.svg'],
         color: '#fff'
       };
     }
