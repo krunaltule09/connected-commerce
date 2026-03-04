@@ -110,9 +110,11 @@ export default function Y14ReportNew() {
     <Box className={styles.reportGenerationPage}>
       {/* Background Video */}
       <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
         className={styles.backgroundVideo}
-        muted
-        playsInline
       >
         <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
       </video>
