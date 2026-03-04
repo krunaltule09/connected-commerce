@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Container, Grid, Grow, Fade } from '@mui/material';
 import styles from './DashboardLayout.module.css';
-import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
+import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
 
 /**
  * DashboardLayout component that handles the overall layout of the dashboard

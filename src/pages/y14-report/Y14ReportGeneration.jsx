@@ -10,7 +10,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 import styles from './Y14ReportGeneration.module.css';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';

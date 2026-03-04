@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSound } from '../../hooks';
-import { MUSIC } from '../../constants/assetPaths';
+import { MUSIC } from '../../data/assetPaths';
 
 /**
  * A component that adds click sound to any element with onClick handler

@@ -1,4 +1,4 @@
-import { IMAGES, ANNIMATIONS, MUSIC } from '../constants/assetPaths';
+import { IMAGES, ANNIMATIONS, MUSIC } from '../data/assetPaths';
 
 const ALL_ASSETS = { ...IMAGES, ...ANNIMATIONS, ...MUSIC };
 

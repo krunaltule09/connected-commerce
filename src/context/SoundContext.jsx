@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { MUSIC } from '../constants/assetPaths';
+import { MUSIC } from '../data/assetPaths';
 
 // Create context
 const SoundContext = createContext({

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
+import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
 import styles from './DocumentScan.module.css';
 
 const DocumentScan = () => {

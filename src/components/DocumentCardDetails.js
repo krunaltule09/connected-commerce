@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import HTMLFlipBook from "react-pageflip";
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 // Page component for all pages
 const Page = React.forwardRef((props, ref) => {

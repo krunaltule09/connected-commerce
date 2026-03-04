@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 import styles from './ExplorePage.module.css';
 
 const ExplorePage = () => {

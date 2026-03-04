@@ -3,7 +3,7 @@ import { Box, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../../hooks';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 
 const EyLogo = () => {
   const navigate = useNavigate();

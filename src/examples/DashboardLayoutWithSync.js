@@ -3,7 +3,7 @@ import { Box, Container, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import styles from '../components/layout/DashboardLayout.module.css';
 import navigationSync from '../services/NavigationSyncService';
-import { IMAGES, ANNIMATIONS } from '../constants/assetPaths';
+import { IMAGES, ANNIMATIONS } from '../data/assetPaths';
 
 /**
  * Example of how to integrate NavigationSyncService with DashboardLayout

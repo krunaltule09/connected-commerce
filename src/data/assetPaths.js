@@ -54,3 +54,11 @@ export const ANNIMATIONS = {
 export const MUSIC = {
   BUTTON_CLICK: `${ASSET_BASE_URL}/music/Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3`,
 };
+
+const DEFAULT_ASSETS = {
+  ...IMAGES,
+  ...ANNIMATIONS,
+  ...MUSIC,
+};
+
+export default DEFAULT_ASSETS;

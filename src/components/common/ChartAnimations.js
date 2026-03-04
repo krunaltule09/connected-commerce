@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 
 /**
  * Loading animation component for charts

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || '',

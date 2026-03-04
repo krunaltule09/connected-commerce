@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 const SvgContainer = styled(Box)(({ theme }) => ({
   borderRadius: '12px',

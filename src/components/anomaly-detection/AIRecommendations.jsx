@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LottieBackgroundPanel from '../common/LottieBackgroundPanel';
-import { ANNIMATIONS } from '../../constants/assetPaths';
+import { ANNIMATIONS } from '../../data/assetPaths';
 
 export default function AIRecommendations({ recommendations, contentContainerSx={} }) {
   const [animationData, setAnimationData] = useState(null);

@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
 import { useButtonSound } from '../../hooks';
-import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
+import { useAssets } from '../../context/AssetContext';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const assets = useAssets();
 
   // Create a click handler with sound effect
   const handleStartJourney = useButtonSound(async () => {
@@ -38,7 +39,7 @@ const LandingPage = () => {
           playsInline
           className={styles.backgroundVideo}
         >
-          <source src={ANNIMATIONS.LANDING_PAGE_VIDEO} type="video/mp4" />
+          <source src={assets.LANDING_PAGE_VIDEO} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Box className={styles.videoOverlay}></Box>
@@ -94,7 +95,7 @@ const LandingPage = () => {
       <Fade in={true} timeout={1000} style={{ transitionDelay: '1000ms' }}>
         <Box 
           component="img"
-          src={IMAGES.EY_LOGO}
+          src={assets.EY_LOGO}
           alt="EY Logo"
           className={styles.eyLogo}
         />

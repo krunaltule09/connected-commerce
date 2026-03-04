@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSound } from '../../hooks';
-import { MUSIC } from '../../constants/assetPaths';
+import { MUSIC } from '../../data/assetPaths';
 
 /**
  * Higher-order component that adds a click sound to any component

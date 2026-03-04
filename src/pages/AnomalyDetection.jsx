@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { IMAGES, ANNIMATIONS } from '../constants/assetPaths';
+import { IMAGES, ANNIMATIONS } from '../data/assetPaths';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';

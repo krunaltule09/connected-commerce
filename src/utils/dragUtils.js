@@ -1,4 +1,4 @@
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 /**
  * Utility functions for drag and drop operations

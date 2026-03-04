@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 

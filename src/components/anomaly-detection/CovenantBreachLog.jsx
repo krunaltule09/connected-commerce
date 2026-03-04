@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import GradientButton from '../common/GradientButton';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 
 // Styled components
 const LogContainer = styled(Box)(({ theme }) => ({

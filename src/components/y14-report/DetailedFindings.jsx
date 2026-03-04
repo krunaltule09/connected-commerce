@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Tooltip } from '@mui/material';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 
 const defaultFindings = [
   {

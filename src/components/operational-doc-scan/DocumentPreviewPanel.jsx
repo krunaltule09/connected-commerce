@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Slide } from '@mui/material';
 import GradientBorderBox from '../common/GradientBorderBox';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 
 const DocumentPreviewPanel = ({ scanProgress }) => {
   return (

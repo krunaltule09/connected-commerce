@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 const DeliveryOptionsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',

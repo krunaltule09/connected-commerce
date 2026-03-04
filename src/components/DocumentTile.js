@@ -1,6 +1,6 @@
 import { Card, CardActionArea, Stack, Typography, Box } from '@mui/material';
 import { handleDocumentDragStart } from '../utils';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 export default function DocumentTile({ doc, selected, onSelect }) {
 

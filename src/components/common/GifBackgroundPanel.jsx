@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { ANNIMATIONS } from '../../constants/assetPaths';
+import { ANNIMATIONS } from '../../data/assetPaths';
 
 const Container = styled(Box)(({ theme }) => ({
   position: 'relative',

@@ -6,7 +6,7 @@ import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecom
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
-import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
+import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 import { useButtonSound } from '../../hooks';

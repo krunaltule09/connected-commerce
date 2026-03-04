@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useNavigate } from 'react-router-dom';
 import { getAssetPath } from '../utils/assetUtils';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
   const [opening, setOpening] = useState(false);

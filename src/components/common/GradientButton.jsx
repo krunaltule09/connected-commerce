@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useSound } from '../../hooks';
-import { IMAGES, MUSIC } from '../../constants/assetPaths';
+import { IMAGES, MUSIC } from '../../data/assetPaths';
 
 /**
  * A reusable button component that matches the styling from FinancialMetricsSection

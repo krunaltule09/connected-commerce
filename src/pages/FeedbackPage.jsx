@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
 import Lottie from 'lottie-react';
-import { ANNIMATIONS } from '../constants/assetPaths';
+import { ANNIMATIONS } from '../data/assetPaths';
 
 // Styled components
 const PageContainer = styled(Box)(({ theme }) => ({

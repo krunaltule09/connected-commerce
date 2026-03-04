@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Tooltip } from '@mui/material';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 export default function CovenantTile({ covenant }) {
   // Determine the indicator icon and color based on status

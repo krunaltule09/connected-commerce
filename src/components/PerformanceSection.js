@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { IMAGES } from '../constants/assetPaths';
+import { IMAGES } from '../data/assetPaths';
 
 export default function PerformanceSection() {
   return (

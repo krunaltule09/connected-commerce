@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { IMAGES } from '../../constants/assetPaths';
+import { IMAGES } from '../../data/assetPaths';
 
 const BackgroundOverlay = () => {
   return (

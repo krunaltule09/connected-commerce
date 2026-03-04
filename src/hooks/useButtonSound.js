@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useSoundContext } from '../context/SoundContext';
-import { MUSIC } from '../constants/assetPaths';
+import { MUSIC } from '../data/assetPaths';
 
 /**
  * Custom hook that creates a click handler with sound effect

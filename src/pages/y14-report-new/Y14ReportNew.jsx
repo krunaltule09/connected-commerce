@@ -10,7 +10,7 @@ import { useButtonSound } from '../../hooks';
 // removed stepper CheckIcon
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
+import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';

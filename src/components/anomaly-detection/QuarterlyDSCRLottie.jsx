@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Lottie from 'lottie-react';
-import { ANNIMATIONS } from '../../constants/assetPaths';
+import { ANNIMATIONS } from '../../data/assetPaths';
 
 /**
  * A Lottie animation component for the Quarterly DSCR chart

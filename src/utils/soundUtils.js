@@ -1,7 +1,7 @@
 /**
  * Utility functions for sound effects
  */
-import { MUSIC } from '../constants/assetPaths';
+import { MUSIC } from '../data/assetPaths';
 
 /**
  * Plays a button click sound
