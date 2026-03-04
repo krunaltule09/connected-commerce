@@ -1,14 +1,22 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Lottie from 'lottie-react';
-// Note: You'll need to create or provide this Lottie animation file
-import animationData from '../../lottie/Financial drivers_UI.json';
+import { ANNIMATIONS } from '../../constants/assetPaths';
 
 /**
  * A Lottie animation component for the Financial Drivers chart
  */
 export default function FinancialDriversLottie({ style = {} }) {
   const lottieRef = useRef(null);
+  const [animationData, setAnimationData] = useState(null);
+
+  // Fetch Lottie animation JSON from URL
+  useEffect(() => {
+    fetch(ANNIMATIONS.FINANCIAL_DRIVERS_LOTTIE)
+      .then(res => res.json())
+      .then(data => setAnimationData(data))
+      .catch(err => console.error('Failed to load Financial Drivers animation:', err));
+  }, []);
 
   // Control animation playback
   useEffect(() => {
@@ -16,11 +24,13 @@ export default function FinancialDriversLottie({ style = {} }) {
       // Ensure animation plays from the beginning
       lottieRef.current.goToAndPlay(0);
     }
-    
+
     return () => {
       // Cleanup if needed
     };
-  }, []);
+  }, [animationData]);
+
+  if (!animationData) return null;
 
   return (
     <Box

@@ -10,7 +10,7 @@ import { useButtonSound } from '../../hooks';
 // removed stepper CheckIcon
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import bgVideo from '../../assets/AdobeStock_1544892280.mp4';
+import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
@@ -114,7 +114,7 @@ export default function Y14ReportNew() {
         muted
         playsInline
       >
-        <source src={bgVideo} type="video/mp4" />
+        <source src={ANNIMATIONS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
       </video>
       
       {/* Background Overlay */}
@@ -616,7 +616,7 @@ export default function Y14ReportNew() {
                 {/* Workflow Steps SVG */}
                 <Box
                   component="img"
-                  src={`${process.env.PUBLIC_URL}/assets/report-builder-workflow-step.svg`}
+                  src={IMAGES.REPORT_WORKFLOW_STEP}
                   alt="Report Builder Workflow Steps"
                   className={styles.workflowStepsImage}
                 />
@@ -626,7 +626,7 @@ export default function Y14ReportNew() {
                   {/* First Document */}
                   <Box
                     component="img"
-                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
+                    src={IMAGES.REPORT_BUILDER_DOCUMENT}
                     alt="Report Builder Document 1"
                     className={styles.docImage}
                   />
@@ -634,7 +634,7 @@ export default function Y14ReportNew() {
                   {/* Second Document */}
                   <Box
                     component="img"
-                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
+                    src={IMAGES.REPORT_BUILDER_DOCUMENT}
                     alt="Report Builder Document 2"
                     className={styles.docImage}
                   />
@@ -642,7 +642,7 @@ export default function Y14ReportNew() {
                   {/* Third Document */}
                   <Box
                     component="img"
-                    src={`${process.env.PUBLIC_URL}/assets/reportbuilderdoc.svg`}
+                    src={IMAGES.REPORT_BUILDER_DOCUMENT}
                     alt="Report Builder Document 3"
                     className={styles.docImage}
                   />
@@ -690,7 +690,7 @@ export default function Y14ReportNew() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src="/assets/ey-logo.svg"
+          src={IMAGES.EY_LOGO}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { navigate('/'); window.location.reload(); }}

@@ -3,6 +3,7 @@ import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useNavigate } from 'react-router-dom';
 import { getAssetPath } from '../utils/assetUtils';
+import { IMAGES } from '../constants/assetPaths';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
   const [opening, setOpening] = useState(false);
@@ -52,7 +53,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src="/assets/doc1.svg"
+                      src={IMAGES.DOCUMENT_TEMPLATE_1}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -78,7 +79,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src="/assets/doc2.svg"
+                      src={IMAGES.DOCUMENT_TEMPLATE_2}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -104,7 +105,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src="/assets/doc3.svg"
+                      src={IMAGES.DOCUMENT_TEMPLATE_3}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',

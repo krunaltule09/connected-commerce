@@ -1,5 +1,6 @@
 import { Card, CardActionArea, Stack, Typography, Box } from '@mui/material';
 import { handleDocumentDragStart } from '../utils';
+import { IMAGES } from '../constants/assetPaths';
 
 export default function DocumentTile({ doc, selected, onSelect }) {
 
@@ -62,7 +63,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
             ) : (
               <Box
                 component="img"
-                src="/assets/Vector.svg"
+                src={IMAGES.VECTOR_ICON}
                 alt=""
                 sx={{ width: 31, height: 31 }}
               />

@@ -3,6 +3,7 @@ import { Box, Container, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import styles from '../components/layout/DashboardLayout.module.css';
 import navigationSync from '../services/NavigationSyncService';
+import { IMAGES, ANNIMATIONS } from '../constants/assetPaths';
 
 /**
  * Example of how to integrate NavigationSyncService with DashboardLayout
@@ -81,7 +82,7 @@ export default function DashboardLayoutWithSync({
         }
       }}>
         <video autoPlay loop muted playsInline>
-          <source src="/assets/AdobeStock_1544892280.mp4" type="video/mp4" />
+          <source src={ANNIMATIONS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
         </video>
       </Box>
       
@@ -160,7 +161,7 @@ export default function DashboardLayoutWithSync({
       {/* EY Logo */}
       <Box 
         component="img"
-        src="/assets/ey-logo.svg"
+        src={IMAGES.EY_LOGO}
         alt="EY Logo"
         className={styles.eyLogo}
       />

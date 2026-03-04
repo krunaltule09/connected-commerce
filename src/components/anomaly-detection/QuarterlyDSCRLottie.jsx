@@ -1,13 +1,22 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Lottie from 'lottie-react';
-import animationData from '../../lottie/Quarterly DSCR -UI.json';
+import { ANNIMATIONS } from '../../constants/assetPaths';
 
 /**
  * A Lottie animation component for the Quarterly DSCR chart
  */
 export default function QuarterlyDSCRLottie({ style = {} }) {
   const lottieRef = useRef(null);
+  const [animationData, setAnimationData] = useState(null);
+
+  // Fetch Lottie animation JSON from URL
+  useEffect(() => {
+    fetch(ANNIMATIONS.QUARTERLY_DSCR_LOTTIE)
+      .then(res => res.json())
+      .then(data => setAnimationData(data))
+      .catch(err => console.error('Failed to load Quarterly DSCR animation:', err));
+  }, []);
 
   // Control animation playback
   useEffect(() => {
@@ -15,11 +24,13 @@ export default function QuarterlyDSCRLottie({ style = {} }) {
       // Ensure animation plays from the beginning
       lottieRef.current.goToAndPlay(0);
     }
-    
+
     return () => {
       // Cleanup if needed
     };
-  }, []);
+  }, [animationData]);
+
+  if (!animationData) return null;
 
   return (
     <Box

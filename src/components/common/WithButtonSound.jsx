@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSound } from '../../hooks';
+import { MUSIC } from '../../constants/assetPaths';
 
 /**
  * Higher-order component that adds a click sound to any component
@@ -7,7 +8,7 @@ import { useSound } from '../../hooks';
  * @param {string} soundPath - Path to the sound file
  * @returns {React.ComponentType} - The wrapped component with sound
  */
-const WithButtonSound = (Component, soundPath = '/assets/sounds/button-click.mp3') => {
+const WithButtonSound = (Component, soundPath = MUSIC.BUTTON_CLICK) => {
   const WrappedComponent = React.forwardRef((props, ref) => {
     const playSound = useSound(soundPath, { volume: 0.5 });
     
@@ -32,7 +33,7 @@ const WithButtonSound = (Component, soundPath = '/assets/sounds/button-click.mp3
  * @param {string} soundPath - Path to the sound file
  * @returns {Function} - Enhanced click handler with sound
  */
-export const useSoundClick = (onClick, soundPath = '/assets/sounds/button-click.mp3') => {
+export const useSoundClick = (onClick, soundPath = MUSIC.BUTTON_CLICK) => {
   const playSound = useSound(soundPath, { volume: 0.5 });
   
   return React.useCallback((event) => {
@@ -50,7 +51,7 @@ export const useSoundClick = (onClick, soundPath = '/assets/sounds/button-click.
  * @param {string} soundPath - Path to the sound file (optional)
  * @returns {React.ReactElement} - Enhanced element with sound
  */
-export const SoundButton = ({ element, soundPath = '/assets/sounds/button-click.mp3' }) => {
+export const SoundButton = ({ element, soundPath = MUSIC.BUTTON_CLICK }) => {
   // Always call hooks at the top level, before any conditional logic
   const onClick = element?.props?.onClick;
   const soundClickHandler = useSoundClick(onClick, soundPath);

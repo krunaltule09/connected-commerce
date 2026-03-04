@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { IMAGES } from '../constants/assetPaths';
 
 const SvgContainer = styled(Box)(({ theme }) => ({
   borderRadius: '12px',
@@ -23,7 +24,7 @@ const DeliveryOptionsSvg = ({ isVisible }) => {
     <SvgContainer className={isVisible ? 'visible' : ''}>
       <Box 
         component="img" 
-        src="/assets/QR.svg" 
+        src={IMAGES.QR_CODE}
         alt="Delivery Options" 
         sx={{ width: '200px', height: 'auto' }}
       />

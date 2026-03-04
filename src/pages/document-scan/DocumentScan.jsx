@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { IMAGES, ANNIMATIONS } from '../../constants/assetPaths';
 import styles from './DocumentScan.module.css';
 
 const DocumentScan = () => {
@@ -27,14 +28,14 @@ const DocumentScan = () => {
           muted
           playsInline
           className={styles.fullScreenVideo}
-          src="/assets/SCANNIG DOCS 2.mp4"
+          src={ANNIMATIONS.DOCUMENT_SCANNING_VIDEO}
         />
       </Box>
       
       {/* EY Logo - keeping only this element */}
       <Box 
         component="img"
-        src="/assets/ey-logo.svg"
+        src={IMAGES.EY_LOGO}
         alt="EY Logo"
         className={styles.eyLogo}
       />

@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { handleDocumentDragStart } from '../utils';
 import { GradientBorderBox } from './common';
+import { IMAGES } from '../constants/assetPaths';
 
 /**
  * DocumentCard component displays a document preview with its title
@@ -104,7 +105,7 @@ export default function DocumentCard({ document, onClick, isSelected }) {
         >
           <Box
             component="img"
-            src={document.url || '/assets/Vector.svg'}
+            src={document.url || IMAGES.VECTOR_ICON}
             alt={document.name}
             sx={{
               maxWidth: '100%',

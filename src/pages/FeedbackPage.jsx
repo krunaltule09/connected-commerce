@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
 import Lottie from 'lottie-react';
-import feedbackAnimationData from '../lottie/FEEDBACK UI.json';
+import { ANNIMATIONS } from '../constants/assetPaths';
 
 // Styled components
 const PageContainer = styled(Box)(({ theme }) => ({
@@ -101,13 +101,22 @@ export default function FeedbackPage() {
   const lottieRef = useRef(null);
   const [showComponents, setShowComponents] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
-  
+  const [feedbackAnimationData, setFeedbackAnimationData] = useState(null);
+
   // Animation states
   const [animateTop, setAnimateTop] = useState(false);
   const [animateMiddle, setAnimateMiddle] = useState(false);
   const [animateBottom, setAnimateBottom] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
-  
+
+  // Fetch Lottie animation JSON from URL
+  useEffect(() => {
+    fetch(ANNIMATIONS.FEEDBACK_ANIMATION_LOTTIE)
+      .then(res => res.json())
+      .then(data => setFeedbackAnimationData(data))
+      .catch(err => console.error('Failed to load Feedback animation:', err));
+  }, []);
+
   // Staggered animation timing
   useEffect(() => {
     const topTimer = setTimeout(() => setAnimateTop(true), 300);
@@ -151,16 +160,18 @@ export default function FeedbackPage() {
             >
               <MainCard>
                 <LottieContainer>
-                  <Lottie
-                    lottieRef={lottieRef}
-                    animationData={feedbackAnimationData}
-                    loop={true}
-                    autoplay={true}
-                    style={{ width: '105%', height: '100%' }}
-                    rendererSettings={{
-                      preserveAspectRatio: 'xMidYMid slice',
-                    }}
-                  />
+                  {feedbackAnimationData && (
+                    <Lottie
+                      lottieRef={lottieRef}
+                      animationData={feedbackAnimationData}
+                      loop={true}
+                      autoplay={true}
+                      style={{ width: '105%', height: '100%' }}
+                      rendererSettings={{
+                        preserveAspectRatio: 'xMidYMid slice',
+                      }}
+                    />
+                  )}
                 </LottieContainer>
                 
                 {showComponents && (

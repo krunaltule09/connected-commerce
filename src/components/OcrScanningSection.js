@@ -3,6 +3,7 @@ import { Box, Stack, Typography, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import GradientBorderBox from './common/GradientBorderBox';
 import { useScanning } from '../context/ScanningContext';
+import { IMAGES } from '../constants/assetPaths';
 
 export default function OcrScanningSection({ isInOperationalDocScan=false }) {
   // Removed sections array and currentSectionIndex state as they're no longer needed
@@ -69,7 +70,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundImage: `url('/assets/1.svg')`,
+                  backgroundImage: `url('${IMAGES.OCR_BACKGROUND}')`,
                   // backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.3)',

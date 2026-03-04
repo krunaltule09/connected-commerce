@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LottieBackgroundPanel from '../common/LottieBackgroundPanel';
-import aiAnimationData from '../../lottie/AI- UI.json';
+import { ANNIMATIONS } from '../../constants/assetPaths';
 
 export default function AIRecommendations({ recommendations, contentContainerSx={} }) {
+  const [animationData, setAnimationData] = useState(null);
+
+  useEffect(() => {
+    fetch(ANNIMATIONS.AI_ANIMATION_LOTTIE)
+      .then(res => res.json())
+      .then(data => setAnimationData(data))
+      .catch(err => console.error('Failed to load AI animation:', err));
+  }, []);
+
+  if (!animationData) return null;
+
   return (
     <LottieBackgroundPanel
-      animationData={aiAnimationData}
+      animationData={animationData}
       bulletPoints={recommendations}
       icon={null}
       contentContainerSx={contentContainerSx}
