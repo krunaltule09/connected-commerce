@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Lottie from 'lottie-react';
-import { ANNIMATIONS } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 /**
  * A Lottie animation component for the Quarterly DSCR chart
@@ -12,7 +12,7 @@ export default function QuarterlyDSCRLottie({ style = {} }) {
 
   // Fetch Lottie animation JSON from URL
   useEffect(() => {
-    fetch(ANNIMATIONS.QUARTERLY_DSCR_LOTTIE)
+    fetch(ASSETS.QUARTERLY_DSCR_LOTTIE)
       .then(res => res.json())
       .then(data => setAnimationData(data))
       .catch(err => console.error('Failed to load Quarterly DSCR animation:', err));

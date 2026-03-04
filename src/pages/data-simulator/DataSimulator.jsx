@@ -5,7 +5,7 @@ import GradientBorderBoxLegacy from '../../components/common/GradientBorderBoxLe
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
-import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 const DataSimulator = () => {
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${IMAGES.BUTTON_BACKGROUND_ACTIVE}')`
-        : `url('${IMAGES.BUTTON_BACKGROUND_ALT}')`,
+        ? `url('${ASSETS.BUTTON_BACKGROUND_ACTIVE}')`
+        : `url('${ASSETS.BUTTON_BACKGROUND_ALT}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -96,7 +96,7 @@ const DataSimulator = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ANNIMATIONS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
         </video>
       </Box>
       
@@ -204,7 +204,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={IMAGES.COVENANT_CHECKS}
+                        src={ASSETS.COVENANT_CHECKS}
                         alt="Faster Covenant Checks"
                         sx={{ 
                           width: 36, 
@@ -242,7 +242,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={IMAGES.ERRORS_ICON}
+                        src={ASSETS.ERRORS_ICON}
                         alt="Fewer Errors"
                         sx={{ 
                           width: 36, 
@@ -344,7 +344,7 @@ const DataSimulator = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={IMAGES.EY_LOGO}
+        src={ASSETS.EY_LOGO}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={() => { navigate('/'); window.location.reload(); }}

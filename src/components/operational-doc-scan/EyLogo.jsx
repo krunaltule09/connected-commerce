@@ -3,7 +3,7 @@ import { Box, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../../hooks';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { IMAGES } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 const EyLogo = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const EyLogo = () => {
     <Zoom in={true} timeout={1500} style={{ transitionDelay: '500ms' }}>
       <Box 
         component="img"
-        src={IMAGES.EY_LOGO}
+        src={ASSETS.EY_LOGO}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={handleLogoClick}

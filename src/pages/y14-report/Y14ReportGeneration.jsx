@@ -10,7 +10,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { IMAGES } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 import styles from './Y14ReportGeneration.module.css';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
@@ -96,8 +96,8 @@ export default function Y14ReportGeneration() {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${IMAGES.BUTTON_BACKGROUND_DEFAULT}')`
-        : `url('${IMAGES.BUTTON_BACKGROUND_ALT}')`,
+        ? `url('${ASSETS.BUTTON_BACKGROUND_DEFAULT}')`
+        : `url('${ASSETS.BUTTON_BACKGROUND_ALT}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -130,7 +130,7 @@ export default function Y14ReportGeneration() {
       <Box 
         className={styles.backgroundOverlay} 
         sx={{ 
-          backgroundImage: `url(${IMAGES.OPERATIONAL_DOC_SCAN_BG})`,
+          backgroundImage: `url(${ASSETS.OPERATIONAL_DOC_SCAN_BG})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
@@ -183,7 +183,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={IMAGES.BALANCE_DOCUMENT}
+                  src={ASSETS.BALANCE_DOCUMENT}
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -304,7 +304,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={IMAGES.BALANCE_DOCUMENT}
+                  src={ASSETS.BALANCE_DOCUMENT}
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />
@@ -423,7 +423,7 @@ export default function Y14ReportGeneration() {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={IMAGES.EY_LOGO}
+        src={ASSETS.EY_LOGO}
         alt="EY Logo"
         className={styles.eyLogo}
       />

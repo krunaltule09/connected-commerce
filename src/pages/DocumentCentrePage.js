@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
@@ -51,11 +51,11 @@ export default function DocumentCentrePage() {
           if (!updatedDoc.url) {
             const svgIndex = parseInt(updatedDoc.id) % 3;
             if (svgIndex === 0) {
-              updatedDoc.url = IMAGES.DOCUMENT_TEMPLATE_1;
+              updatedDoc.url = ASSETS.DOCUMENT_TEMPLATE_1;
             } else if (svgIndex === 1) {
-              updatedDoc.url = IMAGES.DOCUMENT_TEMPLATE_2;
+              updatedDoc.url = ASSETS.DOCUMENT_TEMPLATE_2;
             } else {
-              updatedDoc.url = IMAGES.DOCUMENT_TEMPLATE_3;
+              updatedDoc.url = ASSETS.DOCUMENT_TEMPLATE_3;
             }
           }
           

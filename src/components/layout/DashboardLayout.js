@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Container, Grid, Grow, Fade } from '@mui/material';
 import styles from './DashboardLayout.module.css';
-import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 /**
  * DashboardLayout component that handles the overall layout of the dashboard
@@ -68,7 +68,7 @@ export default function DashboardLayout({
         }
       }}>
         <video muted playsInline>
-          <source src={ANNIMATIONS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
         </video>
       </Box>
       
@@ -161,7 +161,7 @@ export default function DashboardLayout({
         <Fade in={animateLogo} timeout={1000}>
           <Box 
             component="img"
-            src={IMAGES.EY_LOGO}
+            src={ASSETS.EY_LOGO}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

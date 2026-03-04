@@ -1,7 +1,7 @@
 /**
  * Utility functions for sound effects
  */
-import { MUSIC } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 /**
  * Plays a button click sound
@@ -9,7 +9,7 @@ import { MUSIC } from '../data/assetPaths';
  * @param {string} options.soundPath - Path to the sound file
  * @param {number} options.volume - Volume level (0-1)
  */
-export const playButtonSound = ({ soundPath = MUSIC.BUTTON_CLICK, volume = 0.5 } = {}) => {
+export const playButtonSound = ({ soundPath = ASSETS.BUTTON_CLICK, volume = 0.5 } = {}) => {
   try {
     // Create audio element
     const audio = new Audio(soundPath);

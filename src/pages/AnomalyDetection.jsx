@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { IMAGES, ANNIMATIONS } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
@@ -88,7 +88,7 @@ export default function AnomalyDetection() {
         }
       }}>
         <video muted playsInline>
-          <source src={ANNIMATIONS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
         </video>
       </Box>
       
@@ -264,7 +264,7 @@ export default function AnomalyDetection() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src={IMAGES.EY_LOGO}
+          src={ASSETS.EY_LOGO}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { window.location.href = '/'; }}

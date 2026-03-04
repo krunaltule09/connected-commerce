@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Tooltip } from '@mui/material';
-import { IMAGES } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 const defaultFindings = [
   {
@@ -70,7 +70,7 @@ export default function DetailedFindings({
           {showWarning && (
             <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center', mb: 3 }}>
               <Box sx={{ width: 20, height: 20, flexShrink: 0 }}>
-                <Box component="img" src={IMAGES.ALERT_ICON} sx={{ width: '100%', height: '100%' }} />
+                <Box component="img" src={ASSETS.ALERT_ICON} sx={{ width: '100%', height: '100%' }} />
               </Box>
               <Typography sx={{ fontSize: '1rem', lineHeight: 1.2, color: 'white', fontWeight: 400 }}>
                 {warningMessage}
@@ -131,7 +131,7 @@ export default function DetailedFindings({
                       height: 44 
                     }}>
                       <Box sx={{ width: 42, height: 42, flexShrink: 0 }}>
-                        <Box component="img" src={IMAGES.LIGHT_CIRCLE_OUTLINE} sx={{ width: '100%', height: '100%' }} />
+                        <Box component="img" src={ASSETS.LIGHT_CIRCLE_OUTLINE} sx={{ width: '100%', height: '100%' }} />
                       </Box>
                     </Box>
                     <Box sx={{ flex: '1 0 0', height: '172px' }}>
@@ -216,7 +216,7 @@ export default function DetailedFindings({
                       View
                     </Typography>
                     <Box sx={{ width: 20, height: 20, flexShrink: 0 }}>
-                      <Box component="img" src={IMAGES.NAV_ARROW_RIGHT} sx={{ width: '100%', height: '100%' }} />
+                      <Box component="img" src={ASSETS.NAV_ARROW_RIGHT} sx={{ width: '100%', height: '100%' }} />
                     </Box>
                   </Button>
                 </Box>

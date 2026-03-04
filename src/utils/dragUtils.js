@@ -1,4 +1,4 @@
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 /**
  * Utility functions for drag and drop operations
@@ -35,7 +35,7 @@ export const createDocumentTileGhostImage = (doc) => (e) => {
   
   // Add the same document icon as in the tile
   const iconImg = document.createElement('img');
-  iconImg.src = IMAGES.VECTOR_ICON;
+  iconImg.src = ASSETS.VECTOR_ICON;
   iconImg.style.width = '31px';
   iconImg.style.height = '31px';
   previewArea.appendChild(iconImg);

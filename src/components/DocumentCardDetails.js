@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import HTMLFlipBook from "react-pageflip";
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 // Page component for all pages
 const Page = React.forwardRef((props, ref) => {
@@ -204,11 +204,11 @@ export default function DocumentCardDetails({ document }) {
   
   // All document pages including cover
   const pages = [
-    { id: 0, url: document.url || IMAGES.DOCUMENT_TEMPLATE_1 },
-    { id: 1, url: IMAGES.DOCUMENT_TEMPLATE_1 },
-    { id: 2, url: IMAGES.DOCUMENT_TEMPLATE_2 },
-    { id: 3, url: IMAGES.DOCUMENT_TEMPLATE_3 },
-    { id: 4, url: document.url || IMAGES.DOCUMENT_TEMPLATE_1 },
+    { id: 0, url: document.url || ASSETS.DOCUMENT_TEMPLATE_1 },
+    { id: 1, url: ASSETS.DOCUMENT_TEMPLATE_1 },
+    { id: 2, url: ASSETS.DOCUMENT_TEMPLATE_2 },
+    { id: 3, url: ASSETS.DOCUMENT_TEMPLATE_3 },
+    { id: 4, url: document.url || ASSETS.DOCUMENT_TEMPLATE_1 },
   ];
 
   return (

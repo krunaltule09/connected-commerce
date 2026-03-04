@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 export default function PerformanceSection() {
   return (
@@ -16,7 +16,7 @@ export default function PerformanceSection() {
       >
         <Box
           component="img"
-          src={IMAGES.PERFORMANCE_SECTION}
+          src={ASSETS.PERFORMANCE_SECTION}
           alt="Performance Metrics"
           sx={{
             maxWidth: '90%',

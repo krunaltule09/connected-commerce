@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 const SvgContainer = styled(Box)(({ theme }) => ({
   borderRadius: '12px',
@@ -25,7 +25,7 @@ const RatingComponentSvg = ({ isVisible }) => {
     <SvgContainer className={isVisible ? 'visible' : ''}>
       <Box 
         component="img" 
-        src={IMAGES.RATING_FRAME}
+        src={ASSETS.RATING_FRAME}
         alt="Rate Us" 
         sx={{ width: '200px', height: 'auto' }}
       />

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSound } from '../../hooks';
-import { MUSIC } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 /**
  * A component that adds click sound to any element with onClick handler
  * This component uses event delegation to handle clicks on buttons and other clickable elements
  */
 const ButtonSound = () => {
-  const playSound = useSound(MUSIC.BUTTON_CLICK, { volume: 0.5, preload: true });
+  const playSound = useSound(ASSETS.BUTTON_CLICK, { volume: 0.5, preload: true });
   
   useEffect(() => {
     // Function to handle click events using event delegation

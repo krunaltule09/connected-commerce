@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Slide } from '@mui/material';
 import GradientBorderBox from '../common/GradientBorderBox';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { IMAGES } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 const DocumentPreviewPanel = ({ scanProgress }) => {
   return (
@@ -13,7 +13,7 @@ const DocumentPreviewPanel = ({ scanProgress }) => {
         <Box className={styles.documentImageContainer}>
           <Box 
             component="img"
-            src={IMAGES.SCANNED_DOC_PREVIEW}
+            src={ASSETS.SCANNED_DOC_PREVIEW}
             alt="Document Preview"
             className={styles.documentImage}
           />

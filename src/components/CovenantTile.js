@@ -1,17 +1,17 @@
 import { Box, Typography, Button, Tooltip } from '@mui/material';
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 export default function CovenantTile({ covenant }) {
   // Determine the indicator icon and color based on status
   const getIndicatorIcon = (status) => {
     if (status === 'alert') {
       return {
-        icon: IMAGES.ALERT_ICON,
+        icon: ASSETS.ALERT_ICON,
         color: '#fff'
       };
     } else {
       return {
-        icon: IMAGES.SHIELD_ALERT,
+        icon: ASSETS.SHIELD_ALERT,
         color: '#fff'
       };
     }

@@ -6,7 +6,7 @@ import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecom
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
-import { IMAGES, ANNIMATIONS } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 import { useButtonSound } from '../../hooks';
@@ -114,7 +114,7 @@ const OperationalDocScan = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ANNIMATIONS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
+          <source src={ASSETS.DASHBOARD_BACKGROUND_VIDEO} type="video/mp4" />
         </video>
       </Box>
       
@@ -209,9 +209,9 @@ const OperationalDocScan = () => {
                             className={`${styles.statusIndicator} ${isOnTime ? styles.statusOnTime : styles.statusDelayed}`}
                           >
                             {isOnTime ? (
-                              <Box component="img" src={IMAGES.ON_TIME_STATUS} alt="On Time" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={ASSETS.ON_TIME_STATUS} alt="On Time" sx={{ width: '100%', height: '100%' }} />
                             ) : (
-                              <Box component="img" src={IMAGES.DELAYED_STATUS} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={ASSETS.DELAYED_STATUS} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
                             )}
                           </Box>
                           <Box sx={{textTransform:"capitalize"}}>{shipment.status}</Box>
@@ -263,7 +263,7 @@ const OperationalDocScan = () => {
         <Zoom in={animateLogo} timeout={800}>
           <Box 
             component="img"
-            src={IMAGES.EY_LOGO}
+            src={ASSETS.EY_LOGO}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

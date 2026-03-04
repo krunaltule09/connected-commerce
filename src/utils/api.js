@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || '',
@@ -19,11 +19,11 @@ export async function fetchDocuments() {
       let previewUrl;
       
       if (svgIndex === 0) {
-        previewUrl = IMAGES.DOCUMENT_TEMPLATE_1;
+        previewUrl = ASSETS.DOCUMENT_TEMPLATE_1;
       } else if (svgIndex === 1) {
-        previewUrl = IMAGES.DOCUMENT_TEMPLATE_2;
+        previewUrl = ASSETS.DOCUMENT_TEMPLATE_2;
       } else {
-        previewUrl = IMAGES.DOCUMENT_TEMPLATE_3;
+        previewUrl = ASSETS.DOCUMENT_TEMPLATE_3;
       }
       
       return {
@@ -67,11 +67,11 @@ export async function fetchDocuments() {
       const svgIndex = i % 3;
       
       if (svgIndex === 0) {
-        url = IMAGES.DOCUMENT_TEMPLATE_1;
+        url = ASSETS.DOCUMENT_TEMPLATE_1;
       } else if (svgIndex === 1) {
-        url = IMAGES.DOCUMENT_TEMPLATE_2;
+        url = ASSETS.DOCUMENT_TEMPLATE_2;
       } else {
-        url = IMAGES.DOCUMENT_TEMPLATE_3;
+        url = ASSETS.DOCUMENT_TEMPLATE_3;
       }
       
       return {

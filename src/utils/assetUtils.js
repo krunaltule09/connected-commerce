@@ -1,6 +1,6 @@
-import { IMAGES, ANNIMATIONS, MUSIC } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
-const ALL_ASSETS = { ...IMAGES, ...ANNIMATIONS, ...MUSIC };
+const ALL_ASSETS = ASSETS;
 
 /**
  * Get the correct asset URL that works in both development and production (including Vercel)

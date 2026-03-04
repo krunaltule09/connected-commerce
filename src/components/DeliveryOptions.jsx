@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { IMAGES } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 const DeliveryOptionsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -75,7 +75,7 @@ const DeliveryOptions = () => {
       
       <QRCodeContainer>
         <QRCode 
-          src={IMAGES.RATING_FRAME}
+          src={ASSETS.RATING_FRAME}
           alt="QR Code for delivery options" 
         />
       </QRCodeContainer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { IMAGES } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 /**
  * Loading animation component for charts
@@ -99,7 +99,7 @@ export const ChartBackground = ({ children }) => (
   <Box
     sx={{
       position: 'relative',
-      backgroundImage: `url('${IMAGES.CHART_BACKGROUND}')`,
+      backgroundImage: `url('${ASSETS.CHART_BACKGROUND}')`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',

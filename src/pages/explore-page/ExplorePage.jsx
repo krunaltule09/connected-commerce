@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { IMAGES } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 import styles from './ExplorePage.module.css';
 
 const ExplorePage = () => {
@@ -25,7 +25,7 @@ const ExplorePage = () => {
       <Box 
         className={styles.backgroundOverlay}
         sx={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${IMAGES.PAGE_LAYOUT_2}')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${ASSETS.PAGE_LAYOUT_2}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -46,7 +46,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={IMAGES.LOAN_SERVICE}
+                src={ASSETS.LOAN_SERVICE}
                 alt="Loan Service" 
                 className={styles.svgIcon}
               />
@@ -58,7 +58,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={IMAGES.TRANSPARENT_COMPLIANCE}
+                src={ASSETS.TRANSPARENT_COMPLIANCE}
                 alt="Transparent Compliance" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -74,7 +74,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={IMAGES.AUTOMATED_SERVICING}
+                src={ASSETS.AUTOMATED_SERVICING}
                 alt="Automated Servicing" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -87,7 +87,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={IMAGES.AUTOMATED_SERVICING_ALT}
+                src={ASSETS.AUTOMATED_SERVICING_ALT}
                 alt="Automated Servicing 2" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -117,7 +117,7 @@ const ExplorePage = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={IMAGES.EY_LOGO}
+        src={ASSETS.EY_LOGO}
         alt="EY Logo"
         className={styles.eyLogo}
       />

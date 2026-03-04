@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
 import Lottie from 'lottie-react';
-import { ANNIMATIONS } from '../data/assetPaths';
+import { ASSETS } from '../data/assetPaths';
 
 // Styled components
 const PageContainer = styled(Box)(({ theme }) => ({
@@ -111,7 +111,7 @@ export default function FeedbackPage() {
 
   // Fetch Lottie animation JSON from URL
   useEffect(() => {
-    fetch(ANNIMATIONS.FEEDBACK_ANIMATION_LOTTIE)
+    fetch(ASSETS.FEEDBACK_ANIMATION_LOTTIE)
       .then(res => res.json())
       .then(data => setFeedbackAnimationData(data))
       .catch(err => console.error('Failed to load Feedback animation:', err));

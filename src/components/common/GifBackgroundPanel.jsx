@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { ANNIMATIONS } from '../../data/assetPaths';
+import { ASSETS } from '../../data/assetPaths';
 
 const Container = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -60,8 +60,8 @@ const GifBackgroundPanel = ({
   // Determine which GIF to use based on size
   const isLarge = size === 'large';
   const backgroundGif = isLarge
-    ? ANNIMATIONS.AI_UI_LARGE_GIF
-    : ANNIMATIONS.AI_UI_MEDIUM_GIF;
+    ? ASSETS.AI_UI_LARGE_GIF
+    : ASSETS.AI_UI_MEDIUM_GIF;
     
   console.log('GifBackgroundPanel rendering with size:', size);
   console.log('Using background GIF:', backgroundGif);
