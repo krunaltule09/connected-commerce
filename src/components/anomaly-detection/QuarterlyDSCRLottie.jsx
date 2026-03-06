@@ -1,36 +1,20 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Lottie from 'lottie-react';
-import { ASSETS } from '../../data/assetPaths';
+import { ANIMATIONS } from '../../assets/animations';
 
 /**
  * A Lottie animation component for the Quarterly DSCR chart
  */
 export default function QuarterlyDSCRLottie({ style = {} }) {
   const lottieRef = useRef(null);
-  const [animationData, setAnimationData] = useState(null);
-
-  // Fetch Lottie animation JSON from URL
-  useEffect(() => {
-    fetch(ASSETS['BCM_OperateTable_Quarterly_DSCR.json'])
-      .then(res => res.json())
-      .then(data => setAnimationData(data))
-      .catch(err => console.error('Failed to load Quarterly DSCR animation:', err));
-  }, []);
 
   // Control animation playback
   useEffect(() => {
     if (lottieRef.current) {
-      // Ensure animation plays from the beginning
       lottieRef.current.goToAndPlay(0);
     }
-
-    return () => {
-      // Cleanup if needed
-    };
-  }, [animationData]);
-
-  if (!animationData) return null;
+  }, []);
 
   return (
     <Box
@@ -48,7 +32,7 @@ export default function QuarterlyDSCRLottie({ style = {} }) {
     >
       <Lottie
         lottieRef={lottieRef}
-        animationData={animationData}
+        animationData={ANIMATIONS.quarterlyDSCR}
         loop={true}
         autoplay={true}
         style={{ 

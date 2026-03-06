@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import LottieBackgroundPanel from '../common/LottieBackgroundPanel';
-import { ASSETS } from '../../data/assetPaths';
+import { ANIMATIONS } from '../../assets/animations';
 
 export default function AIRecommendations({ recommendations, contentContainerSx={} }) {
-  const [animationData, setAnimationData] = useState(null);
-
-  useEffect(() => {
-    fetch(ASSETS['BCM_OperateTable_AI_Animation.json'])
-      .then(res => res.json())
-      .then(data => setAnimationData(data))
-      .catch(err => console.error('Failed to load AI animation:', err));
-  }, []);
-
-  if (!animationData) return null;
-
   return (
     <LottieBackgroundPanel
-      animationData={animationData}
+      animationData={ANIMATIONS.aiAnimation}
       bulletPoints={recommendations}
       icon={null}
       contentContainerSx={contentContainerSx}

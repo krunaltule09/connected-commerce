@@ -39,10 +39,6 @@ export const ASSETS = {
   'BCM_OperateTable_Document_Scanning_Video.mp4': `${CMS_BASE_URL}/annimations/BCM_OperateTable_Document_Scanning_Video.mp4`,
   'BCM_OperateTable_AI_UI_Large.gif': `${CMS_BASE_URL}/annimations/BCM_OperateTable_AI_UI_Large.gif`,
   'BCM_OperateTable_AI_UI_Medium.gif': `${CMS_BASE_URL}/annimations/BCM_OperateTable_AI_UI_Medium.gif`,
-  'BCM_OperateTable_Financial_Drivers.json': `${CMS_BASE_URL}/annimations/BCM_OperateTable_Financial_Drivers.json`,
-  'BCM_OperateTable_Quarterly_DSCR.json': `${CMS_BASE_URL}/annimations/BCM_OperateTable_Quarterly_DSCR.json`,
-  'BCM_OperateTable_AI_Animation.json': `${CMS_BASE_URL}/annimations/BCM_OperateTable_AI_Animation.json`,
-  'BCM_OperateTable_Feedback_Animation.json': `${CMS_BASE_URL}/annimations/BCM_OperateTable_Feedback_Animation.json`,
   'BCM_OperateTable_Button_Click.mp3': `${CMS_BASE_URL}/music/BCM_OperateTable_Button_Click.mp3`,
 };
 

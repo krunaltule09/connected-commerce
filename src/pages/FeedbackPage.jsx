@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
 import Lottie from 'lottie-react';
-import { ASSETS } from '../data/assetPaths';
+import { ANIMATIONS } from '../assets/animations';
 
 // Styled components
 const PageContainer = styled(Box)(({ theme }) => ({
@@ -101,21 +101,11 @@ export default function FeedbackPage() {
   const lottieRef = useRef(null);
   const [showComponents, setShowComponents] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
-  const [feedbackAnimationData, setFeedbackAnimationData] = useState(null);
-
   // Animation states
   const [animateTop, setAnimateTop] = useState(false);
   const [animateMiddle, setAnimateMiddle] = useState(false);
   const [animateBottom, setAnimateBottom] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
-
-  // Fetch Lottie animation JSON from URL
-  useEffect(() => {
-    fetch(ASSETS['BCM_OperateTable_Feedback_Animation.json'])
-      .then(res => res.json())
-      .then(data => setFeedbackAnimationData(data))
-      .catch(err => console.error('Failed to load Feedback animation:', err));
-  }, []);
 
   // Staggered animation timing
   useEffect(() => {
@@ -160,10 +150,9 @@ export default function FeedbackPage() {
             >
               <MainCard>
                 <LottieContainer>
-                  {feedbackAnimationData && (
-                    <Lottie
+                  <Lottie
                       lottieRef={lottieRef}
-                      animationData={feedbackAnimationData}
+                      animationData={ANIMATIONS.feedbackAnimation}
                       loop={true}
                       autoplay={true}
                       style={{ width: '105%', height: '100%' }}
@@ -171,7 +160,6 @@ export default function FeedbackPage() {
                         preserveAspectRatio: 'xMidYMid slice',
                       }}
                     />
-                  )}
                 </LottieContainer>
                 
                 {showComponents && (
