@@ -2,9 +2,10 @@ import React from 'react';
 import { Box, Typography, Slide } from '@mui/material';
 import GradientBorderBox from '../common/GradientBorderBox';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 const DocumentPreviewPanel = ({ scanProgress }) => {
+  const { assets } = useConfig();
   return (
     <Slide direction="right" in={true} timeout={800} mountOnEnter unmountOnExit>
       <GradientBorderBox animated className={styles.documentPreviewPanel}>
@@ -13,7 +14,7 @@ const DocumentPreviewPanel = ({ scanProgress }) => {
         <Box className={styles.documentImageContainer}>
           <Box 
             component="img"
-            src={ASSETS['BCM_OperateTable_Scanned_Doc_Preview.svg']}
+            src={assets['BCM_OperateTable_Scanned_Doc_Preview.svg']}
             alt="Document Preview"
             className={styles.documentImage}
           />

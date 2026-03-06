@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 const Container = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -57,11 +57,11 @@ const GifBackgroundPanel = ({
   contentContainerSx = {},
   imageTransform = null
 }) => {
-  // Determine which GIF to use based on size
+  const { assets } = useConfig();
   const isLarge = size === 'large';
   const backgroundGif = isLarge
-    ? ASSETS['BCM_OperateTable_AI_UI_Large.gif']
-    : ASSETS['BCM_OperateTable_AI_UI_Medium.gif'];
+    ? assets['BCM_OperateTable_AI_UI_Large.gif']
+    : assets['BCM_OperateTable_AI_UI_Medium.gif'];
     
   console.log('GifBackgroundPanel rendering with size:', size);
   console.log('Using background GIF:', backgroundGif);

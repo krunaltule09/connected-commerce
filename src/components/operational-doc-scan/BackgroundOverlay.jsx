@@ -1,14 +1,15 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 const BackgroundOverlay = () => {
+  const { assets } = useConfig();
   return (
     <Box 
       className={styles.backgroundOverlay}
       sx={{
-        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('${ASSETS['BCM_OperateTable_Operational_Doc_Scan_BG.svg']}')`,
+        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('${assets['BCM_OperateTable_Operational_Doc_Scan_BG.svg']}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

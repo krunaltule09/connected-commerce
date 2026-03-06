@@ -10,13 +10,14 @@ import { useButtonSound } from '../../hooks';
 // removed stepper CheckIcon
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
 
 export default function Y14ReportNew() {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   const [expandedAccordion, setExpandedAccordion] = useState(null);
   
   // Animation states for each section
@@ -116,7 +117,7 @@ export default function Y14ReportNew() {
         playsInline 
         className={styles.backgroundVideo}
       >
-        <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+        <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
       </video>
       
       {/* Background Overlay */}
@@ -618,7 +619,7 @@ export default function Y14ReportNew() {
                 {/* Workflow Steps SVG */}
                 <Box
                   component="img"
-                  src={ASSETS['BCM_OperateTable_Report_Workflow_Step.svg']}
+                  src={assets['BCM_OperateTable_Report_Workflow_Step.svg']}
                   alt="Report Builder Workflow Steps"
                   className={styles.workflowStepsImage}
                 />
@@ -628,7 +629,7 @@ export default function Y14ReportNew() {
                   {/* First Document */}
                   <Box
                     component="img"
-                    src={ASSETS['BCM_OperateTable_Report_Builder_Document.svg']}
+                    src={assets['BCM_OperateTable_Report_Builder_Document.svg']}
                     alt="Report Builder Document 1"
                     className={styles.docImage}
                   />
@@ -636,7 +637,7 @@ export default function Y14ReportNew() {
                   {/* Second Document */}
                   <Box
                     component="img"
-                    src={ASSETS['BCM_OperateTable_Report_Builder_Document.svg']}
+                    src={assets['BCM_OperateTable_Report_Builder_Document.svg']}
                     alt="Report Builder Document 2"
                     className={styles.docImage}
                   />
@@ -644,7 +645,7 @@ export default function Y14ReportNew() {
                   {/* Third Document */}
                   <Box
                     component="img"
-                    src={ASSETS['BCM_OperateTable_Report_Builder_Document.svg']}
+                    src={assets['BCM_OperateTable_Report_Builder_Document.svg']}
                     alt="Report Builder Document 3"
                     className={styles.docImage}
                   />
@@ -692,7 +693,7 @@ export default function Y14ReportNew() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+          src={assets['BCM_OperateTable_EY_Logo.svg']}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { navigate('/'); window.location.reload(); }}

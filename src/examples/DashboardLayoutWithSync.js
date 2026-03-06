@@ -3,7 +3,7 @@ import { Box, Container, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import styles from '../components/layout/DashboardLayout.module.css';
 import navigationSync from '../services/NavigationSyncService';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 /**
  * Example of how to integrate NavigationSyncService with DashboardLayout
@@ -16,6 +16,7 @@ export default function DashboardLayoutWithSync({
   onBack, 
   onNext 
 }) {
+  const { assets } = useConfig();
   // Listen for navigation events from other UIs
   useEffect(() => {
     const removeListener = navigationSync.addListener((data) => {
@@ -82,7 +83,7 @@ export default function DashboardLayoutWithSync({
         }
       }}>
         <video autoPlay loop muted playsInline>
-          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -161,7 +162,7 @@ export default function DashboardLayoutWithSync({
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

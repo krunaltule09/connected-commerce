@@ -9,15 +9,16 @@ import { SyncRouteProvider } from './context/SyncRouteContext';
 import { FinancialDataProvider } from './context/FinancialDataContext';
 import { ScanningProvider } from './context/ScanningContext';
 import { SoundProvider } from './context/SoundContext';
-import { AssetContext } from './context/AssetContext';
+import { ConfigProvider } from './context/ConfigContext';
 import DEFAULT_ASSETS from './data/assetPaths';
+import database from './data/database';
 
 const CMS_BASE_URL = process.env.REACT_APP_CMS_BASE_URL || '';
 const IS_DEV_MODE = true;
 
 function App() {
   const [config, setConfig] = useState({
-    database: IS_DEV_MODE ? 'local' : 'cms',
+    database: IS_DEV_MODE ? database : null,
     assets: IS_DEV_MODE ? DEFAULT_ASSETS : {},
     images: IS_DEV_MODE,
     animations: IS_DEV_MODE,
@@ -123,24 +124,28 @@ function App() {
     return () => clearInterval(interval);
   }, [config.audios]);
 
-  if (!config.images || !config.animations || !config.audios) {
+  if (!config.images || !config.animations || !config.audios || !config.database) {
     return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: '#000',
-        color: '#fff',
-        fontFamily: 'EYInterstate, sans-serif',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          width: '100vw',
+          backgroundColor: '#000',
+          color: '#fff',
+          fontFamily: 'EYInterstate, sans-serif',
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
-          <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 500,
-            marginBottom: '1rem',
-          }}>
+          <h2
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: 500,
+              marginBottom: '1rem',
+            }}
+          >
             Connecting to Server...
           </h2>
           <p style={{ opacity: 0.7 }}>Fetching configuration...</p>
@@ -150,7 +155,7 @@ function App() {
   }
 
   return (
-    <AssetContext.Provider value={config.assets}>
+    <ConfigProvider config={config}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
@@ -169,7 +174,7 @@ function App() {
           </SoundProvider>
         </Router>
       </ThemeProvider>
-    </AssetContext.Provider>
+    </ConfigProvider>
   );
 }
 

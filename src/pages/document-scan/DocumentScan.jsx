@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 import styles from './DocumentScan.module.css';
 
 const DocumentScan = () => {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   const videoRef = useRef(null);
 
   // Handle video end and navigate to next page
@@ -28,14 +29,14 @@ const DocumentScan = () => {
           muted
           playsInline
           className={styles.fullScreenVideo}
-          src={ASSETS['BCM_OperateTable_Document_Scanning_Video.mp4']}
+          src={assets['BCM_OperateTable_Document_Scanning_Video.mp4']}
         />
       </Box>
       
       {/* EY Logo - keeping only this element */}
       <Box 
         component="img"
-        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

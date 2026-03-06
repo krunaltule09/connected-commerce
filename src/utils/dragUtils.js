@@ -1,5 +1,3 @@
-import { ASSETS } from '../data/assetPaths';
-
 /**
  * Utility functions for drag and drop operations
  */
@@ -7,9 +5,11 @@ import { ASSETS } from '../data/assetPaths';
 /**
  * Creates a custom ghost image for document tiles during drag operations
  * @param {Object} doc - The document object being dragged
+ * @param {Object} assets - Assets map from config
  * @returns {Function} - A function that sets up the ghost image when called with a drag event
  */
-export const createDocumentTileGhostImage = (doc) => (e) => {
+export const createDocumentTileGhostImage = (doc, assets) => (e) => {
+  const a = assets || {};
   // Create a ghost image that looks like the tile
   const ghostElement = document.createElement('div');
   ghostElement.style.width = '150px';
@@ -35,7 +35,7 @@ export const createDocumentTileGhostImage = (doc) => (e) => {
   
   // Add the same document icon as in the tile
   const iconImg = document.createElement('img');
-  iconImg.src = ASSETS['BCM_OperateTable_Vector_Icon.svg'];
+  iconImg.src = a['BCM_OperateTable_Vector_Icon.svg'];
   iconImg.style.width = '31px';
   iconImg.style.height = '31px';
   previewArea.appendChild(iconImg);
@@ -67,12 +67,10 @@ export const createDocumentTileGhostImage = (doc) => (e) => {
 /**
  * Sets up drag data for a document
  * @param {Object} doc - The document object being dragged
+ * @param {Object} assets - Assets map from config (uses defaults if not provided)
  * @returns {Function} - Event handler for drag start
  */
-export const handleDocumentDragStart = (doc) => (e) => {
-  // Set the document ID as the drag data
+export const handleDocumentDragStart = (doc, assets) => (e) => {
   e.dataTransfer.setData('text/plain', String(doc.id));
-  
-  // Apply the custom ghost image
-  createDocumentTileGhostImage(doc)(e);
+  createDocumentTileGhostImage(doc, assets)(e);
 };

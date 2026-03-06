@@ -1,18 +1,19 @@
 /**
  * Utility functions for sound effects
  */
-import { ASSETS } from '../data/assetPaths';
 
 /**
  * Plays a button click sound
  * @param {Object} options - Options for the sound
- * @param {string} options.soundPath - Path to the sound file
+ * @param {string} options.soundPath - Path to the sound file (defaults to button click if not provided)
  * @param {number} options.volume - Volume level (0-1)
+ * @param {Object} options.assets - Assets map from config
  */
-export const playButtonSound = ({ soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3'], volume = 0.5 } = {}) => {
+export const playButtonSound = ({ soundPath, volume = 0.5, assets } = {}) => {
+  const a = assets || {};
+  const path = soundPath ?? a['BCM_OperateTable_Button_Click.mp3'];
   try {
-    // Create audio element
-    const audio = new Audio(soundPath);
+    const audio = new Audio(path);
     audio.volume = volume;
     
     // Play the sound

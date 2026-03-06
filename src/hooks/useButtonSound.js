@@ -1,25 +1,24 @@
 import { useCallback } from 'react';
 import { useSoundContext } from '../context/SoundContext';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 /**
  * Custom hook that creates a click handler with sound effect
  * @param {Function} onClick - The original click handler function
  * @param {Object} options - Options for the sound
- * @param {string} options.soundPath - Path to the sound file
+ * @param {string} options.soundPath - Path to the sound file (uses config assets if not provided)
  * @param {number} options.volume - Volume level (0-1)
  * @returns {Function} - Enhanced click handler with sound
  */
-export const useButtonSound = (onClick, { soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3'], volume = 0.5 } = {}) => {
+export const useButtonSound = (onClick, { soundPath, volume = 0.5 } = {}) => {
+  const { assets } = useConfig();
+  const path = soundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
   // Get sound enabled state from context
   const { soundEnabled } = useSoundContext();
   
-  // Create a memoized click handler that plays sound and calls the original handler
   const handleClick = useCallback((event) => {
-    // Only play sound if enabled in settings
     if (soundEnabled) {
-      // Create audio element
-      const audio = new Audio(soundPath);
+      const audio = new Audio(path);
       audio.volume = volume;
       
       // Play the sound
@@ -37,7 +36,7 @@ export const useButtonSound = (onClick, { soundPath = ASSETS['BCM_OperateTable_B
     if (onClick) {
       onClick(event);
     }
-  }, [onClick, soundEnabled, soundPath, volume]);
+  }, [onClick, soundEnabled, path, volume]);
   
   return handleClick;
 };

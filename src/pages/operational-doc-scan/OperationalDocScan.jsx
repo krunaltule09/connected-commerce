@@ -6,7 +6,7 @@ import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecom
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
 import { useButtonSound } from '../../hooks';
@@ -42,6 +42,7 @@ const operationalFindings = [
 
 const OperationalDocScan = () => {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
   const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
   
@@ -114,7 +115,7 @@ const OperationalDocScan = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -209,9 +210,9 @@ const OperationalDocScan = () => {
                             className={`${styles.statusIndicator} ${isOnTime ? styles.statusOnTime : styles.statusDelayed}`}
                           >
                             {isOnTime ? (
-                              <Box component="img" src={ASSETS['BCM_OperateTable_On_Time_Status.svg']} alt="On Time" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={assets['BCM_OperateTable_On_Time_Status.svg']} alt="On Time" sx={{ width: '100%', height: '100%' }} />
                             ) : (
-                              <Box component="img" src={ASSETS['BCM_OperateTable_Delayed_Status.svg']} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={assets['BCM_OperateTable_Delayed_Status.svg']} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
                             )}
                           </Box>
                           <Box sx={{textTransform:"capitalize"}}>{shipment.status}</Box>
@@ -263,7 +264,7 @@ const OperationalDocScan = () => {
         <Zoom in={animateLogo} timeout={800}>
           <Box 
             component="img"
-            src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+            src={assets['BCM_OperateTable_EY_Logo.svg']}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

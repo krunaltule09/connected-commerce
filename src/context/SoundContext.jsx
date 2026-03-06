@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from './ConfigContext';
 
 // Create context
 const SoundContext = createContext({
@@ -13,7 +13,7 @@ const SoundContext = createContext({
  * @param {React.ReactNode} props.children - Child components
  */
 export const SoundProvider = ({ children }) => {
-  // Initialize sound state from localStorage or default to true
+  const { assets } = useConfig();
   const [soundEnabled, setSoundEnabled] = useState(() => {
     const savedSetting = localStorage.getItem('soundEnabled');
     return savedSetting !== null ? JSON.parse(savedSetting) : true;
@@ -31,7 +31,7 @@ export const SoundProvider = ({ children }) => {
 
   // Preload the button click sound
   useEffect(() => {
-    const audio = new Audio(ASSETS['BCM_OperateTable_Button_Click.mp3']);
+    const audio = new Audio(assets['BCM_OperateTable_Button_Click.mp3']);
     audio.preload = 'auto';
     
     // Just trigger the load but don't play
@@ -40,7 +40,7 @@ export const SoundProvider = ({ children }) => {
     return () => {
       audio.remove();
     };
-  }, []);
+  }, [assets]);
 
   return (
     <SoundContext.Provider value={{ soundEnabled, toggleSound }}>

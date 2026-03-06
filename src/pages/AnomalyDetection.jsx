@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
@@ -16,6 +16,7 @@ import AIRecommendationsWithGif from '../components/anomaly-detection/AIRecommen
 
 export default function AnomalyDetection() {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   
   // Animation states for each section
   const [animateDscr, setAnimateDscr] = useState(false);
@@ -88,7 +89,7 @@ export default function AnomalyDetection() {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -264,7 +265,7 @@ export default function AnomalyDetection() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+          src={assets['BCM_OperateTable_EY_Logo.svg']}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { window.location.href = '/'; }}

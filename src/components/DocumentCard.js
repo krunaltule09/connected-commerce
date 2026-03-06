@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { handleDocumentDragStart } from '../utils';
 import { GradientBorderBox } from './common';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 /**
  * DocumentCard component displays a document preview with its title
@@ -13,6 +13,7 @@ import { ASSETS } from '../data/assetPaths';
  * @param {Boolean} isSelected - Whether the document is selected
  */
 export default function DocumentCard({ document, onClick, isSelected }) {
+  const { assets } = useConfig();
   return (
 <GradientBorderBox 
     sx={{
@@ -105,7 +106,7 @@ export default function DocumentCard({ document, onClick, isSelected }) {
         >
           <Box
             component="img"
-            src={document.url || ASSETS['BCM_OperateTable_Vector_Icon.svg']}
+            src={document.url || assets['BCM_OperateTable_Vector_Icon.svg']}
             alt={document.name}
             sx={{
               maxWidth: '100%',

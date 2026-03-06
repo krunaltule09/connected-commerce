@@ -5,10 +5,11 @@ import GradientBorderBoxLegacy from '../../components/common/GradientBorderBoxLe
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 const DataSimulator = () => {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   const tabs = ['Benefit Blocks', 'ROI Calculator', 'Case Studies / Benchmarks'];
   const [selectedTab, setSelectedTab] = useState('Benefit Blocks');
   
@@ -23,8 +24,8 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${ASSETS['BCM_OperateTable_Button_Background_Active.svg']}')`
-        : `url('${ASSETS['BCM_OperateTable_Button_Background_Alt.svg']}')`,
+        ? `url('${assets['BCM_OperateTable_Button_Background_Active.svg']}')`
+        : `url('${assets['BCM_OperateTable_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -96,7 +97,7 @@ const DataSimulator = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -204,7 +205,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={ASSETS['BCM_OperateTable_Covenant_Checks.svg']}
+                        src={assets['BCM_OperateTable_Covenant_Checks.svg']}
                         alt="Faster Covenant Checks"
                         sx={{ 
                           width: 36, 
@@ -242,7 +243,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={ASSETS['BCM_OperateTable_Errors_Icon.svg']}
+                        src={assets['BCM_OperateTable_Errors_Icon.svg']}
                         alt="Fewer Errors"
                         sx={{ 
                           width: 36, 
@@ -344,7 +345,7 @@ const DataSimulator = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={() => { navigate('/'); window.location.reload(); }}

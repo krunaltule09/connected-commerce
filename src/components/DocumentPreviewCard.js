@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useNavigate } from 'react-router-dom';
-import { getAssetPath } from '../utils/assetUtils';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 export default function DocumentPreviewCard({ document, onDropDocumentId }) {
+  const { assets } = useConfig();
   const [opening, setOpening] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={ASSETS['BCM_OperateTable_Document_Template_1.svg']}
+                      src={assets['BCM_OperateTable_Document_Template_1.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -79,7 +79,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={ASSETS['BCM_OperateTable_Document_Template_2.svg']}
+                      src={assets['BCM_OperateTable_Document_Template_2.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -105,7 +105,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={ASSETS['BCM_OperateTable_Document_Template_3.svg']}
+                      src={assets['BCM_OperateTable_Document_Template_3.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',

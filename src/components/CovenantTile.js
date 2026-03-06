@@ -1,20 +1,13 @@
 import { Box, Typography, Button, Tooltip } from '@mui/material';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 export default function CovenantTile({ covenant }) {
-  // Determine the indicator icon and color based on status
+  const { assets } = useConfig();
   const getIndicatorIcon = (status) => {
     if (status === 'alert') {
-      return {
-        icon: ASSETS['BCM_OperateTable_Alert_Icon.svg'],
-        color: '#fff'
-      };
-    } else {
-      return {
-        icon: ASSETS['BCM_OperateTable_Shield_Alert.svg'],
-        color: '#fff'
-      };
+      return { icon: assets['BCM_OperateTable_Alert_Icon.svg'], color: '#fff' };
     }
+    return { icon: assets['BCM_OperateTable_Shield_Alert.svg'], color: '#fff' };
   };
 
   const indicatorDetails = getIndicatorIcon(covenant.status);

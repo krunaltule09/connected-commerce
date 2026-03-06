@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Container, Grid, Grow, Fade } from '@mui/material';
 import styles from './DashboardLayout.module.css';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 /**
  * DashboardLayout component that handles the overall layout of the dashboard
@@ -19,7 +19,7 @@ export default function DashboardLayout({
   onBack, 
   onNext 
 }) {
-  // Animation states
+  const { assets } = useConfig();
   const [animateLeft, setAnimateLeft] = useState(false);
   const [animateMiddle, setAnimateMiddle] = useState(false);
   const [animateRight, setAnimateRight] = useState(false);
@@ -68,7 +68,7 @@ export default function DashboardLayout({
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -161,7 +161,7 @@ export default function DashboardLayout({
         <Fade in={animateLogo} timeout={1000}>
           <Box 
             component="img"
-            src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+            src={assets['BCM_OperateTable_EY_Logo.svg']}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

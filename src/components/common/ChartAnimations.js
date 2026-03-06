@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 /**
  * Loading animation component for charts
@@ -95,11 +95,13 @@ export const AnimatedChartContainer = ({ children, metricKey }) => (
  * @param {ReactNode} props.children - Chart content
  * @returns {JSX.Element} - Styled chart background
  */
-export const ChartBackground = ({ children }) => (
+export const ChartBackground = ({ children }) => {
+  const { assets } = useConfig();
+  return (
   <Box
     sx={{
       position: 'relative',
-      backgroundImage: `url('${ASSETS['BCM_OperateTable_Chart_Background.svg']}')`,
+      backgroundImage: `url('${assets['BCM_OperateTable_Chart_Background.svg']}')`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -113,4 +115,5 @@ export const ChartBackground = ({ children }) => (
       {children}
     </Box>
   </Box>
-);
+  );
+};

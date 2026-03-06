@@ -10,13 +10,14 @@ import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 import styles from './Y14ReportGeneration.module.css';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
 
 export default function Y14ReportGeneration() {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   const [expanded, setExpanded] = useState('panel1');
   const tabs = ['EXPLORE DOCUMENTS', 'SOURCE METRICS'];
   const [selectedTab, setSelectedTab] = useState('EXPLORE DOCUMENTS');
@@ -96,8 +97,8 @@ export default function Y14ReportGeneration() {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${ASSETS['BCM_OperateTable_Button_Background_Default.svg']}')`
-        : `url('${ASSETS['BCM_OperateTable_Button_Background_Alt.svg']}')`,
+        ? `url('${assets['BCM_OperateTable_Button_Background_Default.svg']}')`
+        : `url('${assets['BCM_OperateTable_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -130,7 +131,7 @@ export default function Y14ReportGeneration() {
       <Box 
         className={styles.backgroundOverlay} 
         sx={{ 
-          backgroundImage: `url(${ASSETS['BCM_OperateTable_Operational_Doc_Scan_BG.svg']})`,
+          backgroundImage: `url(${assets['BCM_OperateTable_Operational_Doc_Scan_BG.svg']})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
@@ -183,7 +184,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={ASSETS['BCM_OperateTable_Balance_Document.svg']}
+                  src={assets['BCM_OperateTable_Balance_Document.svg']}
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -304,7 +305,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={ASSETS['BCM_OperateTable_Balance_Document.svg']}
+                  src={assets['BCM_OperateTable_Balance_Document.svg']}
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />
@@ -423,7 +424,7 @@ export default function Y14ReportGeneration() {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

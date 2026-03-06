@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useSound } from '../../hooks';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 /**
  * A reusable button component that matches the styling from FinancialMetricsSection
@@ -19,11 +19,12 @@ const GradientButton = ({
   children, 
   sx = {}, 
   onClick,
-  soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3'],
+  soundPath,
   ...rest 
 }) => {
-  // Initialize sound hook
-  const playSound = useSound(soundPath, { volume: 0.5 });
+  const { assets } = useConfig();
+  const path = soundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
+  const playSound = useSound(path, { volume: 0.5 });
   
   // Handle click with sound
   const handleClick = (event) => {
@@ -63,8 +64,8 @@ const GradientButton = ({
         return {
           ...baseStyles,
           backgroundImage: active 
-            ? `url('${ASSETS['BCM_OperateTable_Button_Background_Active.svg']}')`
-            : `url('${ASSETS['BCM_OperateTable_Button_Background_Default.svg']}')`,
+            ? `url('${assets['BCM_OperateTable_Button_Background_Active.svg']}')`
+            : `url('${assets['BCM_OperateTable_Button_Background_Default.svg']}')`,
           backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -87,8 +88,8 @@ const GradientButton = ({
           minHeight: '50px',
           '&:hover': {
             backgroundImage: active
-              ? `url('${ASSETS['BCM_OperateTable_Button_Background_Active.svg']}')`
-              : `url('${ASSETS['BCM_OperateTable_Button_Background_Default.svg']}')`,
+              ? `url('${assets['BCM_OperateTable_Button_Background_Active.svg']}')`
+              : `url('${assets['BCM_OperateTable_Button_Background_Default.svg']}')`,
             backgroundSize: '100% 100%',
             outline: 'none',
             border: 'none',

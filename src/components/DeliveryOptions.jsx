@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 const DeliveryOptionsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -52,6 +52,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 }));
 
 const DeliveryOptions = () => {
+  const { assets } = useConfig();
   const [deliveryOptions, setDeliveryOptions] = useState({
     email: true,
     sms: false,
@@ -75,7 +76,7 @@ const DeliveryOptions = () => {
       
       <QRCodeContainer>
         <QRCode 
-          src={ASSETS['BCM_OperateTable_Rating_Frame.svg']}
+          src={assets['BCM_OperateTable_Rating_Frame.svg']}
           alt="QR Code for delivery options" 
         />
       </QRCodeContainer>

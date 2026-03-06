@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
 import { useButtonSound } from '../hooks';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 // Icons
 import LoanAgreementIcon from '@mui/icons-material/ArticleOutlined';
@@ -182,6 +182,7 @@ const EnterpriseLoanServicing = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [caseName, setCaseName] = useState('Loading...');
   const navigate = useNavigate();
+  const { assets } = useConfig();
   
   // Fetch available services from API
   useEffect(() => {
@@ -277,7 +278,7 @@ const EnterpriseLoanServicing = () => {
         loop
         muted
         onLoadedData={handleVideoLoad}
-        src={ASSETS['BCM_OperateTable_Loan_Background_Video.mp4']}
+        src={assets['BCM_OperateTable_Loan_Background_Video.mp4']}
       />
       <Overlay />
 
@@ -411,7 +412,7 @@ const EnterpriseLoanServicing = () => {
           timeout={1000}
           style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
         >
-          <Logo src={ASSETS['BCM_OperateTable_EY_Logo.svg']} alt="EY Logo" />
+          <Logo src={assets['BCM_OperateTable_EY_Logo.svg']} alt="EY Logo" />
         </Zoom>
         
       </Container>

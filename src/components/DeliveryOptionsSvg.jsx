@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 const SvgContainer = styled(Box)(({ theme }) => ({
   borderRadius: '12px',
@@ -20,11 +20,12 @@ const SvgContainer = styled(Box)(({ theme }) => ({
 }));
 
 const DeliveryOptionsSvg = ({ isVisible }) => {
+  const { assets } = useConfig();
   return (
     <SvgContainer className={isVisible ? 'visible' : ''}>
       <Box 
         component="img" 
-        src={ASSETS['BCM_OperateTable_QR_Code.svg']}
+        src={assets['BCM_OperateTable_QR_Code.svg']}
         alt="Delivery Options" 
         sx={{ width: '200px', height: 'auto' }}
       />

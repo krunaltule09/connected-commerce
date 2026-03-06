@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import HTMLFlipBook from "react-pageflip";
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 // Page component for all pages
 const Page = React.forwardRef((props, ref) => {
@@ -39,6 +39,7 @@ const Page = React.forwardRef((props, ref) => {
  * with styling to match the second screenshot provided
  */
 export default function DocumentCardDetails({ document }) {
+  const { assets } = useConfig();
   const flipBookRef = useRef();
   const containerRef = useRef(null);
   
@@ -204,11 +205,11 @@ export default function DocumentCardDetails({ document }) {
   
   // All document pages including cover
   const pages = [
-    { id: 0, url: document.url || ASSETS['BCM_OperateTable_Document_Template_1.svg'] },
-    { id: 1, url: ASSETS['BCM_OperateTable_Document_Template_1.svg'] },
-    { id: 2, url: ASSETS['BCM_OperateTable_Document_Template_2.svg'] },
-    { id: 3, url: ASSETS['BCM_OperateTable_Document_Template_3.svg'] },
-    { id: 4, url: document.url || ASSETS['BCM_OperateTable_Document_Template_1.svg'] },
+    { id: 0, url: document.url || assets['BCM_OperateTable_Document_Template_1.svg'] },
+    { id: 1, url: assets['BCM_OperateTable_Document_Template_1.svg'] },
+    { id: 2, url: assets['BCM_OperateTable_Document_Template_2.svg'] },
+    { id: 3, url: assets['BCM_OperateTable_Document_Template_3.svg'] },
+    { id: 4, url: document.url || assets['BCM_OperateTable_Document_Template_1.svg'] },
   ];
 
   return (

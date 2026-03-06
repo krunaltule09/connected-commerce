@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
 import { useButtonSound } from '../../hooks';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const assets = ASSETS;
+  const { assets } = useConfig();
 
   // Create a click handler with sound effect
   const handleStartJourney = useButtonSound(async () => {

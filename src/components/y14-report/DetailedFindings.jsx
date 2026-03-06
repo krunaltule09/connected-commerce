@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Tooltip } from '@mui/material';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 const defaultFindings = [
   {
@@ -36,6 +36,7 @@ export default function DetailedFindings({
   cardHeight = '200px',
   buttonTransformY = '-2rem'
 }) {
+  const { assets } = useConfig();
   return (
     <Box 
       className={className}
@@ -70,7 +71,7 @@ export default function DetailedFindings({
           {showWarning && (
             <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center', mb: 3 }}>
               <Box sx={{ width: 20, height: 20, flexShrink: 0 }}>
-                <Box component="img" src={ASSETS['BCM_OperateTable_Alert_Icon.svg']} sx={{ width: '100%', height: '100%' }} />
+                <Box component="img" src={assets['BCM_OperateTable_Alert_Icon.svg']} sx={{ width: '100%', height: '100%' }} />
               </Box>
               <Typography sx={{ fontSize: '1rem', lineHeight: 1.2, color: 'white', fontWeight: 400 }}>
                 {warningMessage}
@@ -131,7 +132,7 @@ export default function DetailedFindings({
                       height: 44 
                     }}>
                       <Box sx={{ width: 42, height: 42, flexShrink: 0 }}>
-                        <Box component="img" src={ASSETS['BCM_OperateTable_Light_Circle_Outline.svg']} sx={{ width: '100%', height: '100%' }} />
+                        <Box component="img" src={assets['BCM_OperateTable_Light_Circle_Outline.svg']} sx={{ width: '100%', height: '100%' }} />
                       </Box>
                     </Box>
                     <Box sx={{ flex: '1 0 0', height: '172px' }}>
@@ -216,7 +217,7 @@ export default function DetailedFindings({
                       View
                     </Typography>
                     <Box sx={{ width: 20, height: 20, flexShrink: 0 }}>
-                      <Box component="img" src={ASSETS['BCM_OperateTable_Nav_Arrow_Right.svg']} sx={{ width: '100%', height: '100%' }} />
+                      <Box component="img" src={assets['BCM_OperateTable_Nav_Arrow_Right.svg']} sx={{ width: '100%', height: '100%' }} />
                     </Box>
                   </Button>
                 </Box>

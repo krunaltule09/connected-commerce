@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
 export default function DocumentCentrePage() {
   const navigate = useNavigate();
+  const { assets } = useConfig();
   const [documents, setDocuments] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [selectedDocument, setSelectedDocument] = useState(null);
@@ -23,7 +24,7 @@ export default function DocumentCentrePage() {
   // Fetch all documents on component mount
   useEffect(() => {
     let mounted = true;
-    fetchDocuments().then((docs) => {
+    fetchDocuments(assets).then((docs) => {
       if (!mounted) return;
       setDocuments(docs || []);
       if (docs && docs.length) setSelectedId(String(docs[0].id));
@@ -31,7 +32,7 @@ export default function DocumentCentrePage() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [assets]);
 
   // Update selected document when selectedId changes
   useEffect(() => {
@@ -43,20 +44,14 @@ export default function DocumentCentrePage() {
     // Fetch full document details if needed
     if (doc && !doc.url) {
       let active = true;
-      fetchDocumentById(selectedId).then((full) => {
+      fetchDocumentById(selectedId, assets).then((full) => {
         if (!active) return;
         if (full) {
           // Ensure the document has a URL, or assign one based on index
           const updatedDoc = { ...full };
           if (!updatedDoc.url) {
             const svgIndex = parseInt(updatedDoc.id) % 3;
-            if (svgIndex === 0) {
-              updatedDoc.url = ASSETS['BCM_OperateTable_Document_Template_1.svg'];
-            } else if (svgIndex === 1) {
-              updatedDoc.url = ASSETS['BCM_OperateTable_Document_Template_2.svg'];
-            } else {
-              updatedDoc.url = ASSETS['BCM_OperateTable_Document_Template_3.svg'];
-            }
+            updatedDoc.url = assets[['BCM_OperateTable_Document_Template_1.svg', 'BCM_OperateTable_Document_Template_2.svg', 'BCM_OperateTable_Document_Template_3.svg'][svgIndex]];
           }
           
           setDocuments((prev) => 
@@ -69,7 +64,7 @@ export default function DocumentCentrePage() {
         active = false;
       };
     }
-  }, [selectedId, documents]);
+  }, [selectedId, documents, assets]);
 
   const handleSelectDocument = (doc) => {
     setSelectedId(String(doc.id));

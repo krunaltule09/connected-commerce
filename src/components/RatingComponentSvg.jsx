@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 const SvgContainer = styled(Box)(({ theme }) => ({
   borderRadius: '12px',
@@ -21,11 +21,12 @@ const SvgContainer = styled(Box)(({ theme }) => ({
 }));
 
 const RatingComponentSvg = ({ isVisible }) => {
+  const { assets } = useConfig();
   return (
     <SvgContainer className={isVisible ? 'visible' : ''}>
       <Box 
         component="img" 
-        src={ASSETS['BCM_OperateTable_Rating_Frame.svg']}
+        src={assets['BCM_OperateTable_Rating_Frame.svg']}
         alt="Rate Us" 
         sx={{ width: '200px', height: 'auto' }}
       />

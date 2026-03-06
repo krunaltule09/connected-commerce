@@ -1,8 +1,9 @@
 import { Card, CardActionArea, Stack, Typography, Box } from '@mui/material';
 import { handleDocumentDragStart } from '../utils';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 export default function DocumentTile({ doc, selected, onSelect }) {
+  const { assets } = useConfig();
 
   return (
     <Card
@@ -18,7 +19,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
         cursor: 'grab',
       }}
       draggable
-      onDragStart={handleDocumentDragStart(doc)}
+      onDragStart={handleDocumentDragStart(doc, assets)}
     >
       <CardActionArea onClick={() => onSelect?.(doc)} sx={{ height: '100%', borderRadius: '20px' }}>
         <Stack spacing={1.25} p={1.5} alignItems="stretch" sx={{ height: '100%' }}>
@@ -63,7 +64,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
             ) : (
               <Box
                 component="img"
-                src={ASSETS['BCM_OperateTable_Vector_Icon.svg']}
+                src={assets['BCM_OperateTable_Vector_Icon.svg']}
                 alt=""
                 sx={{ width: 31, height: 31 }}
               />

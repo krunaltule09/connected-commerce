@@ -1,15 +1,17 @@
 import React from 'react';
 import { useSound } from '../../hooks';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 /**
  * Higher-order component that adds a click sound to any component
  * @param {React.ComponentType} Component - The component to wrap
- * @param {string} soundPath - Path to the sound file
+ * @param {string} soundPath - Path to the sound file (uses config assets if not provided)
  * @returns {React.ComponentType} - The wrapped component with sound
  */
-const WithButtonSound = (Component, soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3']) => {
+const WithButtonSound = (Component, defaultSoundPath) => {
   const WrappedComponent = React.forwardRef((props, ref) => {
+    const { assets } = useConfig();
+    const soundPath = defaultSoundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
     const playSound = useSound(soundPath, { volume: 0.5 });
     
     const handleClick = (event) => {
@@ -33,8 +35,10 @@ const WithButtonSound = (Component, soundPath = ASSETS['BCM_OperateTable_Button_
  * @param {string} soundPath - Path to the sound file
  * @returns {Function} - Enhanced click handler with sound
  */
-export const useSoundClick = (onClick, soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3']) => {
-  const playSound = useSound(soundPath, { volume: 0.5 });
+export const useSoundClick = (onClick, soundPath) => {
+  const { assets } = useConfig();
+  const path = soundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
+  const playSound = useSound(path, { volume: 0.5 });
   
   return React.useCallback((event) => {
     playSound();
@@ -48,11 +52,10 @@ export const useSoundClick = (onClick, soundPath = ASSETS['BCM_OperateTable_Butt
  * Apply sound to any clickable element that has an onClick handler
  * This is a component that should be used inside a React component
  * @param {React.ReactElement} element - The React element to enhance with sound
- * @param {string} soundPath - Path to the sound file (optional)
+ * @param {string} soundPath - Path to the sound file (optional, uses config assets if not provided)
  * @returns {React.ReactElement} - Enhanced element with sound
  */
-export const SoundButton = ({ element, soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3'] }) => {
-  // Always call hooks at the top level, before any conditional logic
+export const SoundButton = ({ element, soundPath }) => {
   const onClick = element?.props?.onClick;
   const soundClickHandler = useSoundClick(onClick, soundPath);
   

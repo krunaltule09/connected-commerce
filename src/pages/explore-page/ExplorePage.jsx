@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 import styles from './ExplorePage.module.css';
 
 const ExplorePage = () => {
   const [activeTab, setActiveTab] = useState(null);
   const navigate = useNavigate();
+  const { assets } = useConfig();
 
   const handleTabClick = (tab) => {
     // Only allow 'loan' tab to be active
@@ -25,7 +26,7 @@ const ExplorePage = () => {
       <Box 
         className={styles.backgroundOverlay}
         sx={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${ASSETS['BCM_OperateTable_Page_Layout_2.svg']}')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${assets['BCM_OperateTable_Page_Layout_2.svg']}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -46,7 +47,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS['BCM_OperateTable_Loan_Service.svg']}
+                src={assets['BCM_OperateTable_Loan_Service.svg']}
                 alt="Loan Service" 
                 className={styles.svgIcon}
               />
@@ -58,7 +59,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS['BCM_OperateTable_Transparent_Compliance.svg']}
+                src={assets['BCM_OperateTable_Transparent_Compliance.svg']}
                 alt="Transparent Compliance" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -74,7 +75,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS['BCM_OperateTable_Automated_Servicing.svg']}
+                src={assets['BCM_OperateTable_Automated_Servicing.svg']}
                 alt="Automated Servicing" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -87,7 +88,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={ASSETS['BCM_OperateTable_Automated_Servicing_Alt.svg']}
+                src={assets['BCM_OperateTable_Automated_Servicing_Alt.svg']}
                 alt="Automated Servicing 2" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -117,7 +118,7 @@ const ExplorePage = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

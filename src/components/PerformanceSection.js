@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
-import { ASSETS } from '../data/assetPaths';
+import { useConfig } from '../context/ConfigContext';
 
 export default function PerformanceSection() {
+  const { assets } = useConfig();
   return (
     <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Box 
@@ -16,7 +17,7 @@ export default function PerformanceSection() {
       >
         <Box
           component="img"
-          src={ASSETS['BCM_OperateTable_Performance_Section.svg']}
+          src={assets['BCM_OperateTable_Performance_Section.svg']}
           alt="Performance Metrics"
           sx={{
             maxWidth: '90%',

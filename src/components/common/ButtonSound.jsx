@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSound } from '../../hooks';
-import { ASSETS } from '../../data/assetPaths';
+import { useConfig } from '../../context/ConfigContext';
 
 /**
  * A component that adds click sound to any element with onClick handler
  * This component uses event delegation to handle clicks on buttons and other clickable elements
  */
 const ButtonSound = () => {
-  const playSound = useSound(ASSETS['BCM_OperateTable_Button_Click.mp3'], { volume: 0.5, preload: true });
+  const { assets } = useConfig();
+  const playSound = useSound(assets['BCM_OperateTable_Button_Click.mp3'], { volume: 0.5, preload: true });
   
   useEffect(() => {
     // Function to handle click events using event delegation
@@ -143,7 +144,7 @@ const ButtonSound = () => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, [playSound]);
+  }, [playSound, assets]);
   
   // This component doesn't render anything
   return null;
