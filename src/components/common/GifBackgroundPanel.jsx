@@ -60,8 +60,8 @@ const GifBackgroundPanel = ({
   // Determine which GIF to use based on size
   const isLarge = size === 'large';
   const backgroundGif = isLarge
-    ? ASSETS['Connected_Commerce_Operate_Touch_Screen_AI_UI_Large.gif']
-    : ASSETS['Connected_Commerce_Operate_Touch_Screen_AI_UI_Medium.gif'];
+    ? ASSETS['BCM_OperateTable_AI_UI_Large.gif']
+    : ASSETS['BCM_OperateTable_AI_UI_Medium.gif'];
     
   console.log('GifBackgroundPanel rendering with size:', size);
   console.log('Using background GIF:', backgroundGif);

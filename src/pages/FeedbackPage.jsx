@@ -111,7 +111,7 @@ export default function FeedbackPage() {
 
   // Fetch Lottie animation JSON from URL
   useEffect(() => {
-    fetch(ASSETS['Connected_Commerce_Operate_Touch_Screen_Feedback_Animation.json'])
+    fetch(ASSETS['BCM_OperateTable_Feedback_Animation.json'])
       .then(res => res.json())
       .then(data => setFeedbackAnimationData(data))
       .catch(err => console.error('Failed to load Feedback animation:', err));

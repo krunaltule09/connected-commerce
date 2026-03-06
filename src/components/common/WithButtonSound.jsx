@@ -8,7 +8,7 @@ import { ASSETS } from '../../data/assetPaths';
  * @param {string} soundPath - Path to the sound file
  * @returns {React.ComponentType} - The wrapped component with sound
  */
-const WithButtonSound = (Component, soundPath = ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3']) => {
+const WithButtonSound = (Component, soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3']) => {
   const WrappedComponent = React.forwardRef((props, ref) => {
     const playSound = useSound(soundPath, { volume: 0.5 });
     
@@ -33,7 +33,7 @@ const WithButtonSound = (Component, soundPath = ASSETS['Connected_Commerce_Opera
  * @param {string} soundPath - Path to the sound file
  * @returns {Function} - Enhanced click handler with sound
  */
-export const useSoundClick = (onClick, soundPath = ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3']) => {
+export const useSoundClick = (onClick, soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3']) => {
   const playSound = useSound(soundPath, { volume: 0.5 });
   
   return React.useCallback((event) => {
@@ -51,7 +51,7 @@ export const useSoundClick = (onClick, soundPath = ASSETS['Connected_Commerce_Op
  * @param {string} soundPath - Path to the sound file (optional)
  * @returns {React.ReactElement} - Enhanced element with sound
  */
-export const SoundButton = ({ element, soundPath = ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3'] }) => {
+export const SoundButton = ({ element, soundPath = ASSETS['BCM_OperateTable_Button_Click.mp3'] }) => {
   // Always call hooks at the top level, before any conditional logic
   const onClick = element?.props?.onClick;
   const soundClickHandler = useSoundClick(onClick, soundPath);

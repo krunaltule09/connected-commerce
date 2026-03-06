@@ -23,8 +23,8 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Active.svg']}')`
-        : `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Background_Alt.svg']}')`,
+        ? `url('${ASSETS['BCM_OperateTable_Button_Background_Active.svg']}')`
+        : `url('${ASSETS['BCM_OperateTable_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -96,7 +96,7 @@ const DataSimulator = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -204,7 +204,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Covenant_Checks.svg']}
+                        src={ASSETS['BCM_OperateTable_Covenant_Checks.svg']}
                         alt="Faster Covenant Checks"
                         sx={{ 
                           width: 36, 
@@ -242,7 +242,7 @@ const DataSimulator = () => {
                     }}>
                       <Box 
                         component="img"
-                        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Errors_Icon.svg']}
+                        src={ASSETS['BCM_OperateTable_Errors_Icon.svg']}
                         alt="Fewer Errors"
                         sx={{ 
                           width: 36, 
@@ -344,7 +344,7 @@ const DataSimulator = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
+        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={() => { navigate('/'); window.location.reload(); }}

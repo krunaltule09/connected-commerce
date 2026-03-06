@@ -31,7 +31,7 @@ export const SoundProvider = ({ children }) => {
 
   // Preload the button click sound
   useEffect(() => {
-    const audio = new Audio(ASSETS['Connected_Commerce_Operate_Touch_Screen_Button_Click.mp3']);
+    const audio = new Audio(ASSETS['BCM_OperateTable_Button_Click.mp3']);
     audio.preload = 'auto';
     
     // Just trigger the load but don't play

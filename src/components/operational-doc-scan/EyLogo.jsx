@@ -19,7 +19,7 @@ const EyLogo = () => {
     <Zoom in={true} timeout={1500} style={{ transitionDelay: '500ms' }}>
       <Box 
         component="img"
-        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
+        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={handleLogoClick}

@@ -75,7 +75,7 @@ const DeliveryOptions = () => {
       
       <QRCodeContainer>
         <QRCode 
-          src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Rating_Frame.svg']}
+          src={ASSETS['BCM_OperateTable_Rating_Frame.svg']}
           alt="QR Code for delivery options" 
         />
       </QRCodeContainer>

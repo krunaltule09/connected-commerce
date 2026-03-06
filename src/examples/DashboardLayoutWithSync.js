@@ -82,7 +82,7 @@ export default function DashboardLayoutWithSync({
         }
       }}>
         <video autoPlay loop muted playsInline>
-          <source src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={ASSETS['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -161,7 +161,7 @@ export default function DashboardLayoutWithSync({
       {/* EY Logo */}
       <Box 
         component="img"
-        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
+        src={ASSETS['BCM_OperateTable_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

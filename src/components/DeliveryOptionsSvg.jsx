@@ -24,7 +24,7 @@ const DeliveryOptionsSvg = ({ isVisible }) => {
     <SvgContainer className={isVisible ? 'visible' : ''}>
       <Box 
         component="img" 
-        src={ASSETS['Connected_Commerce_Operate_Touch_Screen_QR_Code.svg']}
+        src={ASSETS['BCM_OperateTable_QR_Code.svg']}
         alt="Delivery Options" 
         sx={{ width: '200px', height: 'auto' }}
       />

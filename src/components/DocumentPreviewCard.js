@@ -53,7 +53,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg']}
+                      src={ASSETS['BCM_OperateTable_Document_Template_1.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -79,7 +79,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg']}
+                      src={ASSETS['BCM_OperateTable_Document_Template_2.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -105,7 +105,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg']}
+                      src={ASSETS['BCM_OperateTable_Document_Template_3.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',

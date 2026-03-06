@@ -16,7 +16,7 @@ export default function PerformanceSection() {
       >
         <Box
           component="img"
-          src={ASSETS['Connected_Commerce_Operate_Touch_Screen_Performance_Section.svg']}
+          src={ASSETS['BCM_OperateTable_Performance_Section.svg']}
           alt="Performance Metrics"
           sx={{
             maxWidth: '90%',

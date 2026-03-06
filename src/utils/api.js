@@ -19,11 +19,11 @@ export async function fetchDocuments() {
       let previewUrl;
       
       if (svgIndex === 0) {
-        previewUrl = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'];
+        previewUrl = ASSETS['BCM_OperateTable_Document_Template_1.svg'];
       } else if (svgIndex === 1) {
-        previewUrl = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg'];
+        previewUrl = ASSETS['BCM_OperateTable_Document_Template_2.svg'];
       } else {
-        previewUrl = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg'];
+        previewUrl = ASSETS['BCM_OperateTable_Document_Template_3.svg'];
       }
       
       return {
@@ -67,11 +67,11 @@ export async function fetchDocuments() {
       const svgIndex = i % 3;
       
       if (svgIndex === 0) {
-        url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'];
+        url = ASSETS['BCM_OperateTable_Document_Template_1.svg'];
       } else if (svgIndex === 1) {
-        url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg'];
+        url = ASSETS['BCM_OperateTable_Document_Template_2.svg'];
       } else {
-        url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg'];
+        url = ASSETS['BCM_OperateTable_Document_Template_3.svg'];
       }
       
       return {

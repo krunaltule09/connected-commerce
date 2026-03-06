@@ -51,11 +51,11 @@ export default function DocumentCentrePage() {
           if (!updatedDoc.url) {
             const svgIndex = parseInt(updatedDoc.id) % 3;
             if (svgIndex === 0) {
-              updatedDoc.url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_1.svg'];
+              updatedDoc.url = ASSETS['BCM_OperateTable_Document_Template_1.svg'];
             } else if (svgIndex === 1) {
-              updatedDoc.url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_2.svg'];
+              updatedDoc.url = ASSETS['BCM_OperateTable_Document_Template_2.svg'];
             } else {
-              updatedDoc.url = ASSETS['Connected_Commerce_Operate_Touch_Screen_Document_Template_3.svg'];
+              updatedDoc.url = ASSETS['BCM_OperateTable_Document_Template_3.svg'];
             }
           }
           

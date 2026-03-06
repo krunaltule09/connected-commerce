@@ -12,7 +12,7 @@ export default function QuarterlyDSCRLottie({ style = {} }) {
 
   // Fetch Lottie animation JSON from URL
   useEffect(() => {
-    fetch(ASSETS['Connected_Commerce_Operate_Touch_Screen_Quarterly_DSCR.json'])
+    fetch(ASSETS['BCM_OperateTable_Quarterly_DSCR.json'])
       .then(res => res.json())
       .then(data => setAnimationData(data))
       .catch(err => console.error('Failed to load Quarterly DSCR animation:', err));

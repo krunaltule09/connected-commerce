@@ -99,7 +99,7 @@ export const ChartBackground = ({ children }) => (
   <Box
     sx={{
       position: 'relative',
-      backgroundImage: `url('${ASSETS['Connected_Commerce_Operate_Touch_Screen_Chart_Background.svg']}')`,
+      backgroundImage: `url('${ASSETS['BCM_OperateTable_Chart_Background.svg']}')`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',

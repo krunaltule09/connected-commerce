@@ -39,7 +39,7 @@ const LandingPage = () => {
           playsInline
           className={styles.backgroundVideo}
         >
-          <source src={assets['Connected_Commerce_Operate_Touch_Screen_Landing_Page_Video.mp4']} type="video/mp4" />
+          <source src={assets['BCM_OperateTable_Landing_Page_Video.mp4']} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Box className={styles.videoOverlay}></Box>
@@ -95,7 +95,7 @@ const LandingPage = () => {
       <Fade in={true} timeout={1000} style={{ transitionDelay: '1000ms' }}>
         <Box 
           component="img"
-          src={assets['Connected_Commerce_Operate_Touch_Screen_EY_Logo.svg']}
+          src={assets['BCM_OperateTable_EY_Logo.svg']}
           alt="EY Logo"
           className={styles.eyLogo}
         />

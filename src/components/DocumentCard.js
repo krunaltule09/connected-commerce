@@ -105,7 +105,7 @@ export default function DocumentCard({ document, onClick, isSelected }) {
         >
           <Box
             component="img"
-            src={document.url || ASSETS['Connected_Commerce_Operate_Touch_Screen_Vector_Icon.svg']}
+            src={document.url || ASSETS['BCM_OperateTable_Vector_Icon.svg']}
             alt={document.name}
             sx={{
               maxWidth: '100%',
