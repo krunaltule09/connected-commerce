@@ -5,16 +5,20 @@ import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
 import { useButtonSound } from '../../hooks';
 import { useConfig } from '../../context/ConfigContext';
+import { useVisualizationDataSet } from '../../context/AppDatabaseContext';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const { assets } = useConfig();
+  
+  // Get data from appDatabase
+  const heroData = useVisualizationDataSet('landing_page', 'Hero Section');
 
   // Create a click handler with sound effect
   const handleStartJourney = useButtonSound(async () => {
     try {
-      // Navigate locally
-      navigate('/explore');
+      // Navigate locally - use data from database
+      navigate(heroData.cta_target);
       
       // Send navigation event to operate-experience app
       await navigationService.navigateToOperateExperience('/personal-welcome', {
@@ -55,14 +59,14 @@ const LandingPage = () => {
             {/* Animated heading with MUI Fade */}
             <Fade in={true} timeout={1200}>
               <Typography className={styles.heading} align="center">
-                Reimagining Covenant Monitoring
+                {heroData.heading}
               </Typography>
             </Fade>
             
             {/* Animated subheading with MUI Fade */}
             <Fade in={true} timeout={1500} style={{ transitionDelay: '300ms' }}>
               <Typography className={styles.subheading} align="center">
-                Turning covenant monitoring from a reactive task into a proactive advantage.
+                {heroData.subheading}
               </Typography>
             </Fade>
           </Box>
@@ -85,7 +89,7 @@ const LandingPage = () => {
             }}
           >
             <Box className={styles.buttonText}>
-              Start Journey
+              {heroData.cta_label}
             </Box>
           </Box>
         </Zoom>

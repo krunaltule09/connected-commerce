@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 // Removed unused import: CheckCircleOutlineIcon
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
+import { useVisualizationDataSet } from '../context/AppDatabaseContext';
 import Lottie from 'lottie-react';
 import { ANIMATIONS } from '../assets/animations';
 
@@ -106,6 +107,9 @@ export default function FeedbackPage() {
   const [animateMiddle, setAnimateMiddle] = useState(false);
   const [animateBottom, setAnimateBottom] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
+  
+  // Get data from appDatabase
+  const feedbackData = useVisualizationDataSet('feedback', 'Feedback Form');
 
   // Staggered animation timing
   useEffect(() => {
@@ -135,7 +139,7 @@ export default function FeedbackPage() {
   
   // Handle back to home with sound effect
   const handleBackToHome = useButtonSound(() => {
-    navigate('/');
+    navigate(feedbackData.cta_target);
   });
 
   return (
@@ -193,7 +197,7 @@ export default function FeedbackPage() {
               whileTap={{ scale: 0.95 }}
             >
               <BackButton onClick={handleBackToHome}>
-                Back to home
+                {feedbackData.cta_label}
               </BackButton>
             </motion.div>
           </Box>

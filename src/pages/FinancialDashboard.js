@@ -7,10 +7,14 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import RightSection from '../components/dashboard/RightSection';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
+import { useVisualizationDataSet } from '../context/AppDatabaseContext';
 
 export default function FinancialDashboard() {
   const navigate = useNavigate();
-  
+
+  // Get data from appDatabase
+  const aiRecommendations = useVisualizationDataSet('financial_dashboard', 'AI Recommendations');
+
   const handleNextStep = useButtonSound(async () => {
     navigate('/anomaly-detection')
     try {
@@ -29,16 +33,12 @@ export default function FinancialDashboard() {
     navigate('/document-centre');
   });
   
-  
-  // AI recommendations data
-  const recommendations = ['Debt/Equity exceeds limit (3.2 vs 3.0)'];
-  
   return (
     <ScanningProvider>
       <DashboardLayout
         leftSection={<OcrScanningSection />}
         middleSection={<FinancialMetricsSection />}
-        rightSection={<RightSection recommendations={recommendations} />}
+        rightSection={<RightSection recommendations={aiRecommendations.alerts} />}
         onBack={handleGoBack}
         onNext={handleNextStep}
       />

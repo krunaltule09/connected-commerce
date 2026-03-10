@@ -7,6 +7,7 @@ import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
 import { useButtonSound } from '../hooks';
 import { useConfig } from '../context/ConfigContext';
+import { useVisualizationDataSet } from '../context/AppDatabaseContext';
 
 // Icons
 import LoanAgreementIcon from '@mui/icons-material/ArticleOutlined';
@@ -180,9 +181,12 @@ const EnterpriseLoanServicing = () => {
   const [animationReady, setAnimationReady] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
-  const [caseName, setCaseName] = useState('Loading...');
   const navigate = useNavigate();
   const { assets } = useConfig();
+  
+  // Get data from appDatabase
+  const headerData = useVisualizationDataSet('enterprise_loan_servicing', 'Page Header');
+  const buttonData = useVisualizationDataSet('enterprise_loan_servicing', 'Activate Button');
   
   // Fetch available services from API
   useEffect(() => {
@@ -208,26 +212,6 @@ const EnterpriseLoanServicing = () => {
     fetchServices();
   }, []);
 
-  // Fetch case details from API
-  useEffect(() => {
-    const fetchCaseDetails = async () => {
-      try {
-        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/case/1`);
-        const result = await response.json();
-        const caseData = result.data?.case;
-        
-        if (caseData?.name) {
-          setCaseName(`Case: ${caseData.name}`);
-        }
-      } catch (error) {
-        console.error('Failed to fetch case details:', error);
-        setCaseName('Case: Vertex Logistics Corp - $18M Working Capital Facility');
-      }
-    };
-    
-    fetchCaseDetails();
-  }, []);
 
   // Trigger animations after video is loaded
   useEffect(() => {
@@ -255,8 +239,8 @@ const EnterpriseLoanServicing = () => {
   const handleActivateServicing = useButtonSound(async () => {
     console.log('Activating servicing mode');
     
-    // Navigate locally
-    navigate('/document-centre');
+    // Navigate locally - use data from database
+    navigate(buttonData.target);
     
     try {
       // Send navigation event to operate-experience app
@@ -328,7 +312,7 @@ const EnterpriseLoanServicing = () => {
                   onAnimationComplete={() => setTextAnimationComplete(true)}
                   style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
                 >
-                  {"Enterprise Loan Servicing".split("").map((char, index) => (
+                  {headerData.main_title.split("").map((char, index) => (
                     <motion.span
                       key={index}
                       variants={letterVariants}
@@ -377,7 +361,7 @@ const EnterpriseLoanServicing = () => {
                     display: 'inline-block'
                   }}
                 >
-                  {caseName}
+                  {headerData.subtitle}
                 </Typography>
               </motion.div>
             </Box>
@@ -401,7 +385,7 @@ const EnterpriseLoanServicing = () => {
                 textTransform: 'none'
               }}
             >
-              Touch here to activate servicing mode
+              {buttonData.label}
             </Typography>
           </ActivateButton>
         </Fade>

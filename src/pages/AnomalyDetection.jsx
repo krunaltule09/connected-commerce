@@ -3,6 +3,7 @@ import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useConfig } from '../context/ConfigContext';
+import { useVisualizationDataSet } from '../context/AppDatabaseContext';
 import styles from './AnomalyDetection.module.css';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
@@ -17,6 +18,10 @@ import AIRecommendationsWithGif from '../components/anomaly-detection/AIRecommen
 export default function AnomalyDetection() {
   const navigate = useNavigate();
   const { assets } = useConfig();
+  
+  // Get data from appDatabase
+  const aiRecommendationsData = useVisualizationDataSet('anomaly_detection', 'AI Recommendations');
+  const q3HighlightData = useVisualizationDataSet('anomaly_detection', 'Q3 Highlight');
   
   // Animation states for each section
   const [animateDscr, setAnimateDscr] = useState(false);
@@ -184,13 +189,7 @@ export default function AnomalyDetection() {
                     <Box sx={{ width: '99%', height: '100%', position: 'relative' }}>
                       <AIRecommendationsWithGif
                         size="large"
-                        recommendations={[
-                          "Operating cash flow improved steadily from $15K → $28K.",
-                          "However, interest and debt obligations grew faster, reducing coverage in Q2.",
-                          "DSCR fell to 1.10, below the required 1.25 covenant threshold.",
-                          "Improvement in Q3/Q4 signals stabilizing performance.",
-                          "Recommended: Reassess expense control and cross-check shipment delays."
-                        ]}
+                        recommendations={aiRecommendationsData.recommendations}
                         imageTransform="translateY(-8%)"
                         contentContainerSx={{
                           display: "flex",
@@ -227,7 +226,7 @@ export default function AnomalyDetection() {
                   }}
                 >
                   <Box className={styles.panelContent}>
-                  <Q3Highlight />
+                  <Q3Highlight highlights={q3HighlightData.highlights} />
                   </Box>
                 </GradientBorderBox>
               </Box>

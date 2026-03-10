@@ -9,6 +9,7 @@ import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
 import { useConfig } from '../context/ConfigContext';
+import { useVisualizationDataSet } from '../context/AppDatabaseContext';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
@@ -20,6 +21,10 @@ export default function DocumentCentrePage() {
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [addedDocuments, setAddedDocuments] = useState([]);
+  
+  // Get data from appDatabase
+  const caseInfo = useVisualizationDataSet('document_centre', 'Case Information');
+  const docsSummary = useVisualizationDataSet('document_centre', 'Documents Summary');
 
   // Fetch all documents on component mount
   useEffect(() => {
@@ -128,7 +133,7 @@ export default function DocumentCentrePage() {
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  Case no. #CCN3267890
+                  {caseInfo.case_number}
                 </Typography>
                 <Typography
                   sx={{
@@ -140,7 +145,7 @@ export default function DocumentCentrePage() {
                     letterSpacing: 0,
                   }}
                 >
-                  Applied by: Logistics Company
+                  Applied by: {caseInfo.applied_by}
                 </Typography>
               </Stack>
             </Grid>
@@ -156,7 +161,7 @@ export default function DocumentCentrePage() {
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  Documents Received
+                  {docsSummary.title}
                 </Typography>
                 <Typography
                   sx={{

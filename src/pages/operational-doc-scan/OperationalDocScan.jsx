@@ -7,53 +7,54 @@ import NavigationButtons from '../../components/operational-doc-scan/NavigationB
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 import { useConfig } from '../../context/ConfigContext';
+import { useVisualizationDataSet } from '../../context/AppDatabaseContext';
 import styles from './OperationalDocScan.module.css';
-import { useShipmentData } from '../../hooks/useShipmentData';
 import { useButtonSound } from '../../hooks';
-
-
-const operationalFindings = [
-  {
-    title: 'On-Time Delivery (OTIF) Impact',
-    section: 'Tracking OTIF dropped to 91%, missing covenant threshold',
-    usedFor: 'Analyze root cause: late pickups, route inefficiency, or carrier performance'
-  },
-  {
-    title: 'Promised vs Delivered Variance',
-    section: 'Delivery lead times vary ±60% (2-10 days), impacting cash flow',
-    usedFor: 'Standardize lead time estimates and improve forecasting accuracy'
-  },
-  {
-    title: 'Cost Per Mile / Unit Cost Pressure',
-    section: 'Analyze cost per mile vs 8.5 p/mi, understand if cost pressure exists',
-    usedFor: 'Identify cost drivers: fuel, labor, maintenance, or route optimization gaps'
-  },
-  {
-    title: 'Capacity Utilization Decline',
-    section: 'Flagging utilization at 78%, impacting fixed cost absorption',
-    usedFor: 'Review load planning and asset allocation to improve utilization rates'
-  },
-  {
-    title: 'OTIF Gap/Time to Fulfil',
-    section: 'Tracking OTIF at 91% (Above 90%)',
-    usedFor: 'Monitor performance trends and identify improvement opportunities'
-  }
-];
 
 const OperationalDocScan = () => {
   const navigate = useNavigate();
   const { assets } = useConfig();
-  const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
   const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
+  const [scanProgress, setScanProgress] = useState(0);
+  const [scanComplete, setScanComplete] = useState(false);
   
-  // Animation states for each section
+  // Get data from appDatabase
+  const aiAlertData = useVisualizationDataSet('operational_doc_scan', 'AI Alert');
+  const findingsData = useVisualizationDataSet('operational_doc_scan', 'Operational Findings');
+  const shipmentData = useVisualizationDataSet('operational_doc_scan', 'Shipment Details');
+  
+  // Transform database shipment data to match component format
+  const shipments = shipmentData.rows.map((row) => ({
+    name: row.shipment,
+    promisedDate: row.promised,
+    actualDate: row.actual,
+    status: row.status
+  }));
+  
+  const revealStage = scanProgress > 20;
+  
   const [animateOcr, setAnimateOcr] = useState(false);
   const [animateAi, setAnimateAi] = useState(false);
   const [animateShipment, setAnimateShipment] = useState(false);
   const [animateFindings, setAnimateFindings] = useState(false);
   const [animateLogo, setAnimateLogo] = useState(false);
   
-  // Staggered animation timing with 400ms gaps
+  useEffect(() => {
+    const progressInterval = setInterval(() => {
+      setScanProgress((prev) => {
+        if (prev >= 100) {
+          setScanComplete(true);
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 10;
+      });
+    }, 300);
+    
+    return () => clearInterval(progressInterval);
+  }, []);
+  
+
   useEffect(() => {
     const ocrTimer = setTimeout(() => setAnimateOcr(true), 0);
     const shipmentTimer = setTimeout(() => setAnimateShipment(true), 500);
@@ -145,7 +146,7 @@ const OperationalDocScan = () => {
             <AIRecommendationsWithGif 
               size="medium"
               contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"13%",left:"3%"}} 
-              recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} 
+              recommendations={[aiAlertData.message]} 
             />
           </Box>
         </Grow>
@@ -237,7 +238,7 @@ const OperationalDocScan = () => {
       <Grow in={animateFindings} timeout={800}>
         <GradientBorderBox className={styles.detailedFindingsPanel}>
           <DetailedFindings 
-            findings={operationalFindings}
+            findings={findingsData.findings}
             showWarning={false}
             cardMinWidth="220px"
             cardMaxWidth="330px"

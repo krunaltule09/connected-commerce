@@ -6,12 +6,19 @@ import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
 import { useConfig } from '../../context/ConfigContext';
+import { useVisualizationDataSet } from '../../context/AppDatabaseContext';
 
 const DataSimulator = () => {
   const navigate = useNavigate();
   const { assets } = useConfig();
-  const tabs = ['Benefit Blocks', 'ROI Calculator', 'Case Studies / Benchmarks'];
-  const [selectedTab, setSelectedTab] = useState('Benefit Blocks');
+  
+  // Get data from appDatabase
+  const headerData = useVisualizationDataSet('data_simulator', 'Page Header');
+  const speedData = useVisualizationDataSet('data_simulator', 'Speed Metrics');
+  const accuracyData = useVisualizationDataSet('data_simulator', 'Accuracy Metrics');
+  const complianceData = useVisualizationDataSet('data_simulator', 'Compliance Alerts');
+  
+  const [selectedTab, setSelectedTab] = useState(headerData.tabs[0]);
   
   // Custom background styles for each tab
   const getTabStyle = (tab, isSelected) => {
@@ -115,14 +122,14 @@ const DataSimulator = () => {
       {/* Main content */}
       <Box className={styles.contentContainer}>
         <GradientBorderBox className={styles.mainPanel}>
-          <Typography className={styles.panelTitle}>Data Simulator</Typography>
+          <Typography className={styles.panelTitle}>{headerData.title}</Typography>
           
           {/* Tab buttons */}
           <Box sx={{ width: '100%' }}>
             <Stack direction="row" spacing={3} sx={{ overflowX: 'auto', pb: 0.6, justifyContent: 'left' }}>
-              {tabs.map((tab, index) => {
+              {headerData.tabs.map((tab, index) => {
                 const isSelected = selectedTab === tab;
-                const isDisabled = tab === 'ROI Calculator' || tab === 'Case Studies / Benchmarks';
+                const isDisabled = index !== 0;
                 // Removed unused bgColor variable
                 return (
                   <Button
@@ -154,9 +161,9 @@ const DataSimulator = () => {
           <Box className={styles.columnsContainer}>
             {/* Speed column */}
             <GradientBorderBox className={styles.column}>
-              <Typography className={styles.columnTitle}>Speed</Typography>
+              <Typography className={styles.columnTitle}>{speedData.title}</Typography>
               <GradientBorderBox className={styles.columnContentSpeed}>
-                <Typography className={styles.timelineTitle}>Before/After Impact Timeline</Typography>
+                <Typography className={styles.timelineTitle}>{speedData.subtitle}</Typography>
                 
                 <Box className={styles.timelineItem}>
                   <Box className={styles.timelineIconContainer}>
@@ -166,8 +173,8 @@ const DataSimulator = () => {
                     <Box className={styles.timelineConnector}></Box>
                   </Box>
                   <Box className={styles.timelineContent}>
-                    <Typography className={styles.timelineValue} sx={{ fontSize: '41.5px !important', mb: "10px !important" }}>3 Days</Typography>
-                    <Typography className={styles.timelineLabel}>Earlier (Without AI Integration)</Typography>
+                    <Typography className={styles.timelineValue} sx={{ fontSize: '41.5px !important', mb: "10px !important" }}>{speedData.before.value}</Typography>
+                    <Typography className={styles.timelineLabel}>{speedData.before.label}</Typography>
                   </Box>
                 </Box>
                 
@@ -179,8 +186,8 @@ const DataSimulator = () => {
                     <Box className={styles.timelineConnector}></Box>
                   </Box>
                   <Box className={styles.timelineContent}>
-                    <Typography className={styles.timelineValue} sx={{ fontSize: '41.5px !important', mb: "10px !important"  }}>30 Minutes</Typography>
-                    <Typography className={styles.timelineLabel}>Now (with AI)</Typography>
+                    <Typography className={styles.timelineValue} sx={{ fontSize: '41.5px !important', mb: "10px !important"  }}>{speedData.after.value}</Typography>
+                    <Typography className={styles.timelineLabel}>{speedData.after.label}</Typography>
                   </Box>
                 </Box>
               </GradientBorderBox>
@@ -188,138 +195,70 @@ const DataSimulator = () => {
             
             {/* Accuracy column */}
             <GradientBorderBox className={styles.column}>
-              <Typography className={styles.columnTitle}>Accuracy (OCR/NLP Error Reduction Metrics)</Typography>
+              <Typography className={styles.columnTitle}>{accuracyData.title}</Typography>
               <Box className={styles.metricsContainer}>
-                <GradientBorderBox className={styles.metricBox} sx={{ 
-                  mb: 2, 
-                
-                }}>
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <Box sx={{ 
-                      width: 40, 
-                      height: 40, 
-                      borderRadius: '4px', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center' 
-                    }}>
-                      <Box 
-                        component="img"
-                        src={assets['BCM_OperateTable_Covenant_Checks.svg']}
-                        alt="Faster Covenant Checks"
-                        sx={{ 
-                          width: 36, 
-                          height: 36
-                        }}
-                      />
-                    </Box>
-                    <Box sx={{ flex: 1 }}>
-                      <Typography sx={{ fontSize: 15, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>Faster Covenant Checks</Typography>
-                      <Box sx={{ pl: 2 }}>
-                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: 0.5 }}>
-                          <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
-                          Global Logistics Provider secured 65% faster Covenant Checks.
-                        </Typography>
-                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center' }}>
-                          <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
-                          XYZ Company secured 35% faster Covenant Checks.
-                        </Typography>
+                {accuracyData.metrics.map((metric, idx) => (
+                  <GradientBorderBox key={idx} className={styles.metricBox} sx={{ mb: idx === 0 ? 2 : 0 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                      <Box sx={{ 
+                        width: 40, 
+                        height: 40, 
+                        borderRadius: '4px', 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center' 
+                      }}>
+                        <Box 
+                          component="img"
+                          src={assets[idx === 0 ? 'BCM_OperateTable_Covenant_Checks.svg' : 'BCM_OperateTable_Errors_Icon.svg']}
+                          alt={metric.title}
+                          sx={{ width: 36, height: 36 }}
+                        />
+                      </Box>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography sx={{ fontSize: 15, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>{metric.title}</Typography>
+                        <Box sx={{ pl: 2 }}>
+                          {metric.points.map((point, pointIdx) => (
+                            <Typography key={pointIdx} sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: pointIdx === 0 ? 0.5 : 0 }}>
+                              <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
+                              {point}
+                            </Typography>
+                          ))}
+                        </Box>
                       </Box>
                     </Box>
-                  </Box>
-                </GradientBorderBox>
-                
-                <GradientBorderBox className={styles.metricBox} sx={{ 
-                 
-                }}>
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <Box sx={{ 
-                      width: 40, 
-                      height: 40, 
-                      borderRadius: '4px', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center' 
-                    }}>
-                      <Box 
-                        component="img"
-                        src={assets['BCM_OperateTable_Errors_Icon.svg']}
-                        alt="Fewer Errors"
-                        sx={{ 
-                          width: 36, 
-                          height: 36
-                        }}
-                      />
-                    </Box>
-                    <Box sx={{ flex: 1 }}>
-                      <Typography sx={{ fontSize: 15, fontWeight: 500, color: '#FFFFFF', mb: 1 }}>Fewer Errors</Typography>
-                      <Box sx={{ pl: 2 }}>
-                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center', mb: 0.5 }}>
-                          <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
-                          Global Logistics Provider, reduced 40% error in processing.
-                        </Typography>
-                        <Typography sx={{ fontSize: 12, color: '#FFFFFF', display: 'flex', alignItems: 'center' }}>
-                          <Box component="span" sx={{ mr: 1, fontSize: 16 }}>•</Box>
-                          XYZ Company, reduced 40% error in processing.
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                </GradientBorderBox>
+                  </GradientBorderBox>
+                ))}
               </Box>
             </GradientBorderBox>
             
             {/* Compliance column */}
             <GradientBorderBox className={styles.column}>
-              <Typography className={styles.columnTitle}>Compliance</Typography>
+              <Typography className={styles.columnTitle}>{complianceData.title}</Typography>
               <GradientBorderBoxLegacy className={styles.columnContent}>
-                <Box className={styles.alertBox} sx={{ background: 'rgba(255, 67, 50, 0.21)', width: '100%' }}>
-                  <Box className={styles.alertHeader}>
-                    <Box className={styles.alertIcon} sx={{ color: '#F22323' }}></Box>
-                    <Typography className={styles.alertTitle} sx={{ color: '#F22323' }}>Proactive Alerts</Typography>
-                  </Box>
-                  
-                  <Box className={styles.alertDetails} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
-                      <Typography className={styles.alertDetailLabel}>Tampered Recipient</Typography>
-                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>XYZ Holdings (Offshore)</Typography>
+                {complianceData.alerts.map((alert, idx) => (
+                  <Box key={idx} className={styles.alertBox} sx={{ 
+                    background: alert.type === 'critical' ? 'rgba(255, 67, 50, 0.21)' : 'rgba(113, 60, 2, 0.51)', 
+                    width: '100%' 
+                  }}>
+                    <Box className={styles.alertHeader}>
+                      <Box className={styles.alertIcon} sx={{ color: alert.type === 'critical' ? '#F22323' : '#FF8700' }}></Box>
+                      <Typography className={styles.alertTitle} sx={{ color: alert.type === 'critical' ? '#F22323' : '#FF8700' }}>{alert.title}</Typography>
                     </Box>
                     
-                    <Box className={styles.alertDetail} sx={{ width: '35%', minWidth: '200px' }}>
-                      <Typography className={styles.alertDetailLabel}>Tampered Routing Path</Typography>
-                      <Typography className={styles.alertDetailValue}>Rerouted through unknown server node (Hong Kong)</Typography>
-                    </Box>
-                    
-                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
-                      <Typography className={styles.alertDetailLabel}>Blockchain Hash Check</Typography>
-                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>Mismatch – integrity violated</Typography>
-                    </Box>
-                  </Box>
-                </Box>
-                
-                <Box className={styles.alertBox} sx={{ background: 'rgba(113, 60, 2, 0.51)', width: '100%' }}>
-                  <Box className={styles.alertHeader}>
-                    <Box className={styles.alertIcon} sx={{ color: '#FF8700' }}></Box>
-                    <Typography className={styles.alertTitle} sx={{ color: '#FF8700' }}>Missed breaches in manual process</Typography>
-                  </Box>
-                  
-                  <Box className={styles.alertDetails} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
-                      <Typography className={styles.alertDetailLabel}>Covenant Breach</Typography>
-                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>DEBT RATIO EXCEEDED</Typography>
-                    </Box>
-                    
-                    <Box className={styles.alertDetail} sx={{ width: '35%', minWidth: '200px' }}>
-                      <Typography className={styles.alertDetailLabel}>Reporting Deadline</Typography>
-                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>MISSED BY 3 DAYS</Typography>
-                    </Box>
-                    
-                    <Box className={styles.alertDetail} sx={{ width: '30%', minWidth: '120px' }}>
-                      <Typography className={styles.alertDetailLabel}>Document Verification</Typography>
-                      <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>INCOMPLETE</Typography>
+                    <Box className={styles.alertDetails} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                      {alert.details.map((detail, detailIdx) => (
+                        <Box key={detailIdx} className={styles.alertDetail} sx={{ 
+                          width: detailIdx === 1 ? '35%' : '30%', 
+                          minWidth: detailIdx === 1 ? '200px' : '120px' 
+                        }}>
+                          <Typography className={styles.alertDetailLabel}>{detail.label}</Typography>
+                          <Typography className={styles.alertDetailValue} sx={{ whiteSpace: 'nowrap', display: 'block' }}>{detail.value}</Typography>
+                        </Box>
+                      ))}
                     </Box>
                   </Box>
-                </Box>
+                ))}
               </GradientBorderBoxLegacy>
             </GradientBorderBox>
           </Box>
