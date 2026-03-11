@@ -261,9 +261,9 @@ export default [
               title: 'FR Y-14 Schedule Template',
               sections: [
                 {
-                  id: 'borrower',
+                  id: 1,
                   title: 'Borrower / Obligor Information',
-                  fields: [
+                  rows: [
                     { label: 'Obligor name', value: 'Vertex Logistics Corp.' },
                     { label: 'Obligor ID', value: '00492-WHSL' },
                     { label: 'Country', value: 'United States' },
@@ -272,9 +272,9 @@ export default [
                   ]
                 },
                 {
-                  id: 'loan',
+                  id: 2,
                   title: 'Loan Characteristics',
-                  fields: [
+                  rows: [
                     { label: 'Loan Type', value: 'Working Capital Revolver' },
                     { label: 'Origination Date', value: '15-Jan-21' },
                     { label: 'Maturity Date', value: '15-Jan-26' },
@@ -288,30 +288,64 @@ export default [
                   ]
                 },
                 {
-                  id: 'collateral',
+                  id: 3,
                   title: 'Collateral Information',
-                  fields: [
+                  rows: [
                     { label: 'Collateral Type', value: 'Accounts Receivable + Inventory' },
                     { label: 'Collateral Code', value: '24' },
                     { label: 'Collateral Value', value: '$2,10,00,000' },
                     { label: 'LTV (Calculated)', value: '64%' },
-                    { label: 'Lien Position', value: '1st Lien' }
+                    { label: 'Lien Position', value: '1st Lien' },
+                    { label: 'Guarantee Indicator', value: 'Yes (Corporate Guarantee)' },
+                    { label: 'Guarantee Amount', value: '$1,80,00,000' }
                   ]
                 },
                 {
-                  id: 'covenant',
-                  title: 'Covenant & Compliance',
-                  fields: [
-                    { label: 'Financial Covenants', value: 'DSCR ≥ 1.25, Debt/Equity ≤ 3.0' },
-                    { label: 'Covenant Status', value: 'Breach (DSCR = 1.10)' },
-                    { label: 'Waiver Requested', value: 'Yes' },
-                    { label: 'Waiver Status', value: 'Under Review' }
+                  id: 4,
+                  title: 'Covenant Information (Extracted)',
+                  type: 'covenant_table',
+                  rows: [
+                    {
+                      covenant_name: 'DSCR',
+                      threshold: '≥ 1.20',
+                      current_value: '0.75',
+                      status: 'At Risk',
+                      status_color: '#FF9800'
+                    },
+                    {
+                      covenant_name: 'LTV',
+                      threshold: '≤ 70%',
+                      current_value: '64%',
+                      status: 'Compliant',
+                      status_color: '#4CAF50'
+                    },
+                    {
+                      covenant_name: 'Leverage Ratio',
+                      threshold: '≤ 3.50x',
+                      current_value: '3.20x',
+                      status: 'Compliant',
+                      status_color: '#4CAF50'
+                    },
+                    {
+                      covenant_name: 'ESG Filing',
+                      threshold: 'Q2 Filing Required',
+                      current_value: 'Overdue',
+                      status: 'Breached',
+                      status_color: '#F44336'
+                    },
+                    {
+                      covenant_name: 'Financial Reporting',
+                      threshold: 'Quarterly, within 30 days',
+                      current_value: 'Submitted',
+                      status: 'Compliant',
+                      status_color: '#4CAF50'
+                    }
                   ]
                 },
                 {
-                  id: 'credit',
+                  id: 5,
                   title: 'Credit Quality & Risk Metrics',
-                  fields: [
+                  rows: [
                     { label: 'Internal Risk Rating', value: '6 (Moderate Risk)' },
                     { label: 'Prob. of Default (PD)', value: '1.90%' },
                     { label: 'Loss Given Default (LGD)', value: '38%' },
@@ -322,9 +356,9 @@ export default [
                   ]
                 },
                 {
-                  id: 'performance',
+                  id: 6,
                   title: 'Performance & Payment Info',
-                  fields: [
+                  rows: [
                     { label: 'Days Past Due', value: '0' },
                     { label: 'Past Due Indicator', value: 'No' },
                     { label: 'Last Payment Date', value: '12-Sep-25' },
@@ -334,9 +368,9 @@ export default [
                   ]
                 },
                 {
-                  id: 'accounting',
+                  id: 7,
                   title: 'Accounting & Reporting Attributes',
-                  fields: [
+                  rows: [
                     { label: 'Accounting Standard', value: 'GAAP' },
                     { label: 'Accrual Status', value: 'Performing' },
                     { label: 'Impairment Status', value: 'Not Impaired' },
@@ -346,9 +380,9 @@ export default [
                   ]
                 },
                 {
-                  id: 'regulatory',
+                  id: 8,
                   title: 'Regulatory Schedule Mapping (Meta Fields)',
-                  fields: [
+                  rows: [
                     { label: 'DSCR (Reported)', value: '0.75' },
                     { label: 'DSCR (Trend YoY)', value: '5%' },
                     { label: 'LTV (Reported)', value: '64%' },
