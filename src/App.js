@@ -25,6 +25,24 @@ function App() {
     audios: IS_DEV_MODE,
   });
 
+  // database
+  useEffect(() => {
+    if (config.database || IS_DEV_MODE) return;
+    const loadConfig = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/screen/all?station=operate&sector=BCM&role=touch_table`);
+        if (!response.ok) return;
+        const data = await response.json();
+        setConfig((config) => ({ ...config, database: data }));
+      } catch (error) {
+        console.error('Failed to fetch database:', error);
+      }
+    };
+    loadConfig();
+    const interval = setInterval(loadConfig, 5000);
+    return () => clearInterval(interval);
+  }, [config.database]);
+
   // images
   useEffect(() => {
     if (config.images) return;
