@@ -25,8 +25,7 @@ export const useAppDatabase = () => {
 
 export const useScreenData = (screenName) => {
   const database = useAppDatabase();
-  const persona = database[0];
-  const screen = persona?.screens?.find(s => s.screen_name === screenName);
+  const screen = database?.screens?.find(s => s.screen_name === screenName);
   return screen || null;
 };
 

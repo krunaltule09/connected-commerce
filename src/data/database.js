@@ -1,14 +1,10 @@
-/**
- * Application Database
- * Single persona with multiple screens
- */
-
-export default [
-  {
-    id: 1,
-    persona_name: 'Financial Operations Manager',
-    sector: 'Banking & Financial Services',
-    role: 'Covenant Monitoring',
+const database = {
+    persona: {
+      persona_id: 2,
+      station: "operate",
+      sector: "BCM",
+      role: "touch_table",
+    },
     screens: [
       {
         screen_id: 1,
@@ -620,5 +616,6 @@ export default [
         ]
       }
     ]
-  }
-];
+};
+
+export default database;
