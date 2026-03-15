@@ -1,14 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useSoundContext } from '../context/SoundContext';
 
-/**
- * Custom hook for playing sounds
- * @param {string} soundPath - Path to the sound file
- * @param {Object} options - Additional options
- * @param {number} options.volume - Volume level (0-1)
- * @param {boolean} options.preload - Whether to preload the sound
- * @returns {Function} - Function to play the sound
- */
 const useSound = (soundPath, { volume = 1, preload = true } = {}) => {
   const audioRef = useRef(null);
   const { soundEnabled } = useSoundContext();

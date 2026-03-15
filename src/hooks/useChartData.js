@@ -1,13 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
 
-/**
- * Custom hook for processing and animating chart data
- * 
- * @param {Array} data - Raw data array for the chart
- * @param {boolean} isReady - Whether the data is ready to be displayed
- * @param {string} metricKey - The key for the current metric (used for re-animation)
- * @returns {Object} - Processed chart data and animation state
- */
 export const useChartData = (data, isReady, metricKey) => {
   const [animationProgress, setAnimationProgress] = useState(0);
   

@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
 import { useButtonSound } from '../../hooks';
-import { useConfig } from '../../context/ConfigContext';
-import { useVisualizationDataSet } from '../../context/AppDatabaseContext';
+import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 
 const LandingPage = () => {
   const navigate = useNavigate();

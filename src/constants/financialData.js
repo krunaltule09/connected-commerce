@@ -1,7 +1,3 @@
-/**
- * Financial metrics data for the dashboard charts
- */
-
 export const FINANCIAL_METRICS = {
   'Revenue': [
     ["Jan", 10.2],
@@ -40,9 +36,6 @@ export const FINANCIAL_METRICS = {
   ]
 };
 
-/**
- * Metric units for formatting values
- */
 export const METRIC_UNITS = {
   'Revenue': 'B',
   'EBITDA': 'B',
@@ -51,12 +44,6 @@ export const METRIC_UNITS = {
   'Interest Expense': 'M',
 };
 
-/**
- * Format a value based on its metric type
- * @param {string} metric - The metric type
- * @param {number} value - The value to format
- * @returns {string} - Formatted value with appropriate unit
- */
 export const formatMetricValue = (metric, value) => {
   const unit = METRIC_UNITS[metric] || '';
   return `$${value}${unit}`;

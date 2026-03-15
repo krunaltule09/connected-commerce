@@ -3,12 +3,6 @@ import { motion } from 'framer-motion';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { useConfig } from '../../context/ConfigContext';
 
-/**
- * Loading animation component for charts
- * 
- * @param {number} progress - Loading progress (0-100)
- * @returns {JSX.Element} - Loading animation component
- */
 export const ChartLoadingAnimation = ({ progress }) => (
   <motion.div
     key="loading"
@@ -64,14 +58,6 @@ export const ChartLoadingAnimation = ({ progress }) => (
   </motion.div>
 );
 
-/**
- * Chart container with entrance animation
- * 
- * @param {Object} props - Component props
- * @param {ReactNode} props.children - Chart content
- * @param {string} props.metricKey - Current metric key (for animation triggering)
- * @returns {JSX.Element} - Animated chart container
- */
 export const AnimatedChartContainer = ({ children, metricKey }) => (
   <motion.div
     key={`chart-${metricKey}`}
@@ -88,13 +74,6 @@ export const AnimatedChartContainer = ({ children, metricKey }) => (
   </motion.div>
 );
 
-/**
- * Chart background with styling
- * 
- * @param {Object} props - Component props
- * @param {ReactNode} props.children - Chart content
- * @returns {JSX.Element} - Styled chart background
- */
 export const ChartBackground = ({ children }) => {
   const { assets } = useConfig();
   return (

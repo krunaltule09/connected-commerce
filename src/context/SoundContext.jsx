@@ -7,11 +7,6 @@ const SoundContext = createContext({
   toggleSound: () => {},
 });
 
-/**
- * Provider component for sound settings
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.children - Child components
- */
 export const SoundProvider = ({ children }) => {
   const { assets } = useConfig();
   const [soundEnabled, setSoundEnabled] = useState(() => {
@@ -49,10 +44,6 @@ export const SoundProvider = ({ children }) => {
   );
 };
 
-/**
- * Custom hook to access sound context
- * @returns {Object} Sound context value
- */
 export const useSoundContext = () => useContext(SoundContext);
 
 export default SoundContext;

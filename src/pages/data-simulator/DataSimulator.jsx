@@ -5,8 +5,7 @@ import GradientBorderBoxLegacy from '../../components/common/GradientBorderBoxLe
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useButtonSound } from '../../hooks';
 import styles from './DataSimulator.module.css';
-import { useConfig } from '../../context/ConfigContext';
-import { useVisualizationDataSet } from '../../context/AppDatabaseContext';
+import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 
 const DataSimulator = () => {
   const navigate = useNavigate();

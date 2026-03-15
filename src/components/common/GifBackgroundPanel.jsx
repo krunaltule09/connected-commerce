@@ -42,14 +42,6 @@ const Bullet = styled(Box)(({ theme }) => ({
   marginTop: '3px',
 }));
 
-/**
- * A reusable component that displays content with a GIF background
- * @param {Object} props - Component props
- * @param {string} props.size - Size of the panel ('medium' or 'large')
- * @param {Array<string>} props.bulletPoints - List of bullet point text items
- * @param {Object} props.sx - Additional styles for the container
- * @param {Object} props.contentContainerSx - Additional styles for the content container
- */
 const GifBackgroundPanel = ({ 
   size = 'medium',
   bulletPoints = [], 

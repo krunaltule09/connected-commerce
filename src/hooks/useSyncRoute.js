@@ -3,14 +3,6 @@ import { useLocation } from 'react-router-dom';
 import navigationService from '../services/NavigationService';
 import ROUTE_MAPPING from '../config/routeMapping';
 
-/**
- * Custom hook to synchronize routes between connected-commerce and operate-experience apps
- * 
- * This hook automatically sends navigation events to the operate-experience app
- * whenever the route changes in the connected-commerce app, based on the defined mapping
- * 
- * @returns {Object} syncState - Information about the current sync state
- */
 export function useSyncRoute(enabled = true) {
   const location = useLocation();
   const [syncStatus, setSyncStatus] = useState({

@@ -1,14 +1,3 @@
-/**
- * Utility functions for sound effects
- */
-
-/**
- * Plays a button click sound
- * @param {Object} options - Options for the sound
- * @param {string} options.soundPath - Path to the sound file (defaults to button click if not provided)
- * @param {number} options.volume - Volume level (0-1)
- * @param {Object} options.assets - Assets map from config
- */
 export const playButtonSound = ({ soundPath, volume = 0.5, assets } = {}) => {
   const a = assets || {};
   const path = soundPath ?? a['BCM_OperateTable_Button_Click.mp3'];
@@ -30,12 +19,6 @@ export const playButtonSound = ({ soundPath, volume = 0.5, assets } = {}) => {
   }
 };
 
-/**
- * Creates a click handler with sound
- * @param {Function} onClick - Original click handler
- * @param {Object} options - Options for the sound
- * @returns {Function} - Enhanced click handler with sound
- */
 export const withButtonSound = (onClick, options = {}) => {
   return (event) => {
     playButtonSound(options);

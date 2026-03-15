@@ -45,14 +45,6 @@ const Bullet = styled(Box)(({ theme }) => ({
   marginTop: '3px',
 }));
 
-/**
- * A reusable component that displays content with a Lottie animation background
- * @param {Object} props - Component props
- * @param {Object} props.animationData - Lottie animation JSON data
- * @param {Array<string>} props.bulletPoints - List of bullet point text items
- * @param {React.ReactNode} props.icon - Optional icon to display at the top
- * @param {Object} props.sx - Additional styles for the container
- */
 const LottieBackgroundPanel = ({ 
   animationData,
   bulletPoints = [], 

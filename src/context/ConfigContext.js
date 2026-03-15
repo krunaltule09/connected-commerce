@@ -17,3 +17,32 @@ export const useConfig = () => {
   }
   return config;
 };
+
+export const useAppDatabase = () => {
+  const { database } = useConfig();
+  return database;
+};
+
+export const useScreenData = (screenName) => {
+  const database = useAppDatabase();
+  const persona = database[0];
+  const screen = persona?.screens?.find(s => s.screen_name === screenName);
+  return screen || null;
+};
+
+export const useVisualizationData = (screenName, visualizationName) => {
+  const screen = useScreenData(screenName);
+  if (!screen) return null;
+  const visualization = screen.visualizations?.find(v => v.name === visualizationName);
+  return visualization || null;
+};
+
+export const useScreenVisualizations = (screenName) => {
+  const screen = useScreenData(screenName);
+  return screen?.visualizations || [];
+};
+
+export const useVisualizationDataSet = (screenName, visualizationName) => {
+  const visualization = useVisualizationData(screenName, visualizationName);
+  return visualization?.data_set || null;
+};

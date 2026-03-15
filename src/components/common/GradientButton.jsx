@@ -3,16 +3,6 @@ import { Button } from '@mui/material';
 import { useSound } from '../../hooks';
 import { useConfig } from '../../context/ConfigContext';
 
-/**
- * A reusable button component that matches the styling from FinancialMetricsSection
- * @param {Object} props - Component props
- * @param {string} props.variant - Button variant: 'primary' (green), 'secondary' (yellow), or 'metric' (background image)
- * @param {boolean} props.active - Whether the button is active/selected
- * @param {React.ReactNode} props.children - Button content
- * @param {Object} props.sx - Additional styles
- * @param {Function} props.onClick - Click handler
- * @param {Object} props.rest - Additional props
- */
 const GradientButton = ({ 
   variant = 'default', 
   active = false, 

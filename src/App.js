@@ -10,10 +10,8 @@ import { FinancialDataProvider } from './context/FinancialDataContext';
 import { ScanningProvider } from './context/ScanningContext';
 import { SoundProvider } from './context/SoundContext';
 import { ConfigProvider } from './context/ConfigContext';
-import { AppDatabaseProvider } from './context/AppDatabaseContext';
 import DEFAULT_ASSETS from './data/assetPaths';
 import database from './data/database';
-import appDatabase from './data/appDatabase';
 
 const CMS_BASE_URL = process.env.REACT_APP_CMS_BASE_URL || '';
 const IS_DEV_MODE = true;
@@ -158,26 +156,24 @@ function App() {
 
   return (
     <ConfigProvider config={config}>
-      <AppDatabaseProvider appDatabase={appDatabase}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Router>
-            <SoundProvider>
-              <SyncRouteProvider>
-                <ScanningProvider>
-                  <FinancialDataProvider>
-                    <Routes>
-                      {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={route.element} />
-                      ))}
-                    </Routes>
-                  </FinancialDataProvider>
-                </ScanningProvider>
-              </SyncRouteProvider>
-            </SoundProvider>
-          </Router>
-        </ThemeProvider>
-      </AppDatabaseProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <SoundProvider>
+            <SyncRouteProvider>
+              <ScanningProvider>
+                <FinancialDataProvider>
+                  <Routes>
+                    {routes.map((route, index) => (
+                      <Route key={index} path={route.path} element={route.element} />
+                    ))}
+                  </Routes>
+                </FinancialDataProvider>
+              </ScanningProvider>
+            </SyncRouteProvider>
+          </SoundProvider>
+        </Router>
+      </ThemeProvider>
     </ConfigProvider>
   );
 }

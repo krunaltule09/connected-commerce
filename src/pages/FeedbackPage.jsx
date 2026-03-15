@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 // Removed unused import: CheckCircleOutlineIcon
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
-import { useVisualizationDataSet } from '../context/AppDatabaseContext';
+import { useVisualizationDataSet } from '../context/ConfigContext';
 import Lottie from 'lottie-react';
 import { ANIMATIONS } from '../assets/animations';
 

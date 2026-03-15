@@ -4,14 +4,6 @@ import { handleDocumentDragStart } from '../utils';
 import { GradientBorderBox } from './common';
 import { useConfig } from '../context/ConfigContext';
 
-/**
- * DocumentCard component displays a document preview with its title
- * Used in the horizontal scrollable list in DocumentCentrePage
- * Styled to match the design in the screenshot
- * @param {Object} document - The document object to display
- * @param {Function} onClick - Function to call when card is clicked
- * @param {Boolean} isSelected - Whether the document is selected
- */
 export default function DocumentCard({ document, onClick, isSelected }) {
   const { assets } = useConfig();
   return (

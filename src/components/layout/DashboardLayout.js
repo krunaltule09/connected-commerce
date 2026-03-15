@@ -3,15 +3,6 @@ import { Box, Container, Grid, Grow, Fade } from '@mui/material';
 import styles from './DashboardLayout.module.css';
 import { useConfig } from '../../context/ConfigContext';
 
-/**
- * DashboardLayout component that handles the overall layout of the dashboard
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.leftSection - Content for the left section
- * @param {React.ReactNode} props.middleSection - Content for the middle section
- * @param {React.ReactNode} props.rightSection - Content for the right section
- * @param {Function} props.onBack - Function to handle back button click
- * @param {Function} props.onNext - Function to handle next button click
- */
 export default function DashboardLayout({ 
   leftSection, 
   middleSection, 

@@ -7,7 +7,7 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import RightSection from '../components/dashboard/RightSection';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
-import { useVisualizationDataSet } from '../context/AppDatabaseContext';
+import { useVisualizationDataSet } from '../context/ConfigContext';
 
 export default function FinancialDashboard() {
   const navigate = useNavigate();

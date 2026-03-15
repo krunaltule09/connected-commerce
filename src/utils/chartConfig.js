@@ -1,11 +1,5 @@
 import { METRIC_UNITS } from '../constants/financialData';
 
-/**
- * Generate chart dataset configuration
- * 
- * @param {Array} data - The data for the chart
- * @returns {Object} - Chart dataset configuration
- */
 export const createChartDataset = (data) => ({
   label: 'YoY Trend',
   data,
@@ -22,13 +16,6 @@ export const createChartDataset = (data) => ({
   hoverBorderWidth: 2,
 });
 
-/**
- * Generate chart options
- * 
- * @param {string} metricTitle - The title of the metric
- * @param {Function} formatValue - Function to format tooltip values
- * @returns {Object} - Chart options configuration
- */
 export const createChartOptions = (metricTitle, formatValue) => ({
   responsive: true,
   maintainAspectRatio: true,

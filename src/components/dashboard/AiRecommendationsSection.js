@@ -2,12 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import AIRecommendationsWithGif from '../anomaly-detection/AIRecommendationsWithGif';
 
-/**
- * AiRecommendationsSection component that displays AI recommendations
- * @param {Object} props - Component props
- * @param {Array<string>} props.recommendations - List of AI recommendations
- * @param {string} props.size - Size of the panel ('medium' or 'large')
- */
 export default function AiRecommendationsSection({ recommendations, size = 'medium', containerStyle = {} }) {
   return (
     <motion.div

@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-/**
- * Service for cross-application navigation using NATS
- */
 class NavigationService {
   constructor() {
     this.baseUrl = process.env.REACT_APP_NATS_SERVICE_URL || process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
@@ -20,14 +17,6 @@ class NavigationService {
     });
   }
 
-  /**
-   * Send a navigation event via NATS
-   * @param {string} action - The action type
-   * @param {string} targetAppId - Target application ID
-   * @param {string} route - Target route to navigate to
-   * @param {Object} data - Additional data to send
-   * @returns {Promise} - Promise resolving to the response
-   */
   async sendNavigationEvent(action, targetAppId, route, data = {}) {
     console.log('🚀 NavigationService.sendNavigationEvent called:', {
       action,
@@ -68,12 +57,6 @@ class NavigationService {
     }
   }
 
-  /**
-   * Navigate to a route in the operate-experience app
-   * @param {string} route - Target route
-   * @param {Object} data - Additional data to send
-   * @returns {Promise} - Promise resolving to the response
-   */
   navigateToOperateExperience(route, data = {}) {
     return this.sendNavigationEvent('NAVIGATE', 'operate-experience', route, data);
   }

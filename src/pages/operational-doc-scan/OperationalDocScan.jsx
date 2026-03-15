@@ -6,8 +6,7 @@ import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecom
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
-import { useConfig } from '../../context/ConfigContext';
-import { useVisualizationDataSet } from '../../context/AppDatabaseContext';
+import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 import styles from './OperationalDocScan.module.css';
 import { useButtonSound } from '../../hooks';
 

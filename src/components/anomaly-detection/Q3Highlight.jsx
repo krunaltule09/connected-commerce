@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 
-/**
- * @typedef {Object} HighlightItem
- * @property {string} title - The title of the highlight
- * @property {string} description - The description of the highlight
- */
-
-/**
- * @typedef {Object} Q3HighlightProps
- * @property {HighlightItem[]} [highlights] - Array of highlight items to display
- */
-
 const defaultHighlights = [
   {
     title: "DSCR Improvement",
@@ -35,11 +24,6 @@ const defaultHighlights = [
   }
 ];
 
-/**
- * Q3Highlight component displays a list of highlights for Q3
- * @param {Q3HighlightProps} props - Component props
- * @returns {JSX.Element} - Rendered component
- */
 export default function Q3Highlight({ highlights: propHighlights }) {
   const [highlights, setHighlights] = useState(propHighlights || defaultHighlights);
 

@@ -6,8 +6,7 @@ import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
 import { useButtonSound } from '../hooks';
-import { useConfig } from '../context/ConfigContext';
-import { useVisualizationDataSet } from '../context/AppDatabaseContext';
+import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
 
 // Icons
 import LoanAgreementIcon from '@mui/icons-material/ArticleOutlined';
