@@ -30,8 +30,8 @@ const DataSimulator = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${assets['BCM_OperateTable_Button_Background_Active.svg']}')`
-        : `url('${assets['BCM_OperateTable_Button_Background_Alt.svg']}')`,
+        ? `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Active.svg']}')`
+        : `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -103,7 +103,7 @@ const DataSimulator = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -283,7 +283,7 @@ const DataSimulator = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={assets['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
         onClick={() => { navigate('/'); window.location.reload(); }}

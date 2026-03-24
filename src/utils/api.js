@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { ASSETS } from '../data/assetPaths';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || '',
 });
+
+const ASSETS={}
 
 export async function fetchDocuments() {
   try {
@@ -19,11 +20,11 @@ export async function fetchDocuments() {
       let previewUrl;
       
       if (svgIndex === 0) {
-        previewUrl = ASSETS['BCM_OperateTable_Document_Template_1.svg'];
+        previewUrl = ASSETS['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'];
       } else if (svgIndex === 1) {
-        previewUrl = ASSETS['BCM_OperateTable_Document_Template_2.svg'];
+        previewUrl = ASSETS['Banking_Capital_Market_Operate_Table_Document_Template_2.svg'];
       } else {
-        previewUrl = ASSETS['BCM_OperateTable_Document_Template_3.svg'];
+        previewUrl = ASSETS['Banking_Capital_Market_Operate_Table_Document_Template_3.svg'];
       }
       
       return {
@@ -67,11 +68,11 @@ export async function fetchDocuments() {
       const svgIndex = i % 3;
       
       if (svgIndex === 0) {
-        url = ASSETS['BCM_OperateTable_Document_Template_1.svg'];
+        url = ASSETS['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'];
       } else if (svgIndex === 1) {
-        url = ASSETS['BCM_OperateTable_Document_Template_2.svg'];
+        url = ASSETS['Banking_Capital_Market_Operate_Table_Document_Template_2.svg'];
       } else {
-        url = ASSETS['BCM_OperateTable_Document_Template_3.svg'];
+        url = ASSETS['Banking_Capital_Market_Operate_Table_Document_Template_3.svg'];
       }
       
       return {

@@ -14,7 +14,7 @@ const DocumentPreviewPanel = ({ scanProgress }) => {
         <Box className={styles.documentImageContainer}>
           <Box 
             component="img"
-            src={assets['BCM_OperateTable_Scanned_Doc_Preview.svg']}
+            src={assets['Banking_Capital_Market_Operate_Table_Scanned_Doc_Preview.svg']}
             alt="Document Preview"
             className={styles.documentImage}
           />

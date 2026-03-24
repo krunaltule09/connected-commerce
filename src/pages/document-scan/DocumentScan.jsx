@@ -29,14 +29,14 @@ const DocumentScan = () => {
           muted
           playsInline
           className={styles.fullScreenVideo}
-          src={assets['BCM_OperateTable_Document_Scanning_Video.mp4']}
+          src={assets['Banking_Capital_Market_Operate_Table_Document_Scanning_Video.mp4']}
         />
       </Box>
       
       {/* EY Logo - keeping only this element */}
       <Box 
         component="img"
-        src={assets['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

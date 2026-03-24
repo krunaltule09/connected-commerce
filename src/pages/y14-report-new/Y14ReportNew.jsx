@@ -117,7 +117,7 @@ export default function Y14ReportNew() {
         playsInline 
         className={styles.backgroundVideo}
       >
-        <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+        <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video.mp4']} type="video/mp4" />
       </video>
       
       {/* Background Overlay */}
@@ -619,7 +619,7 @@ export default function Y14ReportNew() {
                 {/* Workflow Steps SVG */}
                 <Box
                   component="img"
-                  src={assets['BCM_OperateTable_Report_Workflow_Step.svg']}
+                  src={assets['Banking_Capital_Market_Operate_Table_Report_Workflow_Step.svg']}
                   alt="Report Builder Workflow Steps"
                   className={styles.workflowStepsImage}
                 />
@@ -629,7 +629,7 @@ export default function Y14ReportNew() {
                   {/* First Document */}
                   <Box
                     component="img"
-                    src={assets['BCM_OperateTable_Report_Builder_Document.svg']}
+                    src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
                     alt="Report Builder Document 1"
                     className={styles.docImage}
                   />
@@ -637,7 +637,7 @@ export default function Y14ReportNew() {
                   {/* Second Document */}
                   <Box
                     component="img"
-                    src={assets['BCM_OperateTable_Report_Builder_Document.svg']}
+                    src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
                     alt="Report Builder Document 2"
                     className={styles.docImage}
                   />
@@ -645,7 +645,7 @@ export default function Y14ReportNew() {
                   {/* Third Document */}
                   <Box
                     component="img"
-                    src={assets['BCM_OperateTable_Report_Builder_Document.svg']}
+                    src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
                     alt="Report Builder Document 3"
                     className={styles.docImage}
                   />
@@ -693,7 +693,7 @@ export default function Y14ReportNew() {
       <Fade in={animateLogo} timeout={800}>
         <Box 
           component="img"
-          src={assets['BCM_OperateTable_EY_Logo.svg']}
+          src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
           alt="EY Logo"
           className={styles.eyLogo}
           onClick={() => { navigate('/'); window.location.reload(); }}

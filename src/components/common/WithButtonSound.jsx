@@ -5,7 +5,7 @@ import { useConfig } from '../../context/ConfigContext';
 const WithButtonSound = (Component, defaultSoundPath) => {
   const WrappedComponent = React.forwardRef((props, ref) => {
     const { assets } = useConfig();
-    const soundPath = defaultSoundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
+    const soundPath = defaultSoundPath ?? assets['Banking_Capital_Market_Operate_Table_Button_Click.mp3'];
     const playSound = useSound(soundPath, { volume: 0.5 });
     
     const handleClick = (event) => {
@@ -25,7 +25,7 @@ const WithButtonSound = (Component, defaultSoundPath) => {
 
 export const useSoundClick = (onClick, soundPath) => {
   const { assets } = useConfig();
-  const path = soundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
+  const path = soundPath ?? assets['Banking_Capital_Market_Operate_Table_Button_Click.mp3'];
   const playSound = useSound(path, { volume: 0.5 });
   
   return React.useCallback((event) => {

@@ -26,7 +26,7 @@ export const SoundProvider = ({ children }) => {
 
   // Preload the button click sound
   useEffect(() => {
-    const audio = new Audio(assets['BCM_OperateTable_Button_Click.mp3']);
+    const audio = new Audio(assets['Banking_Capital_Market_Operate_Table_Button_Click.mp3']);
     audio.preload = 'auto';
     
     // Just trigger the load but don't play

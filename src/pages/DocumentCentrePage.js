@@ -55,7 +55,7 @@ export default function DocumentCentrePage() {
           const updatedDoc = { ...full };
           if (!updatedDoc.url) {
             const svgIndex = parseInt(updatedDoc.id) % 3;
-            updatedDoc.url = assets[['BCM_OperateTable_Document_Template_1.svg', 'BCM_OperateTable_Document_Template_2.svg', 'BCM_OperateTable_Document_Template_3.svg'][svgIndex]];
+            updatedDoc.url = assets[['Banking_Capital_Market_Operate_Table_Document_Template_1.svg', 'BCM_OperateTable_Document_Template_2.svg', 'BCM_OperateTable_Document_Template_3.svg'][svgIndex]];
           }
           
           setDocuments((prev) => 

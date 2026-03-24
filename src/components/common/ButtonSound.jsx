@@ -8,7 +8,7 @@ import { useConfig } from '../../context/ConfigContext';
  */
 const ButtonSound = () => {
   const { assets } = useConfig();
-  const playSound = useSound(assets['BCM_OperateTable_Button_Click.mp3'], { volume: 0.5, preload: true });
+  const playSound = useSound(assets['Banking_Capital_Market_Operate_Table_Button_Click.mp3'], { volume: 0.5, preload: true });
   
   useEffect(() => {
     // Function to handle click events using event delegation

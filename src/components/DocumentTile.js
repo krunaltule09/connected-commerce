@@ -64,7 +64,7 @@ export default function DocumentTile({ doc, selected, onSelect }) {
             ) : (
               <Box
                 component="img"
-                src={assets['BCM_OperateTable_Vector_Icon.svg']}
+                src={assets['Banking_Capital_Market_Operate_Table_Vector_Icon.svg']}
                 alt=""
                 sx={{ width: 31, height: 31 }}
               />

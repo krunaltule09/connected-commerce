@@ -1,6 +1,6 @@
 export const playButtonSound = ({ soundPath, volume = 0.5, assets } = {}) => {
   const a = assets || {};
-  const path = soundPath ?? a['BCM_OperateTable_Button_Click.mp3'];
+  const path = soundPath ?? a['Banking_Capital_Market_Operate_Table_Button_Click.mp3'];
   try {
     const audio = new Audio(path);
     audio.volume = volume;

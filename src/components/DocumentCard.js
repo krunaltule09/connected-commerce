@@ -98,7 +98,7 @@ export default function DocumentCard({ document, onClick, isSelected }) {
         >
           <Box
             component="img"
-            src={document.url || assets['BCM_OperateTable_Vector_Icon.svg']}
+            src={document.url || assets['Banking_Capital_Market_Operate_Table_Vector_Icon.svg']}
             alt={document.name}
             sx={{
               maxWidth: '100%',

@@ -5,9 +5,9 @@ export default function CovenantTile({ covenant }) {
   const { assets } = useConfig();
   const getIndicatorIcon = (status) => {
     if (status === 'alert') {
-      return { icon: assets['BCM_OperateTable_Alert_Icon.svg'], color: '#fff' };
+      return { icon: assets['Banking_Capital_Market_Operate_Table_Alert_Icon.svg'], color: '#fff' };
     }
-    return { icon: assets['BCM_OperateTable_Shield_Alert.svg'], color: '#fff' };
+    return { icon: assets['Banking_Capital_Market_Operate_Table_Shield_Alert.svg'], color: '#fff' };
   };
 
   const indicatorDetails = getIndicatorIcon(covenant.status);

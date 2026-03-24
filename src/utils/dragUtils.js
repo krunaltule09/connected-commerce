@@ -25,7 +25,7 @@ export const createDocumentTileGhostImage = (doc, assets) => (e) => {
   
   // Add the same document icon as in the tile
   const iconImg = document.createElement('img');
-  iconImg.src = a['BCM_OperateTable_Vector_Icon.svg'];
+  iconImg.src = a['Banking_Capital_Market_Operate_Table_Vector_Icon.svg'];
   iconImg.style.width = '31px';
   iconImg.style.height = '31px';
   previewArea.appendChild(iconImg);

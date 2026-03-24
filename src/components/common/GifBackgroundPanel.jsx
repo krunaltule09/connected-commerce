@@ -52,8 +52,8 @@ const GifBackgroundPanel = ({
   const { assets } = useConfig();
   const isLarge = size === 'large';
   const backgroundGif = isLarge
-    ? assets['BCM_OperateTable_AI_UI_Large.gif']
-    : assets['BCM_OperateTable_AI_UI_Medium.gif'];
+    ? assets['Banking_Capital_Market_Operate_Table_AI_UI_Large.gif']
+    : assets['Banking_Capital_Market_Operate_Table_AI_UI_Medium.gif'];
     
   console.log('GifBackgroundPanel rendering with size:', size);
   console.log('Using background GIF:', backgroundGif);

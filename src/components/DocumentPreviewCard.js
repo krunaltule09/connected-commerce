@@ -53,7 +53,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={assets['BCM_OperateTable_Document_Template_1.svg']}
+                      src={assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -79,7 +79,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={assets['BCM_OperateTable_Document_Template_2.svg']}
+                      src={assets['Banking_Capital_Market_Operate_Table_Document_Template_2.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',
@@ -105,7 +105,7 @@ export default function DocumentPreviewCard({ document, onDropDocumentId }) {
                   }}>
                     <Box 
                       component="img"
-                      src={assets['BCM_OperateTable_Document_Template_3.svg']}
+                      src={assets['Banking_Capital_Market_Operate_Table_Document_Template_3.svg']}
                       alt="Document Preview"
                       sx={{ 
                         maxHeight: '64%',

@@ -205,11 +205,11 @@ export default function DocumentCardDetails({ document }) {
   
   // All document pages including cover
   const pages = [
-    { id: 0, url: document.url || assets['BCM_OperateTable_Document_Template_1.svg'] },
-    { id: 1, url: assets['BCM_OperateTable_Document_Template_1.svg'] },
-    { id: 2, url: assets['BCM_OperateTable_Document_Template_2.svg'] },
-    { id: 3, url: assets['BCM_OperateTable_Document_Template_3.svg'] },
-    { id: 4, url: document.url || assets['BCM_OperateTable_Document_Template_1.svg'] },
+    { id: 0, url: document.url || assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'] },
+    { id: 1, url: assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'] },
+    { id: 2, url: assets['Banking_Capital_Market_Operate_Table_Document_Template_2.svg'] },
+    { id: 3, url: assets['Banking_Capital_Market_Operate_Table_Document_Template_3.svg'] },
+    { id: 4, url: document.url || assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'] },
   ];
 
   return (

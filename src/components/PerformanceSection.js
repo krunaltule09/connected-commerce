@@ -17,7 +17,7 @@ export default function PerformanceSection() {
       >
         <Box
           component="img"
-          src={assets['BCM_OperateTable_Performance_Section.svg']}
+          src={assets['Banking_Capital_Market_Operate_Table_Performance_Section.svg']}
           alt="Performance Metrics"
           sx={{
             maxWidth: '90%',

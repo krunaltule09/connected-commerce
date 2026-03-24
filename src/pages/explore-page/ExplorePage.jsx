@@ -26,7 +26,7 @@ const ExplorePage = () => {
       <Box 
         className={styles.backgroundOverlay}
         sx={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${assets['BCM_OperateTable_Page_Layout_2.svg']}')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${assets['Banking_Capital_Market_Operate_Table_Page_Layout_2.svg']}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -47,7 +47,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={assets['BCM_OperateTable_Loan_Service.svg']}
+                src={assets['Banking_Capital_Market_Operate_Table_Loan_Service.svg']}
                 alt="Loan Service" 
                 className={styles.svgIcon}
               />
@@ -59,7 +59,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={assets['BCM_OperateTable_Transparent_Compliance.svg']}
+                src={assets['Banking_Capital_Market_Operate_Table_Transparent_Compliance.svg']}
                 alt="Transparent Compliance" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -75,7 +75,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={assets['BCM_OperateTable_Automated_Servicing.svg']}
+                src={assets['Banking_Capital_Market_Operate_Table_Automated_Servicing.svg']}
                 alt="Automated Servicing" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -88,7 +88,7 @@ const ExplorePage = () => {
             >
               <Box 
                 component="img" 
-                src={assets['BCM_OperateTable_Automated_Servicing_Alt.svg']}
+                src={assets['Banking_Capital_Market_Operate_Table_Automated_Servicing_Alt.svg']}
                 alt="Automated Servicing 2" 
                 className={styles.svgIcon}
                 sx={{ opacity: 0.5 }}
@@ -118,7 +118,7 @@ const ExplorePage = () => {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={assets['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />

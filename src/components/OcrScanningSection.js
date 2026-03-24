@@ -70,7 +70,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundImage: `url('${assets['BCM_OperateTable_OCR_Background.svg']}')`,
+                  backgroundImage: `url('${assets['Banking_Capital_Market_Operate_Table_OCR_Background.svg']}')`,
                   // backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.3)',

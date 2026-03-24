@@ -261,7 +261,7 @@ const EnterpriseLoanServicing = () => {
         loop
         muted
         onLoadedData={handleVideoLoad}
-        src={assets['BCM_OperateTable_Loan_Background_Video.mp4']}
+        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video.mp4']}
       />
       <Overlay />
 
@@ -395,7 +395,7 @@ const EnterpriseLoanServicing = () => {
           timeout={1000}
           style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
         >
-          <Logo src={assets['BCM_OperateTable_EY_Logo.svg']} alt="EY Logo" />
+          <Logo src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']} alt="EY Logo" />
         </Zoom>
         
       </Container>

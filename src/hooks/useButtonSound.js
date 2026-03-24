@@ -4,7 +4,7 @@ import { useConfig } from '../context/ConfigContext';
 
 export const useButtonSound = (onClick, { soundPath, volume = 0.5 } = {}) => {
   const { assets } = useConfig();
-  const path = soundPath ?? assets['BCM_OperateTable_Button_Click.mp3'];
+  const path = soundPath ?? assets['Banking_Capital_Market_Operate_Table_Button_Click.mp3'];
   // Get sound enabled state from context
   const { soundEnabled } = useSoundContext();
   

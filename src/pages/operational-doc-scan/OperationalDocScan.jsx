@@ -115,7 +115,7 @@ const OperationalDocScan = () => {
         }
       }}>
         <video muted playsInline>
-          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -210,9 +210,9 @@ const OperationalDocScan = () => {
                             className={`${styles.statusIndicator} ${isOnTime ? styles.statusOnTime : styles.statusDelayed}`}
                           >
                             {isOnTime ? (
-                              <Box component="img" src={assets['BCM_OperateTable_On_Time_Status.svg']} alt="On Time" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={assets['Banking_Capital_Market_Operate_Table_On_Time_Status.svg']} alt="On Time" sx={{ width: '100%', height: '100%' }} />
                             ) : (
-                              <Box component="img" src={assets['BCM_OperateTable_Delayed_Status.svg']} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
+                              <Box component="img" src={assets['Banking_Capital_Market_Operate_Table_Delayed_Status.svg']} alt="Delayed" sx={{ width: '100%', height: '100%' }} />
                             )}
                           </Box>
                           <Box sx={{textTransform:"capitalize"}}>{shipment.status}</Box>
@@ -264,7 +264,7 @@ const OperationalDocScan = () => {
         <Zoom in={animateLogo} timeout={800}>
           <Box 
             component="img"
-            src={assets['BCM_OperateTable_EY_Logo.svg']}
+            src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

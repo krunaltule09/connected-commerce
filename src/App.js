@@ -10,27 +10,27 @@ import { FinancialDataProvider } from './context/FinancialDataContext';
 import { ScanningProvider } from './context/ScanningContext';
 import { SoundProvider } from './context/SoundContext';
 import { ConfigProvider } from './context/ConfigContext';
-import DEFAULT_ASSETS from './data/assetPaths';
 import database from './data/database';
 
-const CMS_BASE_URL = process.env.REACT_APP_CMS_BASE_URL || '';
 const IS_DEV_MODE = true;
 
 function App() {
   const [config, setConfig] = useState({
     database: IS_DEV_MODE ? database : null,
-    assets: IS_DEV_MODE ? DEFAULT_ASSETS : {},
-    images: IS_DEV_MODE,
-    animations: IS_DEV_MODE,
-    audios: IS_DEV_MODE,
+    assets: {},
+    images: false,
+    animations: false,
+    audios: false,
+    videos: false
   });
 
-  // database
+  
+   // database
   useEffect(() => {
     if (config.database || IS_DEV_MODE) return;
     const loadConfig = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/screen/all?station=operate&sector=BCM&role=touch_table`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/config?station=${process.env.REACT_APP_STATION}&sector=${process.env.REACT_APP_SECTOR}`);
         if (!response.ok) return;
         const data = await response.json();
         setConfig((config) => ({ ...config, database: data }));
@@ -42,26 +42,27 @@ function App() {
     const interval = setInterval(loadConfig, 5000);
     return () => clearInterval(interval);
   }, [config.database]);
-
   // images
+  console.log('config', config)
+    //annimations
   useEffect(() => {
-    if (config.images) return;
-    const loadImages = async () => {
+    if (config.animations) return;
+    const loadConfig = async () => {
       try {
         const response = await fetch(
-          `${CMS_BASE_URL}/api/images?filters[station][$eq]=Big_Screen&populate=*&filters[sector][$eq]=Connected_Commerce_Operate&pagination[pageSize]=100`,
+          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/animations?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
         );
         if (!response.ok) return;
         const data = await response.json();
-        setConfig((prev) => ({
-          ...prev,
-          images: true,
+        setConfig((config) => ({
+          ...config,
+          animations: true,
           assets: {
-            ...prev.assets,
-            ...data?.data?.[0]?.image?.reduce(
+            ...config.assets,
+            ...data?.data?.[0]?.animated_image?.reduce(
               (acc, item) => ({
                 ...acc,
-                [item.name]: `${CMS_BASE_URL}${item.url}`,
+                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
               }),
               {},
             ),
@@ -71,99 +72,125 @@ function App() {
         console.error('Failed to fetch images:', error);
       }
     };
-    loadImages();
-    const interval = setInterval(loadImages, 5000);
+    loadConfig();
+    const interval = setInterval(loadConfig, 5000);
     return () => clearInterval(interval);
-  }, [config.images]);
-
-  // animations
+  }, [config.animations]);
   useEffect(() => {
-    if (config.animations) return;
-    const loadAnimations = async () => {
+    if (config.images) return;
+    const loadConfig = async () => {
       try {
         const response = await fetch(
-          `${CMS_BASE_URL}/api/animations?filters[station][$eq]=Big_Screen&populate=*&filters[sector][$eq]=Connected_Commerce_Operate&pagination[pageSize]=100`,
+          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/images?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
         );
         if (!response.ok) return;
         const data = await response.json();
-        setConfig((prev) => ({
-          ...prev,
-          animations: true,
+        setConfig((config) => ({
+          ...config,
+          images: true,
           assets: {
-            ...prev.assets,
-            ...data?.data?.[0]?.animated_image?.reduce(
+            ...config.assets,
+            ...data?.data?.[0]?.image?.reduce(
               (acc, item) => ({
                 ...acc,
-                [item.name]: `${CMS_BASE_URL}${item.url}`,
+                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
               }),
               {},
             ),
           },
         }));
       } catch (error) {
-        console.error('Failed to fetch animations:', error);
+        console.error('Failed to fetch images:', error);
       }
     };
-    loadAnimations();
-    const interval = setInterval(loadAnimations, 5000);
+    loadConfig();
+    const interval = setInterval(loadConfig, 5000);
     return () => clearInterval(interval);
-  }, [config.animations]);
-
-  // audios
+  }, [config.images]);
+  // videos
   useEffect(() => {
-    if (config.audios) return;
-    const loadAudios = async () => {
+    if (config.videos) return;
+    const loadConfig = async () => {
       try {
         const response = await fetch(
-          `${CMS_BASE_URL}/api/audios?filters[station][$eq]=Big_Screen&populate=*&filters[sector][$eq]=Connected_Commerce_Operate&pagination[pageSize]=100`,
+          `${process.env.REACT_APP_CMS_BASE_URL}/streaming-service/streaming-url?sector=${process.env.REACT_APP_SECTOR}&station=${process.env.REACT_APP_STATION}`,
         );
         if (!response.ok) return;
         const data = await response.json();
-        setConfig((prev) => ({
-          ...prev,
+        setConfig((config) => ({
+          ...config,
+          videos: true,
+          assets: {
+            ...config.assets,
+            ...data?.data?.reduce(
+              (acc, item) => ({
+                ...acc,
+                [item.title]:item.lq_streaming_url,
+              }),
+              {},
+            ),
+          },
+        }));
+      } catch (error) {
+        console.error('Failed to fetch images:', error);
+      }
+    };
+    loadConfig();
+    const interval = setInterval(loadConfig, 5000);
+    return () => clearInterval(interval);
+  }, [config.videos]);
+  // audios
+    useEffect(() => {
+    if (config.audios) return;
+    const loadConfig = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/audios?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
+        );
+        if (!response.ok) return;
+        const data = await response.json();
+
+        setConfig((config) => ({
+          ...config,
           audios: true,
           assets: {
-            ...prev.assets,
+            ...config.assets,
             ...data?.data?.[0]?.audio?.reduce(
               (acc, item) => ({
                 ...acc,
-                [item.name]: `${CMS_BASE_URL}${item.url}`,
+                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
               }),
               {},
             ),
           },
         }));
       } catch (error) {
-        console.error('Failed to fetch audios:', error);
+        console.error('Failed to fetch images:', error);
       }
     };
-    loadAudios();
-    const interval = setInterval(loadAudios, 5000);
+    loadConfig();
+    const interval = setInterval(loadConfig, 5000);
     return () => clearInterval(interval);
   }, [config.audios]);
 
-  if (!config.images || !config.animations || !config.audios || !config.database) {
+  if (!config.images || !config.animations || !config.audios || !config.database || !config.videos) {
     return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          width: '100vw',
-          backgroundColor: '#000',
-          color: '#fff',
-          fontFamily: 'EYInterstate, sans-serif',
-        }}
-      >
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100vw',
+        backgroundColor: '#000',
+        color: '#fff',
+        fontFamily: 'EYInterstate, sans-serif',
+      }}>
         <div style={{ textAlign: 'center' }}>
-          <h2
-            style={{
-              fontSize: '1.5rem',
-              fontWeight: 500,
-              marginBottom: '1rem',
-            }}
-          >
+          <h2 style={{
+            fontSize: '1.5rem',
+            fontWeight: 500,
+            marginBottom: '1rem',
+          }}>
             Connecting to Server...
           </h2>
           <p style={{ opacity: 0.7 }}>Fetching configuration...</p>
@@ -171,6 +198,7 @@ function App() {
       </div>
     );
   }
+
 
   return (
     <ConfigProvider config={config}>

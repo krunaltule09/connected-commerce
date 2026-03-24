@@ -59,7 +59,7 @@ export default function DashboardLayout({
         }
       }}>
         <video muted playsInline>
-          <source src={assets['BCM_OperateTable_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video.mp4']} type="video/mp4" />
         </video>
       </Box>
       
@@ -152,7 +152,7 @@ export default function DashboardLayout({
         <Fade in={animateLogo} timeout={1000}>
           <Box 
             component="img"
-            src={assets['BCM_OperateTable_EY_Logo.svg']}
+            src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
             alt="EY Logo"
             className={styles.eyLogo}
             sx={{

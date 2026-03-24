@@ -109,7 +109,7 @@ export default function CovenantBreachLog({ documents }) {
       </ActionButtons>
       
       <AlertBox>
-        <Box component="img" src={assets['BCM_OperateTable_Alert_Icon.svg']} alt="Alert Icon" sx={{ width: 20, height: 20, flexShrink: 0 }} />
+        <Box component="img" src={assets['Banking_Capital_Market_Operate_Table_Alert_Icon.svg']} alt="Alert Icon" sx={{ width: 20, height: 20, flexShrink: 0 }} />
         <Typography variant="body2" color="white" fontWeight="medium">
           DSCR = 1.1 in Q2 (Below 1.25 limit)
         </Typography>
@@ -120,7 +120,7 @@ export default function CovenantBreachLog({ documents }) {
           <Grid item xs={12} sm={4} key={doc.id}>
             <DocumentCard elevation={0}>
               <DocumentHeader>
-                <Box component="img" src={assets['BCM_OperateTable_Light_Circle_Outline.svg']} alt="Document Icon" sx={{ width: 28, height: 28, flexShrink: 0 }} />
+                <Box component="img" src={assets['Banking_Capital_Market_Operate_Table_Light_Circle_Outline.svg']} alt="Document Icon" sx={{ width: 28, height: 28, flexShrink: 0 }} />
                 <Box>
                   <Typography variant="body2" color="white">
                     {doc.title}
@@ -134,7 +134,7 @@ export default function CovenantBreachLog({ documents }) {
               <DocumentFooter>
                 <ViewButton>
                   View
-                  <Box component="img" src={assets['BCM_OperateTable_Arrow_Icon.svg']} alt="Arrow Icon" sx={{ width: 7, height: 12, ml: 0.5, mt: 0.25 }} />
+                  <Box component="img" src={assets['Banking_Capital_Market_Operate_Table_Arrow_Icon.svg']} alt="Arrow Icon" sx={{ width: 7, height: 12, ml: 0.5, mt: 0.25 }} />
                 </ViewButton>
               </DocumentFooter>
             </DocumentCard>

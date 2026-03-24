@@ -97,8 +97,8 @@ export default function Y14ReportGeneration() {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage: isSelected 
-        ? `url('${assets['BCM_OperateTable_Button_Background_Default.svg']}')`
-        : `url('${assets['BCM_OperateTable_Button_Background_Alt.svg']}')`,
+        ? `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Default.svg']}')`
+        : `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Alt.svg']}')`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -131,7 +131,7 @@ export default function Y14ReportGeneration() {
       <Box 
         className={styles.backgroundOverlay} 
         sx={{ 
-          backgroundImage: `url(${assets['BCM_OperateTable_Operational_Doc_Scan_BG.svg']})`,
+          backgroundImage: `url(${assets['Banking_Capital_Market_Operate_Table_Operational_Doc_Scan_BG.svg']})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
@@ -184,7 +184,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={assets['BCM_OperateTable_Balance_Document.svg']}
+                  src={assets['Banking_Capital_Market_Operate_Table_Balance_Document.svg']}
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -305,7 +305,7 @@ export default function Y14ReportGeneration() {
               <Box className={styles.reportPreviewContainer}>
                 <Box 
                   component="img"
-                  src={assets['BCM_OperateTable_Balance_Document.svg']}
+                  src={assets['Banking_Capital_Market_Operate_Table_Balance_Document.svg']}
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />
@@ -424,7 +424,7 @@ export default function Y14ReportGeneration() {
       {/* EY Logo */}
       <Box 
         component="img"
-        src={assets['BCM_OperateTable_EY_Logo.svg']}
+        src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
         alt="EY Logo"
         className={styles.eyLogo}
       />
