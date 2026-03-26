@@ -163,53 +163,31 @@ const iconMap = {
   'Blockchain ledger': <BlockchainLedgerIcon />,
 };
 
-// Path mapping for services
-const pathMap = {
-  'Loan Agreement': '/loan-agreement',
-  'Covenant Register': '/covenant-register',
-  'FR Y-14 Reporting': '/y14-report',
-  'Financials & ESG Reports': '/financials-esg',
-  'KYC/AML file': '/kyc-aml',
-  'Risk Dashboard': '/risk-dashboard',
-  'Client Communication': '/client-communication',
-  'Blockchain ledger': '/blockchain-ledger',
-};
-
 const EnterpriseLoanServicing = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [animationReady, setAnimationReady] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
-  const [menuItems, setMenuItems] = useState([]);
   const navigate = useNavigate();
   const { assets } = useConfig();
   
-  // Get data from appDatabase
-  const headerData = useVisualizationDataSet('enterprise_loan_servicing', 'Page Header');
-  const buttonData = useVisualizationDataSet('enterprise_loan_servicing', 'Activate Button');
+  // Get data from database
+  const headerData = useVisualizationDataSet('enterprise_loan_servicing', 'Page Header') || { main_title: '', subtitle: '' };
+  const buttonData = useVisualizationDataSet('enterprise_loan_servicing', 'Activate Button') || { label: '', target: '' };
+  const menuData = useVisualizationDataSet('enterprise_loan_servicing', 'Service Menu') || { services: [] };
   
-  // Fetch available services from API
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/available-services`);
-        const result = await response.json();
-        const services = result.data?.services || [];
-        
-        const items = services.map((service) => ({
-          icon: iconMap[service.name] || <LoanAgreementIcon />,
-          text: service.name,
-          path: pathMap[service.name] || '/',
-        }));
-        
-        setMenuItems(items);
-      } catch (error) {
-        console.error('Failed to fetch available services:', error);
-      }
-    };
-    
-    fetchServices();
-  }, []);
+  // Debug logging
+  console.log('EnterpriseLoanServicing - headerData:', headerData);
+  console.log('EnterpriseLoanServicing - buttonData:', buttonData);
+  console.log('EnterpriseLoanServicing - menuData:', menuData);
+  
+  // Transform database services to menu items with icons
+  const menuItems = (menuData.services || []).map((service) => ({
+    icon: iconMap[service.name] || <LoanAgreementIcon />,
+    text: service.name,
+    path: service.path,
+  }));
+  
+  console.log('EnterpriseLoanServicing - menuItems:', menuItems);
 
 
   // Trigger animations after video is loaded

@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { FINANCIAL_METRICS, formatMetricValue, METRIC_UNITS } from '../constants/financialData';
+import React, { createContext, useContext, useState } from 'react';
+import database from '../data/database';
 
 // Create the context
 const FinancialDataContext = createContext();
@@ -7,67 +7,38 @@ const FinancialDataContext = createContext();
 // Provider component
 export function FinancialDataProvider({ children }) {
   const [selectedMetric, setSelectedMetric] = useState('Revenue');
-  const [apiMetrics, setApiMetrics] = useState(null);
-  const [infoLinesByMetric, setInfoLinesByMetric] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  
+  // Get financial metrics from database
+  const financialDashboardScreen = database.screens.find(
+    screen => screen.screen_name === 'financial_dashboard'
+  );
+  const metricsVisualization = financialDashboardScreen?.visualizations.find(
+    viz => viz.name === 'Financial Metrics'
+  );
+  const databaseMetrics = metricsVisualization?.data_set?.metrics || {};
 
-  // Fetch financial metrics from API
-  useEffect(() => {
-    const fetchMetrics = async () => {
-      try {
-        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/case/1/extracted-key-metrics`);
-        const result = await response.json();
-        const metricsData = result.data?.metrics || [];
-        
-        // Transform API data to match expected format
-        const metricsObj = {};
-        const infoLinesObj = {};
-        
-        metricsData.forEach((metric) => {
-          const dataPoints = metric.dataPoints || {};
-          // Convert dataPoints object to array format: [["Jan", 10.2], ["Feb", 10.8], ...]
-          metricsObj[metric.name] = Object.entries(dataPoints).map(([key, value]) => [key, value]);
-          // Store infoLines for each metric
-          infoLinesObj[metric.name] = metric.infoLines || [];
-        });
-        
-        setApiMetrics(metricsObj);
-        setInfoLinesByMetric(infoLinesObj);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch financial metrics from API:', error);
-        setIsLoading(false);
-      }
-    };
-    
-    fetchMetrics();
-  }, []);
-
-  // Get the data for the selected metric (use API data if available, fallback to hardcoded)
+  // Get the data for the selected metric from database
   const getSelectedData = () => {
-    if (apiMetrics && apiMetrics[selectedMetric]) {
-      return apiMetrics[selectedMetric];
-    }
-    return FINANCIAL_METRICS[selectedMetric] || [];
+    const metricData = databaseMetrics[selectedMetric];
+    return metricData?.dataPoints || [];
   };
 
-  // Get info lines for the selected metric
+  // Get info lines for the selected metric from database
   const getInfoLines = () => {
-    return infoLinesByMetric[selectedMetric] || [];
+    const metricData = databaseMetrics[selectedMetric];
+    return metricData?.infoLines || [];
   };
 
-  // Format value based on metric type
+  // Format value based on metric type from database
   const formatValue = (value) => {
-    return formatMetricValue(selectedMetric, value);
+    const metricData = databaseMetrics[selectedMetric];
+    const unit = metricData?.unit || '';
+    return `$${value}${unit}`;
   };
 
-  // Get available metrics (use API data if available, fallback to hardcoded)
+  // Get available metrics from database
   const getMetrics = () => {
-    if (apiMetrics) {
-      return Object.keys(apiMetrics);
-    }
-    return Object.keys(FINANCIAL_METRICS);
+    return Object.keys(databaseMetrics);
   };
 
   // Context value
@@ -78,8 +49,7 @@ export function FinancialDataProvider({ children }) {
     getInfoLines,
     formatValue,
     metrics: getMetrics(),
-    isLoading,
-    infoLinesByMetric
+    isLoading: false
   };
 
   return (

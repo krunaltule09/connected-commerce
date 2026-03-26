@@ -49,6 +49,64 @@ const database = {
               label: 'Touch here to activate servicing mode',
               target: '/document-centre'
             }
+          },
+          {
+            id: 3,
+            name: 'Service Menu',
+            type: 'menu_grid',
+            position: 'top_grid',
+            data_set: {
+              services: [
+                {
+                  id: 1,
+                  name: 'Loan Agreement',
+                  description: 'Manage and track loan agreements, terms, and conditions',
+                  path: '/loan-agreement'
+                },
+                {
+                  id: 2,
+                  name: 'Covenant Register',
+                  description: 'Monitor and manage loan covenants and compliance requirements',
+                  path: '/covenant-register'
+                },
+                {
+                  id: 3,
+                  name: 'FR Y-14 Reporting',
+                  description: 'Federal Reserve Y-14 regulatory reporting and submissions',
+                  path: '/y14-report'
+                },
+                {
+                  id: 4,
+                  name: 'Financials & ESG Reports',
+                  description: 'Financial statements and Environmental, Social, and Governance reports',
+                  path: '/financials-esg'
+                },
+                {
+                  id: 5,
+                  name: 'KYC/AML file',
+                  description: 'Know Your Customer and Anti-Money Laundering documentation and verification',
+                  path: '/kyc-aml'
+                },
+                {
+                  id: 6,
+                  name: 'Risk Dashboard',
+                  description: 'Comprehensive risk monitoring and analytics dashboard',
+                  path: '/risk-dashboard'
+                },
+                {
+                  id: 7,
+                  name: 'Client Communication',
+                  description: 'Client communication portal and messaging system',
+                  path: '/client-communication'
+                },
+                {
+                  id: 8,
+                  name: 'Blockchain ledger',
+                  description: 'Distributed ledger technology for transaction tracking and verification',
+                  path: '/blockchain-ledger'
+                }
+              ]
+            }
           }
         ]
       },
@@ -84,14 +142,102 @@ const database = {
             position: 'center',
             data_set: {
               documents: [
-                { id: 1, name: 'Financial Statement Q1', type: 'pdf' },
-                { id: 2, name: 'Financial Statement Q2', type: 'pdf' },
-                { id: 3, name: 'Financial Statement Q3', type: 'pdf' },
-                { id: 4, name: 'Financial Statement Q4', type: 'pdf' },
-                { id: 5, name: 'ESG Report', type: 'pdf' },
-                { id: 6, name: 'Loan Agreement', type: 'pdf' },
-                { id: 7, name: 'Covenant Register', type: 'pdf' },
-                { id: 8, name: 'KYC Documents', type: 'pdf' }
+                {
+                  id: 1,
+                  name: 'Loan Agreement',
+                  url: null,
+                  description: 'Primary loan agreement document outlining terms and conditions',
+                  type: 'pdf',
+                  filename: 'Loan_Agreement.pdf'
+                },
+                {
+                  id: 2,
+                  name: 'Financial Statement',
+                  url: null,
+                  description: 'Company financial statements and performance metrics',
+                  type: 'pdf',
+                  filename: 'Financial_Statement.pdf'
+                },
+                {
+                  id: 3,
+                  name: 'Covenant Summary',
+                  url: null,
+                  description: 'Summary of loan covenants and compliance tracking',
+                  type: 'xlsx',
+                  filename: 'Covenant_Summary.xlsx'
+                },
+                {
+                  id: 4,
+                  name: 'ESG Report 02',
+                  url: null,
+                  description: 'Environmental, Social, and Governance report',
+                  type: 'pdf',
+                  filename: 'ESG_Report_02.pdf'
+                },
+                {
+                  id: 5,
+                  name: 'FR Y-14 Analysis',
+                  url: null,
+                  description: 'Federal Reserve Y-14 regulatory analysis and reporting',
+                  type: 'pdf',
+                  filename: 'FR_Y_14_Analysis.pdf'
+                },
+                {
+                  id: 6,
+                  name: 'Risk Assessment',
+                  url: null,
+                  description: 'Comprehensive risk assessment document',
+                  type: 'docx',
+                  filename: 'Risk_Assessment.docx'
+                },
+                {
+                  id: 7,
+                  name: 'Balance Sheet',
+                  url: null,
+                  description: 'Company balance sheet and financial position',
+                  type: 'xlsx',
+                  filename: 'Balance_Sheet.xlsx'
+                },
+                {
+                  id: 8,
+                  name: 'Quarterly Report',
+                  url: null,
+                  description: 'Quarterly financial and operational report',
+                  type: 'pdf',
+                  filename: 'Quarterly_Report.pdf'
+                },
+                {
+                  id: 9,
+                  name: 'Compliance Certificate',
+                  url: null,
+                  description: 'Compliance certification and regulatory documentation',
+                  type: 'pdf',
+                  filename: 'Compliance_Certificate.pdf'
+                },
+                {
+                  id: 10,
+                  name: 'Market Analysis',
+                  url: null,
+                  description: 'Market analysis and industry trends presentation',
+                  type: 'pptx',
+                  filename: 'Market_Analysis.pptx'
+                },
+                {
+                  id: 11,
+                  name: 'Credit Approval',
+                  url: null,
+                  description: 'Credit approval documentation and decision rationale',
+                  type: 'pdf',
+                  filename: 'Credit_Approval.pdf'
+                },
+                {
+                  id: 12,
+                  name: 'Facility Agreement',
+                  url: null,
+                  description: 'Facility agreement terms and conditions',
+                  type: 'pdf',
+                  filename: 'Facility_Agreement.pdf'
+                }
               ]
             }
           },
@@ -128,14 +274,78 @@ const database = {
             type: 'metrics_grid',
             position: 'center_panel',
             data_set: {
-              metrics: [
-                { label: 'Revenue', value: '$12.5M', trend: '+5%' },
-                { label: 'EBITDA', value: '$1.2M', trend: '+3%' },
-                { label: 'Total Debt', value: '$3.8M', trend: '-2%' },
-                { label: 'Equity', value: '$1.2M', trend: '+4%' },
-                { label: 'DSCR', value: '0.75', status: 'warning' },
-                { label: 'LTV', value: '64%', status: 'normal' }
-              ]
+              metrics: {
+                'Revenue': {
+                  dataPoints: [
+                    ["Jan", 10.2],
+                    ["Feb", 10.8],
+                    ["Mar", 11.5],
+                    ["Apr", 12],
+                    ["May", 12.5]
+                  ],
+                  unit: 'B',
+                  infoLines: [
+                    'Revenue growth supports minimum turnover covenant, reducing risk of operating underperformance.',
+                    'Stable YoY increase indicates low likelihood of cash-flow stress, supporting DSCR maintenance.'
+                  ]
+                },
+                'EBITDA': {
+                  dataPoints: [
+                    ["Jan", 0.9],
+                    ["Feb", 1],
+                    ["Mar", 1.05],
+                    ["Apr", 1.1],
+                    ["May", 1.2]
+                  ],
+                  unit: 'B',
+                  infoLines: [
+                    'Rising EBITDA strengthens Debt/EBITDA covenant compliance, improving borrower creditworthiness.',
+                    'Sustained profitability trend reduces risk of breach on interest coverage or leverage covenants.'
+                  ]
+                },
+                'Debt': {
+                  dataPoints: [
+                    ["Jan", 3.2],
+                    ["Feb", 3.4],
+                    ["Mar", 3.5],
+                    ["Apr", 3.7],
+                    ["May", 3.8]
+                  ],
+                  unit: 'B',
+                  infoLines: [
+                    'Current leverage remains within allowable Debt/EBITDA thresholds, though trending upward.',
+                    'Monitoring required to avoid breaching maximum leverage or total indebtedness covenants.'
+                  ]
+                },
+                'Equity': {
+                  dataPoints: [
+                    ["Jan", 1],
+                    ["Feb", 1.05],
+                    ["Mar", 1.1],
+                    ["Apr", 1.15],
+                    ["May", 1.2]
+                  ],
+                  unit: 'B',
+                  infoLines: [
+                    'Stable equity position supports Net Worth / Equity Maintenance covenants.',
+                    'Equity cushion reduces risk of LTV covenant deterioration during adverse market cycles.'
+                  ]
+                },
+                'Interest Expense': {
+                  dataPoints: [
+                    ["Jan", 180],
+                    ["Feb", 190],
+                    ["Mar", 195],
+                    ["Apr", 205],
+                    ["May", 210]
+                  ],
+                  unit: 'M',
+                  infoLines: [
+                    'Rising interest expense may pressure Interest Coverage covenants if EBITDA slows.',
+                    'Higher servicing costs could impact DSCR compliance, requiring ongoing monitoring.'
+                  ]
+                }
+              }
             }
           },
           {

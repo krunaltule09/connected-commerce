@@ -1,5 +1,3 @@
-import { METRIC_UNITS } from '../constants/financialData';
-
 export const createChartDataset = (data) => ({
   label: 'YoY Trend',
   data,
@@ -118,8 +116,7 @@ export const createChartOptions = (metricTitle, formatValue) => ({
         },
         padding: 10,
         callback: function(value) {
-          const unit = METRIC_UNITS[metricTitle] || '';
-          return '$' + value + unit;
+          return formatValue(value);
         }
       },
       beginAtZero: true,

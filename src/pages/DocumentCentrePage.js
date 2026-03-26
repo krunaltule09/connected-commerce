@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AddIcon from '@mui/icons-material/Add';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { fetchDocuments, fetchDocumentById } from '../utils/api';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
@@ -21,22 +20,43 @@ export default function DocumentCentrePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [addedDocuments, setAddedDocuments] = useState([]);
   
-  // Get data from appDatabase
+  // Get data from database
   const caseInfo = useVisualizationDataSet('document_centre', 'Case Information');
   const docsSummary = useVisualizationDataSet('document_centre', 'Documents Summary');
+  const documentListData = useVisualizationDataSet('document_centre', 'Document List');
 
-  // Fetch all documents on component mount
-  useEffect(() => {
-    let mounted = true;
-    fetchDocuments(assets).then((docs) => {
-      if (!mounted) return;
-      setDocuments(docs || []);
-      if (docs && docs.length) setSelectedId(String(docs[0].id));
+  // Transform database documents with preview URLs
+  const documentsFromDb = useMemo(() => {
+    if (!documentListData?.documents) return [];
+    
+    return documentListData.documents.map((doc, index) => {
+      // Rotate between the three SVG files for preview
+      const svgIndex = index % 3;
+      let previewUrl;
+      
+      if (svgIndex === 0) {
+        previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'];
+      } else if (svgIndex === 1) {
+        previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_2.svg'];
+      } else {
+        previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_3.svg'];
+      }
+      
+      return {
+        ...doc,
+        id: String(doc.id),
+        url: previewUrl
+      };
     });
-    return () => {
-      mounted = false;
-    };
-  }, [assets]);
+  }, [documentListData, assets]);
+
+  // Set documents from database on mount
+  useEffect(() => {
+    setDocuments(documentsFromDb);
+    if (documentsFromDb.length > 0) {
+      setSelectedId(String(documentsFromDb[0].id));
+    }
+  }, [documentsFromDb]);
 
   // Update selected document when selectedId changes
   useEffect(() => {
@@ -44,31 +64,7 @@ export default function DocumentCentrePage() {
     
     const doc = documents.find((d) => String(d.id) === String(selectedId));
     setSelectedDocument(doc || null);
-    
-    // Fetch full document details if needed
-    if (doc && !doc.url) {
-      let active = true;
-      fetchDocumentById(selectedId, assets).then((full) => {
-        if (!active) return;
-        if (full) {
-          // Ensure the document has a URL, or assign one based on index
-          const updatedDoc = { ...full };
-          if (!updatedDoc.url) {
-            const svgIndex = parseInt(updatedDoc.id) % 3;
-            updatedDoc.url = assets[['Banking_Capital_Market_Operate_Table_Document_Template_1.svg', 'BCM_OperateTable_Document_Template_2.svg', 'BCM_OperateTable_Document_Template_3.svg'][svgIndex]];
-          }
-          
-          setDocuments((prev) => 
-            prev.map((d) => (String(d.id) === String(updatedDoc.id) ? updatedDoc : d))
-          );
-          setSelectedDocument(updatedDoc);
-        }
-      });
-      return () => {
-        active = false;
-      };
-    }
-  }, [selectedId, documents, assets]);
+  }, [selectedId, documents]);
 
   const handleSelectDocument = (doc) => {
     setSelectedId(String(doc.id));

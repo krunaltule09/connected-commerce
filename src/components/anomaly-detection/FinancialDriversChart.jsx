@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { useFinancialDriversData } from '../../hooks';
+import { useVisualizationDataSet } from '../../context/ConfigContext';
 
 /**
  * Financial Drivers Chart Component
  * Displays quarter-by-quarter financial drivers using an area chart
  */
 export default function FinancialDriversChart({ style = {} }) {
-  const { data, loading } = useFinancialDriversData();
+  // Get data from database
+  const driversData = useVisualizationDataSet('anomaly_detection', 'Financial Drivers') || { data_points: [] };
+  const data = driversData.data_points || [];
+  
   const [animationProgress, setAnimationProgress] = useState(0);
 
   // Initialize animation progress immediately to prevent incorrect initial rendering
   useEffect(() => {
-    if (!loading && data.length > 0) {
+    if (data.length > 0) {
       // Set animation progress to 0.001 immediately to establish proper baseline position
       setAnimationProgress(0.001);
       
@@ -23,27 +26,7 @@ export default function FinancialDriversChart({ style = {} }) {
       }, 300); // Reduced delay for smoother transition
       return () => clearTimeout(timer);
     }
-  }, [loading, data]);
-
-  if (loading) {
-    return (
-      <Box 
-        sx={{ 
-          width: '100%', 
-          height: '100%', 
-          minHeight: 400,
-          backgroundColor: '#1A1A24', 
-          borderRadius: 2, 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          ...style
-        }}
-      >
-        <Typography sx={{ color: 'rgba(252, 252, 252, 0.5)' }}>Loading...</Typography>
-      </Box>
-    );
-  }
+  }, [data]);
 
   return (
     <Box 

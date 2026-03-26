@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { useDSCRData } from '../../hooks';
+import { useVisualizationDataSet } from '../../context/ConfigContext';
 
 /**
  * Custom Tooltip Component for DSCR Chart
@@ -45,39 +45,23 @@ const CustomTooltip = ({ active, payload }) => {
  * Displays quarterly DSCR (Debt Service Coverage Ratio) with covenant threshold
  */
 export default function QuarterlyDSCRChart({ style = {} }) {
-  const { data, loading } = useDSCRData();
+  // Get data from database
+  const dscrData = useVisualizationDataSet('anomaly_detection', 'Quarterly DSCR') || { data_points: [], threshold_value: 1.1 };
+  const data = dscrData.data_points || [];
+  const thresholdValue = dscrData.threshold_value || 1.1;
+  
   const [activeBar, setActiveBar] = useState(1); // Q2 index
   const [animationProgress, setAnimationProgress] = useState(0);
 
   // Animate the chart rendering with delay
   useEffect(() => {
-    if (!loading && data.length > 0) {
+    if (data.length > 0) {
       const timer = setTimeout(() => {
         setAnimationProgress(1);
       }, 500); // Delay before starting animation
       return () => clearTimeout(timer);
     }
-  }, [loading, data]);
-
-  if (loading) {
-    return (
-      <Box 
-        sx={{ 
-          width: '100%', 
-          height: '100%', 
-          minHeight: 400,
-          backgroundColor: '#1A1A24', 
-          borderRadius: 2, 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          ...style
-        }}
-      >
-        <Typography sx={{ color: 'rgba(252, 252, 252, 0.5)' }}>Loading...</Typography>
-      </Box>
-    );
-  }
+  }, [data]);
 
 
   return (
@@ -124,7 +108,7 @@ export default function QuarterlyDSCRChart({ style = {} }) {
             fontWeight: 600 
           }}
         >
-          1.1
+          {thresholdValue}
         </Typography>
       </Box>
       <ResponsiveContainer width="100%" height={250}>
