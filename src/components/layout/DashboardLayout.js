@@ -59,7 +59,7 @@ export default function DashboardLayout({
         }
       }}>
         <video muted playsInline>
-          <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video.mp4']} type="video/mp4" />
+          <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video']} type="video/mp4" />
         </video>
       </Box>
       

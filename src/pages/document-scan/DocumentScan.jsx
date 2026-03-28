@@ -29,7 +29,7 @@ const DocumentScan = () => {
           muted
           playsInline
           className={styles.fullScreenVideo}
-          src={assets['Banking_Capital_Market_Operate_Table_Document_Scanning_Video.mp4']}
+          src={assets['Banking_Capital_Market_Operate_Table_Document_Scanning_Video']}
         />
       </Box>
       

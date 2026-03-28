@@ -117,7 +117,7 @@ export default function Y14ReportNew() {
         playsInline 
         className={styles.backgroundVideo}
       >
-        <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video.mp4']} type="video/mp4" />
+        <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video']} type="video/mp4" />
       </video>
       
       {/* Background Overlay */}

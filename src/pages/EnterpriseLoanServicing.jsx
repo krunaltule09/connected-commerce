@@ -239,7 +239,7 @@ const EnterpriseLoanServicing = () => {
         loop
         muted
         onLoadedData={handleVideoLoad}
-        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video.mp4']}
+        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
       />
       <Overlay />
 

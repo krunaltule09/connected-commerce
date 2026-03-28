@@ -42,7 +42,7 @@ const LandingPage = () => {
           playsInline
           className={styles.backgroundVideo}
         >
-          <source src={assets['Banking_Capital_Market_Operate_Table_Landing_Page_Video.mp4']} type="video/mp4" />
+          <source src={assets['Banking_Capital_Market_Operate_Table_Landing_Page_Video']} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Box className={styles.videoOverlay}></Box>

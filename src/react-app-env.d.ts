@@ -10,7 +10,7 @@ declare module '*.mp3' {
   export default content;
 }
 
-declare module '*.mp4' {
+declare module '*' {
   const content: string;
   export default content;
 }
