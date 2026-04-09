@@ -37,7 +37,7 @@ const database = {
             position: 'center',
             data_set: {
               main_title: 'Enterprise Loan Servicing',
-              subtitle: 'Case: Vertex Logistics Corp - $18M Working Capital Facility'
+              subtitle: 'Case: Vertex Logistics Corp - $21 MM Working Capital Facility'
             }
           },
           {
@@ -277,13 +277,14 @@ const database = {
               metrics: {
                 'Revenue': {
                   dataPoints: [
-                    ["Jan", 10.2],
-                    ["Feb", 10.8],
-                    ["Mar", 11.5],
-                    ["Apr", 12],
-                    ["May", 12.5]
+                    ["Jul", 175],
+                    ["Aug", 176],
+                    ["Sep", 177],
+                    ["Oct", 178],
+                    ["Nov", 178],
+                    ["Dec", 178]
                   ],
-                  unit: 'B',
+                  unit: 'M',
                   infoLines: [
                     'Revenue growth supports minimum turnover covenant, reducing risk of operating underperformance.',
                     'Stable YoY increase indicates low likelihood of cash-flow stress, supporting DSCR maintenance.'
@@ -291,13 +292,14 @@ const database = {
                 },
                 'EBITDA': {
                   dataPoints: [
-                    ["Jan", 0.9],
-                    ["Feb", 1],
-                    ["Mar", 1.05],
-                    ["Apr", 1.1],
-                    ["May", 1.2]
+                    ["Jul", 14.2],
+                    ["Aug", 14.4],
+                    ["Sep", 14.6],
+                    ["Oct", 14.8],
+                    ["Nov", 14.9],
+                    ["Dec", 14.9]
                   ],
-                  unit: 'B',
+                  unit: 'M',
                   infoLines: [
                     'Rising EBITDA strengthens Debt/EBITDA covenant compliance, improving borrower creditworthiness.',
                     'Sustained profitability trend reduces risk of breach on interest coverage or leverage covenants.'
@@ -305,13 +307,14 @@ const database = {
                 },
                 'Debt': {
                   dataPoints: [
-                    ["Jan", 3.2],
-                    ["Feb", 3.4],
-                    ["Mar", 3.5],
-                    ["Apr", 3.7],
-                    ["May", 3.8]
+                    ["Jul", 41.2],
+                    ["Aug", 41.5],
+                    ["Sep", 41.8],
+                    ["Oct", 42.2],
+                    ["Nov", 42.5],
+                    ["Dec", 42.5]
                   ],
-                  unit: 'B',
+                  unit: 'M',
                   infoLines: [
                     'Current leverage remains within allowable Debt/EBITDA thresholds, though trending upward.',
                     'Monitoring required to avoid breaching maximum leverage or total indebtedness covenants.'
@@ -319,13 +322,14 @@ const database = {
                 },
                 'Equity': {
                   dataPoints: [
-                    ["Jan", 1],
-                    ["Feb", 1.05],
-                    ["Mar", 1.1],
-                    ["Apr", 1.15],
-                    ["May", 1.2]
+                    ["Jul", 20.2],
+                    ["Aug", 20.5],
+                    ["Sep", 20.8],
+                    ["Oct", 21.2],
+                    ["Nov", 21.4],
+                    ["Dec", 21.4]
                   ],
-                  unit: 'B',
+                  unit: 'M',
                   infoLines: [
                     'Stable equity position supports Net Worth / Equity Maintenance covenants.',
                     'Equity cushion reduces risk of LTV covenant deterioration during adverse market cycles.'
@@ -333,11 +337,12 @@ const database = {
                 },
                 'Interest Expense': {
                   dataPoints: [
-                    ["Jan", 180],
-                    ["Feb", 190],
-                    ["Mar", 195],
-                    ["Apr", 205],
-                    ["May", 210]
+                    ["Jul", 2.8],
+                    ["Aug", 2.9],
+                    ["Sep", 3.0],
+                    ["Oct", 3.1],
+                    ["Nov", 3.2],
+                    ["Dec", 3.2]
                   ],
                   unit: 'M',
                   infoLines: [
@@ -356,7 +361,7 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               alerts: [
-                'Debt/Equity exceeds limit (3.2 vs 3.0)'
+                'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.'
               ]
             }
           }
@@ -375,12 +380,14 @@ const database = {
             data_set: {
               title: 'Quarterly DSCR',
               subtitle: 'Covenant threshold line',
-              threshold_value: 1.1,
+              threshold_value: 1.25,
               data_points: [
-                { quarter: 'Q1', dscr: 1.8, period: 'FY 24-25 (Jan - Mar)', threshold: 1.1 },
-                { quarter: 'Q2', dscr: 2.4, period: 'FY 24-25 (Apr - Jun)', threshold: 1.1 },
-                { quarter: 'Q3', dscr: 2.0, period: 'FY 24-25 (Jul - Sep)', threshold: 1.1 },
-                { quarter: 'Q4', dscr: 1.9, period: 'FY 24-25 (Oct - Dec)', threshold: 1.1 }
+              data_points: [
+                { quarter: 'Jul-Sep', dscr: 1.21, period: 'FY 24-25 Q1', threshold: 1.25 },
+                { quarter: 'Oct-Dec', dscr: 1.05, period: 'FY 24-25 Q2', threshold: 1.25 },
+                { quarter: 'Jan-Mar', dscr: 1.07, period: 'FY 24-25 Q3', threshold: 1.25 },
+                { quarter: 'Apr-Jun', dscr: 0.92, period: 'FY 24-25 Q4', threshold: 1.25 }
+              ]
               ]
             }
           },
@@ -407,11 +414,11 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               recommendations: [
-                'Operating cash flow improved steadily from $15K → $28K.',
-                'However, interest and debt obligations grew faster, reducing coverage in Q2.',
-                'DSCR fell to 1.10, below the required 1.25 covenant threshold.',
-                'Improvement in Q3/Q4 signals stabilizing performance.',
-                'Recommended: Reassess expense control and cross-check shipment delays.'
+                'Declining DSCR driven by lower operating cash flows and softening freight activity.',
+                'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.',
+                'Sustained downward trend over the past two quarters.',
+                'Action required: Enhanced monitoring and borrower engagement recommended.',
+                'Recommended: Reassess expense control and cash acceleration program.'
               ]
             }
           },
@@ -424,29 +431,29 @@ const database = {
               title: 'Q3 Highlight',
               highlights: [
                 {
-                  title: 'DSCR Improvement',
-                  description: 'DSCR increased from 1.10 in Q2 → 1.15 in Q3, driven by higher operating cash flow.',
-                  metric: '+4.5%'
+                  title: 'DSCR Weakened',
+                  description: 'DSCR weakened significantly despite OTD improvement—cash collections did not keep pace with fuel and lease cost upticks.',
+                  metric: '-22%'
                 },
                 {
-                  title: 'Cash Flow Growth',
-                  description: 'Operating cash flow rose to $22K, marking a +22% increase quarter-over-quarter.',
-                  metric: '+22%'
+                  title: 'Freight Volumes Dropped',
+                  description: 'Freight volumes dropped 4.5% QoQ, particularly in Midwest lanes.',
+                  metric: '-4.5%'
                 },
                 {
-                  title: 'Interest Costs Stabilized',
-                  description: 'Interest expense increased only slightly ($4.0K → $4.5K), slowing the negative pressure on coverage.',
-                  metric: '+12.5%'
+                  title: 'Fuel Hedge Shortfalls',
+                  description: 'Fuel hedge shortfalls and increased detention charges strained operating margins.',
+                  metric: '-12.5%'
                 },
                 {
-                  title: 'Delayed Shipments Reduced',
-                  description: 'Shipment delays dropped from 5 to 3, contributing to stronger cash collections.',
-                  metric: '-40%'
+                  title: 'On-Time Delivery',
+                  description: 'OTD at 94%, below the required 95% covenant threshold.',
+                  metric: '94%'
                 },
                 {
-                  title: 'Operating Revenue Rebounded',
-                  description: 'Revenue improved following improved fulfillment performance (Promised vs Delivered variance reduced by 8%).',
-                  metric: '+8%'
+                  title: 'DSCR Breach',
+                  description: 'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.',
+                  metric: '0.92'
                 }
               ]
             }
@@ -513,10 +520,10 @@ const database = {
                   rows: [
                     {
                       covenant_name: 'DSCR',
-                      threshold: '≥ 1.20',
-                      current_value: '0.75',
-                      status: 'At Risk',
-                      status_color: '#FF9800'
+                      threshold: '≥ 1.25',
+                      current_value: '0.92',
+                      status: 'Breached',
+                      status_color: '#F44336'
                     },
                     {
                       covenant_name: 'LTV',
@@ -527,8 +534,8 @@ const database = {
                     },
                     {
                       covenant_name: 'Leverage Ratio',
-                      threshold: '≤ 3.50x',
-                      current_value: '3.20x',
+                      threshold: '≤ 3.00x',
+                      current_value: '1.99x',
                       status: 'Compliant',
                       status_color: '#4CAF50'
                     },
@@ -589,17 +596,17 @@ const database = {
                   id: 8,
                   title: 'Regulatory Schedule Mapping (Meta Fields)',
                   rows: [
-                    { label: 'DSCR (Reported)', value: '0.75' },
-                    { label: 'DSCR (Trend YoY)', value: '5%' },
+                    { label: 'DSCR (Reported)', value: '0.92' },
+                    { label: 'DSCR (Trend YoY)', value: '-22%' },
                     { label: 'LTV (Reported)', value: '64%' },
-                    { label: 'EBITDA (TTM)', value: '$1.2B' },
-                    { label: 'Revenue (TTM)', value: '$12.5B' },
-                    { label: 'Total Debt', value: '$3.8B' },
-                    { label: 'Equity', value: '$1.2B' },
-                    { label: 'Covenant Breach', value: 'ESG report overdue (Q2)' },
-                    { label: 'Remediation Plan', value: 'Client notified; 30-day cure period issued' },
-                    { label: 'Internal Comments', value: 'No financial covenant defaults; ESG breach does not trigger cross-default' },
-                    { label: 'Stress Scenario Tested', value: 'Revenue – 10% = DSCR falls to 0.62' }
+                    { label: 'EBITDA (TTM)', value: '$14.9M' },
+                    { label: 'Revenue (TTM)', value: '$178M' },
+                    { label: 'Total Debt', value: '$42.5M' },
+                    { label: 'Equity', value: '$21.4M' },
+                    { label: 'Covenant Breach', value: 'DSCR declined to 0.92 this cycle' },
+                    { label: 'Remediation Plan', value: 'Cash acceleration program, fuel surcharge revision' },
+                    { label: 'Internal Comments', value: 'DSCR breach confirmed; OTD/OTIF warnings' },
+                    { label: 'Stress Scenario Tested', value: 'Revenue – 10% = DSCR falls to 0.78' }
                   ]
                 }
               ],
@@ -696,7 +703,7 @@ const database = {
                 },
                 {
                   title: 'Cost Per Mile / Unit Cost Pressure',
-                  section: 'Analyze cost per mile vs 8.5 p/mi, understand if cost pressure exists',
+                  section: 'Analyze cost per mile vs $2.00/mi, within allowed limit',
                   usedFor: 'Identify cost drivers: fuel, labor, maintenance, or route optimization gaps'
                 },
                 {
@@ -742,7 +749,7 @@ const database = {
                 label: 'Earlier (Without AI Integration)'
               },
               after: {
-                value: '30 Minutes',
+                value: '41 Minutes',
                 label: 'Now (with AI)'
               }
             }
