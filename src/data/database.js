@@ -122,7 +122,7 @@ const database = {
             position: 'top_left',
             data_set: {
               case_number: 'Case no. #CCN3267890',
-              applied_by: 'Logistics Company'
+              applied_by: ' Vertex Logistics Company'
             }
           },
           {
@@ -156,7 +156,7 @@ const database = {
                   url: null,
                   description: 'Company financial statements and performance metrics',
                   type: 'pdf',
-                  filename: 'Financial_Statement.pdf'
+                  filename: '2024_Q2_Financials.pdf'
                 },
                 {
                   id: 3,
@@ -172,7 +172,7 @@ const database = {
                   url: null,
                   description: 'Environmental, Social, and Governance report',
                   type: 'pdf',
-                  filename: 'ESG_Report_02.pdf'
+                  filename: 'ESG_Report_Q2.pdf'
                 },
                 {
                   id: 5,
@@ -180,7 +180,7 @@ const database = {
                   url: null,
                   description: 'Federal Reserve Y-14 regulatory analysis and reporting',
                   type: 'pdf',
-                  filename: 'FR_Y_14_Analysis.pdf'
+                  filename: 'Fleet_Lease_Agreements.pdf'
                 },
                 {
                   id: 6,
@@ -277,77 +277,72 @@ const database = {
               metrics: {
                 'Revenue': {
                   dataPoints: [
-                    ["Jul", 175],
-                    ["Aug", 176],
-                    ["Sep", 177],
-                    ["Oct", 178],
-                    ["Nov", 178],
-                    ["Dec", 178]
+                    ["2021 (COVID Impact)", 142],
+                    ["2022 (Recovery Begins)", 158],
+                    ["2023 (Peak Recovery)", 186],
+                    ["2024 (Normalization)", 182],
+                    ["2025 (Current - Stress)", 178]
                   ],
                   unit: 'M',
                   infoLines: [
-                    'Revenue growth supports minimum turnover covenant, reducing risk of operating underperformance.',
-                    'Stable YoY increase indicates low likelihood of cash-flow stress, supporting DSCR maintenance.'
+                    'Strong post‑COVID recovery followed by normalization; current revenue at $178M reflects cyclical freight softening rather than customer attrition.',
+                    'Volume pressure is industry‑driven, with no evidence of structural demand loss.'
                   ]
                 },
                 'EBITDA': {
                   dataPoints: [
-                    ["Jul", 14.2],
-                    ["Aug", 14.4],
-                    ["Sep", 14.6],
-                    ["Oct", 14.8],
-                    ["Nov", 14.9],
-                    ["Dec", 14.9]
+                    ["2021 (COVID Impact)", 9.8],
+                    ["2022 (Recovery Begins)", 12.6],
+                    ["2023 (Peak Recovery)", 19.4],
+                    ["2024 (Normalization)", 17.8],
+                    ["2025 (Current - Stress)", 14.9]
                   ],
                   unit: 'M',
                   infoLines: [
-                    'Rising EBITDA strengthens Debt/EBITDA covenant compliance, improving borrower creditworthiness.',
-                    'Sustained profitability trend reduces risk of breach on interest coverage or leverage covenants.'
+                    'EBITDA expanded materially during the recovery phase but declined to $14.9M as fuel, labor, and detention costs outpaced revenue.',
+                    'Margin compression is the primary contributor to weakened debt‑servicing capacity this cycle.'
                   ]
                 },
                 'Debt': {
                   dataPoints: [
-                    ["Jul", 41.2],
-                    ["Aug", 41.5],
-                    ["Sep", 41.8],
-                    ["Oct", 42.2],
-                    ["Nov", 42.5],
-                    ["Dec", 42.5]
+                    ["2021 (COVID Impact)", 38],
+                    ["2022 (Recovery Begins)", 40],
+                    ["2023 (Peak Recovery)", 41],
+                    ["2024 (Normalization)", 42],
+                    ["2025 (Current - Stress)", 43]
                   ],
                   unit: 'M',
                   infoLines: [
-                    'Current leverage remains within allowable Debt/EBITDA thresholds, though trending upward.',
-                    'Monitoring required to avoid breaching maximum leverage or total indebtedness covenants.'
+                    'Total debt increased gradually to $42.5M, largely driven by fleet investment and lease obligations.',
+                    'No evidence of aggressive leverage or debt‑funded expansion during the current stress period.'
                   ]
                 },
                 'Equity': {
                   dataPoints: [
-                    ["Jul", 20.2],
-                    ["Aug", 20.5],
-                    ["Sep", 20.8],
-                    ["Oct", 21.2],
-                    ["Nov", 21.4],
-                    ["Dec", 21.4]
+                    ["2021 (COVID Impact)", 18.5],
+                    ["2022 (Recovery Begins)", 19.4],
+                    ["2023 (Peak Recovery)", 20.6],
+                    ["2024 (Normalization)", 21.2],
+                    ["2025 (Current - Stress)", 21.4]
                   ],
                   unit: 'M',
                   infoLines: [
-                    'Stable equity position supports Net Worth / Equity Maintenance covenants.',
-                    'Equity cushion reduces risk of LTV covenant deterioration during adverse market cycles.'
+                    'Equity has grown steadily to $21.4M through retained earnings, providing balance‑sheet support.',
+                    'Equity growth has moderated in line with reduced profitability in the current cycle.'
                   ]
                 },
                 'Interest Expense': {
                   dataPoints: [
-                    ["Jul", 2.8],
-                    ["Aug", 2.9],
-                    ["Sep", 3.0],
-                    ["Oct", 3.1],
-                    ["Nov", 3.2],
-                    ["Dec", 3.2]
+                    ["2021 (COVID Impact)", 2.6],
+                    ["2022 (Recovery Begins)", 2.8],
+                    ["2023 (Peak Recovery)", 3],
+                    ["2024 (Normalization)", 3.1],
+                    ["2025 (Current - Stress)", 3.2]
                   ],
                   unit: 'M',
                   infoLines: [
-                    'Rising interest expense may pressure Interest Coverage covenants if EBITDA slows.',
-                    'Higher servicing costs could impact DSCR compliance, requiring ongoing monitoring.'
+                    'Interest expense increased incrementally to $3.2M, reflecting higher base rates on a stable debt balance.',
+                    'Elevated interest costs have amplified the impact of EBITDA compression on DSCR.'
                   ]
                 }
               }
@@ -361,7 +356,7 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               alerts: [
-                'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.'
+                'Earnings‑driven DSCR breach identified: margin compression and higher interest costs—not leverage—are driving coverage deterioration; remediation should focus on cash flow improvement and cost controls.'
               ]
             }
           },
@@ -394,12 +389,12 @@ const database = {
             data_set: {
               title: 'Quarterly DSCR',
               subtitle: 'Covenant threshold line',
-              threshold_value: 1.25,
+              threshold_value: '1.25%',
               data_points: [
-                { quarter: 'Jul-Sep', dscr: 1.21, period: 'FY 24-25 Q1', threshold: 1.25 },
-                { quarter: 'Oct-Dec', dscr: 1.05, period: 'FY 24-25 Q2', threshold: 1.25 },
-                { quarter: 'Jan-Mar', dscr: 1.07, period: 'FY 24-25 Q3', threshold: 1.25 },
-                { quarter: 'Apr-Jun', dscr: 0.92, period: 'FY 24-25 Q4', threshold: 1.25 }
+                { quarter: 'Q1', dscr: 1.08, period: 'FY 24-25 Q1', threshold: 1.25 },
+                { quarter: 'Q2', dscr: 1.05, period: 'FY 24-25 Q2', threshold: 1.25 },
+                { quarter: 'Q3', dscr: 0.97, period: 'FY 24-25 Q3', threshold: 1.25 },
+                { quarter: 'Q4', dscr: 0.92, period: 'FY 24-25 Q4', threshold: 1.25 }
               ]
             }
           },
@@ -411,10 +406,10 @@ const database = {
             data_set: {
               title: 'Quarter-by-quarter financial drivers',
               data_points: [
-                { quarter: 'Q1', cashFlow: 15000, interest: 15000, debt: 15000 },
-                { quarter: 'Q2', cashFlow: 18000, interest: 17500, debt: 16800 },
-                { quarter: 'Q3', cashFlow: 25500, interest: 23000, debt: 21000 },
-                { quarter: 'Q4', cashFlow: 36000, interest: 31000, debt: 27000 }
+                { quarter: 'Q1', dscr: 1.18, ebitdaMargin: 10.40, cashFlowCoverageRatio: 8.3, keySignal: 'Strong earnings and cash coverage' },
+                { quarter: 'Q2', dscr: 1.05, ebitdaMargin: 9.60, cashFlowCoverageRatio: 7, keySignal: 'Margin compression begins' },
+                { quarter: 'Q3', dscr: 0.97, ebitdaMargin: 8.90, cashFlowCoverageRatio: 6, keySignal: 'Cash flow weakens' },
+                { quarter: 'Q4 (Current)', dscr: 0.92, ebitdaMargin: 8.40, cashFlowCoverageRatio: 5.5, keySignal: '' }
               ]
             }
           },
@@ -426,11 +421,10 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               recommendations: [
-                'Declining DSCR driven by lower operating cash flows and softening freight activity.',
-                'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.',
-                'Sustained downward trend over the past two quarters.',
-                'Action required: Enhanced monitoring and borrower engagement recommended.',
-                'Recommended: Reassess expense control and cash acceleration program.'
+                'Operating cash flow dipped due to higher detention and overtime costs.',
+                'Interest and lease costs grew faster than revenue → direct DSCR impact.',
+                'Risk of consecutive breaches if cost actions not taken.',
+                'Recommended: renegotiate carrier contracts, accelerate AR collections, reduce miles.'
               ]
             }
           },
@@ -443,29 +437,29 @@ const database = {
               title: 'Q3 Highlight',
               highlights: [
                 {
-                  title: 'DSCR Weakened',
-                  description: 'DSCR weakened significantly despite OTD improvement—cash collections did not keep pace with fuel and lease cost upticks.',
-                  metric: '-22%'
-                },
-                {
-                  title: 'Freight Volumes Dropped',
-                  description: 'Freight volumes dropped 4.5% QoQ, particularly in Midwest lanes.',
-                  metric: '-4.5%'
-                },
-                {
-                  title: 'Fuel Hedge Shortfalls',
-                  description: 'Fuel hedge shortfalls and increased detention charges strained operating margins.',
-                  metric: '-12.5%'
-                },
-                {
-                  title: 'On-Time Delivery',
-                  description: 'OTD at 94%, below the required 95% covenant threshold.',
-                  metric: '94%'
-                },
-                {
-                  title: 'DSCR Breach',
-                  description: 'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.',
+                  title: 'DSCR Improvement',
+                  description: 'DSCR improved briefly from 0.97 to 0.99, but declined to 0.92, remaining below the 1.25 covenant due to sustained margin pressure.',
                   metric: '0.92'
+                },
+                {
+                  title: 'Cash Flow Growth',
+                  description: 'Operating cash flow rose temporarily from $17.6M to $19.2M, supported by faster receivables, but remains below prior-quarter levels.',
+                  metric: '+9.1%'
+                },
+                {
+                  title: 'Interest Costs Stabilized',
+                  description: 'Interest expense stabilized at $3.2M QoQ, as debt held steady at $42.5M, preventing further coverage deterioration.',
+                  metric: '$3.2M'
+                },
+                {
+                  title: 'Delayed Shipments Reduced',
+                  description: 'Shipment delays declined from 5 to 3 days, improving fulfillment rates and supporting incremental cash flow recovery.',
+                  metric: '-40%'
+                },
+                {
+                  title: 'Operating Revenue Rebounded',
+                  description: 'Revenue rebounded modestly to $178M, driven by improved fulfillment performance rather than volume-led growth.',
+                  metric: '$178M'
                 }
               ]
             }
@@ -500,10 +494,10 @@ const database = {
                   id: 2,
                   title: 'Loan Characteristics',
                   rows: [
-                    { label: 'Loan Type', value: 'Working Capital Revolver' },
+                    { label: 'Facility Type', value: 'Senior Secured Term Loan + Revolver' },
                     { label: 'Origination Date', value: '15-Jan-21' },
-                    { label: 'Maturity Date', value: '15-Jan-26' },
-                    { label: 'Original Commitment', value: '$1,80,00,000' },
+                    { label: 'Maturity Date', value: 'April 2029' },
+                    { label: 'Committed Amount', value: 'USD $20,000,000' },
                     { label: 'Current Outstanding Balance', value: '$1,42,00,000' },
                     { label: 'Unused Commitment', value: '$38,00,000' },
                     { label: 'Interest Rate Type', value: 'Floating (SOFR + 2.10%)' },
@@ -516,11 +510,11 @@ const database = {
                   id: 3,
                   title: 'Collateral Information',
                   rows: [
-                    { label: 'Collateral Type', value: 'Accounts Receivable + Inventory' },
+                    { label: 'Primary Collateral', value: 'Accounts Receivable, Fleet Vehicles, Trailers' },
                     { label: 'Collateral Code', value: '24' },
-                    { label: 'Collateral Value', value: '$2,10,00,000' },
+                    { label: 'Estimated Collateral Value', value: 'USD $54.0M' },
                     { label: 'LTV (Calculated)', value: '64%' },
-                    { label: 'Lien Position', value: '1st Lien' },
+                    { label: 'Lien Position', value: 'First‑priority perfected lien' },
                     { label: 'Guarantee Indicator', value: 'Yes (Corporate Guarantee)' },
                     { label: 'Guarantee Amount', value: '$1,80,00,000' }
                   ]
@@ -571,9 +565,9 @@ const database = {
                   id: 5,
                   title: 'Credit Quality & Risk Metrics',
                   rows: [
-                    { label: 'Internal Risk Rating', value: '6 (Moderate Risk)' },
-                    { label: 'Prob. of Default (PD)', value: '1.90%' },
-                    { label: 'Loss Given Default (LGD)', value: '38%' },
+                    { label: 'Internal Risk Rating', value: 'BB+ (Watchlist)' },
+                    { label: 'Prob. of Default (PD)', value: '0.85%' },
+                    { label: 'Loss Given Default (LGD)', value: '40%' },
                     { label: 'Exposure at Default (EAD)', value: '$1,80,00,000' },
                     { label: 'Accrued Interest', value: '$72,400' },
                     { label: 'Non-Accrual Indicator', value: 'No' },
@@ -586,28 +580,33 @@ const database = {
                   rows: [
                     { label: 'Days Past Due', value: '0' },
                     { label: 'Past Due Indicator', value: 'No' },
-                    { label: 'Last Payment Date', value: '12-Sep-25' },
+                    { label: 'Last Payment Date', value: 'March 2026 (On Time)' },
                     { label: 'Next Payment Date', value: '12-Oct-25' },
-                    { label: 'Payment Status', value: 'Current' },
-                    { label: 'Interest Expense (YTD)', value: '$21,00,00,000' }
+                    { label: 'Debt Service Status', value: 'Current; no payment delinquency' },
+                    { label: 'Amortization Amount', value: '$210K per month' }
                   ]
                 },
                 {
                   id: 7,
                   title: 'Accounting & Reporting Attributes',
                   rows: [
-                    { label: 'Accounting Standard', value: 'GAAP' },
+                    { label: 'Accounting Standard', value: 'US GAAP' },
+                    { label: 'Financial Reporting Frequency', value: 'Quarterly (Reviewed)' },
                     { label: 'Accrual Status', value: 'Performing' },
                     { label: 'Impairment Status', value: 'Not Impaired' },
                     { label: 'Charge-Off Amount', value: '$0' },
                     { label: 'Restructured Indicator', value: 'No' },
-                    { label: 'Basel Exposure Class', value: 'Corporate Exposure' }
+                    { label: 'Basel Exposure Class', value: 'Corporate Exposure' },
+                    { label: 'Audit Status', value: 'FY2024 Audited; FY2025 Interim Reviewed' }
                   ]
                 },
                 {
                   id: 8,
                   title: 'Regulatory Schedule Mapping (Meta Fields)',
                   rows: [
+                    { label: 'FR Y‑14 Schedule', value: 'Schedule H.1 – Covenant Monitoring' },
+                    { label: 'Obligor Risk Mapping', value: 'Schedule A / Schedule M' },
+                    { label: 'Regulatory Status Flag', value: 'Material Covenant Breach – Active' },
                     { label: 'DSCR (Reported)', value: '0.92' },
                     { label: 'DSCR (Trend YoY)', value: '-22%' },
                     { label: 'LTV (Reported)', value: '64%' },
@@ -646,7 +645,30 @@ const database = {
             position: 'bottom_left',
             data_set: {
               title: 'Detailed Findings',
-              description: 'Comprehensive analysis results'
+              description: 'Comprehensive analysis results',
+              warningMessage: 'DSCR below covenant threshold (1.25) due to lower cash flow.',
+              findings: [
+                {
+                  title: 'Finance_Operations_Q2.xlsx',
+                  section: 'Section: Cash Flow Statement (Operating Activities)',
+                  usedFor: 'Used For: DSCR calculation (EBITDA ÷ Debt Service)'
+                },
+                {
+                  title: 'Loan_Agreement.pdf',
+                  section: 'Section: Financial Covenant Schedule',
+                  usedFor: 'Used For: Covenant threshold reference (DSCR ≥ 1.25)'
+                },
+                {
+                  title: 'Covenant_Compliance_Certificate_Q2.pdf',
+                  section: 'Section: Borrower Attestation & Covenant Reporting',
+                  usedFor: 'Used For: FR Y‑14Q – Schedule H.1 (Covenant Status)'
+                },
+                {
+                  title: 'Borrower_Financials_Q2_Reviewed.pdf',
+                  section: 'Section: Financial Covenant Schedule',
+                  usedFor: 'Used For: Covenant threshold validation (DSCR ≥ 1.25)'
+                }
+              ]
             }
           }
         ]
@@ -705,28 +727,28 @@ const database = {
               findings: [
                 {
                   title: 'On-Time Delivery (OTIF) Impact',
-                  section: 'Tracking OTIF dropped to 91%, missing covenant threshold',
-                  usedFor: 'Analyze root cause: late pickups, route inefficiency, or carrier performance'
+                  section: 'Finding: Fulfillment ratio = 86% (12/20) vs required ≥ 90%.',
+                  usedFor: 'Y-14 Relevance: Under-delivery reduces expected cash inflows → may contribute to DSCR decline.'
                 },
                 {
                   title: 'Promised vs Delivered Variance',
-                  section: 'Delivery lead times vary ±60% (2-10 days), impacting cash flow',
-                  usedFor: 'Standardize lead time estimates and improve forecasting accuracy'
+                  section: 'Finding: Fulfillment ratio = 86% (12/20) vs required ≥ 90%.',
+                  usedFor: 'Y-14 Relevance: Under-delivery reduces expected cash inflows → may contribute to DSCR decline.'
                 },
                 {
                   title: 'Cost Per Mile / Unit Cost Pressure',
-                  section: 'Analyze cost per mile vs $2.00/mi, within allowed limit',
-                  usedFor: 'Identify cost drivers: fuel, labor, maintenance, or route optimization gaps'
+                  section: 'Finding: Cost per mile at $1.82, moderately above plan.',
+                  usedFor: 'Y-14 Relevance: Margin compression increases operating expenses → affects risk metrics & DSCR.'
                 },
                 {
                   title: 'Capacity Utilization Decline',
-                  section: 'Flagging utilization at 78%, impacting fixed cost absorption',
-                  usedFor: 'Review load planning and asset allocation to improve utilization rates'
+                  section: 'Finding: Utilization at 78%, weakening from prior quarter.',
+                  usedFor: 'Y-14 Relevance: Lower throughput = lower revenue → impacts cash flow projections filed in Y-14.'
                 },
                 {
                   title: 'OTIF Gap/Time to Fulfil',
-                  section: 'Tracking OTIF at 91% (Above 90%)',
-                  usedFor: 'Monitor performance trends and identify improvement opportunities'
+                  section: 'Finding: OTIF at 89% vs required ≥92%.',
+                  usedFor: 'Y-14 Relevance: Reduced service reliability → potential customer churn → revenue risk in Y-14.'
                 }
               ]
             }

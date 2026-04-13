@@ -10,7 +10,7 @@ import { useButtonSound } from '../../hooks';
 // removed stepper CheckIcon
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { useConfig } from '../../context/ConfigContext';
+import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
@@ -19,6 +19,9 @@ export default function Y14ReportNew() {
   const navigate = useNavigate();
   const { assets } = useConfig();
   const [expandedAccordion, setExpandedAccordion] = useState(null);
+  
+  // Get data from database for Detailed Findings
+  const findingsData = useVisualizationDataSet('y14_report', 'Detailed Findings') || { findings: [], warningMessage: '' };
   
   // Animation states for each section
   const [animateLeft, setAnimateLeft] = useState(false);
@@ -661,9 +664,10 @@ export default function Y14ReportNew() {
             <Box  className={styles.findingsImage}>
             <GradientBorderBox>
               <DetailedFindings 
+                findings={findingsData.findings || []}
+                warningMessage={findingsData.warningMessage || ''}
                 cardMinWidth="300px"
                 cardMaxWidth="400px"
-                
               />
             </GradientBorderBox>
             </Box>

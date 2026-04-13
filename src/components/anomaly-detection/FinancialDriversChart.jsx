@@ -58,17 +58,17 @@ export default function FinancialDriversChart({ style = {} }) {
           margin={{ top: 10, right: 30, left: 20, bottom: 40 }}
         >
           <defs>
-            <linearGradient id="colorDebt" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorDSCR" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#34D399" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#047857" stopOpacity={0.7}/>
+            </linearGradient>
+            <linearGradient id="colorEBITDA" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#FFE600" stopOpacity={0.9}/>
               <stop offset="95%" stopColor="#8B6F47" stopOpacity={0.6}/>
             </linearGradient>
-            <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorCashFlowCoverage" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#EF4444" stopOpacity={0.9}/>
               <stop offset="95%" stopColor="#991B1B" stopOpacity={0.7}/>
-            </linearGradient>
-            <linearGradient id="colorCashFlow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#34D399" stopOpacity={0.9}/>
-              <stop offset="95%" stopColor="#047857" stopOpacity={0.7}/>
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={true} horizontal={false} />
@@ -81,18 +81,17 @@ export default function FinancialDriversChart({ style = {} }) {
           <YAxis 
   stroke="#9CA3AF"
   tick={{ fill: '#D1D5DB', fontSize: 12 }}
-  tickFormatter={(value) => `$${value / 1000}K`}
+  tickFormatter={(value) => value.toFixed(1)}
   label={{ 
-    value: 'Total Amount', 
+    value: 'Value', 
     angle: -90, 
     position: 'insideLeft', 
     fill: '#9CA3AF', 
     fontSize: 12 
   }}
   axisLine={{ stroke: '#3F4254' }}
-  domain={[15000, 'dataMax']}
-  ticks={[15000, 20000, 25000, 30000, 35000]}
-  allowDecimals={false}
+  domain={[0, 'dataMax']}
+  allowDecimals={true}
 />
           <Tooltip 
             contentStyle={{ 
@@ -102,7 +101,10 @@ export default function FinancialDriversChart({ style = {} }) {
               color: 'rgba(255,255,255,1)',
               fontWeight: 700
             }}
-            formatter={(value) => `$${(value / 1000).toFixed(1)}K`}
+            formatter={(value, name) => {
+              if (name === 'EBITDA Margin') return `${value.toFixed(2)}%`;
+              return value.toFixed(2);
+            }}
             labelStyle={{ color: 'rgba(255,255,255,1)', fontWeight: 700 }}
             itemStyle={{ color: 'rgba(255,255,255,1)', fontWeight: 700 }}
           />
@@ -124,10 +126,10 @@ export default function FinancialDriversChart({ style = {} }) {
           />
           <Area 
             type="monotone" 
-            dataKey="cashFlow" 
+            dataKey="cashFlowCoverageRatio" 
             stroke="#34D399" 
-            fill="url(#colorCashFlow)"
-            name="Cash Flow"
+            fill="url(#colorDSCR)"
+            name="Cash Flow Coverage"
             animationBegin={0}
             animationDuration={1500}
             animationEasing="ease-out"
@@ -135,10 +137,10 @@ export default function FinancialDriversChart({ style = {} }) {
           />
           <Area 
             type="monotone" 
-            dataKey="interest" 
+            dataKey="ebitdaMargin" 
             stroke="#EF4444" 
-            fill="url(#colorInterest)"
-            name="Interest"
+            fill="url(#colorCashFlowCoverage)"
+            name="EBITDA Margin"
             animationBegin={100}
             animationDuration={1500}
             animationEasing="ease-out"
@@ -146,10 +148,10 @@ export default function FinancialDriversChart({ style = {} }) {
           />
           <Area 
             type="monotone" 
-            dataKey="debt" 
+            dataKey="dscr" 
             stroke="#FFE600" 
-            fill="url(#colorDebt)"
-            name="Debt"
+            fill="url(#colorEBITDA)"
+            name="DSCR"
             animationBegin={200}
             animationDuration={1500}
             animationEasing="ease-out"

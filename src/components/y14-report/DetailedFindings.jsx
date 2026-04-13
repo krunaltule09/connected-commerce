@@ -2,32 +2,9 @@ import React from 'react';
 import { Box, Typography, Button, Tooltip } from '@mui/material';
 import { useConfig } from '../../context/ConfigContext';
 
-const defaultFindings = [
-  {
-    title: 'Finance_Operations_Q2.xlsx',
-    section: 'Section: Cash Flow Statement (Operating Activities)',
-    usedFor: 'Used For: DSCR calculation (EBITDA ÷ Debt Service)'
-  },
-  {
-    title: 'Loan_Agreement.pdf',
-    section: 'Section: Financial Covenant Schedule',
-    usedFor: 'Used For: Covenant threshold: DSCR ≥ 1.25'
-  },
-  {
-    title: 'Covenant_Compliance_Certificate_Q2.pdf',
-    section: 'Section: Borrower attestation & covenant reporting',
-    usedFor: 'Used For: Y-14Q Schedule H.1 – Covenant Status'
-  },
-  {
-    title: 'Borrower_Financials_Q2_Reviewed.pdf',
-    section: 'Section: Financial Covenant Schedule',
-    usedFor: 'Used For: Covenant threshold: DSCR ≥ 1.25'
-  }
-];
-
 export default function DetailedFindings({ 
-  findings = defaultFindings,
-  warningMessage = 'DSCR = 1.10 in Q2 (Below 1.25 FR Y-14 regulatory threshold)',
+  findings = [],
+  warningMessage = '',
   showWarning = true,
   className = '',
   containerSx = {},
