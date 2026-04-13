@@ -364,6 +364,20 @@ const database = {
                 'DSCR declined to 0.92 this cycle, breaching the 1.25 covenant.'
               ]
             }
+          },
+          {
+            id: 12,
+            name: 'Covenant Status',
+            type: 'covenant_status',
+            position: 'right_panel',
+            data_set: {
+              title: 'Covenant Status',
+              covenants: [
+                { name: 'DSCR', value: '0.92 (Below 1.25 Covenant)', indicator: 'Alert', status: 'alert' },
+                { name: 'Debt/Equity', value: '1.99x (Above 3.0 Threshold)', indicator: 'Warning', status: 'warning' },
+                { name: 'Current Ratio', value: '1.42 (Unusually high vs. 1.5–2.0 industry norm)', indicator: 'Alert', status: 'alert' }
+              ]
+            }
           }
         ]
       },
@@ -382,12 +396,10 @@ const database = {
               subtitle: 'Covenant threshold line',
               threshold_value: 1.25,
               data_points: [
-              data_points: [
                 { quarter: 'Jul-Sep', dscr: 1.21, period: 'FY 24-25 Q1', threshold: 1.25 },
                 { quarter: 'Oct-Dec', dscr: 1.05, period: 'FY 24-25 Q2', threshold: 1.25 },
                 { quarter: 'Jan-Mar', dscr: 1.07, period: 'FY 24-25 Q3', threshold: 1.25 },
                 { quarter: 'Apr-Jun', dscr: 0.92, period: 'FY 24-25 Q4', threshold: 1.25 }
-              ]
               ]
             }
           },
