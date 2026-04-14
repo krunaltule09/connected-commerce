@@ -783,7 +783,7 @@ const database = {
                 label: 'Earlier (Without AI Integration)'
               },
               after: {
-                value: '41 Minutes',
+                value: '30 Minutes',
                 label: 'Now (with AI)'
               }
             }
@@ -799,15 +799,13 @@ const database = {
                 {
                   title: 'Faster Covenant Checks',
                   points: [
-                    'Global Logistics Provider secured 65% faster Covenant Checks.',
-                    'XYZ Company secured 35% faster Covenant Checks.'
+                    '28% faster cross-checks (benchmarks)'
                   ]
                 },
                 {
                   title: 'Fewer Errors',
                   points: [
-                    'Global Logistics Provider, reduced 40% error in processing.',
-                    'XYZ Company, reduced 40% error in processing.'
+                    '1. Global Logistics Provider, reduced 40% error in processing.'
                   ]
                 }
               ]
@@ -825,18 +823,16 @@ const database = {
                   type: 'critical',
                   title: 'Proactive Alerts',
                   details: [
-                    { label: 'Tampered Recipient', value: 'XYZ Holdings (Offshore)' },
-                    { label: 'Tampered Routing Path', value: 'Rerouted through unknown server node (Hong Kong)' },
-                    { label: 'Blockchain Hash Check', value: 'Mismatch – integrity violated' }
+                    { label: 'DSCR breach auto-flagged', value: '' },
+                    { label: 'Document integrity issues detected', value: '' }
                   ]
                 },
                 {
                   type: 'warning',
                   title: 'Missed breaches in manual process',
                   details: [
-                    { label: 'Covenant Breach', value: 'DEBT RATIO EXCEEDED' },
-                    { label: 'Reporting Deadline', value: 'MISSED BY 3 DAYS' },
-                    { label: 'Document Verification', value: 'INCOMPLETE' }
+                    { label: '5 breaches detected late', value: '' },
+                    { label: 'Verification incomplete', value: '' }
                   ]
                 }
               ]
