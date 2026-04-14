@@ -5,7 +5,7 @@
   "identifier": "com.ey.bcmoperate",
   "build": {
     "frontendDist": "../build",
-    "devUrl": "http://localhost:3000",
+    "devUrl": "http://localhost:5174",
     "beforeDevCommand": "npm start",
     "beforeBuildCommand": "npm run build"
   },
