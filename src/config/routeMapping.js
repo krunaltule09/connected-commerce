@@ -12,7 +12,7 @@ const ROUTE_MAPPING = {
   '/financial-dashboard': '/financial-statement',
   '/anomaly-detection': '/dscr-trend',
   '/y14-report': '/y14-report/large',
-  '/operational-doc-scan':  'covenant-monitoring',
+  '/operational-doc-scan': '/covenant-monitoring',
   '/data-simulator': '/benefits-summary',
 
 };
