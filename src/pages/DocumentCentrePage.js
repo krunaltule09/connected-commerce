@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { Box, Container, Grid, Stack, Typography, Modal, IconButton, Button, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DescriptionIcon from '@mui/icons-material/Description';
-import AddIcon from '@mui/icons-material/Add';
+// Removed unused import: AddIcon
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import navigationService from '../services/NavigationService';

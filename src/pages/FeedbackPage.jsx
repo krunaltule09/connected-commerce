@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import DeliveryOptionsSvg from '../components/DeliveryOptionsSvg';
 import RatingComponentSvg from '../components/RatingComponentSvg';
-import { Box, Typography, Button, Container, Fade, Grow, Slide } from '@mui/material';
+import { Box, Button, Container, Fade, Grow } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 // Removed unused import: CheckCircleOutlineIcon
@@ -23,20 +23,6 @@ const PageContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-}));
-
-const Header = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
-}));
-
-const Title = styled(Typography)(({ theme }) => ({
-  color: '#00C8FF',
-  fontWeight: 500,
-}));
-
-const Subtitle = styled(Typography)(({ theme }) => ({
-  color: '#FFFFFF',
-  opacity: 0.7,
 }));
 
 const MainCard = styled(Box)(({ theme }) => ({
@@ -96,16 +82,13 @@ const BackButton = styled(Button)(({ theme }) => ({
 
 export default function FeedbackPage() {
   const navigate = useNavigate();
-  const [rating, setRating] = useState(0);
-  const [deliveryOption, setDeliveryOption] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const lottieRef = useRef(null);
   const [showComponents, setShowComponents] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
   // Animation states
   const [animateTop, setAnimateTop] = useState(false);
   const [animateMiddle, setAnimateMiddle] = useState(false);
-  const [animateBottom, setAnimateBottom] = useState(false);
+  const [, setAnimateBottom] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
   
   // Get data from appDatabase

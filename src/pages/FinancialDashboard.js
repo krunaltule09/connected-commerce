@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import OcrScanningSection from '../components/OcrScanningSection';
 import FinancialMetricsSection from '../components/FinancialMetricsSection';

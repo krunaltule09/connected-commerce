@@ -2,7 +2,7 @@ name: Build Desktop App
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, feat-json-data-intgeration]
     tags: ['v*']
   workflow_dispatch:
 

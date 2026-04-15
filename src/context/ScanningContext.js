@@ -10,6 +10,7 @@ export function ScanningProvider({ children }) {
   const [isFinancialDataReady, setIsFinancialDataReady] = useState(false);
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
   const lastPublishedProgress = useRef(-1);
+  // eslint-disable-next-line no-unused-vars
   const hasBeenInitialized = useRef(false);
 
   // Publish progress to SSE service (same pattern as NavigationService)
