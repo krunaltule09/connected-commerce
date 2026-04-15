@@ -11,6 +11,7 @@ import { useButtonSound } from '../../hooks';
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
+import { httpFetch } from '../../utils/tauriFetch';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
@@ -41,7 +42,7 @@ export default function Y14ReportNew() {
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await fetch(`${SSE_BASE_URL}/api/progress`, {
+      await httpFetch(`${SSE_BASE_URL}/api/progress`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

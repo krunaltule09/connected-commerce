@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef } from 'react';
+import { httpFetch } from '../utils/tauriFetch';
 
 const ScanningContext = createContext();
 
@@ -18,7 +19,7 @@ export function ScanningProvider({ children }) {
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await fetch(`${SSE_BASE_URL}/api/progress`, {
+      await httpFetch(`${SSE_BASE_URL}/api/progress`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

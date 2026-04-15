@@ -10,7 +10,8 @@ import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import { useConfig } from '../../context/ConfigContext';
+import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
+import { httpFetch } from '../../utils/tauriFetch';
 import styles from './Y14ReportGeneration.module.css';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
@@ -18,8 +19,9 @@ const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:
 export default function Y14ReportGeneration() {
   const navigate = useNavigate();
   const { assets } = useConfig();
+  const tabLabelsData = useVisualizationDataSet('y14_report', 'Tab Labels');
   const [expanded, setExpanded] = useState('panel1');
-  const tabs = ['EXPLORE DOCUMENTS', 'SOURCE METRICS'];
+  const tabs = tabLabelsData?.tabs || ['EXPLORE DOCUMENTS', 'SOURCE METRICS'];
   const [selectedTab, setSelectedTab] = useState('EXPLORE DOCUMENTS');
   
   // Animation states
@@ -38,7 +40,7 @@ export default function Y14ReportGeneration() {
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await fetch(`${SSE_BASE_URL}/api/progress`, {
+      await httpFetch(`${SSE_BASE_URL}/api/progress`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

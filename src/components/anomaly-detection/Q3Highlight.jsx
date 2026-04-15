@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
+import { httpFetch } from '../../utils/tauriFetch';
 
 const defaultHighlights = [
   {
@@ -32,7 +33,7 @@ export default function Q3Highlight({ highlights: propHighlights }) {
     const fetchHighlights = async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/case/1/q3-highlights`);
+        const response = await httpFetch(`${apiUrl}/api/case/1/q3-highlights`);
         const result = await response.json();
         const apiHighlights = result.data?.highlights || [];
         
