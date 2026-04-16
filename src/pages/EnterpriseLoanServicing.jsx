@@ -5,6 +5,7 @@ import { styled, keyframes } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
+import HLSVideoPlayer from '../components/common/HLSVideoPlayer';
 import { useButtonSound } from '../hooks';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
 
@@ -18,8 +19,8 @@ import RiskDashboardIcon from '@mui/icons-material/BarChartOutlined';
 import ClientCommunicationIcon from '@mui/icons-material/Message';
 import BlockchainLedgerIcon from '@mui/icons-material/ViewInArOutlined';
 
-// Styled components
-const VideoBackground = styled('video')({
+// Video background styles applied directly to <video> element to avoid wrapper div stacking context issues
+const videoBackgroundStyle = {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -29,7 +30,7 @@ const VideoBackground = styled('video')({
   height: 'auto',
   zIndex: -1,
   objectFit: 'cover',
-});
+};
 
 const Overlay = styled(Box)({
   position: 'fixed',
@@ -201,6 +202,14 @@ const EnterpriseLoanServicing = () => {
     }
   }, [isVideoLoaded]);
 
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      setAnimationReady(true);
+    }, 1500);
+
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
   };
@@ -234,12 +243,14 @@ const EnterpriseLoanServicing = () => {
 
   return (
     <Box sx={{ height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
-      <VideoBackground
+      <HLSVideoPlayer
+        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
         autoPlay
         loop
         muted
+        playsInline
         onLoadedData={handleVideoLoad}
-        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
+        style={videoBackgroundStyle}
       />
       <Overlay />
 
