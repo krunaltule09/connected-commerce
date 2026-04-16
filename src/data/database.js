@@ -483,11 +483,6 @@ const database = {
                   id: 1,
                   title: 'Borrower / Obligor Information',
                   rows: [
-                    { label: 'Obligor name', value: 'Vertex Logistics Corp.' },
-                    { label: 'Obligor ID', value: '00492-WHSL' },
-                    { label: 'Country', value: 'United States' },
-                    { label: 'Industry/NAICS code', value: '488510 – Freight Transportation Arrangement' },
-                    { label: 'Obligor type', value: 'Corporate' }
                   ]
                 },
                 {

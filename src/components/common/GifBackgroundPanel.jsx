@@ -47,7 +47,8 @@ const GifBackgroundPanel = ({
   bulletPoints = [], 
   sx = {},
   contentContainerSx = {},
-  imageTransform = null
+  imageTransform = null,
+  fontSize = '14px'
 }) => {
   const { assets } = useConfig();
   const isLarge = size === 'large';
@@ -85,7 +86,7 @@ const GifBackgroundPanel = ({
                   variant="body2" 
                   color="white"
                   sx={{ 
-                    fontSize: '14px', 
+                    fontSize: fontSize, 
                     lineHeight: 1.5, 
                     fontWeight: '300',
                     fontFamily: 'Interstate, sans-serif',

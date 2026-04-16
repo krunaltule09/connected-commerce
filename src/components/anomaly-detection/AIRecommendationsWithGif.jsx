@@ -5,7 +5,8 @@ export default function AIRecommendationsWithGif({
   recommendations, 
   size = 'medium',
   contentContainerSx = {},
-  imageTransform = null
+  imageTransform = null,
+  fontSize = '14px'
 }) {
   console.log('AIRecommendationsWithGif size:', size);
   
@@ -16,6 +17,7 @@ export default function AIRecommendationsWithGif({
       contentContainerSx={contentContainerSx}
       sx={{ height: '100%', width: '100%' }}
       imageTransform={imageTransform}
+      fontSize={fontSize}
     />
   );
 }
