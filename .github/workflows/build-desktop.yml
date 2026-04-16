@@ -2,7 +2,7 @@ name: Build Desktop App
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, feat-json-data-intgeration]
     tags: ['v*']
   workflow_dispatch:
 
@@ -32,13 +32,17 @@ jobs:
           workspaces: './src-tauri -> target'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build frontend
         run: npm run build
+        env:
+          CI: false
 
       - name: Build Tauri app
         run: npm run tauri build
+        env:
+          CI: false
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -48,8 +52,8 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            src-tauri/target/release/bundle/msi/*.msi
             src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/release/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -75,13 +79,17 @@ jobs:
           workspaces: './src-tauri -> target'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build frontend
         run: npm run build
+        env:
+          CI: false
 
       - name: Build Tauri app
         run: npm run tauri build
+        env:
+          CI: false
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

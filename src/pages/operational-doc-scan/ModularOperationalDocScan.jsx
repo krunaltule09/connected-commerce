@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './OperationalDocScan.module.css';
 import { useShipmentData } from '../../hooks/useShipmentData';
+import { useVisualizationDataSet } from '../../context/ConfigContext';
 
 // Import modular components
 import BackgroundOverlay from '../../components/operational-doc-scan/BackgroundOverlay';
@@ -18,6 +19,10 @@ const ModularOperationalDocScan = () => {
   const { shipments, scanProgress, revealStage, scanComplete } = useShipmentData();
   const [activeTab, setActiveTab] = useState('on-time');
   const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
+
+  // Get AI Alert and Shipment Details data from database
+  const aiAlertData = useVisualizationDataSet('operational_doc_scan', 'AI Alert');
+  const shipmentDetailsData = useVisualizationDataSet('operational_doc_scan', 'Shipment Details');
   
   // Enable next button when scan is complete
   useEffect(() => {
@@ -55,16 +60,18 @@ const ModularOperationalDocScan = () => {
         <DocumentPreviewPanel scanProgress={scanProgress} />
         
         {/* AI Chip - positioned outside the document preview panel */}
-        <AIChip 
-          scanProgress={scanProgress} 
-          recommendations={['Shipment 2845 delivered late (9/22 vs 9/20)']} 
+        <AIChip
+          scanProgress={scanProgress}
+          recommendations={[aiAlertData?.message || 'Shipment 2845 delivered late (9/22 vs 9/20)']}
         />
         
         {/* Right panel - Shipment Details */}
-        <ShipmentDetailsPanel 
-          revealStage={revealStage} 
-          shipments={shipments} 
-          scanProgress={scanProgress} 
+        <ShipmentDetailsPanel
+          revealStage={revealStage}
+          shipments={shipments}
+          scanProgress={scanProgress}
+          title={shipmentDetailsData?.title}
+          columns={shipmentDetailsData?.columns}
         />
         
         {/* Bottom panel - KPIs */}

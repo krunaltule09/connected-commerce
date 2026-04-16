@@ -10,6 +10,7 @@ import { FinancialDataProvider } from './context/FinancialDataContext';
 import { ScanningProvider } from './context/ScanningContext';
 import { SoundProvider } from './context/SoundContext';
 import { ConfigProvider } from './context/ConfigContext';
+import { httpFetch } from './utils/tauriFetch';
 import database from './data/database';
 
 const IS_DEV_MODE = true;
@@ -30,7 +31,9 @@ function App() {
     if (config.database || IS_DEV_MODE) return;
     const loadConfig = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/config?station=${process.env.REACT_APP_STATION}&sector=${process.env.REACT_APP_SECTOR}`);
+        const response = await httpFetch(
+          `${process.env.REACT_APP_BACKEND_URL}/config?station=${process.env.REACT_APP_STATION}&sector=${process.env.REACT_APP_SECTOR}`
+        );
         if (!response.ok) return;
         const data = await response.json();
         setConfig((config) => ({ ...config, database: data }));
@@ -49,7 +52,7 @@ function App() {
     if (config.animations) return;
     const loadConfig = async () => {
       try {
-        const response = await fetch(
+        const response = await httpFetch(
           `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/animations?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
         );
         if (!response.ok) return;
@@ -80,7 +83,7 @@ function App() {
     if (config.images) return;
     const loadConfig = async () => {
       try {
-        const response = await fetch(
+        const response = await httpFetch(
           `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/images?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
         );
         if (!response.ok) return;
@@ -112,7 +115,7 @@ function App() {
     if (config.videos) return;
     const loadConfig = async () => {
       try {
-        const response = await fetch(
+        const response = await httpFetch(
           `${process.env.REACT_APP_CMS_BASE_URL}/streaming-service/streaming-url?sector=${process.env.REACT_APP_SECTOR}&station=${process.env.REACT_APP_STATION}`,
         );
         if (!response.ok) return;
@@ -145,7 +148,7 @@ function App() {
     if (config.audios) return;
     const loadConfig = async () => {
       try {
-        const response = await fetch(
+        const response = await httpFetch(
           `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/audios?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
         );
         if (!response.ok) return;

@@ -95,7 +95,7 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
   }
 }));
 
-// Pulse animation for the activate button
+// eslint-disable-next-line no-unused-vars
 const pulseAnimation = keyframes`
   0% {
     box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);

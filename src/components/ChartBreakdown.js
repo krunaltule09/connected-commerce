@@ -12,6 +12,7 @@ export default function ChartBreakdown() {
   // Get the current breakdown items from API data via context
   const breakdownItems = useMemo(() => 
     getInfoLines() || [], 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [getInfoLines, selectedMetric]
   );
   

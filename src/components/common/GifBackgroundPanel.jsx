@@ -66,7 +66,7 @@ const GifBackgroundPanel = ({
           src={backgroundGif}
           alt="AI Background"
           sx={{
-            width: size=="large"?"90%":'100%',
+            width: size==="large"?"90%":'100%',
             height: '100%',
             marginLeft:'-1rem',
             objectFit: 'cover',

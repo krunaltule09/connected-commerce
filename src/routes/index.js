@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { LandingPage, ExplorePage, FinancialDashboard, EnterpriseLoanServicing } from '../pages';
+import { LandingPage, FinancialDashboard, EnterpriseLoanServicing } from '../pages';
 import DocumentCentrePage from '../pages/DocumentCentrePage';
 import AnomalyDetection from '../pages/AnomalyDetection';
 import OperationalDocScan from '../pages/operational-doc-scan/OperationalDocScan';

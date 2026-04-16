@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Fade, Grow, Slide, Zoom } from '@mui/material';
+import { Box, Grow, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecommendationsWithGif';

@@ -639,6 +639,15 @@ const database = {
             }
           },
           {
+            id: 19,
+            name: 'Tab Labels',
+            type: 'tab_navigation',
+            position: 'bottom_tabs',
+            data_set: {
+              tabs: ['EXPLORE DOCUMENTS', 'SOURCE METRICS']
+            }
+          },
+          {
             id: 18,
             name: 'Detailed Findings',
             type: 'findings_panel',

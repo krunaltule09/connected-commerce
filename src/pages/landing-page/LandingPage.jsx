@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography, Fade, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';

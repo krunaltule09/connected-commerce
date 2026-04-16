@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Fade, Grow, Slide } from '@mui/material';
+import { Box, Grid, Fade, Grow } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
