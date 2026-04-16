@@ -102,12 +102,12 @@ export default function Y14ReportNew() {
 
   // Handle next step with sound effect
   const handleNextStep = useButtonSound(() => {
-    navigate('/operational-doc-scan');
+    navigate('/data-simulator');
   });
 
   // Handle go back with sound effect
   const handleGoBack = useButtonSound(() => {
-    navigate('/anomaly-detection');
+    navigate('/operational-doc-scan');
   });
 
   return (
@@ -667,7 +667,7 @@ export default function Y14ReportNew() {
                 findings={findingsData.findings || []}
                 warningMessage={findingsData.warningMessage || ''}
                 cardMinWidth="300px"
-                cardMaxWidth="400px"
+                cardMaxWidth="396px"
               />
             </GradientBorderBox>
             </Box>

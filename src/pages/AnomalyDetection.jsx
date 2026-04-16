@@ -52,10 +52,12 @@ export default function AnomalyDetection() {
   // Handle navigation to Y14 Report Generation page with sound effect
   const handleNextStep = useButtonSound(async () => {
     // Navigate locally
-    navigate('/y14-report');
+    // this needs to navigate to /operational-doc-scan
+    navigate('/operational-doc-scan');
     
     try {
       // Send navigation event to operate-experience app
+      
       await navigationService.navigateToOperateExperience('/y14-report/large', {
         referrer: 'anomaly-detection',
         action: 'NEXT_STEP'
