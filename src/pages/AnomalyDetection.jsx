@@ -192,6 +192,7 @@ export default function AnomalyDetection() {
                         size="large"
                         recommendations={aiRecommendationsData.recommendations}
                         imageTransform="translateY(-8%)"
+                        fontSize="0.9rem"
                         contentContainerSx={{
                           display: "flex",
                           alignItems: "center",
