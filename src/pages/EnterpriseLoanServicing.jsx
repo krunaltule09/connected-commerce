@@ -52,6 +52,12 @@ const Logo = styled('img')({
   right: '-16%',
   width: '80px',
   height: 'auto',
+  cursor: 'pointer',
+  transition: 'transform 0.3s ease, filter 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.1)',
+    filter: 'brightness(1.2)',
+  },
 });
 
 const MenuGrid = styled(Grid)(({ theme }) => ({
@@ -235,6 +241,10 @@ const EnterpriseLoanServicing = () => {
       console.error('Failed to send navigation event:', error);
     }
   });
+
+  const handleLogoClick = useButtonSound(() => {
+    navigate('/');
+  });
   
 
   return (
@@ -380,7 +390,11 @@ const EnterpriseLoanServicing = () => {
           timeout={1000}
           style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
         >
-          <Logo src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']} alt="EY Logo" />
+          <Logo 
+            src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']} 
+            alt="EY Logo"
+            onClick={handleLogoClick}
+          />
         </Zoom>
         
       </Container>
