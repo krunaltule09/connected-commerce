@@ -3,11 +3,13 @@ import { Box, Stack, Typography, Fade, Grow, Slide } from '@mui/material';
 import { motion } from 'framer-motion';
 import GradientBorderBox from './common/GradientBorderBox';
 import { useScanning } from '../context/ScanningContext';
-import { useConfig } from '../context/ConfigContext';
+import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
 
 export default function OcrScanningSection({ isInOperationalDocScan=false }) {
   const { scanProgress: progress, isComplete } = useScanning();
   const { assets } = useConfig();
+  const screenName = isInOperationalDocScan ? 'operational_doc_scan' : 'financial_dashboard';
+  const ocrData = useVisualizationDataSet(screenName, 'OCR Scanning');
   const [animateDocument, setAnimateDocument] = useState(false);
   const [animateProgress, setAnimateProgress] = useState(false);
   
@@ -49,7 +51,7 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
       <Stack spacing={1.45} sx={{ flexGrow: 1, overflow: 'hidden', '& > *': { marginBottom: '0 !important' } }} className="ocr-scanning-stack">
       <Box>
         <Slide direction="right" in={true} timeout={700} mountOnEnter>
-          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '20px', mb: 1 }}>Data Extraction Preview</Typography>
+          <Typography variant="subtitle1" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '20px', mb: 1 }}>{ocrData?.title || 'Data Extraction Preview'}</Typography>
         </Slide>
         <Grow in={animateDocument} timeout={800}>
           <GradientBorderBox p={2} >

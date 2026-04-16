@@ -5,9 +5,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InsertDriveFileOutlined from '@mui/icons-material/InsertDriveFileOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import { useButtonSound } from '../../hooks';
-// removed unused ErrorIcon
-// removed findings icon imports (panel replaced with SVG)
-// removed stepper CheckIcon
 import styles from './Y14ReportNew.module.css';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
@@ -20,10 +17,20 @@ export default function Y14ReportNew() {
   const navigate = useNavigate();
   const { assets } = useConfig();
   const [expandedAccordion, setExpandedAccordion] = useState(null);
-  
+
   // Get data from database for Detailed Findings
   const findingsData = useVisualizationDataSet('y14_report', 'Detailed Findings') || { findings: [], warningMessage: '' };
-  
+
+  // Get Schedule Template data from database (all accordion content)
+  const scheduleData = useVisualizationDataSet('y14_report', 'Schedule Template') || { sections: [], title: 'FR Y-14 Schedule Template' };
+  const allSections = scheduleData.sections || [];
+  const leftSections = allSections.slice(0, 4);
+  const rightSections = allSections.slice(4);
+  const actionButtons = scheduleData.actions || [];
+
+  // Get Report Builder Workflow data from database
+  const workflowData = useVisualizationDataSet('y14_report', 'Report Builder Workflow');
+
   // Animation states for each section
   const [animateLeft, setAnimateLeft] = useState(false);
   const [animateRight, setAnimateRight] = useState(false);
@@ -84,7 +91,7 @@ export default function Y14ReportNew() {
     const findingsTimer = setTimeout(() => setAnimateFindings(true), 1000);
     const navTimer = setTimeout(() => setAnimateNav(true), 1500);
     const logoTimer = setTimeout(() => setAnimateLogo(true), 2000);
-    
+
     return () => {
       clearTimeout(leftTimer);
       clearTimeout(rightTimer);
@@ -96,8 +103,6 @@ export default function Y14ReportNew() {
 
   // Toggle accordion - only one can be open at a time
   const handleAccordionToggle = (accordionId) => {
-    // If clicking the already expanded accordion, keep it open (don't close it)
-    // Otherwise, open the clicked accordion and close the previous one
     setExpandedAccordion(accordionId);
   };
 
@@ -111,22 +116,86 @@ export default function Y14ReportNew() {
     navigate('/anomaly-detection');
   });
 
+  // Render standard label/value rows for an accordion section
+  const renderDetailsSection = (section) => (
+    <Box className={styles.detailsGrid}>
+      {(section.rows || []).map((row, idx) => (
+        <Box key={idx} className={styles.textRow}>
+          <Typography className={styles.textLabel}>{row.label}</Typography>
+          <Typography className={styles.textValue}>{row.value}</Typography>
+        </Box>
+      ))}
+    </Box>
+  );
+
+  // Render covenant table section with status color indicators
+  const renderCovenantSection = (section) => (
+    <Box className={styles.covenantGrid}>
+      <Box className={styles.covenantRow} sx={{ borderBottom: '1px solid #33333E', pb: 1, mb: 1 }}>
+        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Covenant</Typography>
+        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Threshold</Typography>
+        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Current</Typography>
+        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Status</Typography>
+      </Box>
+      {(section.rows || []).map((row, idx) => (
+        <Box key={idx} className={styles.covenantRow}>
+          <Typography className={styles.covenantCell}>{row.covenant_name}</Typography>
+          <Typography className={styles.covenantCell}>{row.threshold}</Typography>
+          <Typography className={styles.covenantCell}>{row.current_value}</Typography>
+          <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ width: 16, height: 16, bgcolor: row.status_color, borderRadius: 1, mr: 1 }}></Box>
+            <Typography>{row.status}</Typography>
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  );
+
+  // Render a single accordion item
+  const renderAccordion = (section, isLeftColumn) => (
+    <Box key={section.id}>
+      <Box className={styles.accordion}>
+        <Box
+          className={styles.accordionTitle}
+          onClick={() => handleAccordionToggle(section.id)}
+        >
+          <Typography className={styles.accordionHeader}>{section.title}</Typography>
+          <Box className={styles.accordionIcon}>
+            {expandedAccordion === section.id ? (
+              <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+            ) : (
+              <ExpandMoreIcon />
+            )}
+          </Box>
+        </Box>
+      </Box>
+      {expandedAccordion === section.id && (
+        <Box
+          className={`${styles.accordionContent}${section.id === 1 ? ` ${styles.borrowerAccordionContent}` : ''}`}
+          sx={isLeftColumn ? {overflowX: "hidden"} : undefined}
+        >
+          {section.type === 'covenant_table' ? renderCovenantSection(section) : renderDetailsSection(section)}
+        </Box>
+      )}
+    </Box>
+  );
+
   return (
     <Box className={styles.reportGenerationPage}>
       {/* Background Video */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
         className={styles.backgroundVideo}
       >
         <source src={assets['Banking_Capital_Market_Operate_Table_Dashboard_Background_Video']} type="video/mp4" />
       </video>
-      
+
       {/* Background Overlay */}
       <Box className={styles.backgroundOverlay} />
-      
+
       {/* Main content */}
       <Box className={styles.mainContainer}>
         {/* Left: Schedule Template with gradient border and grow */}
@@ -135,474 +204,35 @@ export default function Y14ReportNew() {
             <GradientBorderBox>
               <Box className={styles.scheduleTemplatePanel}>
                 <Box className={styles.panelHeader}>
-                  <Typography className={styles.panelTitle}>FR Y-14 Schedule Template</Typography>
+                  <Typography className={styles.panelTitle}>{scheduleData.title || 'FR Y-14 Schedule Template'}</Typography>
                 </Box>
 
                 <Box className={styles.templateContent}>
               <Box className={styles.accordionColumn}>
-                {/* Borrower / Obligor Information */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box 
-                      className={styles.accordionTitle}
-                      onClick={() => handleAccordionToggle('borrower')}
-                    >
-                      <Typography className={styles.accordionHeader}>Borrower / Obligor Information</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'borrower' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'borrower' && (
-                  <Box className={`${styles.accordionContent} ${styles.borrowerAccordionContent}`} sx={{overflowX:"hidden"}}>
-                    <Box className={styles.detailsGrid} >
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Obligor name</Typography>
-                        <Typography className={styles.textValue}>Vertex Logistics Corp.</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Obligor ID</Typography>
-                        <Typography className={styles.textValue}>00492-WHSL</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Country</Typography>
-                        <Typography className={styles.textValue}>United States</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Industry/NAICS code</Typography>
-                        <Typography className={styles.textValue}>488510 – Freight Transportation Arrangement</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Obligor type</Typography>
-                        <Typography className={styles.textValue}>Corporate</Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
-                {/* Loan Characteristics */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('loan')}>
-                      <Typography className={styles.accordionHeader}>Loan Characteristics</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'loan' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'loan' && (
-                  <Box className={styles.accordionContent} sx={{overflowX:"hidden"}}>
-                    <Box className={styles.detailsGrid} >
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Loan Type</Typography>
-                        <Typography className={styles.textValue}>Working Capital Revolver</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Origination Date</Typography>
-                        <Typography className={styles.textValue}>15-Jan-21</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Maturity Date</Typography>
-                        <Typography className={styles.textValue}>15-Jan-26</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Original Commitment</Typography>
-                        <Typography className={styles.textValue}>$1,80,00,000 </Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Current Outstanding Balance</Typography>
-                        <Typography className={styles.textValue}>$1,42,00,000 </Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Unused Commitment</Typography>
-                        <Typography className={styles.textValue}>$38,00,000 </Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Interest Rate Type</Typography>
-                        <Typography className={styles.textValue}>Floating (SOFR + 2.10%)</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Current Interest Rate</Typography>
-                        <Typography className={styles.textValue}>7.35%</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Payment Frequency</Typography>
-                        <Typography className={styles.textValue}>Monthly</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Next Payment Due</Typography>
-                        <Typography className={styles.textValue}>12/10/2025</Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
-                {/* Collateral Information */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('collateral')}>
-                      <Typography className={styles.accordionHeader}>Collateral Information</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'collateral' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'collateral' && (
-                  <Box className={styles.accordionContent} sx={{overflowX:"hidden"}}>
-                    <Box className={styles.detailsGrid}>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Collateral Type</Typography>
-                        <Typography className={styles.textValue}>Accounts Receivable + Inventory</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Collateral Code</Typography>
-                        <Typography className={styles.textValue}>24</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Collateral Value</Typography>
-                        <Typography className={styles.textValue}>$2,10,00,000 </Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>LTV (Calculated)</Typography>
-                        <Typography className={styles.textValue}>64%</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Lien Position</Typography>
-                        <Typography className={styles.textValue}>1st Lien</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Guarantee Indicator</Typography>
-                        <Typography className={styles.textValue}>Yes (Corporate Guarantee)</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Guarantee Amount</Typography>
-                        <Typography className={styles.textValue}>$1,80,00,000 </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
-                {/* Covenant Information */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('covenant')}>
-                      <Typography className={styles.accordionHeader}>Covenant Information (Extracted)</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'covenant' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'covenant' && (
-                  <Box className={styles.accordionContent} sx={{overflowX:"hidden"}}>
-                    <Box className={styles.covenantGrid}>
-                      {/* Headers */}
-                      <Box className={styles.covenantRow} sx={{ borderBottom: '1px solid #33333E', pb: 1, mb: 1 }}>
-                        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Covenant</Typography>
-                        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Threshold</Typography>
-                        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Current</Typography>
-                        <Typography className={styles.covenantCell} sx={{ fontWeight: 500 }}>Status</Typography>
-                      </Box>
-                      
-                      {/* DSCR */}
-                      <Box className={styles.covenantRow}>
-                        <Typography className={styles.covenantCell}>DSCR</Typography>
-                        <Typography className={styles.covenantCell}>≥ 1.20</Typography>
-                        <Typography className={styles.covenantCell}>0.75</Typography>
-                        <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Box sx={{ width: 16, height: 16, bgcolor: '#FF9800', borderRadius: 1, mr: 1 }}></Box>
-                          <Typography>At Risk</Typography>
-                        </Box>
-                      </Box>
-                      
-                      {/* LTV */}
-                      <Box className={styles.covenantRow}>
-                        <Typography className={styles.covenantCell}>LTV</Typography>
-                        <Typography className={styles.covenantCell}>≤ 70%</Typography>
-                        <Typography className={styles.covenantCell}>64%</Typography>
-                        <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Box sx={{ width: 16, height: 16, bgcolor: '#4CAF50', borderRadius: 1, mr: 1 }}></Box>
-                          <Typography>Compliant</Typography>
-                        </Box>
-                      </Box>
-                      
-                      {/* Leverage Ratio */}
-                      <Box className={styles.covenantRow}>
-                        <Typography className={styles.covenantCell}>Leverage Ratio</Typography>
-                        <Typography className={styles.covenantCell}>≤ 3.50x</Typography>
-                        <Typography className={styles.covenantCell}>3.20x</Typography>
-                        <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Box sx={{ width: 16, height: 16, bgcolor: '#4CAF50', borderRadius: 1, mr: 1 }}></Box>
-                          <Typography>Compliant</Typography>
-                        </Box>
-                      </Box>
-                      
-                      {/* ESG Filing */}
-                      <Box className={styles.covenantRow}>
-                        <Typography className={styles.covenantCell}>ESG Filing</Typography>
-                        <Typography className={styles.covenantCell}>Q2 Filing Required</Typography>
-                        <Typography className={styles.covenantCell}>Overdue</Typography>
-                        <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Box sx={{ width: 16, height: 16, bgcolor: '#F44336', borderRadius: 1, mr: 1 }}></Box>
-                          <Typography>Breached</Typography>
-                        </Box>
-                      </Box>
-                      
-                      {/* Financial Reporting */}
-                      <Box className={styles.covenantRow}>
-                        <Typography className={styles.covenantCell}>Financial Reporting</Typography>
-                        <Typography className={styles.covenantCell}>Quarterly, within 30 days</Typography>
-                        <Typography className={styles.covenantCell}>Submitted</Typography>
-                        <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Box sx={{ width: 16, height: 16, bgcolor: '#4CAF50', borderRadius: 1, mr: 1 }}></Box>
-                          <Typography>Compliant</Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
+                {leftSections.map((section) => renderAccordion(section, true))}
               </Box>
               <Box className={styles.accordionColumn}>
-                {/* Credit Quality & Risk Measures */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('credit')}>
-                      <Typography className={styles.accordionHeader}>Credit Quality & Risk Metrics</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'credit' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'credit' && (
-                  <Box className={styles.accordionContent}>
-                    <Box className={styles.detailsGrid}>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Internal Risk Rating</Typography>
-                        <Typography className={styles.textValue}>6 (Moderate Risk)</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Prob. of Default (PD)</Typography>
-                        <Typography className={styles.textValue}>1.90%</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Loss Given Default (LGD)</Typography>
-                        <Typography className={styles.textValue}>38%</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Exposure at Default (EAD)</Typography>
-                        <Typography className={styles.textValue}>$1,80,00,000 </Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Accrued Interest</Typography>
-                        <Typography className={styles.textValue}>$72,400</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Non-Accrual Indicator</Typography>
-                        <Typography className={styles.textValue}>No</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Troubled Debt Restructuring</Typography>
-                        <Typography className={styles.textValue}>No</Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
-                {/* Performance & Payment Info */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('performance')}>
-                      <Typography className={styles.accordionHeader}>Performance & Payment Info</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'performance' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'performance' && (
-                  <Box className={styles.accordionContent}>
-                    <Box className={styles.detailsGrid}>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Days Past Due</Typography>
-                        <Typography className={styles.textValue}>0</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Past Due Indicator</Typography>
-                        <Typography className={styles.textValue}>No</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Last Payment Date</Typography>
-                        <Typography className={styles.textValue}>12-Sep-25</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Next Payment Date</Typography>
-                        <Typography className={styles.textValue}>12-Oct-25</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Payment Status</Typography>
-                        <Typography className={styles.textValue}>Current</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Interest Expense (YTD)</Typography>
-                        <Typography className={styles.textValue}>$21,00,00,000  </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
-                {/* Accounting & Reporting Attributes */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('accounting')}>
-                      <Typography className={styles.accordionHeader}>Accounting & Reporting Attributes</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'accounting' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'accounting' && (
-                  <Box className={styles.accordionContent}>
-                    <Box className={styles.detailsGrid}>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Accounting Standard</Typography>
-                        <Typography className={styles.textValue}>GAAP</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Accrual Status</Typography>
-                        <Typography className={styles.textValue}>Performing</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Impairment Status</Typography>
-                        <Typography className={styles.textValue}>Not Impaired</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Charge-Off Amount</Typography>
-                        <Typography className={styles.textValue}>$0</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Restructured Indicator</Typography>
-                        <Typography className={styles.textValue}>No</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Basel Exposure Class</Typography>
-                        <Typography className={styles.textValue}>Corporate Exposure</Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
-                {/* Regulatory Schedule Mapping (Meta Fields) */}
-                <Box>
-                  <Box className={styles.accordion}>
-                    <Box className={styles.accordionTitle} onClick={() => handleAccordionToggle('regulatory')}>
-                      <Typography className={styles.accordionHeader}>Regulatory Schedule Mapping (Meta Fields)</Typography>
-                      <Box className={styles.accordionIcon}>
-                        {expandedAccordion === 'regulatory' ? (
-                          <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
-                        ) : (
-                          <ExpandMoreIcon />
-                        )}
-                      </Box>
-                    </Box>
-                  </Box>
-                  {expandedAccordion === 'regulatory' && (
-                  <Box className={styles.accordionContent}>
-                    <Box className={styles.detailsGrid}>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>DSCR (Reported)</Typography>
-                        <Typography className={styles.textValue}>0.75</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>DSCR (Trend YoY)</Typography>
-                        <Typography className={styles.textValue}>5%</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>LTV (Reported)</Typography>
-                        <Typography className={styles.textValue}>64%</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>EBITDA (TTM)</Typography>
-                        <Typography className={styles.textValue}>$1.2B</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Revenue (TTM)</Typography>
-                        <Typography className={styles.textValue}>$12.5B</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Total Debt</Typography>
-                        <Typography className={styles.textValue}>$3.8B</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Equity</Typography>
-                        <Typography className={styles.textValue}>$1.2B</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Covenant Breach</Typography>
-                        <Typography className={styles.textValue}>ESG report overdue (Q2)</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Remediation Plan</Typography>
-                        <Typography className={styles.textValue}>Client notified; 30-day cure period issued</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Internal Comments</Typography>
-                        <Typography className={styles.textValue}>No financial covenant defaults; ESG breach does not trigger cross-default</Typography>
-                      </Box>
-                      <Box className={styles.textRow}>
-                        <Typography className={styles.textLabel}>Stress Scenario Tested</Typography>
-                        <Typography className={styles.textValue}>Revenue – 10% = DSCR falls to 0.62</Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
-                </Box>
+                {rightSections.map((section) => renderAccordion(section, false))}
               </Box>
             </Box>
-            
+
             {/* Action Buttons */}
             <Stack direction="row" spacing={2} justifyContent="flex-start" mt={2}>
               <Button className={styles.submitButton}>
-                <Typography className={styles.buttonText}>Submit to Regulator</Typography>
+                <Typography className={styles.buttonText}>{actionButtons[0]?.label || 'Submit to Regulator'}</Typography>
               </Button>
-              
+
               <Button className={styles.saveButton}>
                 <Stack direction="row" alignItems="center">
                   <InsertDriveFileOutlined className={styles.buttonIcon} />
-                  <Typography className={styles.buttonText}>Save Drafts</Typography>
+                  <Typography className={styles.buttonText}>{actionButtons[1]?.label || 'Save Drafts'}</Typography>
                 </Stack>
               </Button>
-              
+
               <Button className={styles.generateButton}>
                 <Stack direction="row" alignItems="center">
                   <PictureAsPdfOutlined className={styles.buttonIcon} />
-                  <Typography className={styles.buttonText}>Generate PDF</Typography>
+                  <Typography className={styles.buttonText}>{actionButtons[2]?.label || 'Generate PDF'}</Typography>
                 </Stack>
               </Button>
             </Stack>
@@ -616,9 +246,9 @@ export default function Y14ReportNew() {
           <GradientBorderBox>
             <Box className={styles.rightColumn}>
               <Box className={styles.panelHeader}>
-                <Typography className={styles.panelTitle}>Report Builder Workflow</Typography>
+                <Typography className={styles.panelTitle}>{workflowData?.title || 'Report Builder Workflow'}</Typography>
               </Box>
-              
+
               <Box className={styles.workflowContainer}>
                 {/* Workflow Steps SVG */}
                 <Box
@@ -627,7 +257,7 @@ export default function Y14ReportNew() {
                   alt="Report Builder Workflow Steps"
                   className={styles.workflowStepsImage}
                 />
-                
+
                 {/* Document SVGs Container */}
                 <Box className={styles.docsContainer}>
                   {/* First Document */}
@@ -637,7 +267,7 @@ export default function Y14ReportNew() {
                     alt="Report Builder Document 1"
                     className={styles.docImage}
                   />
-                  
+
                   {/* Second Document */}
                   <Box
                     component="img"
@@ -645,7 +275,7 @@ export default function Y14ReportNew() {
                     alt="Report Builder Document 2"
                     className={styles.docImage}
                   />
-                  
+
                   {/* Third Document */}
                   <Box
                     component="img"
@@ -659,12 +289,12 @@ export default function Y14ReportNew() {
           </GradientBorderBox>
         </Grow>
 
-        {/* Detailed Findings replaced by static SVG */}
+        {/* Detailed Findings */}
         <Grow in={animateFindings} timeout={800} appear>
           <Box className={styles.findingsPanel}>
             <Box  className={styles.findingsImage}>
             <GradientBorderBox>
-              <DetailedFindings 
+              <DetailedFindings
                 findings={findingsData.findings || []}
                 warningMessage={findingsData.warningMessage || ''}
                 cardMinWidth="300px"
@@ -675,17 +305,17 @@ export default function Y14ReportNew() {
           </Box>
         </Grow>
       </Box>
-      
+
       {/* Navigation buttons */}
       <Fade in={animateNav} timeout={800}>
         <Box className={styles.navigationButtons}>
-        <Button 
+        <Button
           className={styles.backButton}
           onClick={handleGoBack}
         >
           <Typography className={styles.backButtonText}>Back</Typography>
         </Button>
-        <Button 
+        <Button
           className={styles.nextButton}
           onClick={handleNextStep}
         >
@@ -693,10 +323,10 @@ export default function Y14ReportNew() {
         </Button>
       </Box>
       </Fade>
-      
+
       {/* EY Logo */}
       <Fade in={animateLogo} timeout={800}>
-        <Box 
+        <Box
           component="img"
           src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']}
           alt="EY Logo"

@@ -24,6 +24,7 @@ export default function DocumentCentrePage() {
   const caseInfo = useVisualizationDataSet('document_centre', 'Case Information');
   const docsSummary = useVisualizationDataSet('document_centre', 'Documents Summary');
   const documentListData = useVisualizationDataSet('document_centre', 'Document List');
+  const scanActionData = useVisualizationDataSet('document_centre', 'Scan Action');
 
   // Transform database documents with preview URLs
   const documentsFromDb = useMemo(() => {
@@ -388,7 +389,7 @@ export default function DocumentCentrePage() {
                   boxShadow: addedDocuments.length > 0 ? '0px 4px 15px rgba(255, 230, 0, 0.3)' : 'none',
                 }}
               >
-                Scan Documents ({addedDocuments.length})
+                {scanActionData?.label || 'Scan Documents'} ({addedDocuments.length})
               </Button>
             </motion.div>
           </Box>

@@ -34,14 +34,21 @@ const MainCard = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   minHeight: '600px',
+  overflow: 'hidden',
   transformOrigin: 'center',
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease',
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
 }));
 
 const LottieContainer = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
   width: '100%',
-  height: '100%'
+  height: '100%',
+  zIndex: 1,
 }));
 
 // Removed unused styled components
@@ -56,7 +63,7 @@ const OptionsContainer = styled(Box)(({ theme }) => ({
   zIndex: 2,
   position: 'absolute',
   left: '2.5vw',
-  bottom: '14vh',
+  bottom: '12vh',
 }));
 
 // Removed OptionCard as it's now in the individual components
@@ -142,9 +149,9 @@ export default function FeedbackPage() {
                       animationData={ANIMATIONS.feedbackAnimation}
                       loop={true}
                       autoplay={true}
-                      style={{ width: '105%', height: '100%' }}
+                      style={{ width: '100%', height: '100%' }}
                       rendererSettings={{
-                        preserveAspectRatio: 'xMidYMid slice',
+                        preserveAspectRatio: 'xMidYMid meet',
                       }}
                     />
                 </LottieContainer>
@@ -157,10 +164,12 @@ export default function FeedbackPage() {
                         transition={{ type: "spring", stiffness: 90, damping: 15 }}
                       >
                     <OptionsContainer>
- 
-                        <DeliveryOptionsSvg isVisible={fadeIn} />
+
+                        <Box sx={{ marginLeft: '-4vh' }}>
+                          <DeliveryOptionsSvg isVisible={fadeIn} />
+                        </Box>
                         <RatingComponentSvg isVisible={fadeIn} />
-                      
+
                     </OptionsContainer>
                     </motion.div>
                   </Fade>

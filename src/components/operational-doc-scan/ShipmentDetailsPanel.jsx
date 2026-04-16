@@ -3,18 +3,21 @@ import { Box, Grow, Slide } from '@mui/material';
 import GradientBorderBox from '../common/GradientBorderBox';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
 
-const ShipmentDetailsPanel = ({ revealStage, shipments, scanProgress }) => {
+const defaultColumns = ['Shipment #', 'Promised Delivery Date', 'Actual Delivery Date', 'Actions'];
+
+const ShipmentDetailsPanel = ({ revealStage, shipments, scanProgress, title, columns }) => {
+  const displayColumns = columns ? [columns[0], columns[1], columns[2], columns[4]] : defaultColumns;
+
   return (
     <Slide direction="left" in={revealStage >= 1} timeout={800}>
       <GradientBorderBox className={styles.shipmentDetailsPanel}>
-        <Box className={styles.panelTitle}>Shipment Details</Box>
-        
+        <Box className={styles.panelTitle}>{title || 'Shipment Details'}</Box>
+
         <Box className={styles.tableContainer}>
           <Box className={styles.tableHeader}>
-            <Box className={styles.tableHeaderCell}>Shipment #</Box>
-            <Box className={styles.tableHeaderCell}>Promised Delivery Date</Box>
-            <Box className={styles.tableHeaderCell}>Actual Delivery Date</Box>
-            <Box className={styles.tableHeaderCell}>Actions</Box>
+            {displayColumns.map((col, idx) => (
+              <Box key={idx} className={styles.tableHeaderCell}>{col}</Box>
+            ))}
           </Box>
           
           <Box className={styles.tableDivider}></Box>
