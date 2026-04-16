@@ -5,6 +5,7 @@ import { styled, keyframes } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
+import HLSVideoPlayer from '../components/common/HLSVideoPlayer';
 import { useButtonSound } from '../hooks';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
 
@@ -19,7 +20,7 @@ import ClientCommunicationIcon from '@mui/icons-material/Message';
 import BlockchainLedgerIcon from '@mui/icons-material/ViewInArOutlined';
 
 // Styled components
-const VideoBackground = styled('video')({
+const VideoBackgroundContainer = styled(Box)({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -28,7 +29,11 @@ const VideoBackground = styled('video')({
   width: 'auto',
   height: 'auto',
   zIndex: -1,
-  objectFit: 'cover',
+  '& video': {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
 });
 
 const Overlay = styled(Box)({
@@ -234,13 +239,15 @@ const EnterpriseLoanServicing = () => {
 
   return (
     <Box sx={{ height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
-      <VideoBackground
-        autoPlay
-        loop
-        muted
-        onLoadedData={handleVideoLoad}
-        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
-      />
+      <VideoBackgroundContainer>
+        <HLSVideoPlayer
+          src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      </VideoBackgroundContainer>
       <Overlay />
 
       <Container maxWidth="lg" sx={{ height: '100%', position: 'relative', pt: 3 }}>
