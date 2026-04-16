@@ -370,7 +370,7 @@ const database = {
               covenants: [
                 { name: 'DSCR', value: '0.92 (limit 1.25)', indicator: 'Alert', status: 'alert' },
                 { name: 'Debt/Equity', value: '1.99x (limit 3.0)', indicator: 'Warning', status: 'warning' },
-                { name: 'Current Ratio', value: '1.42 (Unusually high vs. 1.5–2.0 industry norm)', indicator: 'Alert', status: 'alert' }
+                { name: 'Current Ratio', value: '1.42', indicator: 'Alert', status: 'alert' }
               ]
             }
           }
@@ -741,11 +741,11 @@ const database = {
               subtitle: 'Before/After Impact Timeline',
               before: {
                 value: '3 Days',
-                label: 'Earlier (Without AI Integration)'
+                label: 'Before'
               },
               after: {
                 value: '30 Minutes',
-                label: 'Now (with AI)'
+                label: 'With AI: 90% faster covenant reviews'
               }
             }
           },
@@ -760,7 +760,8 @@ const database = {
                 {
                   title: 'Faster Covenant Checks',
                   points: [
-                    '28% faster cross-checks (benchmarks)'
+                    '65% faster covenant validation',
+                    '35% faster cross‑checks (benchmarks)'
                   ]
                 },
                 {
@@ -792,7 +793,7 @@ const database = {
                   type: 'warning',
                   title: 'Missed breaches in manual process',
                   details: [
-                    { label: '5 breaches detected late', value: '' },
+                    { label: 'Breaches detected late', value: '' },
                     { label: 'Verification incomplete', value: '' }
                   ]
                 }
