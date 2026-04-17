@@ -1,13 +1,42 @@
 import React, { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
-const HLSVideoPlayer = ({ src, className, autoPlay = true, loop = true, muted = true, playsInline = true }) => {
+const HLSVideoPlayer = ({
+  src,
+  className,
+  style,
+  onLoadedData,
+  autoPlay = true,
+  loop = true,
+  muted = true,
+  playsInline = true,
+}) => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
+  const hasNotifiedLoadedRef = useRef(false);
+
+  const notifyLoaded = () => {
+    if (hasNotifiedLoadedRef.current) {
+      return;
+    }
+    hasNotifiedLoadedRef.current = true;
+    if (typeof onLoadedData === 'function') {
+      onLoadedData();
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !src) return;
+
+    hasNotifiedLoadedRef.current = false;
+
+    const handleLoaded = () => {
+      notifyLoaded();
+    };
+
+    video.addEventListener('loadeddata', handleLoaded);
+    video.addEventListener('canplay', handleLoaded);
 
     // Check if HLS is supported
     if (Hls.isSupported()) {
@@ -32,6 +61,7 @@ const HLSVideoPlayer = ({ src, className, autoPlay = true, loop = true, muted = 
 
       // Handle events
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        notifyLoaded();
         if (autoPlay) {
           video.play().catch(err => {
             console.warn('Autoplay prevented:', err);
@@ -60,6 +90,8 @@ const HLSVideoPlayer = ({ src, className, autoPlay = true, loop = true, muted = 
 
       // Cleanup
       return () => {
+        video.removeEventListener('loadeddata', handleLoaded);
+        video.removeEventListener('canplay', handleLoaded);
         if (hls) {
           hls.destroy();
         }
@@ -68,6 +100,7 @@ const HLSVideoPlayer = ({ src, className, autoPlay = true, loop = true, muted = 
     // Check if browser natively supports HLS (Safari)
     else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = src;
+      notifyLoaded();
       if (autoPlay) {
         video.play().catch(err => {
           console.warn('Autoplay prevented:', err);
@@ -76,7 +109,12 @@ const HLSVideoPlayer = ({ src, className, autoPlay = true, loop = true, muted = 
     } else {
       console.error('HLS is not supported in this browser');
     }
-  }, [src, autoPlay]);
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoaded);
+      video.removeEventListener('canplay', handleLoaded);
+    };
+  }, [src, autoPlay, onLoadedData]);
 
   return (
     <video
@@ -86,7 +124,7 @@ const HLSVideoPlayer = ({ src, className, autoPlay = true, loop = true, muted = 
       loop={loop}
       muted={muted}
       playsInline={playsInline}
-      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      style={style || { width: '100%', height: '100%', objectFit: 'cover' }}
     />
   );
 };
