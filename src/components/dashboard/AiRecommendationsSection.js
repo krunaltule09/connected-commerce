@@ -10,10 +10,11 @@ export default function AiRecommendationsSection({ recommendations, size = 'medi
       transition={{ duration: 0.5, delay: 0.4 }}
       style={{ height: '28%', minHeight: '120px', marginBottom: '8px', ...containerStyle }}
     >
-      <AIRecommendationsWithGif 
-        contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"50%",left:"0%"}} 
+      <AIRecommendationsWithGif
+        contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"50%",left:"0%", marginLeft: '1rem', marginTop: '1rem'}}
         recommendations={recommendations}
         size={size}
+        listPaddingLeft='3rem'
       />
     </motion.div>
   );

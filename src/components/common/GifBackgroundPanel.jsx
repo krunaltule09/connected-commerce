@@ -42,13 +42,14 @@ const Bullet = styled(Box)(({ theme }) => ({
   marginTop: '3px',
 }));
 
-const GifBackgroundPanel = ({ 
+const GifBackgroundPanel = ({
   size = 'medium',
-  bulletPoints = [], 
+  bulletPoints = [],
   sx = {},
   contentContainerSx = {},
   imageTransform = null,
-  fontSize = '14px'
+  fontSize = '14px',
+  listPaddingLeft = null
 }) => {
   const { assets } = useConfig();
   const isLarge = size === 'large';
@@ -77,10 +78,10 @@ const GifBackgroundPanel = ({
       </Box>
       
       <ContentContainer sx={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', zIndex: 1, ...contentContainerSx }}>
-        <List disablePadding>
+        <List style={{ paddingLeft: listPaddingLeft }}>
           {bulletPoints.map((point, index) => (
             <ListItem key={index} disableGutters sx={{ p: 0 }}>
-              <BulletPoint>
+              <BulletPoint >
                 <Bullet sx={{ lineHeight: 1 }}>▶</Bullet>
                 <Typography 
                   variant="body2" 
@@ -88,6 +89,7 @@ const GifBackgroundPanel = ({
                   sx={{ 
                     fontSize: fontSize, 
                     lineHeight: 1.5, 
+                    margin: '0.1rem',
                     fontWeight: '300',
                     fontFamily: 'Interstate, sans-serif',
                     textAlign: 'left'
