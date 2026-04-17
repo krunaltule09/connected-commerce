@@ -356,7 +356,7 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               alerts: [
-                'Earnings‑driven DSCR breach identified: margin compression and higher interest costs—not leverage—are driving coverage deterioration; remediation should focus on cash flow improvement and cost controls.'
+                'Earnings-driven DSCR breach from margin compression and interest costs; improve cash flow, control costs.'
               ]
             }
           },
@@ -644,7 +644,7 @@ const database = {
             type: 'alert_chip',
             position: 'top_center',
             data_set: {
-              message: 'Shipment 2845 delivered late (9/22 vs 9/20)'
+              message: 'Operational shortfalls, costs and delays pressure cash flow, margins, risking projections without corrective action.'
             }
           },
           {
