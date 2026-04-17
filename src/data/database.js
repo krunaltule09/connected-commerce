@@ -480,12 +480,6 @@ const database = {
               title: 'FR Y-14 Schedule Template',
               sections: [
                 {
-                  id: 1,
-                  title: 'Borrower / Obligor Information',
-                  rows: [
-                  ]
-                },
-                {
                   id: 2,
                   title: 'Loan Characteristics',
                   rows: [
