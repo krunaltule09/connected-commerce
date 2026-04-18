@@ -1,14 +1,16 @@
 import React from 'react';
 import GifBackgroundPanel from '../common/GifBackgroundPanel';
 
-export default function AIRecommendationsWithGif({ 
-  recommendations, 
+export default function AIRecommendationsWithGif({
+  recommendations,
   size = 'medium',
   contentContainerSx = {},
-  imageTransform = null
+  imageTransform = null,
+  fontSize = '14px',
+  listPaddingLeft = null
 }) {
   console.log('AIRecommendationsWithGif size:', size);
-  
+
   return (
     <GifBackgroundPanel
       size={size}
@@ -16,6 +18,8 @@ export default function AIRecommendationsWithGif({
       contentContainerSx={contentContainerSx}
       sx={{ height: '100%', width: '100%' }}
       imageTransform={imageTransform}
+      fontSize={fontSize}
+      listPaddingLeft={listPaddingLeft}
     />
   );
 }

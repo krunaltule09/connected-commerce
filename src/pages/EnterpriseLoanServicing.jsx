@@ -5,6 +5,7 @@ import { styled, keyframes } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import navigationService from '../services/NavigationService';
 import GradientButton from '../components/common/GradientButton';
+import HLSVideoPlayer from '../components/common/HLSVideoPlayer';
 import { useButtonSound } from '../hooks';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
 
@@ -18,8 +19,8 @@ import RiskDashboardIcon from '@mui/icons-material/BarChartOutlined';
 import ClientCommunicationIcon from '@mui/icons-material/Message';
 import BlockchainLedgerIcon from '@mui/icons-material/ViewInArOutlined';
 
-// Styled components
-const VideoBackground = styled('video')({
+// Video background styles applied directly to <video> element to avoid wrapper div stacking context issues
+const videoBackgroundStyle = {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -29,7 +30,7 @@ const VideoBackground = styled('video')({
   height: 'auto',
   zIndex: -1,
   objectFit: 'cover',
-});
+};
 
 const Overlay = styled(Box)({
   position: 'fixed',
@@ -47,6 +48,12 @@ const Logo = styled('img')({
   right: '-16%',
   width: '80px',
   height: 'auto',
+  cursor: 'pointer',
+  transition: 'transform 0.3s ease, filter 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.1)',
+    filter: 'brightness(1.2)',
+  },
 });
 
 const MenuGrid = styled(Grid)(({ theme }) => ({
@@ -95,7 +102,7 @@ const MenuButton = styled(GradientButton)(({ theme }) => ({
   }
 }));
 
-// Pulse animation for the activate button
+// eslint-disable-next-line no-unused-vars
 const pulseAnimation = keyframes`
   0% {
     box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
@@ -201,6 +208,14 @@ const EnterpriseLoanServicing = () => {
     }
   }, [isVideoLoaded]);
 
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      setAnimationReady(true);
+    }, 1500);
+
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
   };
@@ -230,16 +245,22 @@ const EnterpriseLoanServicing = () => {
       console.error('Failed to send navigation event:', error);
     }
   });
+
+  const handleLogoClick = useButtonSound(() => {
+    navigate('/');
+  });
   
 
   return (
     <Box sx={{ height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
-      <VideoBackground
+      <HLSVideoPlayer
+        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
         autoPlay
         loop
         muted
+        playsInline
         onLoadedData={handleVideoLoad}
-        src={assets['Banking_Capital_Market_Operate_Table_Loan_Background_Video']}
+        style={videoBackgroundStyle}
       />
       <Overlay />
 
@@ -373,7 +394,11 @@ const EnterpriseLoanServicing = () => {
           timeout={1000}
           style={{ transitionDelay: animationReady ? '800ms' : '0ms' }}
         >
-          <Logo src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']} alt="EY Logo" />
+          <Logo 
+            src={assets['Banking_Capital_Market_Operate_Table_EY_Logo.svg']} 
+            alt="EY Logo"
+            onClick={handleLogoClick}
+          />
         </Zoom>
         
       </Container>

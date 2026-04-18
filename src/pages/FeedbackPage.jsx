@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import DeliveryOptionsSvg from '../components/DeliveryOptionsSvg';
 import RatingComponentSvg from '../components/RatingComponentSvg';
-import { Box, Typography, Button, Container, Fade, Grow, Slide } from '@mui/material';
+import { Box, Button, Container, Fade, Grow } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 // Removed unused import: CheckCircleOutlineIcon
@@ -25,20 +25,6 @@ const PageContainer = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const Header = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
-}));
-
-const Title = styled(Typography)(({ theme }) => ({
-  color: '#00C8FF',
-  fontWeight: 500,
-}));
-
-const Subtitle = styled(Typography)(({ theme }) => ({
-  color: '#FFFFFF',
-  opacity: 0.7,
-}));
-
 const MainCard = styled(Box)(({ theme }) => ({
   position: 'relative',
   borderRadius: '16px',
@@ -48,14 +34,21 @@ const MainCard = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   minHeight: '600px',
+  overflow: 'hidden',
   transformOrigin: 'center',
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, filter 0.3s ease',
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
 }));
 
 const LottieContainer = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
   width: '100%',
-  height: '100%'
+  height: '100%',
+  zIndex: 1,
 }));
 
 // Removed unused styled components
@@ -70,7 +63,7 @@ const OptionsContainer = styled(Box)(({ theme }) => ({
   zIndex: 2,
   position: 'absolute',
   left: '2.5vw',
-  bottom: '14vh',
+  bottom: '12vh',
 }));
 
 // Removed OptionCard as it's now in the individual components
@@ -96,16 +89,13 @@ const BackButton = styled(Button)(({ theme }) => ({
 
 export default function FeedbackPage() {
   const navigate = useNavigate();
-  const [rating, setRating] = useState(0);
-  const [deliveryOption, setDeliveryOption] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const lottieRef = useRef(null);
   const [showComponents, setShowComponents] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
   // Animation states
   const [animateTop, setAnimateTop] = useState(false);
   const [animateMiddle, setAnimateMiddle] = useState(false);
-  const [animateBottom, setAnimateBottom] = useState(false);
+  const [, setAnimateBottom] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
   
   // Get data from appDatabase
@@ -159,9 +149,9 @@ export default function FeedbackPage() {
                       animationData={ANIMATIONS.feedbackAnimation}
                       loop={true}
                       autoplay={true}
-                      style={{ width: '105%', height: '100%' }}
+                      style={{ width: '100%', height: '100%' }}
                       rendererSettings={{
-                        preserveAspectRatio: 'xMidYMid slice',
+                        preserveAspectRatio: 'xMidYMid meet',
                       }}
                     />
                 </LottieContainer>
@@ -174,10 +164,12 @@ export default function FeedbackPage() {
                         transition={{ type: "spring", stiffness: 90, damping: 15 }}
                       >
                     <OptionsContainer>
- 
-                        <DeliveryOptionsSvg isVisible={fadeIn} />
+
+                        <Box sx={{ marginLeft: '-4vh' }}>
+                          <DeliveryOptionsSvg isVisible={fadeIn} />
+                        </Box>
                         <RatingComponentSvg isVisible={fadeIn} />
-                      
+
                     </OptionsContainer>
                     </motion.div>
                   </Fade>

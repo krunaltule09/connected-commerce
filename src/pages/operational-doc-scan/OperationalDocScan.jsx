@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Fade, Grow, Slide, Zoom } from '@mui/material';
+import { Box, Grow, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecommendationsWithGif';
@@ -83,12 +83,13 @@ const OperationalDocScan = () => {
   
   const handleNextStep = useButtonSound(() => {
     if (nextButtonEnabled) {
-      navigate('/data-simulator');
+      // /data-simulator
+      navigate('/y14-report');
     }
   });
 
   const handleGoBack = useButtonSound(() => {
-    navigate('/y14-report');
+    navigate('/anomaly-detection');
   });
 
   const handleLogoClick = useButtonSound(() => {
@@ -240,7 +241,7 @@ const OperationalDocScan = () => {
             findings={findingsData.findings}
             showWarning={false}
             cardMinWidth="220px"
-            cardMaxWidth="330px"
+            cardMaxWidth="328px"
             cardHeight="220px"
             buttonTransformY="-1rem"
           />

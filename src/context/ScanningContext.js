@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef } from 'react';
+import { httpFetch } from '../utils/tauriFetch';
 
 const ScanningContext = createContext();
 
@@ -9,6 +10,7 @@ export function ScanningProvider({ children }) {
   const [isFinancialDataReady, setIsFinancialDataReady] = useState(false);
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
   const lastPublishedProgress = useRef(-1);
+  // eslint-disable-next-line no-unused-vars
   const hasBeenInitialized = useRef(false);
 
   // Publish progress to SSE service (same pattern as NavigationService)
@@ -18,7 +20,7 @@ export function ScanningProvider({ children }) {
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await fetch(`${SSE_BASE_URL}/api/progress`, {
+      await httpFetch(`${SSE_BASE_URL}/api/progress`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

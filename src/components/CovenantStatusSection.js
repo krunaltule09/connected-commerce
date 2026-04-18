@@ -1,27 +1,19 @@
 import { Stack, Typography, Box, CircularProgress, Fade, Skeleton } from '@mui/material';
-import { useMemo } from 'react';
 import GradientBorderBox from './common/GradientBorderBox';
 import CovenantTile from './CovenantTile';
 import { useScanning } from '../context/ScanningContext';
-import database from '../data/database';
+import { useVisualizationDataSet } from '../context/ConfigContext';
 
 export default function CovenantStatusSection() {
   const { isCovenantDataReady, scanProgress } = useScanning();
-  
-  // Get covenant status from database
-  const covenants = useMemo(() => {
-    const financialDashboardScreen = database.screens.find(
-      screen => screen.screen_name === 'financial_dashboard'
-    );
-    const covenantVisualization = financialDashboardScreen?.visualizations.find(
-      viz => viz.name === 'Covenant Status'
-    );
-    return covenantVisualization?.data_set?.covenants || [];
-  }, []);
+
+  // Get covenant status from ConfigContext
+  const covenantDataSet = useVisualizationDataSet('financial_dashboard', 'Covenant Status');
+  const covenants = covenantDataSet?.covenants || [];
 
   return (
     <GradientBorderBox sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#121214', p: 0 }}>
-      <Typography variant="h6" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '1.25rem', p: 2, pb: 1 }}>Covenant Status</Typography>
+      <Typography variant="h6" sx={{ color: '#FFE600', fontWeight: 400, fontSize: '1.25rem', p: 2, pb: 1 }}>{covenantDataSet?.title || 'Covenant Status'}</Typography>
       
       {!isCovenantDataReady ? (
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

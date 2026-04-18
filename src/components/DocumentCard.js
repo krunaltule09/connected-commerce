@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { handleDocumentDragStart } from '../utils';
+// Removed unused import: handleDocumentDragStart
 import { GradientBorderBox } from './common';
 import { useConfig } from '../context/ConfigContext';
 

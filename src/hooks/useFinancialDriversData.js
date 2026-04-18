@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { httpFetch } from '../utils/tauriFetch';
 
 /**
  * Custom hook for financial drivers data
@@ -18,7 +19,7 @@ export const useFinancialDriversData = () => {
     const fetchData = async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/case/1/quarter-by-quarter-financial-drivers`);
+        const response = await httpFetch(`${apiUrl}/api/case/1/quarter-by-quarter-financial-drivers`);
         const result = await response.json();
         const dataPoints = result.data?.dataPoints || [];
         

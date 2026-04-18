@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { httpFetch } from '../utils/tauriFetch';
 
 /**
  * Custom hook for DSCR (Debt Service Coverage Ratio) data
@@ -12,7 +13,7 @@ export const useDSCRData = () => {
     const fetchData = async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/case/1/quarterly-dscr`);
+        const response = await httpFetch(`${apiUrl}/api/case/1/quarterly-dscr`);
         const result = await response.json();
         const dataPoints = result.data?.dataPoints || [];
         

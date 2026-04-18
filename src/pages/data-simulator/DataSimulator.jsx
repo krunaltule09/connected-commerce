@@ -209,7 +209,7 @@ const DataSimulator = () => {
                       }}>
                         <Box 
                           component="img"
-                          src={assets[idx === 0 ? 'BCM_OperateTable_Covenant_Checks.svg' : 'BCM_OperateTable_Errors_Icon.svg']}
+                          src={assets[idx === 0 ? 'Banking_Capital_Market_Operate_Table_Covenant_Checks.svg' : 'Banking_Capital_Market_Operate_Table_Errors_Icon.svg']}
                           alt={metric.title}
                           sx={{ width: 36, height: 36 }}
                         />

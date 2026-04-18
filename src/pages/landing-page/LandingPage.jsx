@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography, Fade, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import navigationService from '../../services/NavigationService';
 import { useButtonSound } from '../../hooks';
 import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
+import HLSVideoPlayer from '../../components/common/HLSVideoPlayer';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -30,21 +31,19 @@ const LandingPage = () => {
     }
   });
   
-
+  
   return (
     <Box className={styles.landingPage}>
       {/* Video background with overlay */}
       <Box className={styles.backgroundOverlay}>
-        <video
+        <HLSVideoPlayer
+          src={assets['Banking_Capital_Market_Operate_Table_Landing_Page_Video']}
+          className={styles.backgroundVideo}
           autoPlay
           loop
           muted
           playsInline
-          className={styles.backgroundVideo}
-        >
-          <source src={assets['Banking_Capital_Market_Operate_Table_Landing_Page_Video']} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
         <Box className={styles.videoOverlay}></Box>
       </Box>
       

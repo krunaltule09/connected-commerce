@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useVisualizationDataSet } from '../../context/ConfigContext';
 
 /**
@@ -47,10 +47,11 @@ const CustomTooltip = ({ active, payload }) => {
 export default function QuarterlyDSCRChart({ style = {} }) {
   // Get data from database
   const dscrData = useVisualizationDataSet('anomaly_detection', 'Quarterly DSCR') || { data_points: [], threshold_value: 1.1 };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = dscrData.data_points || [];
   const thresholdValue = dscrData.threshold_value || 1.1;
   
-  const [activeBar, setActiveBar] = useState(1); // Q2 index
+  const [, setActiveBar] = useState(1); // Q2 index
   const [animationProgress, setAnimationProgress] = useState(0);
 
   // Animate the chart rendering with delay

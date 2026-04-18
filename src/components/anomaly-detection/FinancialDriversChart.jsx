@@ -10,6 +10,7 @@ import { useVisualizationDataSet } from '../../context/ConfigContext';
 export default function FinancialDriversChart({ style = {} }) {
   // Get data from database
   const driversData = useVisualizationDataSet('anomaly_detection', 'Financial Drivers') || { data_points: [] };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = driversData.data_points || [];
   
   const [animationProgress, setAnimationProgress] = useState(0);

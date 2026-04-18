@@ -8,7 +8,7 @@ const AIChip = ({ scanProgress, recommendations }) => {
     <Grow in={scanProgress >= 50} timeout={800}>
       <Box className={styles.aiChipContainer}>
         <AIRecommendations 
-          contentContainerSx={{top:"13%",left:"6%"}} 
+          contentContainerSx={{top:"13%",left:"6%",width:"85%",padding:"-0.5px"}} 
           recommendations={recommendations} 
         />
       </Box>

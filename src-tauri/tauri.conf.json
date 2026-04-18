@@ -5,7 +5,7 @@
   "identifier": "com.ey.bcmoperate",
   "build": {
     "frontendDist": "../build",
-    "devUrl": "http://localhost:3000",
+    "devUrl": "http://localhost:5174",
     "beforeDevCommand": "npm start",
     "beforeBuildCommand": "npm run build"
   },
@@ -21,12 +21,12 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: asset: http: https:; media-src 'self' asset: blob: http: https:; font-src 'self' data:; connect-src 'self' ws: wss: http: https:"
     }
   },
   "bundle": {
     "active": true,
-    "targets": ["app"],
+    "targets": ["nsis", "app", "dmg"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

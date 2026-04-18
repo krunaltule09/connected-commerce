@@ -60,25 +60,24 @@ export default function DetailedFindings({
             display: 'flex', 
             width: '100%', 
             overflowX: 'auto', 
-            justifyContent: 'flex-start', 
-            overflowY: 'hidden', 
-            transform: 'translateY(-0.6rem)',
+            overflowY: 'hidden',
+            justifyContent: 'flex-start',
+            boxSizing: 'border-box',
+            margin: 0,
+            padding: 0,
             '&::-webkit-scrollbar': {
-              height: '8px',
+              height: '0px',
+              width: '0px',
             },
             '&::-webkit-scrollbar-track': {
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '4px',
+              backgroundColor: 'transparent',
             },
             '&::-webkit-scrollbar-thumb': {
-              backgroundColor: 'rgba(255, 230, 0, 1)',
-              borderRadius: '4px',
-              '&:hover': {
-                backgroundColor: 'rgba(255, 230, 0, 0.8)',
-              },
+              backgroundColor: 'transparent',
             },
-            scrollbarWidth: 'thin',
-            scrollbarColor: 'rgba(255, 230, 0, 1) rgba(255, 255, 255, 0.05)',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            '-ms-overflow-style': 'none',
           }}>
             {findings.map((finding, index) => (
               <Box 

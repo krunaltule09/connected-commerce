@@ -356,7 +356,7 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               alerts: [
-                'Earnings‑driven DSCR breach identified: margin compression and higher interest costs—not leverage—are driving coverage deterioration; remediation should focus on cash flow improvement and cost controls.'
+                'Earnings-driven DSCR breach from margin compression and interest costs; improve cash flow, control costs.'
               ]
             }
           },
@@ -368,9 +368,9 @@ const database = {
             data_set: {
               title: 'Covenant Status',
               covenants: [
-                { name: 'DSCR', value: '0.92 (Below 1.25 Covenant)', indicator: 'Alert', status: 'alert' },
-                { name: 'Debt/Equity', value: '1.99x (Above 3.0 Threshold)', indicator: 'Warning', status: 'warning' },
-                { name: 'Current Ratio', value: '1.42 (Unusually high vs. 1.5–2.0 industry norm)', indicator: 'Alert', status: 'alert' }
+                { name: 'DSCR', value: '0.92 (limit 1.25)', indicator: 'Alert', status: 'alert' },
+                { name: 'Debt/Equity', value: '1.99x (limit 3.0)', indicator: 'Warning', status: 'warning' },
+                { name: 'Current Ratio', value: '1.42', indicator: 'Alert', status: 'alert' }
               ]
             }
           }
@@ -480,30 +480,12 @@ const database = {
               title: 'FR Y-14 Schedule Template',
               sections: [
                 {
-                  id: 1,
-                  title: 'Borrower / Obligor Information',
-                  rows: [
-                    { label: 'Obligor name', value: 'Vertex Logistics Corp.' },
-                    { label: 'Obligor ID', value: '00492-WHSL' },
-                    { label: 'Country', value: 'United States' },
-                    { label: 'Industry/NAICS code', value: '488510 – Freight Transportation Arrangement' },
-                    { label: 'Obligor type', value: 'Corporate' }
-                  ]
-                },
-                {
                   id: 2,
                   title: 'Loan Characteristics',
                   rows: [
                     { label: 'Facility Type', value: 'Senior Secured Term Loan + Revolver' },
-                    { label: 'Origination Date', value: '15-Jan-21' },
-                    { label: 'Maturity Date', value: 'April 2029' },
                     { label: 'Committed Amount', value: 'USD $20,000,000' },
-                    { label: 'Current Outstanding Balance', value: '$1,42,00,000' },
-                    { label: 'Unused Commitment', value: '$38,00,000' },
-                    { label: 'Interest Rate Type', value: 'Floating (SOFR + 2.10%)' },
-                    { label: 'Current Interest Rate', value: '7.35%' },
-                    { label: 'Payment Frequency', value: 'Monthly' },
-                    { label: 'Next Payment Due', value: '12/10/2025' }
+                    { label: 'Maturity Date', value: 'April 2029' }, 
                   ]
                 },
                 {
@@ -511,12 +493,8 @@ const database = {
                   title: 'Collateral Information',
                   rows: [
                     { label: 'Primary Collateral', value: 'Accounts Receivable, Fleet Vehicles, Trailers' },
-                    { label: 'Collateral Code', value: '24' },
                     { label: 'Estimated Collateral Value', value: 'USD $54.0M' },
-                    { label: 'LTV (Calculated)', value: '64%' },
                     { label: 'Lien Position', value: 'First‑priority perfected lien' },
-                    { label: 'Guarantee Indicator', value: 'Yes (Corporate Guarantee)' },
-                    { label: 'Guarantee Amount', value: '$1,80,00,000' }
                   ]
                 },
                 {
@@ -526,38 +504,24 @@ const database = {
                   rows: [
                     {
                       covenant_name: 'DSCR',
-                      threshold: '≥ 1.25',
+                      threshold: '≥ 1.25x',
                       current_value: '0.92',
-                      status: 'Breached',
+                      status: 'Breach',
                       status_color: '#F44336'
                     },
                     {
-                      covenant_name: 'LTV',
-                      threshold: '≤ 70%',
-                      current_value: '64%',
-                      status: 'Compliant',
-                      status_color: '#4CAF50'
-                    },
-                    {
-                      covenant_name: 'Leverage Ratio',
-                      threshold: '≤ 3.00x',
+                      covenant_name: 'Debt / Equity',
+                      threshold: '≤ 3.0x',
                       current_value: '1.99x',
                       status: 'Compliant',
                       status_color: '#4CAF50'
                     },
                     {
-                      covenant_name: 'ESG Filing',
-                      threshold: 'Q2 Filing Required',
-                      current_value: 'Overdue',
-                      status: 'Breached',
-                      status_color: '#F44336'
-                    },
-                    {
-                      covenant_name: 'Financial Reporting',
-                      threshold: 'Quarterly, within 30 days',
-                      current_value: 'Submitted',
-                      status: 'Compliant',
-                      status_color: '#4CAF50'
+                      covenant_name: 'Liquidity',
+                      threshold: '≥ 1.30',
+                      current_value: '1.42',
+                      status: 'Warning Range',
+                      status_color: '#FF9800'
                     }
                   ]
                 },
@@ -568,22 +532,15 @@ const database = {
                     { label: 'Internal Risk Rating', value: 'BB+ (Watchlist)' },
                     { label: 'Prob. of Default (PD)', value: '0.85%' },
                     { label: 'Loss Given Default (LGD)', value: '40%' },
-                    { label: 'Exposure at Default (EAD)', value: '$1,80,00,000' },
-                    { label: 'Accrued Interest', value: '$72,400' },
-                    { label: 'Non-Accrual Indicator', value: 'No' },
-                    { label: 'Troubled Debt Restructuring', value: 'No' }
                   ]
                 },
                 {
                   id: 6,
                   title: 'Performance & Payment Info',
                   rows: [
-                    { label: 'Days Past Due', value: '0' },
-                    { label: 'Past Due Indicator', value: 'No' },
-                    { label: 'Last Payment Date', value: 'March 2026 (On Time)' },
-                    { label: 'Next Payment Date', value: '12-Oct-25' },
                     { label: 'Debt Service Status', value: 'Current; no payment delinquency' },
-                    { label: 'Amortization Amount', value: '$210K per month' }
+                    { label: 'Amortization Amount', value: '$210K per month' },
+                    { label: 'Last Payment Date', value: 'March 2026 (On Time)' },
                   ]
                 },
                 {
@@ -592,11 +549,6 @@ const database = {
                   rows: [
                     { label: 'Accounting Standard', value: 'US GAAP' },
                     { label: 'Financial Reporting Frequency', value: 'Quarterly (Reviewed)' },
-                    { label: 'Accrual Status', value: 'Performing' },
-                    { label: 'Impairment Status', value: 'Not Impaired' },
-                    { label: 'Charge-Off Amount', value: '$0' },
-                    { label: 'Restructured Indicator', value: 'No' },
-                    { label: 'Basel Exposure Class', value: 'Corporate Exposure' },
                     { label: 'Audit Status', value: 'FY2024 Audited; FY2025 Interim Reviewed' }
                   ]
                 },
@@ -606,18 +558,7 @@ const database = {
                   rows: [
                     { label: 'FR Y‑14 Schedule', value: 'Schedule H.1 – Covenant Monitoring' },
                     { label: 'Obligor Risk Mapping', value: 'Schedule A / Schedule M' },
-                    { label: 'Regulatory Status Flag', value: 'Material Covenant Breach – Active' },
-                    { label: 'DSCR (Reported)', value: '0.92' },
-                    { label: 'DSCR (Trend YoY)', value: '-22%' },
-                    { label: 'LTV (Reported)', value: '64%' },
-                    { label: 'EBITDA (TTM)', value: '$14.9M' },
-                    { label: 'Revenue (TTM)', value: '$178M' },
-                    { label: 'Total Debt', value: '$42.5M' },
-                    { label: 'Equity', value: '$21.4M' },
-                    { label: 'Covenant Breach', value: 'DSCR declined to 0.92 this cycle' },
-                    { label: 'Remediation Plan', value: 'Cash acceleration program, fuel surcharge revision' },
-                    { label: 'Internal Comments', value: 'DSCR breach confirmed; OTD/OTIF warnings' },
-                    { label: 'Stress Scenario Tested', value: 'Revenue – 10% = DSCR falls to 0.78' }
+                    { label: 'Regulatory Status Flag', value: 'Material Covenant Breach – Active' }
                   ]
                 }
               ],
@@ -636,6 +577,15 @@ const database = {
             data_set: {
               title: 'Report Builder Workflow',
               description: 'Visual workflow representation'
+            }
+          },
+          {
+            id: 19,
+            name: 'Tab Labels',
+            type: 'tab_navigation',
+            position: 'bottom_tabs',
+            data_set: {
+              tabs: ['EXPLORE DOCUMENTS', 'SOURCE METRICS']
             }
           },
           {
@@ -694,7 +644,7 @@ const database = {
             type: 'alert_chip',
             position: 'top_center',
             data_set: {
-              message: 'Shipment 2845 delivered late (9/22 vs 9/20)'
+              message: 'Operational shortfalls, costs and delays pressure cash flow, margins, risking projections without corrective action.'
             }
           },
           {
@@ -780,11 +730,11 @@ const database = {
               subtitle: 'Before/After Impact Timeline',
               before: {
                 value: '3 Days',
-                label: 'Earlier (Without AI Integration)'
+                label: 'Before'
               },
               after: {
                 value: '30 Minutes',
-                label: 'Now (with AI)'
+                label: 'With AI: 90% faster covenant reviews'
               }
             }
           },
@@ -799,7 +749,8 @@ const database = {
                 {
                   title: 'Faster Covenant Checks',
                   points: [
-                    '28% faster cross-checks (benchmarks)'
+                    '65% faster covenant validation',
+                    '35% faster cross‑checks (benchmarks)'
                   ]
                 },
                 {
@@ -831,7 +782,7 @@ const database = {
                   type: 'warning',
                   title: 'Missed breaches in manual process',
                   details: [
-                    { label: '5 breaches detected late', value: '' },
+                    { label: 'Breaches detected late', value: '' },
                     { label: 'Verification incomplete', value: '' }
                   ]
                 }
