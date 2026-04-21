@@ -103,7 +103,7 @@ export default function Y14ReportNew() {
 
   // Toggle accordion - only one can be open at a time
   const handleAccordionToggle = (accordionId) => {
-    setExpandedAccordion(accordionId);
+    setExpandedAccordion((prev) => (prev === accordionId ? null : accordionId));
   };
 
   // Handle next step with sound effect

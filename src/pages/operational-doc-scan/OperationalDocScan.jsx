@@ -145,7 +145,14 @@ const OperationalDocScan = () => {
           <Box sx={{ marginLeft: '1rem' }}>
             <AIRecommendationsWithGif 
               size="medium"
-              contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"13%",left:"3%"}} 
+              contentContainerSx={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                top:"13%",
+                left:"3%",
+                paddingLeft: '5rem'
+              }} 
               recommendations={[aiAlertData.message]} 
             />
           </Box>
