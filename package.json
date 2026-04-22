@@ -62,6 +62,20 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/reportWebVitals.js",
+      "!src/data/database.js",
+      "!src/assets/**",
+      "!src/examples/**",
+      "!src/pages/TestFlipBookPage.js",
+      "!src/components/DocumentCardDetails.js",
+      "!src/pages/DocumentCentrePage.js",
+      "!src/**/index.js"
+    ]
+  },
   "devDependencies": {
     "@tauri-apps/cli": "^2.9.6"
   }
