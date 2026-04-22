@@ -356,7 +356,7 @@ const database = {
             data_set: {
               title: 'AI Recommendations',
               alerts: [
-                'Earnings-driven DSCR breach from margin compression and interest costs; improve cash flow, control costs.'
+                'Earnings‑driven DSCR breach identified: margin compression and higher interest costs—not leverage—are driving coverage deterioration; remediation should focus on cash flow improvement and cost controls.'
               ]
             }
           },
@@ -644,7 +644,11 @@ const database = {
             type: 'alert_chip',
             position: 'top_center',
             data_set: {
-              message: 'Operational shortfalls, costs and delays pressure cash flow, margins, risking projections without corrective action.'
+              message: 'Operational shortfalls, costs and delays pressure cash flow, margins, risking projections without corrective action.',
+              recommendations: [
+                'Operational performance shortfalls are contributing to cash‑flow pressure and DSCR deterioration, with fulfilment at 86% (vs ≥90%), OTIF at 89% (vs ≥92%), and utilisation at 78%, reducing expected inflows.',
+                'Elevated unit costs ($1.82 per mile) and delivery delays increase margin pressure, heightening risk to Y‑14 cash‑flow projections absent corrective action.'
+              ]
             }
           },
           {

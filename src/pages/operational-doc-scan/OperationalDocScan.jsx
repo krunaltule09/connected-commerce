@@ -141,19 +141,29 @@ const OperationalDocScan = () => {
         </Grow>
         
         {/* AI Chip - positioned outside the document preview panel */}
-        <Grow in={animateAi} timeout={800} width={"102%"}>
-          <Box sx={{ marginLeft: '1rem' }}>
+        <Grow in={animateAi} timeout={800}>
+          <Box sx={{ 
+            width: '98.7%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: '0.5rem'
+          }}>
             <AIRecommendationsWithGif 
-              size="medium"
+              size="large"
+              fontSize="0.85rem"
+              isOperationalDocScan={true}
               contentContainerSx={{
                 display:"flex",
-                alignItems:"center",
+                alignItems:"flex-start",
                 justifyContent:"center",
-                top:"13%",
-                left:"3%",
-                paddingLeft: '5rem'
+                top:"30%",
+                left:"59%",
+                width: "75%",
+                transform: "translate(-50%, -50%)",
+                paddingLeft: '2rem',
+                paddingRight: '1rem'
               }} 
-              recommendations={[aiAlertData.message]} 
+              recommendations={aiAlertData.recommendations} 
             />
           </Box>
         </Grow>

@@ -7,7 +7,8 @@ export default function AIRecommendationsWithGif({
   contentContainerSx = {},
   imageTransform = null,
   fontSize = '14px',
-  listPaddingLeft = null
+  listPaddingLeft = null,
+  isOperationalDocScan = false
 }) {
   console.log('AIRecommendationsWithGif size:', size);
 
@@ -20,6 +21,7 @@ export default function AIRecommendationsWithGif({
       imageTransform={imageTransform}
       fontSize={fontSize}
       listPaddingLeft={listPaddingLeft}
+      isOperationalDocScan={isOperationalDocScan}
     />
   );
 }

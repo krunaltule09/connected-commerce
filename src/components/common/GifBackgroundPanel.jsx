@@ -49,7 +49,8 @@ const GifBackgroundPanel = ({
   contentContainerSx = {},
   imageTransform = null,
   fontSize = '14px',
-  listPaddingLeft = null
+  listPaddingLeft = null,
+  isOperationalDocScan = false
 }) => {
   const { assets } = useConfig();
   const isLarge = size === 'large';
@@ -68,9 +69,10 @@ const GifBackgroundPanel = ({
           src={backgroundGif}
           alt="AI Background"
           sx={{
-            width: size==="large"?"90%":'100%',
+            width: isOperationalDocScan ? '110%' : (size==="large"?"90%":'100%'),
             height: '100%',
             marginLeft:'-1rem',
+            marginTop: isOperationalDocScan ? '-3rem' : '0',
             objectFit: 'cover',
             ...(imageTransform ? { transform: imageTransform } : {})
           }}
