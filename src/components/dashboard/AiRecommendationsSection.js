@@ -14,7 +14,7 @@ export default function AiRecommendationsSection({ recommendations, size = 'medi
         contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"50%",left:"0%", marginLeft: '1rem', marginTop: '1rem'}}
         recommendations={recommendations}
         size={size}
-        listPaddingLeft='3rem'
+        listPaddingLeft='2.4rem'
       />
     </motion.div>
   );
