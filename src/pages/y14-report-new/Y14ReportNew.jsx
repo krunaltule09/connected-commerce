@@ -242,52 +242,54 @@ export default function Y14ReportNew() {
         </Box>
 
         {/* Right column - Report Builder Workflow */}
-        <Grow in={animateRight} timeout={800} appear>
-          <GradientBorderBox>
-            <Box className={styles.rightColumn}>
-              <Box className={styles.panelHeader}>
-                <Typography className={styles.panelTitle}>{workflowData?.title || 'Report Builder Workflow'}</Typography>
-              </Box>
+        <Box className={styles.rightPanel}>
+          <Grow in={animateRight} timeout={800} appear>
+            <GradientBorderBox className={styles.rightGradientBox}>
+              <Box className={styles.rightColumn}>
+                <Box className={styles.panelHeader}>
+                  <Typography className={styles.panelTitle}>{workflowData?.title || 'Report Builder Workflow'}</Typography>
+                </Box>
 
-              <Box className={styles.workflowContainer}>
-                {/* Workflow Steps SVG */}
-                <Box
-                  component="img"
-                  src={assets['Banking_Capital_Market_Operate_Table_Report_Workflow_Step.svg']}
-                  alt="Report Builder Workflow Steps"
-                  className={styles.workflowStepsImage}
-                />
-
-                {/* Document SVGs Container */}
-                <Box className={styles.docsContainer}>
-                  {/* First Document */}
+                <Box className={styles.workflowContainer}>
+                  {/* Workflow Steps SVG */}
                   <Box
                     component="img"
-                    src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                    alt="Report Builder Document 1"
-                    className={styles.docImage}
+                    src={assets['Banking_Capital_Market_Operate_Table_Report_Workflow_Step.svg']}
+                    alt="Report Builder Workflow Steps"
+                    className={styles.workflowStepsImage}
                   />
 
-                  {/* Second Document */}
-                  <Box
-                    component="img"
-                    src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                    alt="Report Builder Document 2"
-                    className={styles.docImage}
-                  />
+                  {/* Document SVGs Container */}
+                  <Box className={styles.docsContainer}>
+                    {/* First Document */}
+                    <Box
+                      component="img"
+                      src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
+                      alt="Report Builder Document 1"
+                      className={styles.docImage}
+                    />
 
-                  {/* Third Document */}
-                  <Box
-                    component="img"
-                    src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                    alt="Report Builder Document 3"
-                    className={styles.docImage}
-                  />
+                    {/* Second Document */}
+                    <Box
+                      component="img"
+                      src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
+                      alt="Report Builder Document 2"
+                      className={styles.docImage}
+                    />
+
+                    {/* Third Document */}
+                    <Box
+                      component="img"
+                      src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
+                      alt="Report Builder Document 3"
+                      className={styles.docImage}
+                    />
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          </GradientBorderBox>
-        </Grow>
+            </GradientBorderBox>
+          </Grow>
+        </Box>
 
         {/* Detailed Findings */}
         <Grow in={animateFindings} timeout={800} appear>
