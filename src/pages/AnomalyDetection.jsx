@@ -10,7 +10,8 @@ import QuarterlyDSCRChart from '../components/anomaly-detection/QuarterlyDSCRCha
 import FinancialDriversChart from '../components/anomaly-detection/FinancialDriversChart';
 import GradientBorderBox from '../components/common/GradientBorderBox';
 import Q3Highlight from '../components/anomaly-detection/Q3Highlight';
-import AIRecommendationsWithGif from '../components/anomaly-detection/AIRecommendationsWithGif';
+import { Typography, List, ListItem } from '@mui/material';
+import aiBoxSvg from '../assets/ai_box_tall.svg';
 
 // Removed unused Title component
 
@@ -188,22 +189,54 @@ export default function AnomalyDetection() {
                     }}
                   >
                     <Box sx={{ width: '99%', height: '100%', position: 'relative' }}>
-                      <AIRecommendationsWithGif
-                        size="large"
-                        recommendations={aiRecommendationsData.recommendations}
-                        imageTransform="translateY(-8%)"
-                        fontSize="0.9rem"
-                        contentContainerSx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          top: "42%",
+                      <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+                        <Box
+                          component="img"
+                          src={aiBoxSvg}
+                          alt="AI Background"
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'fill',
+                          }}
+                        />
+                        <Box sx={{
+                          position: 'absolute',
+                          top: '52%',
+                          left: '52%',
+                          width: '72%',
+                          transform: 'translate(-50%, -50%)',
+                          paddingLeft: '2rem',
+                          paddingRight: '1rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                           zIndex: 2,
-                          left: "52%",
-                          width: "72%",
-                          transform: "translate(-50%, -50%)"
-                        }}
-                      />
+                        }}>
+                          <List sx={{ p: 0 }}>
+                            {aiRecommendationsData.recommendations?.map((point, index) => (
+                              <ListItem key={index} disableGutters sx={{ p: 0 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
+                                  <Box sx={{ color: '#FFFFFF', mr: 1.5, fontSize: '0.75rem', lineHeight: 1, opacity: 0.7, mt: '3px' }}>▶</Box>
+                                  <Typography
+                                    variant="body2"
+                                    color="white"
+                                    sx={{
+                                      fontSize: '0.9rem',
+                                      lineHeight: 1.2,
+                                      fontWeight: '300',
+                                      fontFamily: 'Interstate, sans-serif',
+                                      textAlign: 'left',
+                                    }}
+                                  >
+                                    {point}
+                                  </Typography>
+                                </Box>
+                              </ListItem>
+                            ))}
+                          </List>
+                        </Box>
+                      </Box>
                     </Box>
                   </Box>
                 </motion.div>
