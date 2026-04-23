@@ -11,6 +11,7 @@ import FinancialDriversChart from '../components/anomaly-detection/FinancialDriv
 import GradientBorderBox from '../components/common/GradientBorderBox';
 import Q3Highlight from '../components/anomaly-detection/Q3Highlight';
 import { Typography, List, ListItem } from '@mui/material';
+
 const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box_tall.svg';
 
 // Removed unused Title component

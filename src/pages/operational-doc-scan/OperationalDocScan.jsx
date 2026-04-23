@@ -3,13 +3,14 @@ import { Box, Grow, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { Typography, List, ListItem } from '@mui/material';
-const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box_tall.svg';
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 import styles from './OperationalDocScan.module.css';
 import { useButtonSound } from '../../hooks';
+
+const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box_tall.svg';
 
 const OperationalDocScan = () => {
   const navigate = useNavigate();
