@@ -11,10 +11,21 @@ export default function AiRecommendationsSection({ recommendations, size = 'medi
       style={{ height: '28%', minHeight: '120px', marginBottom: '8px', ...containerStyle }}
     >
       <AIRecommendationsWithGif
-        contentContainerSx={{display:"flex",alignItems:"center",justifyContent:"center",top:"50%",left:"0%", marginLeft: '1rem', marginTop: '1rem'}}
+        contentContainerSx={{
+          display:"flex",
+          alignItems:"center",
+          justifyContent:"center",
+          top:"56%",
+          left:"50%",
+          width: "85%",
+          transform: "translate(-50%, -50%)",
+          paddingLeft: '1.5rem',
+          paddingRight: '1.5rem',
+          paddingTop: '1.5rem',
+        }}
         recommendations={recommendations}
         size={size}
-        listPaddingLeft='2.4rem'
+        listPaddingLeft='2rem'
       />
     </motion.div>
   );
