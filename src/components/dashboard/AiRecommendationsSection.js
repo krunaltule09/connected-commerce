@@ -15,16 +15,16 @@ export default function AiRecommendationsSection({ recommendations, size = 'medi
           display:"flex",
           alignItems:"center",
           justifyContent:"center",
-          top:"56%",
+          top:"62%",
           left:"50%",
           width: "85%",
           transform: "translate(-50%, -50%)",
           paddingLeft: '1.5rem',
           paddingRight: '1.5rem',
-          paddingTop: '1.5rem',
         }}
         recommendations={recommendations}
         size={size}
+        fontSize='12px'
         listPaddingLeft='2rem'
       />
     </motion.div>

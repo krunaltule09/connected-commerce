@@ -89,8 +89,8 @@ const GifBackgroundPanel = ({
                   variant="body2" 
                   color="white"
                   sx={{ 
-                    fontSize: fontSize, 
-                    lineHeight: 1.5, 
+                    fontSize: fontSize,
+                    lineHeight: 1.2,
                     margin: '0.1rem',
                     fontWeight: '300',
                     fontFamily: 'Interstate, sans-serif',

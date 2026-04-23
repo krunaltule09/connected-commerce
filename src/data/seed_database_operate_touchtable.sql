@@ -230,7 +230,7 @@ INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
 );
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'AI Recommendations' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'financial_dashboard' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
-    '{"title": "AI Recommendations", "alerts": ["Earnings-driven DSCR breach from margin compression and interest costs; improve cash flow, control costs."]}'
+    '{"title": "AI Recommendations", "alerts": ["Earnings‑driven DSCR breach identified: margin compression and higher interest costs—not leverage—are driving coverage deterioration; remediation should focus on cash flow improvement and cost controls."]}'
 );
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Covenant Status' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'financial_dashboard' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
