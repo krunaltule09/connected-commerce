@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, Typography, List, ListItem } from '@mui/material';
-import aiBoxSvg from '../../assets/ai_box.svg';
+const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box.svg';
 
 export default function AiRecommendationsSection({ recommendations, size = 'medium', containerStyle = {} }) {
   return (
