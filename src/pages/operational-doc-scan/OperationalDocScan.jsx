@@ -10,7 +10,6 @@ import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext'
 import styles from './OperationalDocScan.module.css';
 import { useButtonSound } from '../../hooks';
 
-const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box_tall.svg';
 
 const OperationalDocScan = () => {
   const navigate = useNavigate();
@@ -153,7 +152,7 @@ const OperationalDocScan = () => {
             <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
               <Box
                 component="img"
-                src={aiBoxSvg}
+                src={assets['Banking_Capital_Market_Operate_Table_AI_UI_Large.svg']}
                 alt="AI Background"
                 sx={{
                   width: '100%',

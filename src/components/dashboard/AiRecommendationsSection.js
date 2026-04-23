@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, Typography, List, ListItem } from '@mui/material';
-const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box.svg';
+import { useConfig } from '../../context/ConfigContext';
 
 export default function AiRecommendationsSection({ recommendations, size = 'medium', containerStyle = {} }) {
+  const { assets } = useConfig();
+  const aiBoxSvg = assets['Banking_Capital_Market_Operate_Table_AI_UI_Medium.svg'];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

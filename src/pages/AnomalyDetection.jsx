@@ -12,8 +12,6 @@ import GradientBorderBox from '../components/common/GradientBorderBox';
 import Q3Highlight from '../components/anomaly-detection/Q3Highlight';
 import { Typography, List, ListItem } from '@mui/material';
 
-const aiBoxSvg = process.env.PUBLIC_URL + '/ai_box_tall.svg';
-
 // Removed unused Title component
 
 export default function AnomalyDetection() {
@@ -193,7 +191,7 @@ export default function AnomalyDetection() {
                       <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
                         <Box
                           component="img"
-                          src={aiBoxSvg}
+                          src={assets['Banking_Capital_Market_Operate_Table_AI_UI_Large.svg']}
                           alt="AI Background"
                           sx={{
                             width: '100%',
