@@ -173,7 +173,7 @@ export default function CovenantTile({ covenant }) {
                   padding: '1px 1px',
                   color: '#FFFFFF',
                   fontSize: '0.6rem',
-                  
+                  lineHeight: 1.1,
                 }}>
                 View Formula & Historical Values
               </Button>

@@ -11,7 +11,7 @@ export default function CovenantStatusWrapper() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      style={{ height: '75%', minHeight: '400px' }}
+      style={{ height: '100%' }}
     >
       <CovenantStatusSection />
     </motion.div>

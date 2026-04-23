@@ -5,18 +5,19 @@ import CovenantStatusWrapper from './CovenantStatusWrapper';
 
 export default function RightSection({ recommendations }) {
   return (
-    <Box sx={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
       height: '100%',
       gap: 1
     }}>
-      <AiRecommendationsSection 
-        recommendations={recommendations} 
-        containerStyle={{ marginLeft: '1rem',
-      width:"100%" }}
+      <AiRecommendationsSection
+        recommendations={recommendations}
+        containerStyle={{ width:"100%", flexShrink: 0 }}
       />
-      <CovenantStatusWrapper />
+      <Box sx={{ flex: 1, minHeight: 0 }}>
+        <CovenantStatusWrapper />
+      </Box>
     </Box>
   );
 }

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Box, Grow, Zoom } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
-import AIRecommendationsWithGif from '../../components/anomaly-detection/AIRecommendationsWithGif';
+import { Typography, List, ListItem } from '@mui/material';
+import aiBoxSvg from '../../assets/ai_box_tall.svg';
 import NavigationButtons from '../../components/operational-doc-scan/NavigationButtons';
 import OcrScanningSection from '../../components/OcrScanningSection';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
@@ -142,29 +143,59 @@ const OperationalDocScan = () => {
         
         {/* AI Chip - positioned outside the document preview panel */}
         <Grow in={animateAi} timeout={800}>
-          <Box sx={{ 
+          <Box sx={{
             width: '98.7%',
             marginLeft: 'auto',
             marginRight: 'auto',
-            marginTop: '0.5rem'
+            alignSelf: 'flex-start',
           }}>
-            <AIRecommendationsWithGif 
-              size="large"
-              fontSize="0.85rem"
-              isOperationalDocScan={true}
-              contentContainerSx={{
-                display:"flex",
-                alignItems:"flex-start",
-                justifyContent:"center",
-                top:"30%",
-                left:"59%",
-                width: "75%",
-                transform: "translate(-50%, -50%)",
+            <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+              <Box
+                component="img"
+                src={aiBoxSvg}
+                alt="AI Background"
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'fill',
+                }}
+              />
+              <Box sx={{
+                position: 'absolute',
+                top: '52%',
+                left: '55%',
+                width: '70%',
+                transform: 'translate(-50%, -50%)',
                 paddingLeft: '2rem',
-                paddingRight: '1rem'
-              }} 
-              recommendations={aiAlertData.recommendations} 
-            />
+                paddingRight: '1rem',
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'center',
+              }}>
+                <List sx={{ p: 0 }}>
+                  {aiAlertData.recommendations?.map((point, index) => (
+                    <ListItem key={index} disableGutters sx={{ p: 0 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
+                        <Box sx={{ color: '#FFFFFF', mr: 1.5, fontSize: '0.75rem', lineHeight: 1, opacity: 0.7, mt: '3px' }}>▶</Box>
+                        <Typography
+                          variant="body2"
+                          color="white"
+                          sx={{
+                            fontSize: '0.85rem',
+                            lineHeight: 1.2,
+                            fontWeight: '300',
+                            fontFamily: 'Interstate, sans-serif',
+                            textAlign: 'left',
+                          }}
+                        >
+                          {point}
+                        </Typography>
+                      </Box>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Box>
           </Box>
         </Grow>
         
