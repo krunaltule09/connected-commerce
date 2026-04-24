@@ -246,17 +246,19 @@ export default function AnomalyDetection() {
       </motion.div>
 
       <Grow in={animateQ3} timeout={800}>
-        <Grid container mt={-7} columnSpacing={2.5} alignItems="stretch" >
+        <Grid container mt={2} columnSpacing={2.5} alignItems="stretch" >
           <Grid item xs={12} md={3.7} sx={{ display: 'flex' }}>
             
               <Box className={styles.svgPanelQ3} sx={{ width: '100%' }}>
-                <GradientBorderBox 
+                <GradientBorderBox
                   className={styles.driversPanel}
                   sx={{
-                    minHeight: { xs: 320, md: 380, lg: 420 },
+                    minHeight: { xs: 320, md: 370, lg: 420 },
+                    maxHeight: { xs: 400, md: 450, lg: 500 },
                     display: 'flex',
-                    alignItems: 'center',
-                    width: '100%'
+                    alignItems: 'flex-start',
+                    width: '100%',
+                    overflow: 'auto',
                   }}
                 >
                   <Box className={styles.panelContent}>

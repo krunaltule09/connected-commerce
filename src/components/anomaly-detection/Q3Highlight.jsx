@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 
 export default function Q3Highlight({ highlights = [] }) {
   return (
-    <article className="bg-[#1a1a24] flex flex-col gap-6 p-6 relative rounded-lg w-full max-w-4xl mx-auto">
+    <article className="bg-[#1a1a24] flex flex-col gap-3 p-0 relative rounded-lg w-full max-w-4xl mx-auto">
       {/* Yellow border overlay */}
       <div
         aria-hidden="true"
@@ -13,10 +13,10 @@ export default function Q3Highlight({ highlights = [] }) {
       <Typography
           variant="h6"
           sx={{
-            color: '#FFE600 ',
+            color: '#FFE600',
             fontSize: { xs: '1.125rem', md: '1.25rem' },
             fontWeight: 400,
-            mb: 1,
+            mb: 0.5,
             pl: 2,
             pt: 2
           }}
@@ -25,29 +25,28 @@ export default function Q3Highlight({ highlights = [] }) {
         </Typography>
 
       {/* Highlights List */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4" style={{ paddingLeft: '16px', paddingRight: '16px', paddingBottom: '16px' }}>
         {highlights.map((item, index) => (
           <section key={index} className="flex flex-col gap-1">
             <Typography
               variant="h6"
               sx={{
                 color: 'rgba(255, 255, 255, 1)',
-                fontSize: { xs: '0.9rem', md: '1rem' },
-                mb: 0.5,
+                fontSize: { xs: '0.8rem', md: '0.875rem' },
+                mb: 0.25,
                 fontWeight: 400,
-
-                 pl: 2
+                pl: 0
               }}
             >
               {item.title}
             </Typography>
             <Typography sx={{
                 color: 'rgba(255, 255, 255, 1)',
-                fontSize: { xs: '0.8rem', md: '0.9rem' },
-
+                fontSize: { xs: '0.7rem', md: '0.8rem' },
                 fontWeight: 300,
-                mb: 2,
-                 pl: 2
+                mb: 0.5,
+                pl: 0,
+                pr: 4
               }}
               >
               {item.description}

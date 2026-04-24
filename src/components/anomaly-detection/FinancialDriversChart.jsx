@@ -73,10 +73,30 @@ export default function FinancialDriversChart({ style = {} }) {
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="0" stroke="#3F4254" vertical={true} horizontal={false} />
-          <XAxis 
-            dataKey="quarter" 
-            stroke="#9CA3AF" 
-            tick={{ fill: '#D1D5DB', fontSize: 14 }}
+          <XAxis
+            dataKey="quarter"
+            stroke="#9CA3AF"
+            tick={({ x, y, payload }) => {
+              const label = payload.value || '';
+              const match = label.match(/^(Q\d)\s*\((.+)\)$/);
+              if (match) {
+                return (
+                  <g transform={`translate(${x},${y})`}>
+                    <text x={0} y={0} dy={16} textAnchor="middle" fill="#D1D5DB">
+                      <tspan fontSize={14}>{match[1]}</tspan>
+                      <tspan fontSize={9}>{` (${match[2]})`}</tspan>
+                    </text>
+                  </g>
+                );
+              }
+              return (
+                <g transform={`translate(${x},${y})`}>
+                  <text x={0} y={0} dy={16} textAnchor="middle" fill="#D1D5DB" fontSize={14}>
+                    {label}
+                  </text>
+                </g>
+              );
+            }}
             axisLine={{ stroke: '#3F4254' }}
           />
           <YAxis 
