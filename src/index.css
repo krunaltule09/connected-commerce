@@ -18,11 +18,61 @@
   --color-background-dark: #1D1D1D;
 }
 
+/* ============================================
+   TOUCHSCREEN DISPLAY BOILERPLATE
+   ============================================ */
+
+/* Disable tap highlight on all elements */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disable double-tap zoom */
+html {
+  touch-action: manipulation;
+}
+
 body {
   margin: 0;
   font-family: var(--font-family-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: none;
+}
+
+/* Re-enable selection for form inputs */
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Disable image long-press callout */
+img {
+  -webkit-touch-callout: none;
+}
+
+/* Focus management: hide for touch/mouse, show for keyboard */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible),
+[role="switch"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgba(33, 207, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Suppress SVG selection artifacts */
+svg, svg * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 code {

@@ -26,6 +26,13 @@ function App() {
   });
 
   
+   // Disable context menu (long-press / right-click) for touchscreen kiosk mode
+  useEffect(() => {
+    const handler = (e) => e.preventDefault();
+    document.addEventListener('contextmenu', handler);
+    return () => document.removeEventListener('contextmenu', handler);
+  }, []);
+
    // database
   useEffect(() => {
     if (config.database || IS_DEV_MODE) return;
