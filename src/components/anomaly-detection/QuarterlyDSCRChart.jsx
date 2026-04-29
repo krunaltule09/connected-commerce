@@ -133,10 +133,10 @@ export default function QuarterlyDSCRChart({ style = {} }) {
           />
           <YAxis 
             hide={true}
-            domain={[0, 3]}
+            domain={[0, 1.5]}
           />
-          <Tooltip 
-            content={<CustomTooltip />}
+          <Tooltip
+            content={() => null}
             cursor={false}
           />
           {/* Removed ReferenceLine to eliminate all strokes */}

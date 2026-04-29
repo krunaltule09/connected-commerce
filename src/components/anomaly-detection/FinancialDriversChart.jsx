@@ -64,8 +64,8 @@ export default function FinancialDriversChart({ style = {} }) {
               <stop offset="95%" stopColor="#92400E" stopOpacity={0.7}/>
             </linearGradient>
             <linearGradient id="colorEBITDA" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#FFE600" stopOpacity={0.9}/>
-              <stop offset="95%" stopColor="#8B6F47" stopOpacity={0.6}/>
+              <stop offset="0%" stopColor="#FFE600" stopOpacity={1}/>
+              <stop offset="100%" stopColor="#FFE600" stopOpacity={0.8}/>
             </linearGradient>
             <linearGradient id="colorCashFlowCoverage" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#EF4444" stopOpacity={0.9}/>
@@ -114,21 +114,7 @@ export default function FinancialDriversChart({ style = {} }) {
   domain={[0, 'dataMax']}
   allowDecimals={true}
 />
-          <Tooltip 
-            contentStyle={{ 
-              backgroundColor: '#1F2937', 
-              border: 'none', 
-              borderRadius: '8px',
-              color: 'rgba(255,255,255,1)',
-              fontWeight: 700
-            }}
-            formatter={(value, name) => {
-              if (name === 'EBITDA Margin') return `${value.toFixed(2)}%`;
-              return value.toFixed(2);
-            }}
-            labelStyle={{ color: 'rgba(255,255,255,1)', fontWeight: 700 }}
-            itemStyle={{ color: 'rgba(255,255,255,1)', fontWeight: 700 }}
-          />
+          <Tooltip content={() => null} cursor={false} />
           <Legend 
             verticalAlign="bottom" 
             height={36}
