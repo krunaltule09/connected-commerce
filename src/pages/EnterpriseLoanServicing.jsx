@@ -43,12 +43,13 @@ const Overlay = styled(Box)({
 });
 
 const Logo = styled('img')({
-  position: 'absolute',
-  bottom: '8%',
-  right: '-16%',
+  position: 'fixed',
+  bottom: '30px',
+  right: '40px',
   width: '80px',
-  height: 'auto',
+  height: '84px',
   cursor: 'pointer',
+  zIndex: 10,
   transition: 'transform 0.3s ease, filter 0.3s ease',
   '&:hover': {
     transform: 'scale(1.1)',
