@@ -807,10 +807,12 @@ const database = {
             position: 'center',
             data_set: {
               title: '',
+              success_message: "You've successfully created your personalized loan journey.",
               options: [
-                { type: 'delivery', label: 'Delivery Options' },
-                { type: 'rating', label: 'Rate Your Experience' }
+                { type: 'delivery', label: 'Delivery options', choices: ['Email', 'SMS'] },
+                { type: 'rating', label: 'Rate us' }
               ],
+              submit_label: 'Submit',
               cta_label: 'Back to home',
               cta_target: '/'
             }

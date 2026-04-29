@@ -11,7 +11,7 @@ export default function AiRecommendationsSection({ recommendations, size = 'medi
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
       style={{ height: '28%', minHeight: '120px', marginBottom: '8px', ...containerStyle }}
     >
       <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>

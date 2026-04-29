@@ -19,11 +19,11 @@ export default function DashboardLayout({
   
   // Staggered animation timing
   useEffect(() => {
-    const leftTimer = setTimeout(() => setAnimateLeft(true), 300);
-    const middleTimer = setTimeout(() => setAnimateMiddle(true), 700);
-    const rightTimer = setTimeout(() => setAnimateRight(true), 1100);
-    const navTimer = setTimeout(() => setAnimateNav(true), 1500);
-    const logoTimer = setTimeout(() => setAnimateLogo(true), 1900);
+    const leftTimer = setTimeout(() => setAnimateLeft(true), 200);
+    const middleTimer = setTimeout(() => setAnimateMiddle(true), 400);
+    const rightTimer = setTimeout(() => setAnimateRight(true), 600);
+    const navTimer = setTimeout(() => setAnimateNav(true), 900);
+    const logoTimer = setTimeout(() => setAnimateLogo(true), 1200);
     
     return () => {
       clearTimeout(leftTimer);

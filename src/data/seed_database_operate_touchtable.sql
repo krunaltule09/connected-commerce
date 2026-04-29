@@ -312,5 +312,5 @@ INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
 -- Screen: feedback
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Feedback Form' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'feedback' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
-    '{"title": "", "options": [{"type": "delivery", "label": "Delivery Options"}, {"type": "rating", "label": "Rate Your Experience"}], "cta_label": "Back to home", "cta_target": "/"}'
+    '{"title": "", "success_message": "You''ve successfully created your personalized loan journey.", "options": [{"type": "delivery", "label": "Delivery options", "choices": ["Email", "SMS"]}, {"type": "rating", "label": "Rate us"}], "submit_label": "Submit", "cta_label": "Back to home", "cta_target": "/"}'
 );
