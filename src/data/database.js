@@ -391,7 +391,7 @@ const database = {
               subtitle: 'Covenant threshold line',
               threshold_value: '1.25%',
               data_points: [
-                { quarter: 'Q1', dscr: 1.08, period: 'FY 24-25 Q1', threshold: 1.25 },
+                { quarter: 'Q1', dscr: 1.18, period: 'FY 24-25 Q1', threshold: 1.25 },
                 { quarter: 'Q2', dscr: 1.05, period: 'FY 24-25 Q2', threshold: 1.25 },
                 { quarter: 'Q3', dscr: 0.97, period: 'FY 24-25 Q3', threshold: 1.25 },
                 { quarter: 'Q4', dscr: 0.92, period: 'FY 24-25 Q4', threshold: 1.25 }
@@ -806,7 +806,7 @@ const database = {
             type: 'interactive_feedback',
             position: 'center',
             data_set: {
-              title: 'Share Your Experience',
+              title: 'Thanks, Julia!',
               options: [
                 { type: 'delivery', label: 'Delivery Options' },
                 { type: 'rating', label: 'Rate Your Experience' }

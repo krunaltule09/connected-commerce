@@ -60,8 +60,8 @@ export default function FinancialDriversChart({ style = {} }) {
         >
           <defs>
             <linearGradient id="colorDSCR" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#34D399" stopOpacity={0.9}/>
-              <stop offset="95%" stopColor="#047857" stopOpacity={0.7}/>
+              <stop offset="5%" stopColor="#D97706" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#92400E" stopOpacity={0.7}/>
             </linearGradient>
             <linearGradient id="colorEBITDA" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#FFE600" stopOpacity={0.9}/>
@@ -147,8 +147,8 @@ export default function FinancialDriversChart({ style = {} }) {
           />
           <Area 
             type="monotone" 
-            dataKey="cashFlowCoverageRatio" 
-            stroke="#34D399" 
+            dataKey="cashFlowCoverageRatio"
+            stroke="#D97706"
             fill="url(#colorDSCR)"
             name="Cash Flow Coverage"
             animationBegin={0}
