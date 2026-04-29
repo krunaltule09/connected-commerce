@@ -1008,12 +1008,12 @@
 
 /* EY Logo */
 .eyLogo {
-  position: absolute;
-  width: 100px;
-  height: 105px;
-  right: 80px;
-  bottom: 24px; /* align with navigation buttons bottom */
-  z-index: 10;
+  position: fixed !important;
+  width: 80px !important;
+  height: 84px !important;
+  right: 40px !important;
+  bottom: 30px !important;
+  z-index: 10 !important;
 }
 
 /* Responsive styles */
@@ -1040,8 +1040,8 @@
   
   .eyLogo {
     position: fixed;
-    right: 80px;
-    bottom: 30px; /* align with responsive nav bottom */
+    right: 40px;
+    bottom: 30px;
     margin: 0;
     z-index: 100;
   }

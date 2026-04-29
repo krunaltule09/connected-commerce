@@ -183,12 +183,12 @@
 
 /* EY Logo */
 .eyLogo {
-  position: absolute;
-  width: 100px;
-  height: 105px;
-  right: 80px;
-  bottom: 80px;
-  z-index: 2;
+  position: fixed !important;
+  width: 80px !important;
+  height: 84px !important;
+  right: 40px !important;
+  bottom: 30px !important;
+  z-index: 10 !important;
 }
 
 /* Responsive adjustments */
@@ -248,12 +248,12 @@
   .helpText {
     font-size: 1rem !important;
   }
-  
+
   .eyLogo {
-    width: 80px;
-    height: 84px;
-    right: 40px;
-    bottom: 40px;
+    width: 60px;
+    height: 63px;
+    right: 20px;
+    bottom: 20px;
   }
 }
 
@@ -301,11 +301,11 @@
   .helpText {
     font-size: 0.875rem !important;
   }
-  
+
   .eyLogo {
-    width: 60px;
-    height: 63px;
-    right: 20px;
-    bottom: 20px;
+    width: 50px;
+    height: 52px;
+    right: 15px;
+    bottom: 15px;
   }
 }

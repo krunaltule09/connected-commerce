@@ -317,12 +317,12 @@
 
 /* EY_Logo_Beam_STFWC_Stacked_RGB_White_Yellow_EN 2 */
 .eyLogo {
-  position: absolute;
-  width: 100px;
-  height: 105px;
-  right: 80px;
-  bottom: 80px;
-  z-index: 2; /* Ensure logo appears above video and overlay */
+  position: fixed !important;
+  width: 80px !important;
+  height: 84px !important;
+  right: 40px !important;
+  bottom: 30px !important;
+  z-index: 10 !important;
 }
 
 /* Responsive adjustments */
@@ -387,10 +387,10 @@
   }
   
   .eyLogo {
-    width: 80px;
-    height: 84px;
-    right: 40px;
-    bottom: 40px;
+    width: 60px;
+    height: 63px;
+    right: 20px;
+    bottom: 20px;
   }
 }
 
@@ -423,10 +423,10 @@
   }
   
   .eyLogo {
-    width: 60px;
-    height: 63px;
-    right: 20px;
-    bottom: 20px;
+    width: 50px;
+    height: 52px;
+    right: 15px;
+    bottom: 15px;
   }
 }
 

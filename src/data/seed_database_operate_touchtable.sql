@@ -240,7 +240,7 @@ INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
 -- Screen: anomaly_detection
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Quarterly DSCR' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'anomaly_detection' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
-    '{"title": "Quarterly DSCR", "subtitle": "Covenant threshold line", "threshold_value": "1.25%", "data_points": [{"quarter": "Q1", "dscr": 1.08, "period": "FY 24-25 Q1", "threshold": 1.25}, {"quarter": "Q2", "dscr": 1.05, "period": "FY 24-25 Q2", "threshold": 1.25}, {"quarter": "Q3", "dscr": 0.97, "period": "FY 24-25 Q3", "threshold": 1.25}, {"quarter": "Q4", "dscr": 0.92, "period": "FY 24-25 Q4", "threshold": 1.25}]}'
+    '{"title": "Quarterly DSCR", "subtitle": "Covenant threshold line", "threshold_value": "1.25%", "data_points": [{"quarter": "Q1", "dscr": 1.18, "period": "FY 24-25 Q1", "threshold": 1.25}, {"quarter": "Q2", "dscr": 1.05, "period": "FY 24-25 Q2", "threshold": 1.25}, {"quarter": "Q3", "dscr": 0.97, "period": "FY 24-25 Q3", "threshold": 1.25}, {"quarter": "Q4", "dscr": 0.92, "period": "FY 24-25 Q4", "threshold": 1.25}]}'
 );
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Financial Drivers' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'anomaly_detection' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
@@ -312,5 +312,5 @@ INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
 -- Screen: feedback
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Feedback Form' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'feedback' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
-    '{"title": "Share Your Experience", "options": [{"type": "delivery", "label": "Delivery Options"}, {"type": "rating", "label": "Rate Your Experience"}], "cta_label": "Back to home", "cta_target": "/"}'
+    '{"title": "", "options": [{"type": "delivery", "label": "Delivery Options"}, {"type": "rating", "label": "Rate Your Experience"}], "cta_label": "Back to home", "cta_target": "/"}'
 );

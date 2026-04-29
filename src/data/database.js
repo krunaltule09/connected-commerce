@@ -806,7 +806,7 @@ const database = {
             type: 'interactive_feedback',
             position: 'center',
             data_set: {
-              title: 'Thanks, Julia!',
+              title: '',
               options: [
                 { type: 'delivery', label: 'Delivery Options' },
                 { type: 'rating', label: 'Rate Your Experience' }
