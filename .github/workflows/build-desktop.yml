@@ -44,6 +44,22 @@ jobs:
         env:
           CI: false
 
+      - name: Package Portable ZIP
+        shell: pwsh
+        run: |
+          $releaseDir = "src-tauri/target/release"
+          $outDir = "portable/BCM-Operate-Portable"
+          New-Item -ItemType Directory -Force -Path $outDir
+
+          # Grab the main Tauri EXE (largest .exe in release dir)
+          $mainExe = Get-ChildItem "$releaseDir/*.exe" |
+            Sort-Object Length -Descending | Select-Object -First 1
+
+          Copy-Item $mainExe.FullName "$outDir/BCM Operate.exe"
+
+          # Zip it
+          Compress-Archive -Path "$outDir/*" -DestinationPath "portable/BCM-Operate-Portable.zip" -Force
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -52,8 +68,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            src-tauri/target/release/bundle/nsis/*.exe
-            src-tauri/target/release/*.exe
+            portable/BCM-Operate-Portable.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
