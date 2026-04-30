@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { QRCodeSVG } from 'qrcode.react';
 import { Box, Button, Container, Typography, Fade, Grow, Checkbox, FormControlLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
@@ -129,8 +130,8 @@ const StarIcon = ({ filled, onClick, onMouseEnter, onMouseLeave, size = 40 }) =>
 );
 
 /** Interactive Delivery Options Card - replaces static card01.svg */
-const DeliveryCard = ({ width = 324, title = 'Delivery options', choices = ['Email', 'SMS'], submitLabel = 'Submit' }) => {
-  const [selected, setSelected] = useState({ 0: true });
+const DeliveryCard = ({ width = 324, title = 'Delivery options', choices = ['Email', 'SMS'], submitLabel = 'Submit', qrCodeUrl }) => {
+  const [selected, setSelected] = useState({});
 
   const handleToggle = (idx) => {
     setSelected((prev) => ({ ...prev, [idx]: !prev[idx] }));
@@ -162,47 +163,81 @@ const DeliveryCard = ({ width = 324, title = 'Delivery options', choices = ['Ema
       <Box sx={{
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start',
-        zIndex: 2, pt: '16%',
+        zIndex: 2, pt: '14%',
       }}>
-        {/* Row 1: Title — matches RatingCard title */}
+        {/* Title */}
         <Typography sx={{
           color: '#FCFCFC',
-          fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.4rem' },
+          fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1.15rem' },
           fontWeight: 300,
-          mb: { xs: 0.75, md: 1.5 },
+          mb: { xs: 0.5, md: 1 },
           letterSpacing: '0.3px',
         }}>
           {title}
         </Typography>
 
-        {/* Row 2: Checkboxes side by side — matches RatingCard stars row */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1.5, md: 3 }, mb: { xs: 1, md: 2 } }}>
-          {choices.map((choice, idx) => (
-            <FormControlLabel
-              key={idx}
-              control={
-                <Checkbox checked={!!selected[idx]} onChange={() => handleToggle(idx)} sx={checkboxSx} />
-              }
-              label={<Typography sx={labelSx}>{choice}</Typography>}
-              sx={{ m: 0 }}
-            />
-          ))}
-        </Box>
-
-        {/* Row 3: Submit button — matches RatingCard submit */}
+        {/* QR (left) + Email/SMS/Submit (right) side by side */}
         <Box sx={{
-          backgroundColor: '#F3F3F5', borderRadius: '6px',
-          px: { xs: 2, md: 3 }, py: { xs: 0.5, md: 1 },
-          cursor: 'pointer', transition: 'background-color 0.2s ease',
-          '&:hover': { backgroundColor: '#FFFFFF' },
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: { xs: 1.5, md: 3 },
         }}>
-          <Typography sx={{
-            color: '#2E2E38',
-            fontSize: { xs: '0.65rem', sm: '0.75rem', md: '0.85rem' },
-            fontWeight: 400,
+          {/* Left: QR Code */}
+          {qrCodeUrl && (
+            <Box sx={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '6px',
+              p: { xs: 0.3, sm: 0.5, md: 0.6 },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <QRCodeSVG
+                value={qrCodeUrl}
+                size={Math.round(width * 0.25)}
+                bgColor="#FFFFFF"
+                fgColor="#000000"
+                level="M"
+              />
+            </Box>
+          )}
+
+          {/* Right: Email, SMS, Submit stacked */}
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: { xs: 0.2, md: 0.4 },
           }}>
-            {submitLabel}
-          </Typography>
+            {choices.map((choice, idx) => (
+              <FormControlLabel
+                key={idx}
+                control={
+                  <Checkbox checked={!!selected[idx]} onChange={() => handleToggle(idx)} sx={checkboxSx} />
+                }
+                label={<Typography sx={labelSx}>{choice}</Typography>}
+                sx={{ m: 0 }}
+              />
+            ))}
+
+            {/* Submit button */}
+            <Box sx={{
+              backgroundColor: '#F3F3F5', borderRadius: '6px',
+              px: { xs: 1.5, md: 2.5 }, py: { xs: 0.3, md: 0.5 },
+              mt: { xs: 0.3, md: 0.5 },
+              cursor: 'pointer', transition: 'background-color 0.2s ease',
+              '&:hover': { backgroundColor: '#FFFFFF' },
+            }}>
+              <Typography sx={{
+                color: '#2E2E38',
+                fontSize: { xs: '0.6rem', sm: '0.65rem', md: '0.75rem' },
+                fontWeight: 400,
+              }}>
+                {submitLabel}
+              </Typography>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -235,7 +270,7 @@ const RatingCard = ({ width = 324, title = 'Rate us', submitLabel = 'Submit' }) 
         {/* Title */}
         <Typography sx={{
           color: '#FCFCFC',
-          fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.4rem' },
+          fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1.15rem' },
           fontWeight: 300,
           mb: { xs: 0.75, md: 1.5 },
           letterSpacing: '0.3px',
@@ -261,13 +296,13 @@ const RatingCard = ({ width = 324, title = 'Rate us', submitLabel = 'Submit' }) 
         {/* Submit button */}
         <Box sx={{
           backgroundColor: '#F3F3F5', borderRadius: '6px',
-          px: { xs: 2, md: 3 }, py: { xs: 0.5, md: 1 },
+          px: { xs: 1.5, md: 2.5 }, py: { xs: 0.3, md: 0.5 },
           cursor: 'pointer', transition: 'background-color 0.2s ease',
           '&:hover': { backgroundColor: '#FFFFFF' },
         }}>
           <Typography sx={{
             color: '#2E2E38',
-            fontSize: { xs: '0.65rem', sm: '0.75rem', md: '0.85rem' },
+            fontSize: { xs: '0.6rem', sm: '0.65rem', md: '0.75rem' },
             fontWeight: 400,
           }}>
             {submitLabel}
@@ -385,6 +420,7 @@ export default function FeedbackPage() {
                       title={feedbackData.options?.[0]?.label}
                       choices={feedbackData.options?.[0]?.choices}
                       submitLabel={feedbackData.submit_label}
+                      qrCodeUrl={feedbackData.qr_code_url}
                     />
                   </motion.div>
                   <motion.div

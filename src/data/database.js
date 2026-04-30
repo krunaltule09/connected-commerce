@@ -808,6 +808,7 @@ const database = {
             data_set: {
               title: '',
               success_message: "You've successfully created your personalized loan journey.",
+              qr_code_url: 'https://www.ey.com',
               options: [
                 { type: 'delivery', label: 'Delivery options', choices: ['Email', 'SMS'] },
                 { type: 'rating', label: 'Rate us' }
