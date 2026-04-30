@@ -463,6 +463,15 @@ const database = {
                 }
               ]
             }
+          },
+          {
+            id: 20,
+            name: 'Covenant Breach Log',
+            type: 'breach_log',
+            position: 'bottom_right',
+            data_set: {
+              alert_text: 'DSCR = 1.1 in Q2 (Below 1.25 limit)'
+            }
           }
         ]
       },

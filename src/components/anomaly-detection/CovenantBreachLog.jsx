@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import GradientButton from '../common/GradientButton';
-import { useConfig } from '../../context/ConfigContext';
+import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 
 // Styled components
 const LogContainer = styled(Box)(({ theme }) => ({
@@ -77,6 +77,7 @@ const ViewButton = styled(Box)(({ theme }) => ({
 export default function CovenantBreachLog({ documents }) {
   const [activeTab, setActiveTab] = useState('documents');
   const { assets } = useConfig();
+  const breachLogData = useVisualizationDataSet('anomaly_detection', 'Covenant Breach Log');
   return (
     <LogContainer>
       <LogTitle variant="h6">Covenant Breach Log</LogTitle>
@@ -111,7 +112,7 @@ export default function CovenantBreachLog({ documents }) {
       <AlertBox>
         <Box component="img" src={assets['Banking_Capital_Market_Operate_Table_Alert_Icon.svg']} alt="Alert Icon" sx={{ width: 20, height: 20, flexShrink: 0 }} />
         <Typography variant="body2" color="white" fontWeight="medium">
-          DSCR = 1.1 in Q2 (Below 1.25 limit)
+          {breachLogData?.alert_text || 'DSCR = 1.1 in Q2 (Below 1.25 limit)'}
         </Typography>
       </AlertBox>
       

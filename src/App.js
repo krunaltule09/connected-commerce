@@ -13,7 +13,7 @@ import { ConfigProvider } from './context/ConfigContext';
 import { httpFetch } from './utils/tauriFetch';
 import database from './data/database';
 
-const IS_DEV_MODE = true;
+const IS_DEV_MODE = process.env.REACT_APP_DEV_MODE === 'true';
 
 function App() {
   const [config, setConfig] = useState({
@@ -53,7 +53,6 @@ function App() {
     return () => clearInterval(interval);
   }, [config.database]);
   // images
-  console.log('config', config)
     //annimations
   useEffect(() => {
     if (config.animations) return;
@@ -79,7 +78,7 @@ function App() {
           },
         }));
       } catch (error) {
-        console.error('Failed to fetch images:', error);
+        console.error('Failed to fetch animations:', error);
       }
     };
     loadConfig();
@@ -127,7 +126,6 @@ function App() {
         );
         if (!response.ok) return;
         const data = await response.json();
-        console.log('data', data)
         setConfig((config) => ({
           ...config,
           videos: true,
@@ -143,7 +141,7 @@ function App() {
           },
         }));
       } catch (error) {
-        console.error('Failed to fetch images:', error);
+        console.error('Failed to fetch videos:', error);
       }
     };
     loadConfig();
@@ -176,7 +174,7 @@ function App() {
           },
         }));
       } catch (error) {
-        console.error('Failed to fetch images:', error);
+        console.error('Failed to fetch audios:', error);
       }
     };
     loadConfig();
