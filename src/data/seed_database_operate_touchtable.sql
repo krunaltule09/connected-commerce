@@ -204,7 +204,7 @@ INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
 -- Screen: document_centre
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Case Information' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'document_centre' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
-    '{"case_number": "Case no. #CCN3267890", "applied_by": "Vertex Logistics Company"}'
+    '{"case_number": "Case no. #CCN3267890", "applied_by": " Vertex Logistics Company"}'
 );
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Documents Summary' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'document_centre' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
@@ -280,7 +280,7 @@ INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
 );
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'AI Alert' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'operational_doc_scan' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
-    '{"message": "Operational shortfalls, costs and delays pressure cash flow, margins, risking projections without corrective action."}'
+    '{"message": "Operational shortfalls, costs and delays pressure cash flow, margins, risking projections without corrective action.", "recommendations": ["Operational performance shortfalls are contributing to cash-flow pressure and DSCR deterioration, with fulfilment at 86% (vs >=90%), OTIF at 89% (vs >=92%), and utilisation at 78%, reducing expected inflows.", "Elevated unit costs ($1.82 per mile) and delivery delays increase margin pressure, heightening risk to Y-14 cash-flow projections absent corrective action."]}'
 );
 INSERT INTO "DATA_SET_MAPPING" (visualization_id, data_set) VALUES (
     (SELECT id FROM "VISUALIZATION" WHERE title = 'Shipment Details' AND screen_id = (SELECT screen_id FROM "SCREEN" WHERE screen_name = 'operational_doc_scan' AND persona_id = (SELECT persona_id FROM "PERSONA" WHERE station = 'operate' AND sector = 'BCM' AND role = 'touch_table'))),
