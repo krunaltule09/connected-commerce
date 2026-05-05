@@ -132,7 +132,7 @@ const database = {
             position: 'top_right',
             data_set: {
               title: 'Documents Received',
-              count: 8
+              count: 5
             }
           },
           {
@@ -148,7 +148,8 @@ const database = {
                   url: null,
                   description: 'Primary loan agreement document outlining terms and conditions',
                   type: 'pdf',
-                  filename: 'Loan_Agreement.pdf'
+                  filename: 'Loan_Agreement.pdf',
+                  pdfFile: 'Loan_Agreement.pdf'
                 },
                 {
                   id: 2,
@@ -156,87 +157,35 @@ const database = {
                   url: null,
                   description: 'Company financial statements and performance metrics',
                   type: 'pdf',
-                  filename: '2024_Q2_Financials.pdf'
+                  filename: '2024_Q2_Financials.pdf',
+                  pdfFile: '2024_Q2_Financials.pdf'
                 },
                 {
                   id: 3,
-                  name: 'Covenant Summary',
-                  url: null,
-                  description: 'Summary of loan covenants and compliance tracking',
-                  type: 'xlsx',
-                  filename: 'Covenant_Summary.xlsx'
-                },
-                {
-                  id: 4,
                   name: 'ESG Report 02',
                   url: null,
                   description: 'Environmental, Social, and Governance report',
                   type: 'pdf',
-                  filename: 'ESG_Report_Q2.pdf'
+                  filename: 'ESG_Report_Q2.pdf',
+                  pdfFile: 'ESG_Report_Q2.pdf'
                 },
                 {
-                  id: 5,
+                  id: 4,
                   name: 'FR Y-14 Analysis',
                   url: null,
                   description: 'Federal Reserve Y-14 regulatory analysis and reporting',
                   type: 'pdf',
-                  filename: 'Fleet_Lease_Agreements.pdf'
+                  filename: 'Fleet_Lease_Agreements.pdf',
+                  pdfFile: 'Fleet_Lease_Agreements.pdf'
                 },
                 {
-                  id: 6,
-                  name: 'Risk Assessment',
-                  url: null,
-                  description: 'Comprehensive risk assessment document',
-                  type: 'docx',
-                  filename: 'Risk_Assessment.docx'
-                },
-                {
-                  id: 7,
+                  id: 5,
                   name: 'Balance Sheet',
                   url: null,
                   description: 'Company balance sheet and financial position',
-                  type: 'xlsx',
-                  filename: 'Balance_Sheet.xlsx'
-                },
-                {
-                  id: 8,
-                  name: 'Quarterly Report',
-                  url: null,
-                  description: 'Quarterly financial and operational report',
                   type: 'pdf',
-                  filename: 'Quarterly_Report.pdf'
-                },
-                {
-                  id: 9,
-                  name: 'Compliance Certificate',
-                  url: null,
-                  description: 'Compliance certification and regulatory documentation',
-                  type: 'pdf',
-                  filename: 'Compliance_Certificate.pdf'
-                },
-                {
-                  id: 10,
-                  name: 'Market Analysis',
-                  url: null,
-                  description: 'Market analysis and industry trends presentation',
-                  type: 'pptx',
-                  filename: 'Market_Analysis.pptx'
-                },
-                {
-                  id: 11,
-                  name: 'Credit Approval',
-                  url: null,
-                  description: 'Credit approval documentation and decision rationale',
-                  type: 'pdf',
-                  filename: 'Credit_Approval.pdf'
-                },
-                {
-                  id: 12,
-                  name: 'Facility Agreement',
-                  url: null,
-                  description: 'Facility agreement terms and conditions',
-                  type: 'pdf',
-                  filename: 'Facility_Agreement.pdf'
+                  filename: 'Balance_Sheet.xlsx',
+                  pdfFile: 'Balance_Sheet.pdf'
                 }
               ]
             }

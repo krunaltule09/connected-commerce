@@ -10,6 +10,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import GradientBorderBox from '../../components/common/GradientBorderBox';
+import DocumentRenderer from '../../components/DocumentRenderer';
 import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 import { httpFetch } from '../../utils/tauriFetch';
 import styles from './Y14ReportGeneration.module.css';
@@ -184,9 +185,9 @@ export default function Y14ReportGeneration() {
             </AccordionSummary>
             <AccordionDetails className={styles.accordionDetails}>
               <Box className={styles.reportPreviewContainer}>
-                <Box 
-                  component="img"
-                  src={assets['Banking_Capital_Market_Operate_Table_Balance_Document.svg']}
+                <DocumentRenderer
+                  mode="preview"
+                  src={assets['Banking_Capital_Market_Operate_Table_Y14_Balance_Sheet_Document.svg']}
                   alt="Balance Sheet Preview"
                   className={styles.reportPreview}
                 />
@@ -305,9 +306,9 @@ export default function Y14ReportGeneration() {
               </Box>
               
               <Box className={styles.reportPreviewContainer}>
-                <Box 
-                  component="img"
-                  src={assets['Banking_Capital_Market_Operate_Table_Balance_Document.svg']}
+                <DocumentRenderer
+                  mode="preview"
+                  src={assets['Banking_Capital_Market_Operate_Table_Y14_Report_Builder_Document.svg']}
                   alt="Report Preview"
                   className={styles.reportPreview}
                 />

@@ -11,9 +11,15 @@ import { ScanningProvider } from './context/ScanningContext';
 import { SoundProvider } from './context/SoundContext';
 import { ConfigProvider } from './context/ConfigContext';
 import { httpFetch } from './utils/tauriFetch';
+import useInactivityRedirect from './hooks/useInactivityRedirect';
 import database from './data/database';
 
 const IS_DEV_MODE = process.env.REACT_APP_DEV_MODE === 'true';
+
+function InactivityGuard() {
+  useInactivityRedirect('/');
+  return null;
+}
 
 function App() {
   const [config, setConfig] = useState({
@@ -22,7 +28,8 @@ function App() {
     images: false,
     animations: false,
     audios: false,
-    videos: false
+    videos: false,
+    documents: false
   });
 
   
@@ -181,8 +188,40 @@ function App() {
     const interval = setInterval(loadConfig, 5000);
     return () => clearInterval(interval);
   }, [config.audios]);
+  // documents
+  useEffect(() => {
+    if (config.documents) return;
+    const loadConfig = async () => {
+      try {
+        const response = await httpFetch(
+          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/documents?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
+        );
+        if (!response.ok) return;
+        const data = await response.json();
+        setConfig((config) => ({
+          ...config,
+          documents: true,
+          assets: {
+            ...config.assets,
+            ...data?.data?.[0]?.document?.reduce(
+              (acc, item) => ({
+                ...acc,
+                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
+              }),
+              {},
+            ),
+          },
+        }));
+      } catch (error) {
+        console.error('Failed to fetch documents:', error);
+      }
+    };
+    loadConfig();
+    const interval = setInterval(loadConfig, 5000);
+    return () => clearInterval(interval);
+  }, [config.documents]);
 
-  if (!config.images || !config.animations || !config.audios || !config.database || !config.videos) {
+  if (!config.images || !config.animations || !config.audios || !config.database || !config.videos || !config.documents) {
     return (
       <div style={{
         display: 'flex',
@@ -214,6 +253,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
+          <InactivityGuard />
           <SoundProvider>
             <SyncRouteProvider>
               <ScanningProvider>

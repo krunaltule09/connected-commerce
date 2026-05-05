@@ -11,6 +11,40 @@ import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
+// Local PDF preview thumbnails (safety net until CMS upload is confirmed)
+import loanAgreementPreview from '../assets/images/Loan_Agreement.png';
+import financialsPreview from '../assets/images/2024_Q2_Financials.png';
+import esgReportPreview from '../assets/images/ESG_Report_Q2.png';
+import fleetLeasePreview from '../assets/images/Fleet_Lease_Agreements.png';
+import balanceSheetPreview from '../assets/images/H1_2024_Balance_Sheet.png';
+
+// Map document filenames to their specific local preview images
+const LOCAL_PREVIEW_MAP = {
+  'Loan_Agreement.pdf': loanAgreementPreview,
+  '2024_Q2_Financials.pdf': financialsPreview,
+  'ESG_Report_Q2.pdf': esgReportPreview,
+  'Fleet_Lease_Agreements.pdf': fleetLeasePreview,
+  'Balance_Sheet.xlsx': balanceSheetPreview,
+};
+
+// Map document filenames to their CMS asset keys
+const CMS_PREVIEW_MAP = {
+  'Loan_Agreement.pdf': 'Banking_Capital_Market_Operate_Table_Loan_Agreement.png',
+  '2024_Q2_Financials.pdf': 'Banking_Capital_Market_Operate_Table_2024_Q2_Financials.png',
+  'ESG_Report_Q2.pdf': 'Banking_Capital_Market_Operate_Table_ESG_Report_Q2.png',
+  'Fleet_Lease_Agreements.pdf': 'Banking_Capital_Market_Operate_Table_Fleet_Lease_Agreements.png',
+  'Balance_Sheet.xlsx': 'Banking_Capital_Market_Operate_Table_H1_2024_Balance_Sheet.png',
+};
+
+// Map pdfFile field to CMS PDF asset keys (for future CMS upload)
+const CMS_PDF_MAP = {
+  'Loan_Agreement.pdf': 'Banking_Capital_Market_Operate_Table_Loan_Agreement.pdf',
+  '2024_Q2_Financials.pdf': 'Banking_Capital_Market_Operate_Table_2024_Q2_Financials.pdf',
+  'ESG_Report_Q2.pdf': 'Banking_Capital_Market_Operate_Table_ESG_Report_Q2.pdf',
+  'Fleet_Lease_Agreements.pdf': 'Banking_Capital_Market_Operate_Table_Fleet_Lease_Agreements.pdf',
+  'Balance_Sheet.pdf': 'Banking_Capital_Market_Operate_Table_H1_2024_Balance_Sheet.pdf',
+};
+
 export default function DocumentCentrePage() {
   const navigate = useNavigate();
   const { assets } = useConfig();
@@ -26,27 +60,43 @@ export default function DocumentCentrePage() {
   const documentListData = useVisualizationDataSet('document_centre', 'Document List');
   const scanActionData = useVisualizationDataSet('document_centre', 'Scan Action');
 
-  // Transform database documents with preview URLs
+  // Transform database documents with preview URLs and PDF URLs
   const documentsFromDb = useMemo(() => {
     if (!documentListData?.documents) return [];
-    
+
     return documentListData.documents.map((doc, index) => {
-      // Rotate between the three SVG files for preview
-      const svgIndex = index % 3;
-      let previewUrl;
-      
-      if (svgIndex === 0) {
-        previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'];
-      } else if (svgIndex === 1) {
-        previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_2.svg'];
-      } else {
-        previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_3.svg'];
+      // Check for document-specific preview: CMS first, then local fallback
+      const cmsKey = CMS_PREVIEW_MAP[doc.filename];
+      const cmsPreview = cmsKey ? assets[cmsKey] : null;
+      const localPreview = LOCAL_PREVIEW_MAP[doc.filename];
+
+      let previewUrl = cmsPreview || localPreview;
+
+      // For documents without a specific preview, rotate generic SVG templates
+      if (!previewUrl) {
+        const svgIndex = index % 3;
+        if (svgIndex === 0) {
+          previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_1.svg'];
+        } else if (svgIndex === 1) {
+          previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_2.svg'];
+        } else {
+          previewUrl = assets['Banking_Capital_Market_Operate_Table_Document_Template_3.svg'];
+        }
       }
-      
+
+      // Resolve PDF URL: CMS first, then local fallback
+      let pdfUrl = null;
+      if (doc.pdfFile) {
+        const cmsPdfKey = CMS_PDF_MAP[doc.pdfFile];
+        const cmsPdfUrl = cmsPdfKey ? assets[cmsPdfKey] : null;
+        pdfUrl = cmsPdfUrl || `${process.env.PUBLIC_URL}/pdfs/${doc.pdfFile}`;
+      }
+
       return {
         ...doc,
         id: String(doc.id),
-        url: previewUrl
+        url: previewUrl,
+        pdfUrl
       };
     });
   }, [documentListData, assets]);

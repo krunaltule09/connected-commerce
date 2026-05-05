@@ -3,6 +3,7 @@ import { Box, Typography, Slide } from '@mui/material';
 import GradientBorderBox from '../common/GradientBorderBox';
 import styles from '../../pages/operational-doc-scan/OperationalDocScan.module.css';
 import { useConfig } from '../../context/ConfigContext';
+import DocumentRenderer from '../DocumentRenderer';
 
 const DocumentPreviewPanel = ({ scanProgress }) => {
   const { assets } = useConfig();
@@ -12,9 +13,9 @@ const DocumentPreviewPanel = ({ scanProgress }) => {
         <Box className={styles.panelTitle}>Scanned Document Preview</Box>
         
         <Box className={styles.documentImageContainer}>
-          <Box 
-            component="img"
-            src={assets['Banking_Capital_Market_Operate_Table_Scanned_Doc_Preview.svg']}
+          <DocumentRenderer
+            mode="preview"
+            src={assets['Banking_Capital_Market_Operate_Table_Scanned_Document_Preview.svg']}
             alt="Document Preview"
             className={styles.documentImage}
           />

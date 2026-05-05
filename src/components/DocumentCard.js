@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-// Removed unused import: handleDocumentDragStart
 import { GradientBorderBox } from './common';
 import { useConfig } from '../context/ConfigContext';
+import DocumentRenderer from './DocumentRenderer';
 
 export default function DocumentCard({ document, onClick, isSelected }) {
   const { assets } = useConfig();
@@ -96,9 +96,9 @@ export default function DocumentCard({ document, onClick, isSelected }) {
             justifyContent: 'center',
           }}
         >
-          <Box
-            component="img"
-            src={document.url || assets['Banking_Capital_Market_Operate_Table_Vector_Icon.svg']}
+          <DocumentRenderer
+            mode="preview"
+            src={document.url || assets['Banking_Capital_Market_Operate_Table_Document_Card_Thumbnail.svg']}
             alt={document.name}
             sx={{
               maxWidth: '100%',
