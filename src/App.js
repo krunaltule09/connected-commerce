@@ -14,7 +14,7 @@ import { httpFetch } from './utils/tauriFetch';
 import useInactivityRedirect from './hooks/useInactivityRedirect';
 import database from './data/database';
 
-const IS_DEV_MODE = process.env.REACT_APP_DEV_MODE === 'true';
+const IS_DEV_MODE = true;
 
 function InactivityGuard() {
   useInactivityRedirect('/');
