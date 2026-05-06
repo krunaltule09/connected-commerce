@@ -40,186 +40,97 @@ function App() {
     return () => document.removeEventListener('contextmenu', handler);
   }, []);
 
-   // database
+  // Consolidated asset loading service — single interval retries all pending fetches
   useEffect(() => {
-    if (config.database || IS_DEV_MODE) return;
-    const loadConfig = async () => {
+    if (IS_DEV_MODE) return;
+
+    const CMS = `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}`;
+    const STATION = process.env.REACT_APP_STATION;
+    const SECTOR = process.env.REACT_APP_SECTOR;
+    const cmsFilter = `filters[station][$eq]=${STATION}&filters[sector][$eq]=${SECTOR}&populate=*`;
+
+    // Each source: { key, url, mediaField, prefixUrl }
+    const ASSET_SOURCES = [
+      { key: 'images', url: `${CMS}/api/images?${cmsFilter}`, mediaField: 'image', prefixUrl: true },
+      { key: 'animations', url: `${CMS}/api/animations?${cmsFilter}`, mediaField: 'animated_image', prefixUrl: true },
+      { key: 'audios', url: `${CMS}/api/audios?${cmsFilter}`, mediaField: 'audio', prefixUrl: true },
+      { key: 'documents', url: `${CMS}/api/documents?${cmsFilter}`, mediaField: 'document', prefixUrl: true },
+      { key: 'videos', url: `${process.env.REACT_APP_CMS_BASE_URL}/streaming-service/streaming-url?sector=${SECTOR}&station=${STATION}`, mediaField: null, prefixUrl: false },
+    ];
+
+    const parseAssets = (data, source) => {
+      if (source.key === 'videos') {
+        return data?.data?.reduce((acc, item) => ({ ...acc, [item.title]: item.lq_streaming_url }), {});
+      }
+      return data?.data?.[0]?.[source.mediaField]?.reduce(
+        (acc, item) => ({ ...acc, [item.name]: source.prefixUrl ? `${CMS}${item.url}` : item.url }),
+        {},
+      );
+    };
+
+    const fetchDatabase = async () => {
       try {
         const response = await httpFetch(
-          `${process.env.REACT_APP_BACKEND_URL}/config?station=${process.env.REACT_APP_STATION}&sector=${process.env.REACT_APP_SECTOR}`
+          `${process.env.REACT_APP_BACKEND_URL}/config?station=${STATION}&sector=${SECTOR}`
         );
-        if (!response.ok) return;
-        const data = await response.json();
-        setConfig((config) => ({ ...config, database: data }));
+        if (!response.ok) return null;
+        return await response.json();
       } catch (error) {
         console.error('Failed to fetch database:', error);
+        return null;
       }
     };
-    loadConfig();
-    const interval = setInterval(loadConfig, 5000);
-    return () => clearInterval(interval);
-  }, [config.database]);
-  // images
-    //annimations
-  useEffect(() => {
-    if (config.animations) return;
-    const loadConfig = async () => {
-      try {
-        const response = await httpFetch(
-          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/animations?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
-        );
-        if (!response.ok) return;
-        const data = await response.json();
-        setConfig((config) => ({
-          ...config,
-          animations: true,
-          assets: {
-            ...config.assets,
-            ...data?.data?.[0]?.animated_image?.reduce(
-              (acc, item) => ({
-                ...acc,
-                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
-              }),
-              {},
-            ),
-          },
-        }));
-      } catch (error) {
-        console.error('Failed to fetch animations:', error);
-      }
-    };
-    loadConfig();
-    const interval = setInterval(loadConfig, 5000);
-    return () => clearInterval(interval);
-  }, [config.animations]);
-  useEffect(() => {
-    if (config.images) return;
-    const loadConfig = async () => {
-      try {
-        const response = await httpFetch(
-          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/images?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
-        );
-        if (!response.ok) return;
-        const data = await response.json();
-        setConfig((config) => ({
-          ...config,
-          images: true,
-          assets: {
-            ...config.assets,
-            ...data?.data?.[0]?.image?.reduce(
-              (acc, item) => ({
-                ...acc,
-                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
-              }),
-              {},
-            ),
-          },
-        }));
-      } catch (error) {
-        console.error('Failed to fetch images:', error);
-      }
-    };
-    loadConfig();
-    const interval = setInterval(loadConfig, 5000);
-    return () => clearInterval(interval);
-  }, [config.images]);
-  // videos
-  useEffect(() => {
-    if (config.videos) return;
-    const loadConfig = async () => {
-      try {
-        const response = await httpFetch(
-          `${process.env.REACT_APP_CMS_BASE_URL}/streaming-service/streaming-url?sector=${process.env.REACT_APP_SECTOR}&station=${process.env.REACT_APP_STATION}`,
-        );
-        if (!response.ok) return;
-        const data = await response.json();
-        setConfig((config) => ({
-          ...config,
-          videos: true,
-          assets: {
-            ...config.assets,
-            ...data?.data?.reduce(
-              (acc, item) => ({
-                ...acc,
-                [item.title]:item.lq_streaming_url,
-              }),
-              {},
-            ),
-          },
-        }));
-      } catch (error) {
-        console.error('Failed to fetch videos:', error);
-      }
-    };
-    loadConfig();
-    const interval = setInterval(loadConfig, 5000);
-    return () => clearInterval(interval);
-  }, [config.videos]);
-  // audios
-    useEffect(() => {
-    if (config.audios) return;
-    const loadConfig = async () => {
-      try {
-        const response = await httpFetch(
-          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/audios?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
-        );
-        if (!response.ok) return;
-        const data = await response.json();
 
-        setConfig((config) => ({
-          ...config,
-          audios: true,
-          assets: {
-            ...config.assets,
-            ...data?.data?.[0]?.audio?.reduce(
-              (acc, item) => ({
-                ...acc,
-                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
-              }),
-              {},
-            ),
-          },
-        }));
-      } catch (error) {
-        console.error('Failed to fetch audios:', error);
-      }
+    const fetchAll = async () => {
+      setConfig((prev) => {
+        // Determine what still needs loading
+        const pending = ASSET_SOURCES.filter((s) => !prev[s.key]);
+        const needsDb = !prev.database;
+
+        if (pending.length === 0 && !needsDb) return prev;
+
+        // Fire all pending fetches concurrently
+        const promises = pending.map(async (source) => {
+          try {
+            const response = await httpFetch(source.url);
+            if (!response.ok) return null;
+            const data = await response.json();
+            return { key: source.key, assets: parseAssets(data, source) || {} };
+          } catch (error) {
+            console.error(`Failed to fetch ${source.key}:`, error);
+            return null;
+          }
+        });
+
+        const dbPromise = needsDb ? fetchDatabase() : Promise.resolve(undefined);
+
+        Promise.all([dbPromise, ...promises]).then(([dbData, ...results]) => {
+          setConfig((current) => {
+            const update = { ...current };
+            let mergedAssets = { ...current.assets };
+
+            if (dbData) update.database = dbData;
+
+            for (const result of results) {
+              if (result) {
+                update[result.key] = true;
+                mergedAssets = { ...mergedAssets, ...result.assets };
+              }
+            }
+
+            update.assets = mergedAssets;
+            return update;
+          });
+        });
+
+        return prev; // return unchanged; the Promise.all callback does the real update
+      });
     };
-    loadConfig();
-    const interval = setInterval(loadConfig, 5000);
+
+    fetchAll();
+    const interval = setInterval(fetchAll, 5000);
     return () => clearInterval(interval);
-  }, [config.audios]);
-  // documents
-  useEffect(() => {
-    if (config.documents) return;
-    const loadConfig = async () => {
-      try {
-        const response = await httpFetch(
-          `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}/api/documents?filters[station][$eq]=${process.env.REACT_APP_STATION}&filters[sector][$eq]=${process.env.REACT_APP_SECTOR}&populate=*`,
-        );
-        if (!response.ok) return;
-        const data = await response.json();
-        setConfig((config) => ({
-          ...config,
-          documents: true,
-          assets: {
-            ...config.assets,
-            ...data?.data?.[0]?.document?.reduce(
-              (acc, item) => ({
-                ...acc,
-                [item.name]: `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}${item.url}`,
-              }),
-              {},
-            ),
-          },
-        }));
-      } catch (error) {
-        console.error('Failed to fetch documents:', error);
-      }
-    };
-    loadConfig();
-    const interval = setInterval(loadConfig, 5000);
-    return () => clearInterval(interval);
-  }, [config.documents]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!config.images || !config.animations || !config.audios || !config.database || !config.videos || !config.documents) {
     return (
