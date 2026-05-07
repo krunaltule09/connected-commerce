@@ -25,11 +25,11 @@ function App() {
   const [config, setConfig] = useState({
     database: IS_DEV_MODE ? database : null,
     assets: {},
-    images: false,
-    animations: false,
-    audios: false,
-    videos: false,
-    documents: false
+    images: IS_DEV_MODE,
+    animations: IS_DEV_MODE,
+    audios: IS_DEV_MODE,
+    videos: IS_DEV_MODE,
+    documents: IS_DEV_MODE
   });
 
   
