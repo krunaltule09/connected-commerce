@@ -25,11 +25,11 @@ function App() {
   const [config, setConfig] = useState({
     database: IS_DEV_MODE ? database : null,
     assets: {},
-    images: IS_DEV_MODE,
-    animations: IS_DEV_MODE,
-    audios: IS_DEV_MODE,
-    videos: IS_DEV_MODE,
-    documents: IS_DEV_MODE
+    images: false,
+    animations: false,
+    audios: false,
+    videos: false,
+    documents: false
   });
 
   
@@ -41,9 +41,8 @@ function App() {
   }, []);
 
   // Consolidated asset loading service — single interval retries all pending fetches
+  // In dev mode, database is loaded locally but CMS assets (images, videos, etc.) are still fetched
   useEffect(() => {
-    if (IS_DEV_MODE) return;
-
     const CMS = `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}`;
     const STATION = process.env.REACT_APP_STATION;
     const SECTOR = process.env.REACT_APP_SECTOR;
@@ -93,16 +92,20 @@ function App() {
         const promises = pending.map(async (source) => {
           try {
             const response = await httpFetch(source.url);
-            if (!response.ok) return null;
+            if (!response.ok) {
+              console.warn(`CMS ${source.key} returned ${response.status}, skipping`);
+              return { key: source.key, assets: {} };
+            }
             const data = await response.json();
             return { key: source.key, assets: parseAssets(data, source) || {} };
           } catch (error) {
             console.error(`Failed to fetch ${source.key}:`, error);
-            return null;
+            return { key: source.key, assets: {} };
           }
         });
 
-        const dbPromise = needsDb ? fetchDatabase() : Promise.resolve(undefined);
+        // In dev mode, skip database fetch (already loaded locally)
+        const dbPromise = (needsDb && !IS_DEV_MODE) ? fetchDatabase() : Promise.resolve(undefined);
 
         Promise.all([dbPromise, ...promises]).then(([dbData, ...results]) => {
           setConfig((current) => {
