@@ -53,36 +53,37 @@ const GradientButton = ({
       case 'metric': // Background image style from FinancialMetricsSection
         return {
           ...baseStyles,
-          backgroundImage: active 
-            ? `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Active.svg']}')`
-            : `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Default.svg']}')`,
-          backgroundSize: '100% 100%',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          width: '140px', // Fixed width for consistent button sizes
+          background: active
+            ? 'linear-gradient(135deg, rgba(255, 230, 0, 0.25) 0%, rgba(255, 230, 0, 0.08) 100%)'
+            : 'rgba(46, 46, 56, 0.6)',
+          border: active ? '1px solid #FFE600' : '1px solid rgba(255, 255, 255, 0.15)',
+          borderRadius: '8px',
+          width: '140px',
           maxWidth: '140px',
-          minWidth: '140px', // Ensure all buttons have the same width
+          minWidth: '140px',
+          height: '50px',
+          minHeight: '50px',
+          maxHeight: '50px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center', // Changed from flex-start to center
+          justifyContent: 'center',
           padding: {
             xs: '0.5rem 0.7rem',
             sm: '0.6rem 0.9rem',
             md: '0.7rem 1rem'
           },
-          fontSize: '0.85rem', // Consistent font size across all breakpoints
+          fontSize: '0.85rem',
           lineHeight: 1.2,
-          whiteSpace: 'inherit', // Use inherit to respect the override from parent
+          whiteSpace: 'inherit',
           wordBreak: 'normal',
-          textAlign: 'center', // Changed from left to center
-          minHeight: '50px',
+          textAlign: 'center',
+          transition: 'background 0.2s ease, border-color 0.2s ease',
           '&:hover': {
-            backgroundImage: active
-              ? `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Active.svg']}')`
-              : `url('${assets['Banking_Capital_Market_Operate_Table_Button_Background_Default.svg']}')`,
-            backgroundSize: '100% 100%',
+            background: active
+              ? 'linear-gradient(135deg, rgba(255, 230, 0, 0.3) 0%, rgba(255, 230, 0, 0.12) 100%)'
+              : 'rgba(46, 46, 56, 0.8)',
+            border: active ? '1px solid #FFE600' : '1px solid rgba(255, 255, 255, 0.25)',
             outline: 'none',
-            border: 'none',
             boxShadow: 'none',
           },
         };

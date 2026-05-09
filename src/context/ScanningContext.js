@@ -9,6 +9,7 @@ export function ScanningProvider({ children }) {
   const [scanProgress, setScanProgress] = useState(0);
   const [isFinancialDataReady, setIsFinancialDataReady] = useState(false);
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
+  const [scannedDocumentPreview, setScannedDocumentPreview] = useState(null);
   const lastPublishedProgress = useRef(-1);
   // eslint-disable-next-line no-unused-vars
   const hasBeenInitialized = useRef(false);
@@ -87,7 +88,9 @@ export function ScanningProvider({ children }) {
     scanProgress,
     isFinancialDataReady,
     isCovenantDataReady,
-    isComplete: scanProgress === 100
+    isComplete: scanProgress === 100,
+    scannedDocumentPreview,
+    setScannedDocumentPreview
   };
   
   return (

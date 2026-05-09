@@ -18,11 +18,11 @@ export const createChartOptions = (metricTitle, formatValue) => ({
   responsive: true,
   maintainAspectRatio: true,
   animation: {
-    duration: 2000,
+    duration: 1500,
     easing: 'easeOutQuart',
     delay: (context) => {
-      // Add a staggered delay for each bar
-      return context.dataIndex * 100;
+      // Staggered delay with base offset so all bars animate bottom-to-top
+      return 200 + context.dataIndex * 150;
     },
   },
   transitions: {

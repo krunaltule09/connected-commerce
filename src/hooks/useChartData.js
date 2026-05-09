@@ -35,12 +35,10 @@ export const useChartData = (data, isReady, metricKey) => {
     };
   }, [isReady, metricKey]);
   
-  // Calculate visible data points based on animation progress
+  // Return full data immediately — let Chart.js handle bar animation
   const calculateVisibleData = useMemo(() => {
-    const fullData = data.map(item => item[1]);
-    const visibleCount = Math.ceil(fullData.length * animationProgress);
-    return fullData.map((value, index) => index < visibleCount ? value : 0);
-  }, [data, animationProgress]);
+    return data.map(item => item[1]);
+  }, [data]);
   
   // Extract labels from data
   const labels = useMemo(() => data.map(item => item[0]), [data]);

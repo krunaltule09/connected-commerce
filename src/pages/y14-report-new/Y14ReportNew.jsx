@@ -11,6 +11,10 @@ import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext'
 import { httpFetch } from '../../utils/tauriFetch';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
 
+// Local fallback thumbnails for document previews
+import loanAgreementLocal from '../../assets/images/Loan_Agreement.png';
+import esgReportLocal from '../../assets/images/ESG_Report_Q2.png';
+
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
 
 export default function Y14ReportNew() {
@@ -261,27 +265,27 @@ export default function Y14ReportNew() {
 
                   {/* Document SVGs Container */}
                   <Box className={styles.docsContainer}>
-                    {/* First Document */}
+                    {/* First Document - Balance Sheet (keep as is) */}
                     <Box
                       component="img"
                       src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                      alt="Report Builder Document 1"
+                      alt="Balance Sheet"
                       className={styles.docImage}
                     />
 
-                    {/* Second Document */}
+                    {/* Second Document - Loan Agreement (first page) */}
                     <Box
                       component="img"
-                      src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                      alt="Report Builder Document 2"
+                      src={assets['Banking_Capital_Market_Operate_Table_Loan_Agreement.png'] || loanAgreementLocal}
+                      alt="Loan Agreement"
                       className={styles.docImage}
                     />
 
-                    {/* Third Document */}
+                    {/* Third Document - ESG Report Q2 (last page) */}
                     <Box
                       component="img"
-                      src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                      alt="Report Builder Document 3"
+                      src={assets['Banking_Capital_Market_Operate_Table_ESG_Report_Q2.png'] || esgReportLocal}
+                      alt="ESG Report Q2"
                       className={styles.docImage}
                     />
                   </Box>

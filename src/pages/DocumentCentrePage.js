@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import navigationService from '../services/NavigationService';
 import { useButtonSound } from '../hooks';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
+import { useScanning } from '../context/ScanningContext';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
@@ -48,6 +49,7 @@ const CMS_PDF_MAP = {
 export default function DocumentCentrePage() {
   const navigate = useNavigate();
   const { assets } = useConfig();
+  const { setScannedDocumentPreview } = useScanning();
   const [documents, setDocuments] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [selectedDocument, setSelectedDocument] = useState(null);
@@ -142,7 +144,12 @@ export default function DocumentCentrePage() {
   // Handle scan document with sound effect
   const handleScanDocument = useButtonSound(async () => {
     if (addedDocuments.length === 0) return;
-    
+
+    // Store first document's preview for the Data Extraction Preview panel
+    if (addedDocuments[0]?.url) {
+      setScannedDocumentPreview(addedDocuments[0].url);
+    }
+
     navigate('/financial-dashboard')
     
     try {

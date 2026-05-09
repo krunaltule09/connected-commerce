@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import GradientBorderBox from './common/GradientBorderBox';
 import { useScanning } from '../context/ScanningContext';
 import { useConfig, useVisualizationDataSet } from '../context/ConfigContext';
+import DocumentRenderer from './DocumentRenderer';
 
 export default function OcrScanningSection({ isInOperationalDocScan=false }) {
-  const { scanProgress: progress, isComplete } = useScanning();
+  const { scanProgress: progress, isComplete, scannedDocumentPreview } = useScanning();
   const { assets } = useConfig();
   const screenName = isInOperationalDocScan ? 'operational_doc_scan' : 'financial_dashboard';
   const ocrData = useVisualizationDataSet(screenName, 'OCR Scanning');
@@ -61,28 +62,45 @@ export default function OcrScanningSection({ isInOperationalDocScan=false }) {
               variants={documentVariants}
             >
             <Box p={1}>
-              <Box
-                sx={{
-                  width:'100%',
-                  backgroundSize: isInOperationalDocScan ? 'cover' : 'cover',
-
-                  height: 400 ,
-                  bgcolor: '#343340',
-                
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundImage: `url('${assets['Banking_Capital_Market_Operate_Table_OCR_Background.svg']}')`,
-                  // backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': {
-                    boxShadow: '0 12px 20px rgba(0,0,0,0.4)',
-                    transform: 'translateY(-2px)'
-                  }
-                }}
-              />
+              {scannedDocumentPreview ? (
+                <DocumentRenderer
+                  mode="preview"
+                  src={scannedDocumentPreview}
+                  alt="Scanned Document Preview"
+                  sx={{
+                    width: '100%',
+                    height: 400,
+                    objectFit: 'contain',
+                    bgcolor: '#343340',
+                    boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      boxShadow: '0 12px 20px rgba(0,0,0,0.4)',
+                      transform: 'translateY(-2px)'
+                    }
+                  }}
+                />
+              ) : (
+                <Box
+                  sx={{
+                    width: '100%',
+                    backgroundSize: 'cover',
+                    height: 400,
+                    bgcolor: '#343340',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundImage: `url('${assets['Banking_Capital_Market_Operate_Table_OCR_Background.svg']}')`,
+                    backgroundRepeat: 'no-repeat',
+                    boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      boxShadow: '0 12px 20px rgba(0,0,0,0.4)',
+                      transform: 'translateY(-2px)'
+                    }
+                  }}
+                />
+              )}
   </Box>
             </motion.div>
           </GradientBorderBox>
