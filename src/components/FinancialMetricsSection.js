@@ -201,7 +201,7 @@ export default function FinancialMetricsSection() {
                         stiffness: 100,
                         damping: 15
                       }}
-                      style={{ position: 'relative', flexGrow: 1, overflow: 'visible', marginLeft:"-6rem" }}
+                      style={{ position: 'relative', flexGrow: 1, overflow: 'visible', marginLeft:"-3rem" }}
                     >
                       <FinancialChart />
                     </motion.div>

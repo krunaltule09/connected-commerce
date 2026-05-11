@@ -50,16 +50,16 @@ export default function FinancialChart() {
       ) : (
         <AnimatedChartContainer metricKey={selectedMetric}>
           <ChartBackground>
-            <Box sx={{ height: '14.5rem', width: '35.75rem', marginLeft:'3rem', boxSizing: 'border-box' }}>
-              <Bar 
-                key={`chart-${selectedMetric}`} 
-                ref={chartRef} 
-                data={data} 
+            <Box sx={{ height: '14.5rem', width: '100%', boxSizing: 'border-box' }}>
+              <Bar
+                key={`chart-${selectedMetric}`}
+                ref={chartRef}
+                data={data}
                 options={options}
-                style={{ 
+                style={{
                   display: 'block',
                   height: '14.5rem',
-                  width: '35.75rem',
+                  width: '100%',
                   boxSizing: 'border-box'
                 }}
               />

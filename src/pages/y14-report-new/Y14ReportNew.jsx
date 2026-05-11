@@ -274,20 +274,24 @@ export default function Y14ReportNew() {
                     />
 
                     {/* Second Document - Loan Agreement (first page) */}
-                    <Box
-                      component="img"
-                      src={assets['Banking_Capital_Market_Operate_Table_Loan_Agreement.png'] || loanAgreementLocal}
-                      alt="Loan Agreement"
-                      className={styles.docImage}
-                    />
+                    <Box className={styles.docCard}>
+                      <Box
+                        component="img"
+                        src={assets['Banking_Capital_Market_Operate_Table_Loan_Agreement.png'] || loanAgreementLocal}
+                        alt="Loan Agreement"
+                        className={styles.docCardImage}
+                      />
+                    </Box>
 
                     {/* Third Document - ESG Report Q2 (last page) */}
-                    <Box
-                      component="img"
-                      src={assets['Banking_Capital_Market_Operate_Table_ESG_Report_Q2.png'] || esgReportLocal}
-                      alt="ESG Report Q2"
-                      className={styles.docImage}
-                    />
+                    <Box className={styles.docCard}>
+                      <Box
+                        component="img"
+                        src={assets['Banking_Capital_Market_Operate_Table_ESG_Report_Q2.png'] || esgReportLocal}
+                        alt="ESG Report Q2"
+                        className={styles.docCardImage}
+                      />
+                    </Box>
                   </Box>
                 </Box>
               </Box>
