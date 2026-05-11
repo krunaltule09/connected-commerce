@@ -43,7 +43,7 @@ export const createChartOptions = (metricTitle, formatValue) => ({
       top: 20,
       right: 20,
       bottom: 10,
-      left: 10
+      left: 30
     }
   },
   plugins: {

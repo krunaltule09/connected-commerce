@@ -62,8 +62,9 @@ export default function DocumentRenderer({ src, alt, mode = 'preview', pageNumbe
 
 function PdfPreview({ src, pageNumber = 1, className, style, sx }) {
   const [loading, setLoading] = useState(true);
-  const [containerWidth, setContainerWidth] = useState(300);
+  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef(null);
+  const renderWidth = 600;
 
   useEffect(() => {
     const el = containerRef.current;
@@ -77,6 +78,8 @@ function PdfPreview({ src, pageNumber = 1, className, style, sx }) {
     return () => observer.disconnect();
   }, []);
 
+  const scaleFactor = containerWidth > 0 ? containerWidth / renderWidth : 0.3;
+
   return (
     <Box
       ref={containerRef}
@@ -84,33 +87,36 @@ function PdfPreview({ src, pageNumber = 1, className, style, sx }) {
       style={style}
       sx={{
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         overflow: 'hidden',
+        borderRadius: '0.5rem',
         ...sx,
       }}
     >
       {loading && (
         <CircularProgress
           size={24}
-          sx={{ color: '#FFE600', position: 'absolute', zIndex: 1 }}
+          sx={{ color: '#FFE600', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }}
         />
       )}
-      <Document
-        file={src}
-        onLoadSuccess={() => setLoading(false)}
-        onLoadError={() => setLoading(false)}
-        loading=""
-      >
-        <Page
-          pageNumber={pageNumber}
-          width={containerWidth > 0 ? containerWidth - 16 : undefined}
-          renderTextLayer={false}
-          renderAnnotationLayer={false}
+      <Box sx={{
+        transformOrigin: 'top left',
+        transform: `scale(${scaleFactor})`,
+      }}>
+        <Document
+          file={src}
+          onLoadSuccess={() => setLoading(false)}
+          onLoadError={() => setLoading(false)}
           loading=""
-        />
-      </Document>
+        >
+          <Page
+            pageNumber={pageNumber}
+            width={renderWidth}
+            renderTextLayer={false}
+            renderAnnotationLayer={false}
+            loading=""
+          />
+        </Document>
+      </Box>
     </Box>
   );
 }
