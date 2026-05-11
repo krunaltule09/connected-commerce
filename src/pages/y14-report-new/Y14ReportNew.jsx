@@ -10,10 +10,10 @@ import GradientBorderBox from '../../components/common/GradientBorderBox';
 import { useConfig, useVisualizationDataSet } from '../../context/ConfigContext';
 import { httpFetch } from '../../utils/tauriFetch';
 import DetailedFindings from '../../components/y14-report/DetailedFindings';
+import DocumentRenderer from '../../components/DocumentRenderer';
 
-// Local fallback thumbnails for document previews
-import loanAgreementLocal from '../../assets/images/Loan_Agreement.png';
-import esgReportLocal from '../../assets/images/ESG_Report_Q2.png';
+// Local fallback for FR Y-14Q document (3 pages → 3 thumbnails)
+const FR_Y14Q_LOCAL = '/Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf';
 
 const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
 
@@ -263,32 +263,37 @@ export default function Y14ReportNew() {
                     className={styles.workflowStepsImage}
                   />
 
-                  {/* Document SVGs Container */}
+                  {/* Document Thumbnails Container */}
                   <Box className={styles.docsContainer}>
-                    {/* First Document - Balance Sheet (keep as is) */}
-                    <Box
-                      component="img"
-                      src={assets['Banking_Capital_Market_Operate_Table_Report_Builder_Document.svg']}
-                      alt="Balance Sheet"
-                      className={styles.docImage}
-                    />
-
-                    {/* Second Document - Loan Agreement (first page) */}
+                    {/* Page 1 - FR Y-14Q Schedule H.1 */}
                     <Box className={styles.docCard}>
-                      <Box
-                        component="img"
-                        src={assets['Banking_Capital_Market_Operate_Table_Loan_Agreement.png'] || loanAgreementLocal}
-                        alt="Loan Agreement"
+                      <DocumentRenderer
+                        mode="preview"
+                        pageNumber={1}
+                        src={assets['Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf'] || FR_Y14Q_LOCAL}
+                        alt="FR Y-14Q Page 1"
                         className={styles.docCardImage}
                       />
                     </Box>
 
-                    {/* Third Document - ESG Report Q2 (last page) */}
+                    {/* Page 2 - FR Y-14Q */}
                     <Box className={styles.docCard}>
-                      <Box
-                        component="img"
-                        src={assets['Banking_Capital_Market_Operate_Table_ESG_Report_Q2.png'] || esgReportLocal}
-                        alt="ESG Report Q2"
+                      <DocumentRenderer
+                        mode="preview"
+                        pageNumber={2}
+                        src={assets['Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf'] || FR_Y14Q_LOCAL}
+                        alt="FR Y-14Q Page 2"
+                        className={styles.docCardImage}
+                      />
+                    </Box>
+
+                    {/* Page 3 - FR Y-14Q */}
+                    <Box className={styles.docCard}>
+                      <DocumentRenderer
+                        mode="preview"
+                        pageNumber={3}
+                        src={assets['Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf'] || FR_Y14Q_LOCAL}
+                        alt="FR Y-14Q Page 3"
                         className={styles.docCardImage}
                       />
                     </Box>

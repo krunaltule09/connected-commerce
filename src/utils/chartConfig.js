@@ -30,6 +30,12 @@ export const createChartOptions = (metricTitle, formatValue) => ({
       animation: {
         duration: 400
       }
+    },
+    default: {
+      animation: {
+        duration: 800,
+        easing: 'easeOutQuart'
+      }
     }
   },
   layout: {

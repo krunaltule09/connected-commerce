@@ -28,8 +28,8 @@ export default function FinancialChart() {
   // Get current data for the selected metric
   const currentData = getSelectedData();
   
-  // Use custom hook for chart data processing and animation
-  const { visibleData, labels } = useChartData(currentData, isFinancialDataReady, selectedMetric);
+  // Use custom hook for chart data processing
+  const { visibleData, labels } = useChartData(currentData, isFinancialDataReady);
   
   // Create chart data and options using utility functions
   const data = {
@@ -48,11 +48,10 @@ export default function FinancialChart() {
       {!isFinancialDataReady ? (
         <ChartLoadingAnimation progress={scanProgress} />
       ) : (
-        <AnimatedChartContainer metricKey={selectedMetric}>
+        <AnimatedChartContainer>
           <ChartBackground>
             <Box sx={{ height: '14.5rem', width: '100%', boxSizing: 'border-box' }}>
               <Bar
-                key={`chart-${selectedMetric}`}
                 ref={chartRef}
                 data={data}
                 options={options}

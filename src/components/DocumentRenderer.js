@@ -31,7 +31,7 @@ function getExtension(url) {
  *   sx        - MUI sx prop (passed to wrapper Box)
  *   ...rest   - additional props passed to <img> or wrapper
  */
-export default function DocumentRenderer({ src, alt, mode = 'preview', className, style, sx, ...rest }) {
+export default function DocumentRenderer({ src, alt, mode = 'preview', pageNumber = 1, className, style, sx, ...rest }) {
   const ext = getExtension(src);
   const isPdf = ext === 'pdf';
   const isImage = IMAGE_EXTENSIONS.includes(ext);
@@ -43,7 +43,7 @@ export default function DocumentRenderer({ src, alt, mode = 'preview', className
   }
 
   if (isPdf && mode === 'preview') {
-    return <PdfPreview src={src} className={className} style={style} sx={sx} />;
+    return <PdfPreview src={src} pageNumber={pageNumber} className={className} style={style} sx={sx} />;
   }
 
   // Default: render as image (works for jpg, png, svg, webp, and unknown extensions)
@@ -60,7 +60,7 @@ export default function DocumentRenderer({ src, alt, mode = 'preview', className
   );
 }
 
-function PdfPreview({ src, className, style, sx }) {
+function PdfPreview({ src, pageNumber = 1, className, style, sx }) {
   const [loading, setLoading] = useState(true);
   const [containerWidth, setContainerWidth] = useState(300);
   const containerRef = useRef(null);
@@ -104,7 +104,7 @@ function PdfPreview({ src, className, style, sx }) {
         loading=""
       >
         <Page
-          pageNumber={1}
+          pageNumber={pageNumber}
           width={containerWidth > 0 ? containerWidth - 16 : undefined}
           renderTextLayer={false}
           renderAnnotationLayer={false}

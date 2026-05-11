@@ -58,12 +58,11 @@ export const ChartLoadingAnimation = ({ progress }) => (
   </motion.div>
 );
 
-export const AnimatedChartContainer = ({ children, metricKey }) => (
+export const AnimatedChartContainer = ({ children }) => (
   <motion.div
-    key={`chart-${metricKey}`}
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
-    transition={{ 
+    transition={{
       type: "spring",
       stiffness: 100,
       damping: 15
