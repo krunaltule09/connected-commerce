@@ -12,22 +12,6 @@ import { useScanning } from '../context/ScanningContext';
 import DocumentCard from '../components/DocumentCard';
 import DocumentCardDetails from '../components/DocumentCardDetails';
 
-// Local PDF preview thumbnails (safety net until CMS upload is confirmed)
-import loanAgreementPreview from '../assets/images/Loan_Agreement.png';
-import financialsPreview from '../assets/images/2024_Q2_Financials.png';
-import esgReportPreview from '../assets/images/ESG_Report_Q2.png';
-import fleetLeasePreview from '../assets/images/Fleet_Lease_Agreements.png';
-import balanceSheetPreview from '../assets/images/H1_2024_Balance_Sheet.png';
-
-// Map document filenames to their specific local preview images
-const LOCAL_PREVIEW_MAP = {
-  'Loan_Agreement.pdf': loanAgreementPreview,
-  '2024_Q2_Financials.pdf': financialsPreview,
-  'ESG_Report_Q2.pdf': esgReportPreview,
-  'Fleet_Lease_Agreements.pdf': fleetLeasePreview,
-  'Balance_Sheet.xlsx': balanceSheetPreview,
-};
-
 // Map document filenames to their CMS asset keys
 const CMS_PREVIEW_MAP = {
   'Loan_Agreement.pdf': 'Banking_Capital_Market_Operate_Table_Loan_Agreement.png',
@@ -43,7 +27,7 @@ const CMS_PDF_MAP = {
   '2024_Q2_Financials.pdf': 'Banking_Capital_Market_Operate_Table_2024_Q2_Financials.pdf',
   'ESG_Report_Q2.pdf': 'Banking_Capital_Market_Operate_Table_ESG_Report_Q2.pdf',
   'Fleet_Lease_Agreements.pdf': 'Banking_Capital_Market_Operate_Table_Fleet_Lease_Agreements.pdf',
-  'Balance_Sheet.pdf': 'Banking_Capital_Market_Operate_Table_H1_2024_Balance_Sheet.pdf',
+  'Balance_Sheet.pdf': 'Banking_Capital_Market_Operate_Table_Balance_Sheet.pdf',
 };
 
 export default function DocumentCentrePage() {
@@ -67,12 +51,9 @@ export default function DocumentCentrePage() {
     if (!documentListData?.documents) return [];
 
     return documentListData.documents.map((doc, index) => {
-      // Check for document-specific preview: CMS first, then local fallback
+      // Check for document-specific preview: CMS first
       const cmsKey = CMS_PREVIEW_MAP[doc.filename];
-      const cmsPreview = cmsKey ? assets[cmsKey] : null;
-      const localPreview = LOCAL_PREVIEW_MAP[doc.filename];
-
-      let previewUrl = cmsPreview || localPreview;
+      let previewUrl = cmsKey ? assets[cmsKey] : null;
 
       // For documents without a specific preview, rotate generic SVG templates
       if (!previewUrl) {
@@ -91,7 +72,7 @@ export default function DocumentCentrePage() {
       if (doc.pdfFile) {
         const cmsPdfKey = CMS_PDF_MAP[doc.pdfFile];
         const cmsPdfUrl = cmsPdfKey ? assets[cmsPdfKey] : null;
-        pdfUrl = cmsPdfUrl || `${process.env.PUBLIC_URL}/pdfs/${doc.pdfFile}`;
+        pdfUrl = cmsPdfUrl || `${process.env.PUBLIC_URL}/pdf/${doc.pdfFile}`;
       }
 
       return {

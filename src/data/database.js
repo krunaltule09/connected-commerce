@@ -132,7 +132,7 @@ const database = {
             position: 'top_right',
             data_set: {
               title: 'Documents Received',
-              count: 5
+              count: 12
             }
           },
           {
@@ -145,47 +145,129 @@ const database = {
                 {
                   id: 1,
                   name: 'Loan Agreement',
-                  url: null,
                   description: 'Primary loan agreement document outlining terms and conditions',
                   type: 'pdf',
-                  filename: 'Loan_Agreement.pdf',
-                  pdfFile: 'Loan_Agreement.pdf'
+                  filename: 'Banking_Capital_Market_Operate_Table_Loan_Agreement.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Loan_Agreement.pdf',
+                  status: 'completed',
+                  date: '2024-05-15',
+                  details: {
+                    borrower: 'Vertex Industries Inc.',
+                    lender: 'Global Commerce Bank',
+                    amount: '$25,000,000',
+                    tenor: '5 Years',
+                    interestRate: 'SOFR + 2.5%'
+                  }
                 },
                 {
                   id: 2,
                   name: 'Financial Statement',
-                  url: null,
                   description: 'Company financial statements and performance metrics',
                   type: 'pdf',
-                  filename: '2024_Q2_Financials.pdf',
-                  pdfFile: '2024_Q2_Financials.pdf'
+                  filename: 'Banking_Capital_Market_Operate_Table_2024_Q2_Financials.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_2024_Q2_Financials.pdf',
+                  status: 'pending',
+                  date: '2024-05-20'
                 },
                 {
                   id: 3,
-                  name: 'ESG Report 02',
-                  url: null,
-                  description: 'Environmental, Social, and Governance report',
-                  type: 'pdf',
-                  filename: 'ESG_Report_Q2.pdf',
-                  pdfFile: 'ESG_Report_Q2.pdf'
+                  name: 'Covenant Summary',
+                  description: 'Summary of loan covenants and compliance tracking',
+                  type: 'xlsx',
+                  filename: 'Banking_Capital_Market_Operate_Table_Covenant_Summary.xlsx',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Covenant_Summary.pdf',
+                  status: 'completed',
+                  date: '2024-05-01'
                 },
                 {
                   id: 4,
-                  name: 'FR Y-14 Analysis',
-                  url: null,
-                  description: 'Federal Reserve Y-14 regulatory analysis and reporting',
+                  name: 'ESG Report 02',
+                  description: 'Environmental, Social, and Governance report',
                   type: 'pdf',
-                  filename: 'Fleet_Lease_Agreements.pdf',
-                  pdfFile: 'Fleet_Lease_Agreements.pdf'
+                  filename: 'Banking_Capital_Market_Operate_Table_ESG_Report_Q2.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_ESG_Report_Q2.pdf',
+                  status: 'completed',
+                  date: '2024-04-10'
                 },
                 {
                   id: 5,
-                  name: 'Balance Sheet',
-                  url: null,
-                  description: 'Company balance sheet and financial position',
+                  name: 'FR Y-14 Analysis',
+                  description: 'Federal Reserve Y-14 regulatory analysis and reporting',
                   type: 'pdf',
-                  filename: 'Balance_Sheet.xlsx',
-                  pdfFile: 'Balance_Sheet.pdf'
+                  filename: 'Banking_Capital_Market_Operate_Table_Fleet_Lease_Agreements.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Fleet_Lease_Agreements.pdf',
+                  status: 'flagged',
+                  date: '2024-05-22'
+                },
+                {
+                  id: 6,
+                  name: 'Risk Assessment',
+                  description: 'Comprehensive risk assessment document',
+                  type: 'docx',
+                  filename: 'Banking_Capital_Market_Operate_Table_Risk_Assessment.docx',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Risk_Assessment.pdf',
+                  status: 'completed',
+                  date: '2024-05-18'
+                },
+                {
+                  id: 7,
+                  name: 'Balance Sheet',
+                  description: 'Company balance sheet and financial position',
+                  type: 'xlsx',
+                  filename: 'Banking_Capital_Market_Operate_Table_Balance_Sheet.xlsx',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Balance_Sheet.pdf',
+                  status: 'completed',
+                  date: '2024-05-01'
+                },
+                {
+                  id: 8,
+                  name: 'Quarterly Report',
+                  description: 'Quarterly financial and operational report',
+                  type: 'pdf',
+                  filename: 'Banking_Capital_Market_Operate_Table_Quarterly_Report.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Quarterly_Report.pdf',
+                  status: 'completed',
+                  date: '2024-03-31'
+                },
+                {
+                  id: 9,
+                  name: 'Compliance Certificate',
+                  description: 'Compliance certification and regulatory documentation',
+                  type: 'pdf',
+                  filename: 'Banking_Capital_Market_Operate_Table_Compliance_Certificate.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Compliance_Certificate.pdf',
+                  status: 'completed',
+                  date: '2024-05-15'
+                },
+                {
+                  id: 10,
+                  name: 'Market Analysis',
+                  description: 'Market analysis and industry trends presentation',
+                  type: 'pptx',
+                  filename: 'Banking_Capital_Market_Operate_Table_Market_Analysis.pptx',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Market_Analysis.pdf',
+                  status: 'completed',
+                  date: '2024-05-10'
+                },
+                {
+                  id: 11,
+                  name: 'Credit Approval',
+                  description: 'Credit approval documentation and decision rationale',
+                  type: 'pdf',
+                  filename: 'Banking_Capital_Market_Operate_Table_Credit_Approval.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Credit_Approval.pdf',
+                  status: 'completed',
+                  date: '2024-05-12'
+                },
+                {
+                  id: 12,
+                  name: 'Facility Agreement',
+                  description: 'Facility agreement terms and conditions',
+                  type: 'pdf',
+                  filename: 'Banking_Capital_Market_Operate_Table_Facility_Agreement.pdf',
+                  pdfFile: 'Banking_Capital_Market_Operate_Table_Facility_Agreement.pdf',
+                  status: 'completed',
+                  date: '2024-05-14'
                 }
               ]
             }

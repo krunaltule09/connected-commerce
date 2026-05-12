@@ -5,11 +5,9 @@ import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useButtonSound } from '../hooks';
-import { useVisualizationDataSet } from '../context/ConfigContext';
+import { useVisualizationDataSet, useConfig } from '../context/ConfigContext';
 
-// SVG assets
-import endFrame from '../assets/images/feedback_end_frame.svg';
-import tickIcon from '../assets/images/feedback_tick.svg';
+// SVG assets will be retrieved from useConfig()
 
 // Styled components
 const PageContainer = styled(Box)(({ theme }) => ({
@@ -321,8 +319,12 @@ export default function FeedbackPage() {
   const [animateCards, setAnimateCards] = useState(false);
   const [animateNav, setAnimateNav] = useState(false);
 
-  // Get data from appDatabase
+  // Get data and assets from app configuration
+  const { assets } = useConfig();
   const feedbackData = useVisualizationDataSet('feedback', 'Feedback Form');
+
+  const endFrame = assets['Banking_Capital_Market_Operate_Table_feedback_end_frame.svg'];
+  const tickIcon = assets['Banking_Capital_Market_Operate_Table_feedback_tick.svg'];
 
   // Staggered animation timing
   useEffect(() => {
