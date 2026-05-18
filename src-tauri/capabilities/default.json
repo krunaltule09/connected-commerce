@@ -13,7 +13,7 @@
         { "url": "https://experiencecenter.ey.com/**" },
         { "url": "https://experiencecenter.ey.com:1337/**" },
         { "url": "http://127.0.0.1:8000/**" },
-        { "url": "https://sse-service-lnsk.onrender.com/**" }
+        { "url": "wss://experiencecenter.ey.com/**" }
       ]
     }
   ]

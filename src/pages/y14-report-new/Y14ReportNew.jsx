@@ -15,7 +15,14 @@ import DocumentRenderer from '../../components/DocumentRenderer';
 // Local fallback for FR Y-14Q document (3 pages → 3 thumbnails)
 const FR_Y14Q_LOCAL = '/Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf';
 
-const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
+const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
+const NATS_USER   = process.env.REACT_APP_NATS_USER || '';
+const NATS_PASS   = process.env.REACT_APP_NATS_PASS || '';
+const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
+const natsAuthHeader = 'Basic ' + btoa(`${NATS_USER}:${NATS_PASS}`);
+const natsSubject = INSTANCE_ID
+  ? `bcm.navigation.station-${INSTANCE_ID}`
+  : 'bcm.navigation';
 
 export default function Y14ReportNew() {
   const navigate = useNavigate();
@@ -46,28 +53,39 @@ export default function Y14ReportNew() {
   const [reportProgress, setReportProgress] = useState(0);
   const lastPublishedProgress = useRef(-1);
 
-  // Publish progress to SSE service (same pattern as ScanningContext)
+  // Publish progress to NATS broker
   const publishProgress = useCallback(async (progress) => {
-    // Only publish if progress changed significantly (avoid flooding)
     if (Math.floor(progress) === lastPublishedProgress.current) return;
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await httpFetch(`${SSE_BASE_URL}/api/progress`, {
+      await httpFetch(PUBLISH_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: natsAuthHeader,
+        },
         body: JSON.stringify({
-          pageId: 'y14-report',
-          progress: Math.floor(progress),
-          status: progress >= 100 ? 'complete' : 'generating',
-          metadata: {
-            reportReady: progress >= 100
-          }
+          message: {
+            title: 'BCM Navigation',
+            body: {
+              targetAppId: 'operate-experience',
+              action: 'PROGRESS_UPDATE',
+              type: 'progress',
+              pageId: 'y14-report',
+              progress: Math.floor(progress),
+              status: progress >= 100 ? 'complete' : 'generating',
+              sourceAppId: 'connected-commerce',
+              timestamp: new Date().toISOString(),
+              metadata: { reportReady: progress >= 100 }
+            },
+          },
+          target_device: ['large_screen'],
+          subject: natsSubject,
         })
       });
     } catch (error) {
-      // Silently fail - SSE service may not be running
-      console.debug('SSE publish failed:', error.message);
+      console.debug('NATS publish failed:', error.message);
     }
   }, []);
 
@@ -83,7 +101,7 @@ export default function Y14ReportNew() {
     return () => clearInterval(timer);
   }, []);
 
-  // Publish progress to SSE whenever it changes
+  // Publish progress to NATS whenever it changes
   useEffect(() => {
     publishProgress(reportProgress);
   }, [reportProgress, publishProgress]);

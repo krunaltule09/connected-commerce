@@ -1,60 +1,84 @@
-import axios from 'axios';
+import { httpFetch } from '../utils/tauriFetch';
+
+const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
+const NATS_USER   = process.env.REACT_APP_NATS_USER || '';
+const NATS_PASS   = process.env.REACT_APP_NATS_PASS || '';
+const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
+const TARGET_DEVICE = ['large_screen'];
+
+const authHeader = 'Basic ' + btoa(`${NATS_USER}:${NATS_PASS}`);
+
+const subject = INSTANCE_ID
+  ? `bcm.navigation.station-${INSTANCE_ID}`
+  : 'bcm.navigation';
+
+let _debounceTimer = null;
+
+/**
+ * Low-level publish with 2 retries and 500ms between attempts.
+ */
+const _publish = async (route, data) => {
+  const body = {
+    message: {
+      title: 'BCM Navigation',
+      body: {
+        targetAppId: 'operate-experience',
+        action: 'NAVIGATE',
+        route,
+        sourceAppId: 'connected-commerce',
+        timestamp: new Date().toISOString(),
+        data,
+      },
+    },
+    target_device: TARGET_DEVICE,
+    subject,
+  };
+
+  const MAX_RETRIES = 2;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const res = await httpFetch(PUBLISH_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authHeader,
+        },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) return;
+    } catch (err) {
+      // retry
+    }
+    if (attempt < MAX_RETRIES) await new Promise(r => setTimeout(r, 500));
+  }
+};
+
+/**
+ * Send a navigation route to the large screen.
+ * Debounced at 200ms — rapid calls only send the last route.
+ *
+ * @param {string} route  - React Router path on the subscriber app
+ * @param {object} data   - Optional metadata
+ */
+export const sendLargeScreenRoute = (route, data = {}) => {
+  if (_debounceTimer) clearTimeout(_debounceTimer);
+  _debounceTimer = setTimeout(() => {
+    _debounceTimer = null;
+    _publish(route, data);
+  }, 200);
+};
 
 class NavigationService {
   constructor() {
-    this.baseUrl = process.env.REACT_APP_NATS_SERVICE_URL || process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
     this.appId = 'connected-commerce';
-    this.useNATS = true; // Flag to use NATS endpoints
-    
-    console.log('🔧 NavigationService initialized:', {
-      baseUrl: this.baseUrl,
-      appId: this.appId,
-      useNATS: this.useNATS,
-      env: {
-        REACT_APP_NATS_SERVICE_URL: process.env.REACT_APP_NATS_SERVICE_URL,
-        REACT_APP_SSE_SERVICE_URL: process.env.REACT_APP_SSE_SERVICE_URL
-      }
-    });
   }
 
   async sendNavigationEvent(action, targetAppId, route, data = {}) {
-    console.log('🚀 NavigationService.sendNavigationEvent called:', {
+    sendLargeScreenRoute(route, {
+      ...data,
       action,
       targetAppId,
-      route,
-      baseUrl: this.baseUrl,
-      data
     });
-    
-    try {
-      // Use legacy endpoint for backward compatibility
-      // Backend will forward to NATS
-      const payload = {
-        action,
-        targetAppId,
-        route,
-        data: {
-          ...data,
-          sourceAppId: this.appId,
-          timestamp: new Date().toISOString()
-        }
-      };
-      
-      console.log('📤 Sending POST to:', `${this.baseUrl}/api/navigation`, payload);
-      
-      const response = await axios.post(`${this.baseUrl}/api/navigation`, payload);
-      
-      console.log('✅ Navigation event sent via NATS:', response.data);
-      return response.data;
-    } catch (error) {
-      console.error('❌ Failed to send navigation event:', error);
-      console.error('Error details:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status
-      });
-      throw error;
-    }
   }
 
   navigateToOperateExperience(route, data = {}) {

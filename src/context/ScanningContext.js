@@ -3,7 +3,15 @@ import { httpFetch } from '../utils/tauriFetch';
 
 const ScanningContext = createContext();
 
-const SSE_BASE_URL = process.env.REACT_APP_SSE_SERVICE_URL || 'http://localhost:3001';
+const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
+const NATS_USER   = process.env.REACT_APP_NATS_USER || '';
+const NATS_PASS   = process.env.REACT_APP_NATS_PASS || '';
+const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
+
+const authHeader = 'Basic ' + btoa(`${NATS_USER}:${NATS_PASS}`);
+const natsSubject = INSTANCE_ID
+  ? `bcm.navigation.station-${INSTANCE_ID}`
+  : 'bcm.navigation';
 
 export function ScanningProvider({ children }) {
   const [scanProgress, setScanProgress] = useState(0);
@@ -14,29 +22,44 @@ export function ScanningProvider({ children }) {
   // eslint-disable-next-line no-unused-vars
   const hasBeenInitialized = useRef(false);
 
-  // Publish progress to SSE service (same pattern as NavigationService)
+  // Publish progress to NATS broker
   const publishProgress = useCallback(async (progress, pageId = 'financial-statement') => {
     // Only publish if progress changed significantly (avoid flooding)
     if (Math.floor(progress) === lastPublishedProgress.current) return;
     lastPublishedProgress.current = Math.floor(progress);
 
     try {
-      await httpFetch(`${SSE_BASE_URL}/api/progress`, {
+      await httpFetch(PUBLISH_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authHeader,
+        },
         body: JSON.stringify({
-          pageId,
-          progress: Math.floor(progress),
-          status: progress >= 100 ? 'complete' : 'scanning',
-          metadata: {
-            isFinancialDataReady: progress >= 60,
-            isCovenantDataReady: progress >= 85
-          }
+          message: {
+            title: 'BCM Navigation',
+            body: {
+              targetAppId: 'operate-experience',
+              action: 'PROGRESS_UPDATE',
+              type: 'progress',
+              pageId,
+              progress: Math.floor(progress),
+              status: progress >= 100 ? 'complete' : 'scanning',
+              sourceAppId: 'connected-commerce',
+              timestamp: new Date().toISOString(),
+              metadata: {
+                isFinancialDataReady: progress >= 60,
+                isCovenantDataReady: progress >= 85
+              }
+            },
+          },
+          target_device: ['large_screen'],
+          subject: natsSubject,
         })
       });
     } catch (error) {
-      // Silently fail - SSE service may not be running
-      console.debug('SSE publish failed:', error.message);
+      // Silently fail - NATS broker may not be reachable
+      console.debug('NATS publish failed:', error.message);
     }
   }, []);
 
@@ -65,25 +88,25 @@ export function ScanningProvider({ children }) {
     return () => window.removeEventListener('reset-scanning-progress', handleReset);
   }, []);
 
-  // Publish progress to SSE whenever it changes
+  // Publish progress to NATS whenever it changes
   useEffect(() => {
     publishProgress(scanProgress);
   }, [scanProgress, publishProgress]);
-  
+
   // Set financial data ready when progress reaches 60%
   useEffect(() => {
     if (scanProgress >= 60 && !isFinancialDataReady) {
       setIsFinancialDataReady(true);
     }
   }, [scanProgress, isFinancialDataReady]);
-  
+
   // Set covenant data ready when progress reaches 85%
   useEffect(() => {
     if (scanProgress >= 85 && !isCovenantDataReady) {
       setIsCovenantDataReady(true);
     }
   }, [scanProgress, isCovenantDataReady]);
-  
+
   const value = {
     scanProgress,
     isFinancialDataReady,
@@ -92,7 +115,7 @@ export function ScanningProvider({ children }) {
     scannedDocumentPreview,
     setScannedDocumentPreview
   };
-  
+
   return (
     <ScanningContext.Provider value={value}>
       {children}
