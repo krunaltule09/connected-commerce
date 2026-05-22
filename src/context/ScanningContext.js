@@ -5,11 +5,8 @@ import { useConfig } from './ConfigContext';
 const ScanningContext = createContext();
 
 const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
-const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
 
-const natsSubject = INSTANCE_ID
-  ? `bcm.navigation.station-${INSTANCE_ID}`
-  : 'bcm.navigation';
+const natsSubject = 'bcm.navigation';
 
 export function ScanningProvider({ children }) {
   const { assets } = useConfig();

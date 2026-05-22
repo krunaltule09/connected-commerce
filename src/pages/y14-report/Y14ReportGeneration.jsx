@@ -16,10 +16,7 @@ import { httpFetch } from '../../utils/tauriFetch';
 import styles from './Y14ReportGeneration.module.css';
 
 const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
-const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
-const natsSubject = INSTANCE_ID
-  ? `bcm.navigation.station-${INSTANCE_ID}`
-  : 'bcm.navigation';
+const natsSubject = 'bcm.navigation';
 
 export default function Y14ReportGeneration() {
   const navigate = useNavigate();

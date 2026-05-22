@@ -16,10 +16,7 @@ import DocumentRenderer from '../../components/DocumentRenderer';
 const FR_Y14Q_LOCAL = '/Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf';
 
 const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
-const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
-const natsSubject = INSTANCE_ID
-  ? `bcm.navigation.station-${INSTANCE_ID}`
-  : 'bcm.navigation';
+const natsSubject = 'bcm.navigation';
 
 const getStatusColor = (status) => {
   switch (status?.toLowerCase()) {
