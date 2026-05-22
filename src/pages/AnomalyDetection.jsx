@@ -19,8 +19,8 @@ export default function AnomalyDetection() {
   const { assets } = useConfig();
   
   // Get data from appDatabase
-  const aiRecommendationsData = useVisualizationDataSet('anomaly_detection', 'AI Recommendations');
-  const q3HighlightData = useVisualizationDataSet('anomaly_detection', 'Q3 Highlight');
+  const aiRecommendationsData = useVisualizationDataSet('anomaly_detection', 'AI Recommendations') || { recommendations: [] };
+  const q3HighlightData = useVisualizationDataSet('anomaly_detection', 'Q3 Highlight') || { highlights: [] };
   
   // Animation states for each section
   const [animateDscr, setAnimateDscr] = useState(false);

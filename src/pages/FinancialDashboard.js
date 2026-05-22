@@ -13,7 +13,7 @@ export default function FinancialDashboard() {
   const navigate = useNavigate();
 
   // Get data from appDatabase
-  const aiRecommendations = useVisualizationDataSet('financial_dashboard', 'AI Recommendations');
+  const aiRecommendations = useVisualizationDataSet('financial_dashboard', 'AI Recommendations') || { alerts: [] };
 
   const handleNextStep = useButtonSound(async () => {
     navigate('/anomaly-detection')

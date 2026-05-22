@@ -12,9 +12,13 @@ import { SoundProvider } from './context/SoundContext';
 import { ConfigProvider } from './context/ConfigContext';
 import { httpFetch } from './utils/tauriFetch';
 import useInactivityRedirect from './hooks/useInactivityRedirect';
-import database from './data/database';
 
-const IS_DEV_MODE = true;
+
+const AZURE_TOKEN_ENDPOINT = process.env.REACT_APP_AZURE_TOKEN_ENDPOINT;
+const AZURE_CLIENT_ID = process.env.REACT_APP_AZURE_CLIENT_ID;
+const AZURE_CLIENT_SECRET = process.env.REACT_APP_AZURE_CLIENT_SECRET;
+const AZURE_SCOPE = process.env.REACT_APP_AZURE_SCOPE;
+const TEMP_AZURE_TOKEN = process.env.REACT_APP_TEMP_AZURE_TOKEN;
 
 function InactivityGuard() {
   useInactivityRedirect('/');
@@ -23,13 +27,14 @@ function InactivityGuard() {
 
 function App() {
   const [config, setConfig] = useState({
-    database: IS_DEV_MODE ? database : null,
-    assets: {},
+    database:  null,
+    assets: {
+      AZURE_AUTH_TOKEN: TEMP_AZURE_TOKEN || null,
+    },
     images: false,
     animations: false,
     audios: false,
     videos: false,
-    documents: false
   });
 
   
@@ -40,12 +45,53 @@ function App() {
     return () => document.removeEventListener('contextmenu', handler);
   }, []);
 
+  // Fetch Azure Token
+  useEffect(() => {
+    const fetchAzureToken = async () => {
+      const url = AZURE_TOKEN_ENDPOINT;
+      if (!url) return;
+      const options = {
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          grant_type: 'client_credentials',
+          client_id: AZURE_CLIENT_ID,
+          client_secret: AZURE_CLIENT_SECRET,
+          scope: AZURE_SCOPE,
+        }),
+      };
+
+      try {
+        const response = await httpFetch(url, options);
+        if (!response.ok) throw new Error('Failed to fetch Azure token');
+        const data = await response.json();
+        if (data.access_token) {
+          setConfig((prev) => ({
+            ...prev,
+            assets: { ...prev.assets, AZURE_AUTH_TOKEN: data.access_token },
+          }));
+        }
+      } catch (error) {
+        console.error('Azure Token Fetch Error:', error);
+      }
+    };
+
+    if (!config.assets.AZURE_AUTH_TOKEN) fetchAzureToken();
+
+    const intervalTime = config.assets.AZURE_AUTH_TOKEN
+      ? 30 * 60 * 1000 // 30 minutes
+      : 5000; // 5 seconds
+    const interval = setInterval(fetchAzureToken, intervalTime);
+    return () => clearInterval(interval);
+  }, [config.assets.AZURE_AUTH_TOKEN]);
+
   // Consolidated asset loading service — single interval retries all pending fetches
   // In dev mode, database is loaded locally but CMS assets (images, videos, etc.) are still fetched
   useEffect(() => {
     const CMS = `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}`;
     const STATION = process.env.REACT_APP_STATION;
     const SECTOR = process.env.REACT_APP_SECTOR;
+    const ROLE = process.env.REACT_APP_PERSONA_ROLE;
     const cmsFilter = `filters[station][$eq]=${STATION}&filters[sector][$eq]=${SECTOR}&populate=*`;
 
     // Each source: { key, url, mediaField, prefixUrl }
@@ -53,7 +99,6 @@ function App() {
       { key: 'images', url: `${CMS}/api/images?${cmsFilter}`, mediaField: 'image', prefixUrl: true },
       { key: 'animations', url: `${CMS}/api/animations?${cmsFilter}`, mediaField: 'animated_image', prefixUrl: true },
       { key: 'audios', url: `${CMS}/api/audios?${cmsFilter}`, mediaField: 'audio', prefixUrl: true },
-      { key: 'documents', url: `${CMS}/api/documents?${cmsFilter}`, mediaField: 'document', prefixUrl: true },
       { key: 'videos', url: `${process.env.REACT_APP_CMS_BASE_URL}/streaming-service/streaming-url?sector=${SECTOR}&station=${STATION}`, mediaField: null, prefixUrl: false },
     ];
 
@@ -67,10 +112,15 @@ function App() {
       );
     };
 
-    const fetchDatabase = async () => {
+    const fetchDatabase = async (token) => {
       try {
+        const headers = {};
+        if (token) {
+          headers.Authorization = `Bearer ${token}`;
+        }
         const response = await httpFetch(
-          `${process.env.REACT_APP_BACKEND_URL}/config?station=${STATION}&sector=${SECTOR}`
+          `${process.env.REACT_APP_BACKEND_URL}/screen/all?station=${STATION}&sector=${SECTOR}&role=${ROLE}`,
+          { headers }
         );
         if (!response.ok) return null;
         return await response.json();
@@ -84,6 +134,7 @@ function App() {
       setConfig((prev) => {
         // Determine what still needs loading
         const pending = ASSET_SOURCES.filter((s) => !prev[s.key]);
+        const token = prev.assets.AZURE_AUTH_TOKEN;
         const needsDb = !prev.database;
 
         if (pending.length === 0 && !needsDb) return prev;
@@ -104,8 +155,9 @@ function App() {
           }
         });
 
-        // In dev mode, skip database fetch (already loaded locally)
-        const dbPromise = (needsDb && !IS_DEV_MODE) ? fetchDatabase() : Promise.resolve(undefined);
+        // Only fetch database if we have the token.
+        const shouldFetchDb = needsDb && token;
+        const dbPromise = shouldFetchDb ? fetchDatabase(token) : Promise.resolve(undefined);
 
         Promise.all([dbPromise, ...promises]).then(([dbData, ...results]) => {
           setConfig((current) => {
@@ -133,9 +185,9 @@ function App() {
     fetchAll();
     const interval = setInterval(fetchAll, 5000);
     return () => clearInterval(interval);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [config.assets.AZURE_AUTH_TOKEN]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!config.images || !config.animations || !config.audios || !config.database || !config.videos || !config.documents) {
+  if (!config.images || !config.animations || !config.audios || !config.database || !config.videos || !config.assets.AZURE_AUTH_TOKEN) {
     return (
       <div style={{
         display: 'flex',
@@ -149,17 +201,65 @@ function App() {
       }}>
         <div style={{ textAlign: 'center' }}>
           <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 500,
-            marginBottom: '1rem',
+            fontSize: '4rem',
+            fontWeight: 700,
+            marginBottom: '1.5rem',
+            letterSpacing: '-0.02em',
           }}>
             Connecting to Server...
           </h2>
-          <p style={{ opacity: 0.7 }}>Fetching configuration...</p>
+          <p style={{
+            fontSize: '1.8rem',
+            opacity: 0.7,
+            marginBottom: '4rem',
+          }}>
+            Fetching configuration...
+          </p>
+
+          <div style={{
+            display: 'inline-flex',
+            flexDirection: 'column',
+            gap: '24px',
+            alignItems: 'flex-start',
+            padding: '60px 100px',
+            backgroundColor: 'rgba(255,255,255,0.03)',
+            borderRadius: '24px',
+            border: '1px solid rgba(255,255,255,0.08)',
+            minWidth: '450px',
+          }}>
+            {[
+              { label: 'Azure Token', status: !!config.assets.AZURE_AUTH_TOKEN },
+              { label: 'Database', status: !!config.database },
+              { label: 'Images', status: !!config.images },
+              { label: 'Animations', status: !!config.animations },
+              { label: 'Audios', status: !!config.audios },
+              { label: 'Videos', status: !!config.videos },
+            ].map((item, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                <div style={{
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  backgroundColor: item.status ? '#00ff00' : '#222',
+                  boxShadow: item.status ? '0 0 20px #00ff00' : 'none',
+                  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                }} />
+                <span style={{
+                  fontSize: '2rem',
+                  fontWeight: 500,
+                  color: item.status ? '#fff' : '#444',
+                  transition: 'all 0.5s ease',
+                }}>
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
   }
+
 
 
   return (

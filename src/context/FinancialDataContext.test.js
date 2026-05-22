@@ -1,37 +1,34 @@
 import React from 'react';
 import { renderHook, act } from '@testing-library/react';
-import { FinancialDataProvider, useFinancialData } from './FinancialDataContext';
 
-jest.mock('../data/database', () => ({
-  screens: [
-    {
-      screen_name: 'financial_dashboard',
-      visualizations: [
-        {
-          name: 'Financial Metrics',
-          data_set: {
-            metrics: {
-              Revenue: {
-                dataPoints: [['Q1', 10], ['Q2', 20]],
-                infoLines: ['Line 1'],
-                unit: 'M',
-              },
-              EBITDA: {
-                dataPoints: [['Q1', 5], ['Q2', 8]],
-                infoLines: ['EBITDA info'],
-                unit: 'M',
-              },
-            },
-          },
-        },
-      ],
-    },
-  ],
+const mockUseVisualizationDataSet = jest.fn();
+
+jest.mock('./ConfigContext', () => ({
+  useVisualizationDataSet: () => mockUseVisualizationDataSet(),
 }));
+
+import { FinancialDataProvider, useFinancialData } from './FinancialDataContext';
 
 const wrapper = ({ children }) => <FinancialDataProvider>{children}</FinancialDataProvider>;
 
 describe('FinancialDataContext', () => {
+  beforeEach(() => {
+    mockUseVisualizationDataSet.mockReturnValue({
+      metrics: {
+        Revenue: {
+          dataPoints: [['Q1', 10], ['Q2', 20]],
+          infoLines: ['Line 1'],
+          unit: 'M',
+        },
+        EBITDA: {
+          dataPoints: [['Q1', 5], ['Q2', 8]],
+          infoLines: ['EBITDA info'],
+          unit: 'M',
+        },
+      },
+    });
+  });
+
   it('provides default selected metric as Revenue', () => {
     const { result } = renderHook(() => useFinancialData(), { wrapper });
     expect(result.current.selectedMetric).toBe('Revenue');

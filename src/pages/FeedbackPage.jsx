@@ -321,7 +321,7 @@ export default function FeedbackPage() {
 
   // Get data and assets from app configuration
   const { assets } = useConfig();
-  const feedbackData = useVisualizationDataSet('feedback', 'Feedback Form');
+  const feedbackData = useVisualizationDataSet('feedback', 'Feedback Form') || {};
 
   const endFrame = assets['Banking_Capital_Market_Operate_Table_feedback_end_frame.svg'];
   const tickIcon = assets['Banking_Capital_Market_Operate_Table_feedback_tick.svg'];
@@ -345,7 +345,7 @@ export default function FeedbackPage() {
 
   // Handle back to home with sound effect
   const handleBackToHome = useButtonSound(() => {
-    navigate(feedbackData.cta_target);
+    navigate(feedbackData.cta_target || '/');
   });
 
   return (

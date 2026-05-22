@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import database from '../data/database';
+import { useVisualizationDataSet } from './ConfigContext';
 
 // Create the context
 const FinancialDataContext = createContext();
@@ -9,13 +9,8 @@ export function FinancialDataProvider({ children }) {
   const [selectedMetric, setSelectedMetric] = useState('Revenue');
   
   // Get financial metrics from database
-  const financialDashboardScreen = database.screens.find(
-    screen => screen.screen_name === 'financial_dashboard'
-  );
-  const metricsVisualization = financialDashboardScreen?.visualizations.find(
-    viz => viz.name === 'Financial Metrics'
-  );
-  const databaseMetrics = metricsVisualization?.data_set?.metrics || {};
+  const metricsVisualization = useVisualizationDataSet('financial_dashboard', 'Financial Metrics');
+  const databaseMetrics = metricsVisualization?.metrics || {};
 
   // Get the data for the selected metric from database
   const getSelectedData = () => {

@@ -32,7 +32,9 @@ export const useScreenData = (screenName) => {
 export const useVisualizationData = (screenName, visualizationName) => {
   const screen = useScreenData(screenName);
   if (!screen) return null;
-  const visualization = screen.visualizations?.find(v => v.name === visualizationName);
+  const visualization = screen.visualizations?.find(
+    v => v.name === visualizationName || v.title === visualizationName
+  );
   return visualization || null;
 };
 
@@ -43,5 +45,10 @@ export const useScreenVisualizations = (screenName) => {
 
 export const useVisualizationDataSet = (screenName, visualizationName) => {
   const visualization = useVisualizationData(screenName, visualizationName);
-  return visualization?.data_set || null;
+  if (!visualization) return null;
+  if (visualization.data_set) return visualization.data_set;
+  if (visualization.data_sets && visualization.data_sets.length > 0) {
+    return visualization.data_sets[0].data_set || null;
+  }
+  return null;
 };

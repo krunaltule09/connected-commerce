@@ -70,7 +70,6 @@
       "src/**/*.{js,jsx}",
       "!src/index.js",
       "!src/reportWebVitals.js",
-      "!src/data/database.js",
       "!src/assets/**",
       "!src/examples/**",
       "!src/pages/TestFlipBookPage.js",

@@ -12,12 +12,12 @@ const DataSimulator = () => {
   const { assets } = useConfig();
   
   // Get data from appDatabase
-  const headerData = useVisualizationDataSet('data_simulator', 'Page Header');
-  const speedData = useVisualizationDataSet('data_simulator', 'Speed Metrics');
-  const accuracyData = useVisualizationDataSet('data_simulator', 'Accuracy Metrics');
-  const complianceData = useVisualizationDataSet('data_simulator', 'Compliance Alerts');
+  const headerData = useVisualizationDataSet('data_simulator', 'Page Header') || { tabs: [] };
+  const speedData = useVisualizationDataSet('data_simulator', 'Speed Metrics') || { before: {}, after: {} };
+  const accuracyData = useVisualizationDataSet('data_simulator', 'Accuracy Metrics') || { metrics: [] };
+  const complianceData = useVisualizationDataSet('data_simulator', 'Compliance Alerts') || { alerts: [] };
   
-  const [selectedTab, setSelectedTab] = useState(headerData.tabs[0]);
+  const [selectedTab, setSelectedTab] = useState(headerData.tabs?.[0] || '');
   
   // Custom background styles for each tab
   const getTabStyle = (tab, isSelected) => {

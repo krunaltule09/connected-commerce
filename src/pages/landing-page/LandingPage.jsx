@@ -12,13 +12,13 @@ const LandingPage = () => {
   const { assets } = useConfig();
   
   // Get data from appDatabase
-  const heroData = useVisualizationDataSet('landing_page', 'Hero Section');
+  const heroData = useVisualizationDataSet('landing_page', 'Hero Section') || {};
 
   // Create a click handler with sound effect
   const handleStartJourney = useButtonSound(async () => {
     try {
       // Navigate locally - use data from database
-      navigate(heroData.cta_target);
+      navigate(heroData.cta_target || '/explore');
       
       // Send navigation event to operate-experience app
       await navigationService.navigateToOperateExperience('/personal-welcome', {

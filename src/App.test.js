@@ -13,16 +13,6 @@ jest.mock('./utils/tauriFetch', () => ({
   httpFetch: jest.fn(),
 }));
 
-jest.mock('./data/database', () => ({
-  screens: [
-    {
-      screen_name: 'financial_dashboard',
-      visualizations: [
-        { name: 'Financial Metrics', data_set: { metrics: {} } },
-      ],
-    },
-  ],
-}));
 
 jest.mock('./App.css', () => ({}));
 
@@ -63,6 +53,12 @@ describe('App', () => {
 
   it('renders the app after all config is loaded', async () => {
     httpFetch.mockImplementation((url) => {
+      if (url.includes('/oauth2/v2.0/token') || url.includes('/token')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ access_token: 'mock-token' }),
+        });
+      }
       if (url.includes('/api/animations')) {
         return Promise.resolve({
           ok: true,
@@ -81,10 +77,22 @@ describe('App', () => {
           json: () => Promise.resolve({ data: [{ audio: [{ name: 'aud1', url: '/a.mp3' }] }] }),
         });
       }
+      if (url.includes('/api/documents')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ data: [{ document: [{ name: 'doc1', url: '/d.pdf' }] }] }),
+        });
+      }
       if (url.includes('/streaming-service/streaming-url')) {
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve({ data: [{ title: 'vid1', lq_streaming_url: '/v.m3u8' }] }),
+        });
+      }
+      if (url.includes('/screen/all') || url.includes('/config')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ screens: [] }),
         });
       }
       return Promise.resolve({ ok: false });

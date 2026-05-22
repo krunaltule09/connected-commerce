@@ -19,12 +19,12 @@ const OperationalDocScan = () => {
   const [scanComplete, setScanComplete] = useState(false);
   
   // Get data from appDatabase
-  const aiAlertData = useVisualizationDataSet('operational_doc_scan', 'AI Alert');
-  const findingsData = useVisualizationDataSet('operational_doc_scan', 'Operational Findings');
-  const shipmentData = useVisualizationDataSet('operational_doc_scan', 'Shipment Details');
+  const aiAlertData = useVisualizationDataSet('operational_doc_scan', 'AI Alert') || {};
+  const findingsData = useVisualizationDataSet('operational_doc_scan', 'Operational Findings') || { findings: [] };
+  const shipmentData = useVisualizationDataSet('operational_doc_scan', 'Shipment Details') || { rows: [] };
   
   // Transform database shipment data to match component format
-  const shipments = shipmentData.rows.map((row) => ({
+  const shipments = (shipmentData.rows || []).map((row) => ({
     name: row.shipment,
     promisedDate: row.promised,
     actualDate: row.actual,

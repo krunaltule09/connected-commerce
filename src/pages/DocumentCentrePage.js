@@ -41,10 +41,10 @@ export default function DocumentCentrePage() {
   const [addedDocuments, setAddedDocuments] = useState([]);
   
   // Get data from database
-  const caseInfo = useVisualizationDataSet('document_centre', 'Case Information');
-  const docsSummary = useVisualizationDataSet('document_centre', 'Documents Summary');
-  const documentListData = useVisualizationDataSet('document_centre', 'Document List');
-  const scanActionData = useVisualizationDataSet('document_centre', 'Scan Action');
+  const caseInfo = useVisualizationDataSet('document_centre', 'Case Information') || {};
+  const docsSummary = useVisualizationDataSet('document_centre', 'Documents Summary') || {};
+  const documentListData = useVisualizationDataSet('document_centre', 'Document List') || {};
+  const scanActionData = useVisualizationDataSet('document_centre', 'Scan Action') || {};
 
   // Transform database documents with preview URLs and PDF URLs
   const documentsFromDb = useMemo(() => {

@@ -14,11 +14,17 @@ jest.mock('framer-motion', () => {
 jest.mock('@mui/material', () => {
   const React = require('react');
   return {
-    Box: ({ children, ...props }) => React.createElement('div', props, children),
+    Box: React.forwardRef(({ children, component, src, alt, onClick, ...props }, ref) => {
+      if (component === 'img') return React.createElement('img', { src, alt, ...props, ref });
+      return React.createElement('div', { onClick, ...props, ref }, children);
+    }),
     Button: ({ children, onClick, ...props }) => React.createElement('button', { onClick, ...props }, children),
     Container: ({ children }) => React.createElement('div', null, children),
     Fade: ({ children }) => children,
     Grow: ({ children }) => children,
+    Typography: ({ children, ...props }) => React.createElement('span', props, children),
+    Checkbox: (props) => React.createElement('input', { type: 'checkbox', ...props }),
+    FormControlLabel: ({ label, control, ...props }) => React.createElement('label', props, control, label),
   };
 });
 
@@ -44,6 +50,7 @@ jest.mock('../hooks', () => ({
 }));
 
 jest.mock('../context/ConfigContext', () => ({
+  useConfig: () => ({ assets: {} }),
   useVisualizationDataSet: () => ({
     cta_label: 'Back to Home',
     cta_target: '/',
@@ -83,9 +90,9 @@ describe('FeedbackPage', () => {
     expect(screen.getByText('Back to Home')).toBeInTheDocument();
   });
 
-  it('renders Lottie animation', () => {
+  it('renders success tick image', () => {
     render(React.createElement(FeedbackPage));
-    expect(screen.getByTestId('lottie')).toBeInTheDocument();
+    expect(screen.getByAltText('Success')).toBeInTheDocument();
   });
 
   it('navigates home on back button click', () => {
@@ -94,14 +101,14 @@ describe('FeedbackPage', () => {
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 
-  it('shows delivery and rating components after timer', () => {
+  it('shows delivery and rating cards after timer', () => {
     render(React.createElement(FeedbackPage));
 
     act(() => {
       jest.advanceTimersByTime(5500);
     });
 
-    expect(screen.getByTestId('delivery-svg')).toBeInTheDocument();
-    expect(screen.getByTestId('rating-svg')).toBeInTheDocument();
+    expect(screen.getByText('Delivery options')).toBeInTheDocument();
+    expect(screen.getByText('Rate us')).toBeInTheDocument();
   });
 });

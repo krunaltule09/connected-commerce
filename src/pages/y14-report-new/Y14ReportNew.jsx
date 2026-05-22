@@ -24,6 +24,19 @@ const natsSubject = INSTANCE_ID
   ? `bcm.navigation.station-${INSTANCE_ID}`
   : 'bcm.navigation';
 
+const getStatusColor = (status) => {
+  switch (status?.toLowerCase()) {
+    case 'breach':
+      return '#F44336';
+    case 'compliant':
+      return '#4CAF50';
+    case 'warning range':
+      return '#FF9800';
+    default:
+      return '#888888';
+  }
+};
+
 export default function Y14ReportNew() {
   const navigate = useNavigate();
   const { assets } = useConfig();
@@ -165,7 +178,7 @@ export default function Y14ReportNew() {
           <Typography className={styles.covenantCell}>{row.threshold}</Typography>
           <Typography className={styles.covenantCell}>{row.current_value}</Typography>
           <Box className={styles.covenantCell} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ width: 16, height: 16, bgcolor: row.status_color, borderRadius: 1, mr: 1 }}></Box>
+            <Box sx={{ width: 16, height: 16, bgcolor: getStatusColor(row.status), borderRadius: 1, mr: 1 }}></Box>
             <Typography>{row.status}</Typography>
           </Box>
         </Box>

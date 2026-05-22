@@ -27,6 +27,9 @@ jest.mock('@mui/material', () => {
     ),
     Fade: ({ children }) => children,
     Grow: ({ children }) => children,
+    Typography: ({ children, ...props }) => React.createElement('span', props, children),
+    List: ({ children, ...props }) => React.createElement('ul', props, children),
+    ListItem: ({ children, ...props }) => React.createElement('li', props, children),
   };
 });
 
@@ -112,7 +115,8 @@ describe('AnomalyDetection', () => {
   it('renders AI Recommendations', () => {
     render(React.createElement(AnomalyDetection));
     act(() => { jest.advanceTimersByTime(3000); });
-    expect(screen.getByTestId('ai-recs')).toBeInTheDocument();
+    expect(screen.getByText('Alert 1')).toBeInTheDocument();
+    expect(screen.getByText('Alert 2')).toBeInTheDocument();
   });
 
   it('renders navigation text', () => {
