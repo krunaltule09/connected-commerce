@@ -12,6 +12,7 @@ import { SoundProvider } from './context/SoundContext';
 import { ConfigProvider } from './context/ConfigContext';
 import { httpFetch } from './utils/tauriFetch';
 import useInactivityRedirect from './hooks/useInactivityRedirect';
+import { setNatsToken } from './services/NavigationService';
 
 
 const AZURE_TOKEN_ENDPOINT = process.env.REACT_APP_AZURE_TOKEN_ENDPOINT;
@@ -44,6 +45,12 @@ function App() {
     document.addEventListener('contextmenu', handler);
     return () => document.removeEventListener('contextmenu', handler);
   }, []);
+
+  useEffect(() => {
+    if (config.assets.AZURE_AUTH_TOKEN) {
+      setNatsToken(config.assets.AZURE_AUTH_TOKEN);
+    }
+  }, [config.assets.AZURE_AUTH_TOKEN]);
 
   // Fetch Azure Token
   useEffect(() => {

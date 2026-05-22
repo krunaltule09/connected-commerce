@@ -16,10 +16,7 @@ import DocumentRenderer from '../../components/DocumentRenderer';
 const FR_Y14Q_LOCAL = '/Banking_Capital_Market_Operate_Table_Vertex_FR14Q.pdf';
 
 const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
-const NATS_USER   = process.env.REACT_APP_NATS_USER || '';
-const NATS_PASS   = process.env.REACT_APP_NATS_PASS || '';
 const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
-const natsAuthHeader = 'Basic ' + btoa(`${NATS_USER}:${NATS_PASS}`);
 const natsSubject = INSTANCE_ID
   ? `bcm.navigation.station-${INSTANCE_ID}`
   : 'bcm.navigation';
@@ -76,7 +73,7 @@ export default function Y14ReportNew() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: natsAuthHeader,
+          Authorization: `Bearer ${assets.AZURE_AUTH_TOKEN}`,
         },
         body: JSON.stringify({
           message: {
@@ -100,7 +97,7 @@ export default function Y14ReportNew() {
     } catch (error) {
       console.debug('NATS publish failed:', error.message);
     }
-  }, []);
+  }, [assets.AZURE_AUTH_TOKEN]);
 
   // Progress simulation for Y14 report generation
   useEffect(() => {

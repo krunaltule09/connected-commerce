@@ -1,12 +1,11 @@
 import { httpFetch } from '../utils/tauriFetch';
 
 const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
-const NATS_USER   = process.env.REACT_APP_NATS_USER || '';
-const NATS_PASS   = process.env.REACT_APP_NATS_PASS || '';
 const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
 const TARGET_DEVICE = ['large_screen'];
 
-const authHeader = 'Basic ' + btoa(`${NATS_USER}:${NATS_PASS}`);
+let _token = '';
+export const setNatsToken = (token) => { _token = token; };
 
 const subject = INSTANCE_ID
   ? `bcm.navigation.station-${INSTANCE_ID}`
@@ -41,7 +40,7 @@ const _publish = async (route, data) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: authHeader,
+          Authorization: `Bearer ${_token}`,
         },
         body: JSON.stringify(body),
       });

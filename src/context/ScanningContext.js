@@ -1,19 +1,18 @@
 import { createContext, useState, useContext, useEffect, useCallback, useRef } from 'react';
 import { httpFetch } from '../utils/tauriFetch';
+import { useConfig } from './ConfigContext';
 
 const ScanningContext = createContext();
 
 const PUBLISH_URL = process.env.REACT_APP_NATS_PUBLISH_URL || '';
-const NATS_USER   = process.env.REACT_APP_NATS_USER || '';
-const NATS_PASS   = process.env.REACT_APP_NATS_PASS || '';
 const INSTANCE_ID = process.env.REACT_APP_NATS_INSTANCE_ID || '';
 
-const authHeader = 'Basic ' + btoa(`${NATS_USER}:${NATS_PASS}`);
 const natsSubject = INSTANCE_ID
   ? `bcm.navigation.station-${INSTANCE_ID}`
   : 'bcm.navigation';
 
 export function ScanningProvider({ children }) {
+  const { assets } = useConfig();
   const [scanProgress, setScanProgress] = useState(0);
   const [isFinancialDataReady, setIsFinancialDataReady] = useState(false);
   const [isCovenantDataReady, setIsCovenantDataReady] = useState(false);
@@ -33,7 +32,7 @@ export function ScanningProvider({ children }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: authHeader,
+          Authorization: `Bearer ${assets.AZURE_AUTH_TOKEN}`,
         },
         body: JSON.stringify({
           message: {
@@ -61,7 +60,7 @@ export function ScanningProvider({ children }) {
       // Silently fail - NATS broker may not be reachable
       console.debug('NATS publish failed:', error.message);
     }
-  }, []);
+  }, [assets.AZURE_AUTH_TOKEN]);
 
   // Update scan progress
   useEffect(() => {
