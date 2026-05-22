@@ -126,7 +126,7 @@ function App() {
           headers.Authorization = `Bearer ${token}`;
         }
         const response = await httpFetch(
-          `${process.env.REACT_APP_BACKEND_URL}/bcm/commerce/operate/screen/all?station=${STATION}&sector=${SECTOR}&role=${ROLE}`,
+          `${process.env.REACT_APP_BACKEND_URL}/screen/all?station=${STATION}&sector=${SECTOR}&role=${ROLE}`,
           { headers }
         );
         if (!response.ok) return null;
