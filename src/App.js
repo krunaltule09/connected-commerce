@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -68,7 +68,7 @@ const getCachedUrl = async (url) => {
   if (!url) return '';
 
   // Skip caching and return remote URL directly in dev mode to load instantly
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' || url.includes('.m3u8')) {
     return url;
   }
 
@@ -174,6 +174,20 @@ function App() {
     videos: false,
   });
 
+  const [downloadProgress, setDownloadProgress] = useState({
+    total: 0,
+    loaded: 0,
+  });
+
+  const resolvedUrlsRef = useRef(new Set());
+  const totalUrlsRef = useRef(new Set());
+  const isFetchingRef = useRef(false);
+
+  const configRef = useRef(config);
+  useEffect(() => {
+    configRef.current = config;
+  }, [config]);
+
   
    // Disable context menu (long-press / right-click) for touchscreen kiosk mode
   useEffect(() => {
@@ -276,65 +290,109 @@ function App() {
     };
 
     const fetchAll = async () => {
-      setConfig((prev) => {
-        // Determine what still needs loading
-        const pending = ASSET_SOURCES.filter((s) => !prev[s.key]);
-        const token = prev.assets.AZURE_AUTH_TOKEN;
-        const needsDb = !prev.database;
+      if (isFetchingRef.current) return;
 
-        if (pending.length === 0 && !needsDb) return prev;
+      const currentConfig = configRef.current;
+      // Determine what still needs loading
+      const pending = ASSET_SOURCES.filter((s) => !currentConfig[s.key]);
+      const token = currentConfig.assets.AZURE_AUTH_TOKEN;
+      const needsDb = !currentConfig.database;
 
-        // Fire all pending fetches concurrently
-        const promises = pending.map(async (source) => {
-          try {
-            const response = await httpFetch(source.url);
-            if (!response.ok) {
-              console.warn(`CMS ${source.key} returned ${response.status}, skipping`);
-              return { key: source.key, assets: {} };
+      if (pending.length === 0 && !needsDb) return;
+
+      isFetchingRef.current = true;
+
+      try {
+        // 1. Fetch metadata (JSONs) in parallel
+        const metadataResults = await Promise.all(
+          pending.map(async (source) => {
+            try {
+              const response = await httpFetch(source.url);
+              if (!response.ok) {
+                console.warn(`CMS ${source.key} returned ${response.status}, skipping`);
+                return { source, parsed: null };
+              }
+              const data = await response.json();
+              const parsed = parseAssets(data, source) || {};
+              return { source, parsed };
+            } catch (error) {
+              console.error(`Failed to fetch ${source.key} metadata:`, error);
+              return { source, parsed: null };
             }
-            const data = await response.json();
-            const parsed = parseAssets(data, source) || {};
-            
-            // Resolve local cached/Object URLs in parallel
-            const cachedEntries = await Promise.all(
-              Object.entries(parsed).map(async ([name, remoteUrl]) => {
-                const localUrl = await getCachedUrl(remoteUrl);
-                return [name, localUrl];
-              })
-            );
-            
-            return { key: source.key, assets: Object.fromEntries(cachedEntries) };
-          } catch (error) {
-            console.error(`Failed to fetch ${source.key}:`, error);
-            return { key: source.key, assets: {} };
+          })
+        );
+
+        // 2. Count total files to download/resolve
+        metadataResults.forEach(({ source, parsed }) => {
+          if (parsed) {
+            Object.values(parsed).forEach(url => {
+              if (url) totalUrlsRef.current.add(url);
+            });
           }
         });
 
-        // Only fetch database if we have the token.
-        const shouldFetchDb = needsDb && token;
-        const dbPromise = shouldFetchDb ? fetchDatabase(token) : Promise.resolve(undefined);
+        const total = totalUrlsRef.current.size;
+        setDownloadProgress((prev) => ({
+          ...prev,
+          total: total
+        }));
 
-        Promise.all([dbPromise, ...promises]).then(([dbData, ...results]) => {
-          setConfig((current) => {
-            const update = { ...current };
-            let mergedAssets = { ...current.assets };
-
-            if (dbData) update.database = dbData;
-
-            for (const result of results) {
-              if (result) {
-                update[result.key] = true;
-                mergedAssets = { ...mergedAssets, ...result.assets };
-              }
-            }
-
-            update.assets = mergedAssets;
-            return update;
-          });
+        // 3. Start resolving assets (which triggers downloads if not cached) and update state immediately upon completion
+        const assetPromises = metadataResults.map(async ({ source, parsed }) => {
+          if (!parsed) return;
+          try {
+            const cachedEntries = await Promise.all(
+              Object.entries(parsed).map(async ([name, remoteUrl]) => {
+                try {
+                  const localUrl = await getCachedUrl(remoteUrl);
+                  return [name, localUrl];
+                } finally {
+                  if (remoteUrl) {
+                    resolvedUrlsRef.current.add(remoteUrl);
+                    setDownloadProgress((prev) => ({
+                      ...prev,
+                      loaded: resolvedUrlsRef.current.size
+                    }));
+                  }
+                }
+              })
+            );
+            
+            setConfig((current) => ({
+              ...current,
+              [source.key]: true,
+              assets: {
+                ...current.assets,
+                ...Object.fromEntries(cachedEntries),
+              },
+            }));
+          } catch (error) {
+            console.error(`Failed to resolve assets for ${source.key}:`, error);
+          }
         });
 
-        return prev; // return unchanged; the Promise.all callback does the real update
-      });
+        // 4. Fetch database if needed and update state immediately upon completion
+        const shouldFetchDb = needsDb && token;
+        const dbPromise = (async () => {
+          if (shouldFetchDb) {
+            const dbData = await fetchDatabase(token);
+            if (dbData) {
+              setConfig((current) => ({
+                ...current,
+                database: dbData,
+              }));
+            }
+          }
+        })();
+
+        // 5. Wait for all database and asset fetches to complete so we know when the fetchAll tick is done
+        await Promise.all([dbPromise, ...assetPromises]);
+
+      } catch (err) {
+        console.error('Error during fetchAll execution:', err);
+      } finally {
+        isFetchingRef.current = false;
+      }
     };
 
     fetchAll();
@@ -368,7 +426,11 @@ function App() {
             opacity: 0.7,
             marginBottom: '4rem',
           }}>
-            {!isCacheReady ? 'Preparing local cache database...' : 'Fetching and caching configuration resources...'}
+            {!isCacheReady
+              ? 'Preparing local cache database...'
+              : downloadProgress.total > 0
+                ? `Downloading assets: ${downloadProgress.loaded} of ${downloadProgress.total} files cached...`
+                : 'Fetching and caching configuration resources...'}
           </p>
 
           <div style={{
@@ -386,7 +448,12 @@ function App() {
               { label: 'Local Cache', status: isCacheReady },
               { label: 'Azure Token', status: !!config.assets.AZURE_AUTH_TOKEN },
               { label: 'Database', status: !!config.database },
-              { label: 'Data Download', status: !!config.images && !!config.animations && !!config.audios && !!config.videos },
+              {
+                label: downloadProgress.total > 0
+                  ? `Data Download (${downloadProgress.loaded}/${downloadProgress.total})`
+                  : 'Data Download',
+                status: !!config.images && !!config.animations && !!config.audios && !!config.videos
+              },
             ].map((item, idx) => (
               <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
                 <div style={{
@@ -408,6 +475,27 @@ function App() {
               </div>
             ))}
           </div>
+
+          {downloadProgress.total > 0 && (
+            <div style={{
+              width: '100%',
+              maxWidth: '450px',
+              margin: '30px auto 0 auto',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '10px',
+              padding: '4px',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+            }}>
+              <div style={{
+                width: `${Math.min(100, Math.round((downloadProgress.loaded / downloadProgress.total) * 100))}%`,
+                backgroundColor: '#00ff00',
+                height: '8px',
+                borderRadius: '6px',
+                boxShadow: '0 0 10px #00ff00',
+                transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              }} />
+            </div>
+          )}
         </div>
       </div>
     );
