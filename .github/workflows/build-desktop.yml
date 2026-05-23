@@ -47,26 +47,36 @@ jobs:
         env:
           CI: false
 
+      - name: Set build info
+        id: info
+        shell: pwsh
+        run: |
+          $ver = (Get-Content package.json | ConvertFrom-Json).version
+          $date = Get-Date -Format "yyyyMMdd"
+          echo "ver=$ver" >> $env:GITHUB_OUTPUT
+          echo "date=$date" >> $env:GITHUB_OUTPUT
+          echo "name=BCM-Opreate-TouchTable--v$ver-$date" >> $env:GITHUB_OUTPUT
+
       - name: Package Portable ZIP
         shell: pwsh
         run: |
           $releaseDir = "src-tauri/target/release"
-          $outDir = "portable/BCM-Operate-Portable"
+          $name = "${{ steps.info.outputs.name }}"
+          $outDir = "portable/$name"
           New-Item -ItemType Directory -Force -Path $outDir
 
           Copy-Item "$releaseDir/app.exe" "$outDir/BCM Operate.exe"
 
-          # Zip it
-          Compress-Archive -Path "$outDir/*" -DestinationPath "portable/BCM-Operate-Portable.zip" -Force
+          Compress-Archive -Path "$outDir/*" -DestinationPath "portable/$name.zip" -Force
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: build-${{ github.run_number }}
-          name: App Build ${{ github.run_number }}
+          tag_name: ${{ steps.info.outputs.name }}-build${{ github.run_number }}
+          name: ${{ steps.info.outputs.name }}
           draft: false
           prerelease: false
           files: |
-            portable/BCM-Operate-Portable.zip
+            portable/${{ steps.info.outputs.name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
