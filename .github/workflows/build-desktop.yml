@@ -54,7 +54,7 @@ jobs:
           $outDir = "portable/BCM-Operate-Portable"
           New-Item -ItemType Directory -Force -Path $outDir
 
-          Copy-Item "$releaseDir/BCM Operate.exe" "$outDir/BCM Operate.exe"
+          Copy-Item "$releaseDir/app.exe" "$outDir/BCM Operate.exe"
 
           # Zip it
           Compress-Archive -Path "$outDir/*" -DestinationPath "portable/BCM-Operate-Portable.zip" -Force
