@@ -25,8 +25,8 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@1.82.0
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
@@ -53,11 +53,7 @@ jobs:
           $outDir = "portable/BCM-Operate-Portable"
           New-Item -ItemType Directory -Force -Path $outDir
 
-          # Grab the main Tauri EXE (largest .exe in release dir)
-          $mainExe = Get-ChildItem "$releaseDir/*.exe" |
-            Sort-Object Length -Descending | Select-Object -First 1
-
-          Copy-Item $mainExe.FullName "$outDir/BCM Operate.exe"
+          Copy-Item "$releaseDir/BCM Operate.exe" "$outDir/BCM Operate.exe"
 
           # Zip it
           Compress-Archive -Path "$outDir/*" -DestinationPath "portable/BCM-Operate-Portable.zip" -Force
@@ -89,8 +85,8 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@1.82.0
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
