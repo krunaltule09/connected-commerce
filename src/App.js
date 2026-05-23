@@ -21,12 +21,148 @@ const AZURE_CLIENT_SECRET = process.env.REACT_APP_AZURE_CLIENT_SECRET;
 const AZURE_SCOPE = process.env.REACT_APP_AZURE_SCOPE;
 const TEMP_AZURE_TOKEN = process.env.REACT_APP_TEMP_AZURE_TOKEN;
 
+// In-memory cache for Object URLs to prevent memory leaks
+const objectUrlRegistry = {};
+
+// IndexedDB Helper functions
+const DB_NAME = 'darklight-bcm-operate-touchtable';
+const STORE_NAME = 'assets-store';
+
+const openDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, 1);
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME);
+      }
+    };
+    request.onsuccess = (e) => resolve(e.target.result);
+    request.onerror = (e) => reject(e.target.error);
+  });
+};
+
+const getFromDB = async (key) => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readonly');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.get(key);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+};
+
+const saveToDB = async (key, val) => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.put(val, key);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
+};
+
+const getCachedUrl = async (url) => {
+  if (!url) return '';
+
+  // Skip caching and return remote URL directly in dev mode to load instantly
+  if (process.env.NODE_ENV === 'development') {
+    return url;
+  }
+
+  // Return the existing Object URL if already loaded to avoid memory leaks
+  if (objectUrlRegistry[url]) {
+    return objectUrlRegistry[url];
+  }
+
+  try {
+    // 1. Try to fetch the cached blob from IndexedDB
+    const cachedBlob = await getFromDB(url);
+    if (cachedBlob instanceof Blob) {
+      const objectUrl = URL.createObjectURL(cachedBlob);
+      objectUrlRegistry[url] = objectUrl;
+      return objectUrl;
+    }
+
+    // 2. Fall back to fetching and caching the remote asset
+    const response = await httpFetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch asset: ${response.statusText}`);
+    const blob = await response.blob();
+
+    // 3. Store in IndexedDB
+    try {
+      await saveToDB(url, blob);
+    } catch (dbError) {
+      console.warn('Failed to write asset to local database:', dbError);
+    }
+
+    const objectUrl = URL.createObjectURL(blob);
+    objectUrlRegistry[url] = objectUrl;
+    return objectUrl;
+  } catch (error) {
+    console.error(`Failed to cache asset ${url}, falling back to remote URL:`, error);
+    return url;
+  }
+};
+
 function InactivityGuard() {
   useInactivityRedirect('/');
   return null;
 }
 
 function App() {
+  const [isCacheReady, setIsCacheReady] = useState(false);
+
+  // Clear cache if build time is different (ensures automatic redownload on new build)
+  useEffect(() => {
+    const initCache = async () => {
+      const currentBuildTime = process.env.REACT_APP_BUILD_TIME || 'development';
+      const storedBuildTime = localStorage.getItem('gxide_build_time');
+      
+      if (process.env.NODE_ENV === 'production' && storedBuildTime !== currentBuildTime) {
+        console.log('New build detected. Clearing IndexedDB cache...');
+        await new Promise(async (resolve) => {
+          try {
+            if (typeof indexedDB.databases === 'function') {
+              const dbs = await indexedDB.databases();
+              await Promise.all(
+                dbs.map((db) => {
+                  return new Promise((resolveDb) => {
+                    console.log(`Clearing database: ${db.name}`);
+                    const req = indexedDB.deleteDatabase(db.name);
+                    req.onsuccess = () => resolveDb();
+                    req.onerror = () => resolveDb();
+                    req.onblocked = () => {
+                      console.warn(`Database deletion blocked for ${db.name}, proceeding anyway.`);
+                      resolveDb();
+                    };
+                  });
+                })
+              );
+            } else {
+              // Fallback if indexedDB.databases() is not supported
+              const req = indexedDB.deleteDatabase(DB_NAME);
+              req.onsuccess = () => resolve();
+              req.onerror = () => resolve();
+              req.onblocked = () => resolve();
+              return;
+            }
+          } catch (e) {
+            console.error('Failed to enumerate and clear databases:', e);
+          }
+          resolve();
+        });
+        localStorage.setItem('gxide_build_time', currentBuildTime);
+      } else if (process.env.NODE_ENV === 'development') {
+        localStorage.setItem('gxide_build_time', 'development');
+      }
+      setIsCacheReady(true);
+    };
+    initCache();
+  }, []);
+
   const [config, setConfig] = useState({
     database:  null,
     assets: {
@@ -95,6 +231,8 @@ function App() {
   // Consolidated asset loading service — single interval retries all pending fetches
   // In dev mode, database is loaded locally but CMS assets (images, videos, etc.) are still fetched
   useEffect(() => {
+    if (!isCacheReady) return;
+
     const CMS = `${process.env.REACT_APP_CMS_BASE_URL}:${process.env.REACT_APP_CMS_PORT}`;
     const STATION = process.env.REACT_APP_STATION;
     const SECTOR = process.env.REACT_APP_SECTOR;
@@ -155,7 +293,17 @@ function App() {
               return { key: source.key, assets: {} };
             }
             const data = await response.json();
-            return { key: source.key, assets: parseAssets(data, source) || {} };
+            const parsed = parseAssets(data, source) || {};
+            
+            // Resolve local cached/Object URLs in parallel
+            const cachedEntries = await Promise.all(
+              Object.entries(parsed).map(async ([name, remoteUrl]) => {
+                const localUrl = await getCachedUrl(remoteUrl);
+                return [name, localUrl];
+              })
+            );
+            
+            return { key: source.key, assets: Object.fromEntries(cachedEntries) };
           } catch (error) {
             console.error(`Failed to fetch ${source.key}:`, error);
             return { key: source.key, assets: {} };
@@ -192,9 +340,9 @@ function App() {
     fetchAll();
     const interval = setInterval(fetchAll, 5000);
     return () => clearInterval(interval);
-  }, [config.assets.AZURE_AUTH_TOKEN]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [config.assets.AZURE_AUTH_TOKEN, isCacheReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!config.images || !config.animations || !config.audios || !config.database || !config.videos || !config.assets.AZURE_AUTH_TOKEN) {
+  if (!isCacheReady || !config.images || !config.animations || !config.audios || !config.database || !config.videos || !config.assets.AZURE_AUTH_TOKEN) {
     return (
       <div style={{
         display: 'flex',
@@ -220,7 +368,7 @@ function App() {
             opacity: 0.7,
             marginBottom: '4rem',
           }}>
-            Fetching configuration...
+            {!isCacheReady ? 'Preparing local cache database...' : 'Fetching and caching configuration resources...'}
           </p>
 
           <div style={{
@@ -235,12 +383,10 @@ function App() {
             minWidth: '450px',
           }}>
             {[
+              { label: 'Local Cache', status: isCacheReady },
               { label: 'Azure Token', status: !!config.assets.AZURE_AUTH_TOKEN },
               { label: 'Database', status: !!config.database },
-              { label: 'Images', status: !!config.images },
-              { label: 'Animations', status: !!config.animations },
-              { label: 'Audios', status: !!config.audios },
-              { label: 'Videos', status: !!config.videos },
+              { label: 'Data Download', status: !!config.images && !!config.animations && !!config.audios && !!config.videos },
             ].map((item, idx) => (
               <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
                 <div style={{
