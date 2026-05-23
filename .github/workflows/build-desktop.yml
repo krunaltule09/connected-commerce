@@ -40,6 +40,7 @@ jobs:
         run: npm run build
         env:
           CI: false
+          REACT_APP_BUILD_TIME: ${{ github.run_number }}
 
       - name: Build Tauri app
         run: npm run tauri build
