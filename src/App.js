@@ -67,8 +67,11 @@ const saveToDB = async (key, val) => {
 const getCachedUrl = async (url) => {
   if (!url) return '';
 
+  if (url.includes('.m3u8')) {
+    return url;
+  }
   // Skip caching and return remote URL directly in dev mode to load instantly
-  if (process.env.NODE_ENV === 'development' || url.includes('.m3u8')) {
+  if (process.env.NODE_ENV === 'development') {
     return url;
   }
 
