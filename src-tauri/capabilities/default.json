@@ -13,7 +13,9 @@
         { "url": "https://experiencecenter.ey.com/**" },
         { "url": "https://experiencecenter.ey.com:1337/**" },
         { "url": "http://127.0.0.1:8000/**" },
-        { "url": "wss://experiencecenter.ey.com/**" }
+        { "url": "wss://experiencecenter.ey.com/**" },
+        { "url": "https://darklightcec.ctpsandbox.com/**" },
+        { "url": "https://login.microsoftonline.com/**" }
       ]
     }
   ]
